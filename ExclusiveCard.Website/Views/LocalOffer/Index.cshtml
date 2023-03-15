@@ -1,0 +1,144 @@
+﻿@using ExclusiveCard.Services.Public
+@model LocalOfferMainViewModel
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "Local Offer";
+    var layoutModel = (LayoutViewModel)@ViewBag.LayoutModel;
+}
+<main class="c_main">
+    <section class="c_band --tight">
+        <div class="l_container">
+            
+                @if (!layoutModel.IsDiamondCustomer && layoutModel.IsSignedIn)
+                {
+                    <div class="c_upgrade-reminder u_margin-bottom--s4">
+                        <h2>@Localizer["DiamondCardBenefitsHeader"]</h2>
+                        <p>
+                            @Localizer["DiamondCardBenefitsDescription"].Value
+                            @if (layoutModel.WhiteLabel.Slug != "consumer-rights")
+                            {@Html.GetDiamondCost(@Localizer["DiamondCardBenefitsDescription1"].Value.ToString(), layoutModel.DiamondCost)
+                        }
+                        </p>
+                        <a href=@Url.Action("MyAccount","MyAccount",new{diamondCardRequest=true})><span>@Localizer["UpgradeAccount"]</span></a>
+                    </div>
+                }
+
+                <div class="local_offer">
+                    <div class="offer-selection">
+                        <h6>@Localizer["Dropdown_Main_Heading"]</h6>
+                        <a>@Localizer["Dropdown_Main_Subheading"]</a>
+                        <div class="localOffers-dropdown" id="localOffers-dropdown">
+                            <div class="dropdown --white --small">
+                                <button onclick="myFunction()" class="dropbtn">
+                                    @Model.WhiteLableName &nbsp;
+                                </button>
+                                <div id="myDropdown" class="dropdown-content">
+                                    <input type="text" placeholder="Search.." id="myInput" onkeyup="filterFunction()">
+                                    <div id="RegionalAreas">
+                                        @foreach (var item in Model.whiteLableList)
+                                        {
+                                            @if (item.Name != null)
+                                            {
+                                                <a href="@Url.Action("Index","LocalOffer", new {item.id,country = ViewData["Country"].ToString()})"><i class="fa fa-users fa-fw navmob"></i><span class="navmob">@item.Name</span></a>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @if (Model.LocalOffer.Count != 0 || Model.BestCashbackOffers.Count != 0)
+                {
+                    <div class="u_margin-bottom--s4 u_margin-bottom--s5--md">
+                        @if (Model.LocalOffer.Count > 0)
+                        {
+                            @await Html.PartialAsync("_localOfferSlider", Model.LocalOffer)
+                        }
+                    </div>
+                    <h2 class="u_text-align--center u_margin-bottom--s4 u_margin-bottom--s5--md">@Localizer["Top_Offers"]</h2>
+                    <div class="l_offer-grid u_margin-bottom--s4 u_margin-bottom--s5--md">
+                        @if (Model.BestCashbackOffers.Count > 0)
+                        {
+                            @await Html.PartialAsync("_localGridOffers", Model.BestCashbackOffers)
+                        }
+                        else
+                        {
+                            <h4>@Localizer["Coming_Soon"]</h4>
+                        }
+                    </div>
+                    <div class="u_text-align--center u_margin-bottom--s4 u_margin-bottom--s5--md">
+                        <h2 class="u_margin-bottom--half">@Localizer["Offer_Categories"]</h2>
+                        <p class="u_margin-bottom--none">@Localizer["Categories_Short"]</p>
+                    </div>
+
+                    <ul class="l_category-grid">
+
+                        @foreach (var category in Model.Categories)
+                        {
+                            <li class="__item">
+                                <a class="c_category" href="@Url.Action("DisplayOffer","Offers",new { country = ViewData["Country"].ToString(),parentCategoryId=@category.Id,parentCategoryName=@category.Name, checkedOfferType="Local Offer" })">
+                                    @if (category.CategoryFeatureDetails?.FirstOrDefault()?.SelectedImage != null)
+                                    {
+                                        <img class="lazy" src="/images/blank.png" data-src="/Image/GetImage?Path=@category.CategoryFeatureDetails?.FirstOrDefault()?.SelectedImage"
+                                             data-srcset="/Image/GetImage?Path=@category.CategoryFeatureDetails?.FirstOrDefault()?.SelectedImage"
+                                             alt="@category.Name">
+                                    }
+                                    else
+                                    {
+                                        <img src="/images/blank.png" alt="@category.Name">
+                                    }
+                                    <span>@category.Name</span>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                }
+                else
+                {
+                    <div class="u_text-align--center u_margin-bottom--s4 u_margin-bottom--s5--md">
+                        <h4>@Localizer["No_Offer"]<br />@Localizer["No_Offer_Substring"] </h4>
+                    </div>
+                }
+
+        </div>
+    </section>
+</main>
+
+<script>
+
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+    }
+
+    function filterFunction() {
+        var input, filter, a, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        div = document.getElementById(  "myDropdown");
+        a = div.getElementsByTagName("a");
+        for (i = 0; i < a.length; i++) {
+            if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                a[i].style.display = "";
+            } else {    
+                a[i].style.display = "none";
+            }
+        }
+    }
+    window.onclick = function (event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns =
+                document.getElementsByClassName("dropdown-content");
+            for (var i = 1  ; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
+        if (!$(event.target).closest('#localOffers-dropdown ').length) {
+            console.log("outside");
+            document.getElementById("myDropdown").classList.remove("show");
+        }
+    }
+</script>

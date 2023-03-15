@@ -1,0 +1,191 @@
+{
+	"info": {
+		"_postman_id": "7a782096-6aaf-4521-b8a8-763e9ec82694",
+		"name": "Exclusive Strackr",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Merchants List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.strackr.com/v1/merchants?api_id=79648292&api_key=JyZR6maqkdPmBG",
+					"protocol": "https",
+					"host": [
+						"api",
+						"strackr",
+						"com"
+					],
+					"path": [
+						"v1",
+						"merchants"
+					],
+					"query": [
+						{
+							"key": "api_id",
+							"value": "79648292"
+						},
+						{
+							"key": "api_key",
+							"value": "JyZR6maqkdPmBG"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Network List",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.strackr.com/v1/networks?api_id=79648292&api_key=JyZR6maqkdPmBG",
+					"protocol": "https",
+					"host": [
+						"api",
+						"strackr",
+						"com"
+					],
+					"path": [
+						"v1",
+						"networks"
+					],
+					"query": [
+						{
+							"key": "api_id",
+							"value": "79648292"
+						},
+						{
+							"key": "api_key",
+							"value": "JyZR6maqkdPmBG"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transactions",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.strackr.com/v1/reports/transactions?api_id=79648292&api_key=JyZR6maqkdPmBG&time_start=2019-02-9&time_end=2019-02-28",
+					"protocol": "https",
+					"host": [
+						"api",
+						"strackr",
+						"com"
+					],
+					"path": [
+						"v1",
+						"reports",
+						"transactions"
+					],
+					"query": [
+						{
+							"key": "api_id",
+							"value": "79648292"
+						},
+						{
+							"key": "api_key",
+							"value": "JyZR6maqkdPmBG"
+						},
+						{
+							"key": "time_start",
+							"value": "2019-02-9"
+						},
+						{
+							"key": "time_end",
+							"value": "2019-02-28"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Transactions v2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.strackr.com/v2/reports/transactions?api_id=79648292&api_key=JyZR6maqkdPmBG&time_start=2019-06-04&time_end=2019-06-04",
+					"protocol": "https",
+					"host": [
+						"api",
+						"strackr",
+						"com"
+					],
+					"path": [
+						"v2",
+						"reports",
+						"transactions"
+					],
+					"query": [
+						{
+							"key": "api_id",
+							"value": "79648292"
+						},
+						{
+							"key": "api_key",
+							"value": "JyZR6maqkdPmBG"
+						},
+						{
+							"key": "time_start",
+							"value": "2019-06-04"
+						},
+						{
+							"key": "time_end",
+							"value": "2019-06-04"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Clicks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api.strackr.com/v1/reports/clicks?api_id=79648292&api_key=JyZR6maqkdPmBG&time_start=2019-02-14&time_end=2019-02-17",
+					"protocol": "https",
+					"host": [
+						"api",
+						"strackr",
+						"com"
+					],
+					"path": [
+						"v1",
+						"reports",
+						"clicks"
+					],
+					"query": [
+						{
+							"key": "api_id",
+							"value": "79648292"
+						},
+						{
+							"key": "api_key",
+							"value": "JyZR6maqkdPmBG"
+						},
+						{
+							"key": "time_start",
+							"value": "2019-02-14"
+						},
+						{
+							"key": "time_end",
+							"value": "2019-02-17"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

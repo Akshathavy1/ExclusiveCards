@@ -1,0 +1,127 @@
+﻿@model ExclusiveCard.WebAdmin.ViewModels.OfferListMaintainViewModel
+
+@if (Model.IsSingleRow)
+{
+    @foreach (var item in Model.ListofOffers)
+    {
+        <tr>
+            <td style="font-weight: bold">@item.MerchantName</td>
+            <td style="font-weight: bold">@item.OfferShortDescription</td>
+            @if (!string.IsNullOrEmpty(@item.ValidFrom) && Convert.ToDateTime(@item.ValidFrom).Date < DateTime.UtcNow.Date)
+            {
+                <td style="font-weight: bold">@Html.TextBox("StartDate", @item.ValidFrom, new { @class = "form-control roundedInput", Type = "date", format = "{0:yyyy-MM-dd}", style = "font-weight: bold", disabled = "disabled" })</td>
+            }
+            else
+            {
+                <td style="font-weight: bold">@Html.TextBox("StartDate", @item.ValidFrom, new { @class = "form-control roundedInput", Type = "date", format = "{0:yyyy-MM-dd}", style = "font-weight: bold" })</td>
+            }
+            @if (!string.IsNullOrEmpty(@item.ValidTo) && Convert.ToDateTime(@item.ValidTo).Date < DateTime.Now.Date)
+            {
+                <td style="font-weight: bold">@Html.TextBox("EndDate", @item.ValidTo, new { @class = "form-control roundedInput", Type = "date", format = "{0:yyyy-MM-dd}", style = "font-weight: bold", disabled = "disabled" })</td>
+            }
+            else
+            {
+                <td style="font-weight: bold">@Html.TextBox("EndDate", @item.ValidTo, new { @class = "form-control roundedInput", Type = "date", format = "{0:yyyy-MM-dd}", style = "font-weight: bold" })</td>
+            }
+            <td style="font-weight: bold" class="removeOfferList" offerId="@item.OfferId">Remove</td>
+            <td style="padding-right: 3pt;">
+                @if (@Model.ListofOffers.IndexOf(@item) == 0)
+                {
+                    <span style="padding-right: 10pt;visibility: hidden" displayOrder="@item.DisplayOrder" class="col-xs-1  btn-xs pointing upArrow"><i class="fa fa-arrow-up fa-xs" data-dir="up"></i></span>
+                }
+                else
+                {
+                    <span style="padding-right: 10pt;" displayOrder="@item.DisplayOrder" class="col-xs-1  btn-xs pointing upArrow"><i class="fa fa-arrow-up fa-xs" data-dir="up"></i></span>
+                }
+                @if (@Model.ListofOffers.IndexOf(@item) == @Model.ListofOffers.Count() - 1)
+                {
+                    <span style="padding-left: 5pt;visibility: hidden" class="col-xs-1  btn-xs pointing downArrow"><i class="fa fa-arrow-down fa-xs" data-dir="down"></i></span>
+                }
+                else
+                {
+                    <span style="padding-left: 5pt;" class="col-xs-1  btn-xs pointing downArrow"><i class="fa fa-arrow-down fa-xs" data-dir="down"></i></span>
+                }
+            </td>
+        </tr>
+    }
+}
+else
+{
+
+    @if (Model.ListofOffers.Count == 0)
+    {
+        <div class="list-unstyled listbx list">
+            @Html.Raw("<span style='padding-left:10px;'>No Records</span>")
+        </div>
+    }
+    else
+    {
+        <table class="table table-responsive" id="tblOfferMaintainList">
+            <thead>
+                <tr>
+                    <th>Merchant</th>
+                    <th>Short Description</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Action</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ListofOffers)
+                {
+                    <tr>
+                        <td style="font-weight: bold">@item.MerchantName</td>
+                        <td style="font-weight: bold">@item.OfferShortDescription</td>
+                        @if (!string.IsNullOrEmpty(@item.ValidFrom) && Convert.ToDateTime(@item.ValidFrom).Date < DateTime.UtcNow.Date)
+                        {
+                            <td style="font-weight: bold">@Html.TextBox("StartDate", @item.ValidFrom, new { @class = "form-control roundedInput", Type = "date", format = "{0:yyyy-MM-dd}", style = "font-weight: bold", disabled = "disabled" })</td>
+                        }
+                        else
+                        {
+                            <td style="font-weight: bold">@Html.TextBox("StartDate", @item.ValidFrom, new { @class = "form-control roundedInput", Type = "date", format = "{0:yyyy-MM-dd}", style = "font-weight: bold" })</td>
+                        }
+                        @if (!string.IsNullOrEmpty(@item.ValidTo) && Convert.ToDateTime(@item.ValidTo).Date < DateTime.Now.Date)
+                        {
+                            <td style="font-weight: bold">@Html.TextBox("EndDate", @item.ValidTo, new { @class = "form-control roundedInput", Type = "date", format = "{0:yyyy-MM-dd}", style = "font-weight: bold", disabled = "disabled" })</td>
+                        }
+                        else
+                        {
+                            <td style="font-weight: bold">@Html.TextBox("EndDate", @item.ValidTo, new { @class = "form-control roundedInput", Type = "date", format = "{0:yyyy-MM-dd}", style = "font-weight: bold" })</td>
+                        }
+                        <td style="font-weight: bold" class="removeOfferList" offerId="@item.OfferId">Remove</td>
+
+                        <td style="padding-right: 3pt;">
+                            @if (@Model.ListofOffers.IndexOf(@item) == 0)
+                            {
+                                <span style="padding-right:10pt;visibility: hidden" displayOrder="@item.DisplayOrder" class="col-xs-1  btn-xs pointing upArrow"><i class="fa fa-arrow-up fa-xs" data-dir="up"></i></span>
+                            }
+                            else
+                            {
+                                <span style="padding-right:10pt;" displayOrder="@item.DisplayOrder" class="col-xs-1  btn-xs pointing upArrow"><i class="fa fa-arrow-up fa-xs" data-dir="up"></i></span>
+                            }
+                            @if (@Model.ListofOffers.IndexOf(@item) == @Model.ListofOffers.Count() - 1)
+                            {
+                                <span style="padding-left:5pt;visibility: hidden" id="downArrow" class="col-xs-1  btn-xs pointing downArrow"><i class="fa fa-arrow-down fa-xs" data-dir="down"></i></span>
+                            }
+                            else
+                            {
+                                <span style="padding-left:5pt;" class="col-xs-1  btn-xs pointing downArrow"><i class="fa fa-arrow-down fa-xs" data-dir="down"></i></span>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="form-group row pull-right">
+            <button type="button" id="btnSaveOfferMaintain" class="btn pull-right has-spinner">
+                Save<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+            </button>
+        </div>
+    }
+}
+
+
+
+
+

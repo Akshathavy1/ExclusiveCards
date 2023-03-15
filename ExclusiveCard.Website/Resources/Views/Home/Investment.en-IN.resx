@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Boost" xml:space="preserve">
+    <value>T_Investment Boost</value>
+  </data>
+  <data name="BoostP1" xml:space="preserve">
+    <value>T_Boost your account with our £10.00 Investment Boost feature (plus a £1.00 one off admin fee) which allows you to start investing immediately. All future cashback will automatically be transferred increasing your investment account.</value>
+  </data>
+  <data name="Choice" xml:space="preserve">
+    <value>T_Choice and Automation</value>
+  </data>
+  <data name="Choice1" xml:space="preserve">
+    <value>T_The choice is always in your hands. Use {{Name}} as an ordinary standard cashback account and withdrawn your cashback at any time (minimum of £10.00) or opt into our Investment Account programme, the choice is completely up to you. If you opt into the investment programme, once your investment account is opened all future cashback earned will be automatically transferred, gradually increasing your portfolio over time.</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>T_Shop via the {{Name}} cashback portal and allow your cashback balance to increase with each purchase made. Once you have accrued the minimum amount of £10.00 cashback you will be presented with the choice to opt into our Investment Account package, if selected, your investment account will now be opened and all future cashback will automatically be transferred into your investment account. Your investment can be withdrawn at any point with no transaction fees.</value>
+  </data>
+  <data name="Fun" xml:space="preserve">
+    <value>T_Is it Fun?</value>
+  </data>
+  <data name="Fun1" xml:space="preserve">
+    <value>T_Your portfolio dashboard comes with real-time tracking, portfolio valuations, performance management, details of asset exposure and in-depth analysis of investments, allowing you to see the reasoning behind why each trade was executed.</value>
+  </data>
+  <data name="Invest" xml:space="preserve">
+    <value>T_Why Invest?</value>
+  </data>
+  <data name="Invest1" xml:space="preserve">
+    <value>T_Who Looks After Your Investment?</value>
+  </data>
+  <data name="Invest2" xml:space="preserve">
+    <value>T_How is Exclusive Investment Different?</value>
+  </data>
+  <data name="InvestP1" xml:space="preserve">
+    <value>T_Your investment is being looked after by TAM Asset Management, a London-based Investment Management service. TAM’s company roots can be traced back to the 1930’s and today is majority owned by their management team of experienced investment and operations professionals who believe that every investor should have access to actively managed, diversified, transparent investment portfolios, regardless of their level of wealth. Their award-winning investment team have the depth of knowledge and understanding needed to quickly respond to ever-changing market and regulatory conditions, so you can rest assured your wealth is in capable hands.</value>
+  </data>
+  <data name="InvestP2" xml:space="preserve">
+    <value>T_TAM Asset Management’s entire portfolio service has been designed and developed to provide clients peace of mind in relation to key portfolio fundamentals: Accessibility, security, liquidity, flexibility, risk management, diversification, performance and transparency.</value>
+  </data>
+  <data name="Micro" xml:space="preserve">
+    <value>T_Micro Trading and Accessibility</value>
+  </data>
+  <data name="Micro1" xml:space="preserve">
+    <value>T_Open your Exclusive Investment Account with as little as £10.00 and from this point on any cashback received will be transferred directly into your Investment Account with no minimum amount required. Your investment can be withdrawn at any point with no transaction fees. After you have withdrawn your money, all future cashback received will still be directed to your Exclusive Investment Account.</value>
+  </data>
+  <data name="Money" xml:space="preserve">
+    <value>T_Who Looks After Your Money?</value>
+  </data>
+  <data name="MoneyP1" xml:space="preserve">
+    <value>T_TAM Asset Management take the security of their clients investment as paramount, this is why TAM do not hold money directly and instead is held on TAM’s behalf with their custodian – Pershing Securities Limited, who are part of the Bank of New York Mellon Corporation (BNY Mellon), one of the world’s largest and strongest financial institutions. Pershing have been providing such services since 1939 and are regulated by the Financial Conduct Authority (FCA).</value>
+  </data>
+  <data name="Performance" xml:space="preserve">
+    <value>T_Performance of an Exclusive Investment Account</value>
+  </data>
+  <data name="PerformanceP1" xml:space="preserve">
+    <value>T_Our results speak for themselves. Over the past 5 years we can proudly show a &lt;span class="c_tooltip" title="TAM Asset Management Ltd. 29.39% over 5 years from 1/10/14 - 30/09/19"&gt;29.39%&lt;/span&gt; growth on investment, with our trading and risk assessment team. You are in the right hands when it comes to your investment and we will endeavour to continue this level of growth of almost 6% per year! Start your investment journey today and remember, unlike some investment accounts you will have the freedom to access your money whenever you need.</value>
+  </data>
+  <data name="PerformanceP2" xml:space="preserve">
+    <value>T_Past performance is not a guide to future returns and the value of investments and the income from it, may go down as well as up and may fall below the amount initially invested.</value>
+  </data>
+  <data name="Portfolio" xml:space="preserve">
+    <value>T_What Is a Portfolio?</value>
+  </data>
+  <data name="PortfolioP1" xml:space="preserve">
+    <value>T_A portfolio is defined as a range of investments held by a person. Start or increase your portfolio today with an Exclusive Investment Account by shopping as normal via your {{Name}} Cashback Account.</value>
+  </data>
+  <data name="Req" xml:space="preserve">
+    <value>T_Investment Account Requirements</value>
+  </data>
+  <data name="ReqP1" xml:space="preserve">
+    <value>T_To open an Exclusive Investment Account, we need your national insurance number. This is an automatic process, once you have provided this and accrued the minimum £10.00 cashback required, your Exclusive Investment Account will be opened within a few days.</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>T_Exclusive Investment Option</value>
+  </data>
+  <data name="Transparency" xml:space="preserve">
+    <value>T_Transparency</value>
+  </data>
+  <data name="Transparency1" xml:space="preserve">
+    <value>T_We believe in being honest, fair and transparent throughout your investment journey. In line with these values please find a breakdown of the fees below. These fees cover all trading costs.</value>
+  </data>
+  <data name="Transparency2" xml:space="preserve">
+    <value>T_Annual Fund Provider Costs</value>
+  </data>
+  <data name="Transparency3" xml:space="preserve">
+    <value>T_0.78%</value>
+  </data>
+  <data name="Transparency4" xml:space="preserve">
+    <value>T_Annual Exclusive Admin Charge</value>
+  </data>
+  <data name="Transparency5" xml:space="preserve">
+    <value>T_0.22%</value>
+  </data>
+  <data name="Transparency6" xml:space="preserve">
+    <value>T_Account Boost (Optional)</value>
+  </data>
+  <data name="Transparency7" xml:space="preserve">
+    <value>T_£1.00 one off admin fee</value>
+  </data>
+</root>

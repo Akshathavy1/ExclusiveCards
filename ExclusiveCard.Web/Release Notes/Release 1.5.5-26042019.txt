@@ -1,0 +1,31 @@
+﻿User stories/Tasks:
+	- US 915 Back office - Cancel membership card
+	- US 958 Add Buy card option to customer account
+	- US 975 Bundling and Minification (Bundling is not completed, but minification completed)
+	- Task 983 Change the font for cashback money
+	- Task 984 Fix my account responsiveness
+	- Task 974 Fix image issues
+	- US 342 Add/Edit Banner adverts
+	- US 868 Banner adverts API
+	- US 869 List Banner adverts
+	- US 780 Send welcome email when customer creates new account
+	- US 781 Send Thank you email when card renewed
+	
+	
+
+Bug Fixes:
+	Bug 955 Multi Threading issue on AccountController  crashed site
+	Bug 964 Deletion of merchant is not  happening completely
+	Bug 973 Account Details not as expected
+	Bug 976 Cashback balance updates wrong if txn jumps straight to confirmed status
+	Bug 982 Service helper needs to be fixed
+
+Note: Please execute the script - ExclusiveCard.Web\Dev Scripts\v1.5.5\Sql_Script_09052019
+Note: Please add the following app settings:
+"CmsCategoryName": "Avert"
+"FullHeight": "150",
+"FullWidth": "1250",
+"SlotHeight": "150",
+"SlotWidth": "200",
+"BackgroundWidth": "980",
+"BackgroundHeight": "150"

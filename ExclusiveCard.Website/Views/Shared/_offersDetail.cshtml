@@ -1,0 +1,79 @@
+﻿@model PagedOffersViewModel
+@inject IViewLocalizer Localizer
+@*@{
+        string type = Convert.ToString(ViewData["OfferType"]);
+    }*@
+
+<!-- c_offer-sorting -->
+<div class="c_offer-sorting">
+    @{
+        var endPage = Model.PagingView.PageSize + ((Model.PagingView.CurrentPage - 1) * Model.PagingView.PageSize) > Model.PagingView.RowCount ? Model.PagingView.RowCount :
+            Model.PagingView.PageSize + ((Model.PagingView.CurrentPage - 1) * Model.PagingView.PageSize);
+    }
+    <p class="__count">@Localizer["Displaying offer"] @(1 + ((Model.PagingView.CurrentPage - 1) * Model.PagingView.PageSize)) to @endPage of @Model.PagingView.RowCount</p>
+
+    <form class="__actions" onsubmit="return true" >
+        <select class="--white --small" name="pageSize" id="offerCount" aria-label="Change number of offers per page">
+            <option value="25">25 per page</option>
+            <option value="50">50 per page</option>
+            <option value="100">100 per page</option>
+        </select>
+        <select class="--white --small" name="offerSort" id="offerSort" aria-label="Change sort method of offers">
+            <option value="popularity">Popularity</option>
+            <option value="expiring">Expiring</option>
+            <option value="merchant">Merchant</option>
+        </select>
+    </form>
+</div>
+<!-- c_offer-sorting - END -->
+<div class="l_offer-list">
+    @foreach (var offer in Model.OfferSummaries)
+    {
+        <div class="__item">
+            <!-- c_row-offer -->
+            <a href="@Url.Action("Index","Offers", new {country=@ViewData["Country"],merchantId=@offer.MerchantId,offerId=@offer.OfferId})" class="c_row-offer">
+
+                @if (offer.Rank == 1)
+                {
+                    <div class="__logo --highlight">
+                        @if (!string.IsNullOrEmpty(offer.MerchantLogoPath))
+                        {
+                            <img class="lazy" src="/images/blank.png" data-src="/Image/GetImage?path=@offer.MerchantLogoPath" data-srcset="/Image/GetImage?path=@offer.MerchantLogoPath" alt="@offer.MerchantName">
+                        }
+                        else
+                        {
+                            <img src="/images/blank.png" alt="@offer.MerchantName" />
+                        }
+                    </div>
+                }
+                else
+                {
+                    <div class="__logo">
+                        @if (!string.IsNullOrEmpty(offer.MerchantLogoPath))
+                        {
+                            <img src="~/Image/GetImage?path=@offer.MerchantLogoPath" alt="@offer.MerchantName">
+                        }
+                        else
+                        {
+                            <img src="/images/blank.png" alt="@offer.MerchantName" />
+                        }
+                    </div>
+                }
+
+                <div class="__content">
+                    @if (offer.Rank == 1)
+                    {
+                        <small>@Localizer["Special Offer"]</small>
+                    }
+                    <h2><span>@offer.MerchantName</span> @offer.OfferShortDescription</h2>
+                    <p>@Html.Raw(@offer.OfferLongDescription)</p>
+                </div>
+            </a>
+            <!-- c_row-offer - END -->
+        </div>
+    }
+</div>
+@if (Model?.PagingView.PageCount > 1)
+{
+    await Html.RenderPartialAsync("_paging", @Model.PagingView);
+}

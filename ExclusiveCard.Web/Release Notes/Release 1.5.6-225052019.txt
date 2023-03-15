@@ -1,0 +1,8 @@
+﻿Bug Fixes:
+	1025 - Banner admin screens missing data and search panel advert dropdown not displaying names
+	1026 - Create new account failed if using registration code
+	1027 - No email sent when new card purchased
+	1033 - Merchant mapping rule
+
+Note: Please execute the script - ExclusiveCard.Web\Dev Scripts\v1.5.6\Sql_Script_22052019
+Note: It's also requested to check the email template in the script file for Thank you email

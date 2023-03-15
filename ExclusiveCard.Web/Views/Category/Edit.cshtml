@@ -1,0 +1,114 @@
+﻿@model ExclusiveCard.WebAdmin.ViewModels.CategoryViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Edit Category";
+}
+
+@using (Html.BeginForm("Edit", "Category", FormMethod.Get, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+<div id="mainDiv" class="col-md-10 form-horizontal">
+    @Html.ValidationSummary(false, "", new { @class = "text-danger", autofocus = "autofocus" })
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Name, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-5">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control roundedInput" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    @if (Model.ParentId > 0)
+    {
+        <div class="form-group row">
+            @Html.LabelFor(model => model.ParentId, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-5">
+                @Html.DropDownListFor(model => model.ParentId, Model.Parents,"--Select--", htmlAttributes: new { @class = "form-control roundedInput" })
+                @Html.ValidationMessageFor(model => model.ParentId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    }
+    
+    <div id="feature">
+        @{
+            @await Html.PartialAsync("_feature", Model.Feature)
+        }
+    </div>
+
+    <div class="form-group  col-md-12">
+        <div class="form-group col-md-8">
+        </div>
+        <div class="form-group col-md-4">
+            <button type="button" id="btnSaveCategory" class="btn has-spinner pull-right">
+                Save<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+            </button>
+        </div>
+    </div>
+</div>
+
+    <div class="form-group row">
+        <input type="file" style="display:none" name="Disabled-file" id="Disabled-file" accept=".jpg,.tif,.jpeg,.png,.gif" onchange="show(this, 2)">
+    </div>
+    <div class="form-group row">
+        <input type="file" style="display:none" name="Feature-file" id="Feature-file" accept=".jpg,.tif,.jpeg,.png,.gif" onchange="show(this, 1)">
+    </div>
+    <div id="dialog-confirm" title="Delete Confirmation">
+        <p id="infoMessage"></p>
+    </div>
+}
+
+<script>
+    var fileExtension = ['jpeg', 'jpg', 'png', 'tif', 'gif'];
+    
+    function addFeatureImage() {
+        $('#Feature-file').click();
+    }
+    function addDisabledImage() {
+        $('#Disabled-file').click();
+    }
+    function show(input, type) {
+        // $("#wait").show();
+        if (input.files && input.files[0]) {
+            var maxImageSize = 50;
+             if (type === 2 && $.inArray($("#Disabled-file").val().split('.').pop().toLowerCase(), fileExtension) === -1) {
+                $("#Disabled-file").val("");
+                toastr.error("Only .jpeg, .jpg, .png, .tif, .gif formats are allowed.", "Invalid File Format");
+            } else if (type === 1 && $.inArray($("#Feature-file").val().split('.').pop().toLowerCase(), fileExtension) === -1) {
+                $("#Feature-file").val("");
+                toastr.error("Only .jpeg, .jpg, .png, .tif, .gif formats are allowed.", "Invalid File Format");
+            }else if (type === 2 && (input.files[0].size / 1024 / 1024) > maxImageSize) {
+                $("#Disabled-file").val("");
+                toastr.error("File size has exceeded it max limit of " + maxImageSize + " MB");
+            }
+            else if (type === 1 && (input.files[0].size / 1024 / 1024) > maxImageSize) {
+                $("#Feature-file").val("");
+                toastr.error("File size has exceeded it max limit of " + maxImageSize + " MB");
+            }
+            else {
+                 var merchantId = $("#FeatureMerchantId").val();
+                 var countryCode = $("#CountryCode").val();
+                if (type === 1) {
+                    Category.addMerchantSelectedImage(merchantId, input.files[0], countryCode);
+                } else if (type === 2) {
+                    Category.addMerchantUnSelectedImage(merchantId, input.files[0], countryCode);
+                }
+            }
+        }
+    }
+</script>
+
+@section Scripts
+{
+    <script src="~/js/Exclusive/category.js"></script>
+    <script type="text/javascript">
+        Category.setupEvents();
+        Category.kendoUIBind();
+
+        if ('@Model.Feature.FeatureMerchantId' === '') {
+            $('#btnAddFeature').prop('disabled', true);
+            $('#btnAddDisabled').prop('disabled', true);
+        }
+    </script>
+}

@@ -1,0 +1,29 @@
+﻿@model List<ExclusiveCard.Services.Models.DTOs.Category>
+@{
+//ViewData["CategoryHeader"] = "Category";
+}
+<!-- c_widget - categories - START -->
+<div class="c_widget">
+    <div class="__header">@ViewData["CategoryHeader"]</div>
+    <div class="__content --flat">
+        <ul class="__filters">
+            @foreach (var category in Model)
+            {
+            <li>
+                @if (category.IsActive)
+                {
+                    <input type="checkbox" name="searchCategories" value="@category.Name" id="@category.UrlSlug" category_id="@category.Id" checked="checked" />
+                    <label for="@category.UrlSlug">@category.Name</label>
+                }
+                else
+                {
+                    <input type="checkbox" name="searchCategories" value="@category.Name" id="@category.UrlSlug" category_id="@category.Id" />
+                    <label for="@category.UrlSlug">@category.Name</label>
+                }
+            </li>
+            }
+        </ul>
+    </div>
+</div>
+<!-- c_widget - sub-categories - END -->
+

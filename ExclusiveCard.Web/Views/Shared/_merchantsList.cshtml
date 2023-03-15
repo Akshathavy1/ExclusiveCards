@@ -1,0 +1,48 @@
+﻿@using ExclusiveCard.Enums
+@using ExclusiveCard.WebAdmin.ViewModels
+@model MerchantsList
+@Html.HiddenFor(m => m.CurrentPageNumber)
+@if (Model != null)
+{@if (@Model.ListofMerchants.Count > 0)
+    {
+        <div class="table-responsive">
+            @Html.Hidden("SortField", Model.MerchantSortField)
+            @Html.Hidden("SortDirection", Model.SortDirection)
+            <table class="table" id="merchantstable">
+                <thead>
+                    <tr>
+                        <th class="merchantHeading">
+                            @Html.ActionLink("Merchant", "Index", "Merchant", "https", null, null, new { }, new { SelSortField = "MerchantName" })
+                            @if (Model.MerchantSortField == MerchantSortField.MerchantName)
+                            {<i class="@Model.SortIcon"></i>}
+                        </th>
+                        <th class="merchantHeading"></th>
+                        <th class="merchantHeading"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (ExclusiveCard.Services.Models.DTOs.Merchant item in Model.ListofMerchants)
+                    {
+                        <tr class="merchantList">
+                            <td>@item.Name</td>
+                            <td class="merchantEdit"><a href="#" merchantId="@item.Id">Edit</a></td>
+                            <td class="merchantDelete"><a href="#" merchantId="@item.Id">Delete</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="form-group align-items-center row col-md-9">
+            <h5 style="margin-top:12pt;">No record found</h5>
+        </div>
+    }
+@if (Model.ListofMerchants != null && Model.ListofMerchants.Any() && Model.PagingModel.PageCount > 1)
+{
+    <div class="form-group row col-md-8">
+        @{ @await Html.PartialAsync("_paging", @Model.PagingModel); }
+    </div>
+}           }
+

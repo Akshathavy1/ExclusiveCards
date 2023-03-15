@@ -1,0 +1,60 @@
+﻿@model ExclusiveCard.WebAdmin.ViewModels.FileSearchViewModel
+
+@{
+    Layout = "~/Views/Shared/_NewLayout.cshtml";
+    ViewData["Title"] = "Files";
+}
+
+    <div id="mainDiv" class="col-md-12 Searchforoffers divonemerchant divone">
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(false, "", new { @class = "text-danger", autofocus = "autofocus" })
+        <div class="form-group row">
+            <div class="col-md-12">
+                <h1 class="col-md-6" id="title-name">Files</h1>
+            </div>
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(model => model.CreatedFrom, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.CreatedFrom, "{0:yyyy-MM-dd}", new { @class = "form-control roundedInput", Type = "date" })
+                @Html.ValidationMessageFor(model => model.CreatedFrom, "", new { @class = "text-danger col-md-12" })
+            </div>
+             @Html.LabelFor(model => model.CreatedTo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.TextBoxFor(model => model.CreatedTo, "{0:yyyy-MM-dd}", new { @class = "form-control roundedInput", Type = "date" })
+                @Html.ValidationMessageFor(model => model.CreatedTo, "", new { @class = "text-danger col-md-12" })
+            </div>           
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(model => model.Type, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownListFor(model => model.Type, Model.Types, "--All--", htmlAttributes: new { @class = "form-control roundedInput", @placeholder = "Report Type" })
+                @Html.ValidationMessageFor(model => model.Type, "", new { @class = "text-danger col-md-12" })
+            </div>
+            @Html.LabelFor(model => model.State, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownListFor(model => model.State, Model.States, "--All--", htmlAttributes: new { @class = "form-control roundedInput", @placeholder = "Report Type" })
+                @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger col-md-12" })
+            </div>           
+        </div>
+        <div class="form-group">
+            <div class="col-md-10"></div>
+            <div class="col-md-2">
+                <button type="button" id="btnSearch" class="btn pull-right has-spinner">Search <span class="spinner"><i class="fa fa-spinner fa-spin"></i></span></button>
+            </div>
+        </div>
+        </div>
+
+<div id="divTransactions" class="col-md-12 divtwomerchant table-responsive">
+    @{
+        @await Html.PartialAsync("_files", @Model.FileList)
+    }
+</div>
+
+@section Scripts
+    {
+    <script src="~/js/Exclusive/file.js"></script>
+    <script type="text/javascript">       
+        File.setUpEvents();
+    </script>
+}

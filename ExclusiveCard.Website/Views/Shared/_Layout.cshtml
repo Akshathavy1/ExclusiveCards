@@ -1,0 +1,348 @@
+﻿@using System.Collections
+@using ExclusiveCard.Managers
+@using ExclusiveCard.Services.Models.DTOs
+@using Microsoft.AspNetCore.Http
+@inject IViewLocalizer Localizer
+@inject IHttpContextAccessor HttpContextAccessor
+@inject IMembershipManager manager
+@inject IWhiteLabelManager whiteLable
+
+@{
+    string isMobileKey = "IsMobile";
+    var layoutModel = (LayoutViewModel)@ViewBag.LayoutModel;
+    string css = null;
+    bool isMobile = false;
+    string sIsMobile = HttpContextAccessor.HttpContext.Session.GetString(isMobileKey);
+    //bool cookieExists = Context.Request.Cookies["cookieconsent_status"] == null;
+    var managerdetails = manager.GetMembershipPlan(layoutModel.MembershipPlanId);
+    var lables = whiteLable.GetAll();
+
+    if (!string.IsNullOrEmpty(sIsMobile))
+    {
+        bool.TryParse(sIsMobile, out isMobile);
+        if (isMobile)
+        {
+            //if (cookieExists)
+            //{
+            //    Context.Request.HttpContext.Response.Cookies.Append("cookieconsent_status", "dismiss");
+            //}
+        }
+
+    }
+    if (!isMobile)
+    {
+        if (Context.Request.Headers.ContainsKey(isMobileKey))
+        {
+            Boolean.TryParse(Context.Request.Headers[isMobileKey], out isMobile);
+        }
+        else if (Context.Request.Query[isMobileKey].Count > 0)
+        {
+            Microsoft.Extensions.Primitives.StringValues queryVal;
+            if (Context.Request.Query.TryGetValue(isMobileKey, out queryVal))
+            {
+                Boolean.TryParse(queryVal[0], out isMobile);
+            }
+        }
+        if (isMobile)
+        {
+            //if (cookieExists)
+            //{
+            //     Context.Request.HttpContext.Response.Cookies.Append("cookieconsent_status", "dismiss");
+            //}
+            HttpContextAccessor.HttpContext.Session.SetString(isMobileKey, true.ToString());
+        }
+    }
+}
+
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <!--Digital window verification 001-->
+    <!-- WGCCxxx -->
+    <meta name='ir-site-verification-token' value='290599730' />
+    <meta name="webgains-site-verification" content="ods7bp5a" />
+    <meta name="tradetracker-site-verification" content="3542f8448d0aae91eef30f2cd0d6efe86113f598" />
+    <meta charset="utf-8" />
+    @RenderSection("metatags", false)
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - @layoutModel?.WhiteLabel?.Name</title>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="@layoutModel?.WhiteLabel?.Name" />
+    <meta property="og:image" content="~/_assets/images/whitelabels/@layoutModel?.WhiteLabel?.Slug/social_share.png" />
+    <meta property="og:image:secure_url" content="~/_assets/images/whitelabels/@layoutModel?.WhiteLabel?.Slug/social_share.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="670" />
+
+    <link rel="apple-touch-icon" href="~/_assets/images/whitelabels/@layoutModel?.WhiteLabel?.Slug/icon_180.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="~/_assets/images/whitelabels/@layoutModel?.WhiteLabel?.Slug/favicon_16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="~/_assets/images/whitelabels/@layoutModel?.WhiteLabel?.Slug/favicon_32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="~/_assets/images/whitelabels/@layoutModel?.WhiteLabel?.Slug/favicon_96.png" />
+    <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
+
+    <environment include="Development">
+        @if (!string.IsNullOrEmpty(layoutModel?.WhiteLabel?.CSSFile))
+        {
+            <link href="~/_assets/styles/@layoutModel.WhiteLabel.CSSFile" rel="stylesheet" />
+        }
+        else
+        {
+            <link href="~/_assets/styles/exclusive.css" rel="stylesheet" />
+        }
+    </environment>
+    <environment exclude="Development">
+        @if (!string.IsNullOrEmpty(layoutModel?.WhiteLabel?.CSSFile))
+        {
+            <link href="~/_assets/styles/@layoutModel.WhiteLabel.CSSFile" rel="stylesheet" asp-append-version="true" />
+        }
+        else
+        {
+            <link href="~/_assets/styles/exclusive.css" rel="stylesheet" asp-append-version="true" />
+        }
+    </environment>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9M22TFHKFK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-9M22TFHKFK');
+    </script>
+</head>
+<body>
+    @*<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TBXTV7P" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>*@
+    <div class="c_site">
+        <!--Start Header Section-->
+        @{
+            if (!isMobile)
+            {
+                @await Html.PartialAsync("_header")
+            }
+            else if (layoutModel.IsSignedIn && layoutModel.WhiteLabel.Slug == "sport-rewards" && layoutModel.SiteClan.Id > 0)
+            {
+                @await Html.PartialAsync("_Talksportheader")
+            }
+        }
+        <!--End Header Section-->
+
+        @RenderBody()
+
+        <!--Footer Starts-->
+        @{
+            if (!isMobile)
+            {
+                @await Html.PartialAsync("_footer")
+            }
+        }
+        <!--Footer Ends-->
+        <!-- c_gutter - START -->
+        <div class="c_gutter" aria-hidden="false" id="gutterNavigation">
+            <div class="__content">
+                <a href="#" class="__close js_gutter-toggle" data-target="#gutterNavigation" title="Close mobile navigation" aria-label="Close mobile navigation">&times;</a>
+                <form class="__search" action="@Url.Action("SearchByText", "Offers")" method="GET">
+                    <input type="hidden" name="country" value="@ViewData["Country"]" />
+                    <input type="search" name="mainSearchTerms" placeholder="@Localizer["Search"].Value"
+                           class="typeahead tt-query --small" autocomplete="off" spellcheck="false">
+                </form>
+                <!-- c_navigation-gutter -->
+                <nav class="c_navigation-gutter">
+                    <ul class="__menu">
+                        <li>
+                            <a href="@Url.Action("Index", "Home", new {country = ViewData["Country"]})">@Localizer["HomeMenu"]</a>
+
+                            @if (@layoutModel.IsSignedIn)
+                            {
+                            <li>
+                                <a href="@Url.Action("MyAccount", "MyAccount")">@Localizer["My Account"]</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li><a href="@Url.Action("SignIn", "Account", new {country = ViewData["Country"]})">@Localizer["SignIn_Text"]</a></li>
+
+                            @if (@layoutModel.WhiteLabel.RegistrationUrl != null)
+                            {
+                                <li><a href="@layoutModel.WhiteLabel.RegistrationUrl">@Localizer["Register_Text"]</a></li>
+                            }
+                            else
+                            {
+                                <li><a href="@Url.Action("Index", "Account", new {country = ViewData["Country"]})">@Localizer["Register_Text"]</a></li>
+                            }
+                        }
+                            <li>
+                                <a href="@Url.Action("Index", "OfferHub")">@Localizer["Offer Hub"]</a>
+                                <ul class="__sub-menu">
+
+                                    @foreach (var item in @layoutModel.Categories)
+                                    {
+
+                                        <li><a href="@Url.Action("DisplayOffer", "Offers", new { country = ViewData["Country"].ToString(),parentCategoryId=@item.Id,parentCategoryName=@item.Name })">@Localizer[@item.Name]</a></li>
+                                    }
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index","LocalOffer")">@Localizer["Local Offer"]</a>
+                                <ul class="__sub-menu">
+
+                                    @foreach (var item in @layoutModel.Categories)
+                                    {
+
+                                        <li><a href="@Url.Action("DisplayOffer", "Offers", new { country = ViewData["Country"].ToString(),parentCategoryId=@item.Id,parentCategoryName=@item.Name })">@Localizer[@item.Name]</a></li>
+                                    }
+                                </ul>
+                            </li>
+                            <li><a href="@Url.Action("AboutUs", "Account", new {country = ViewData["Country"].ToString()})">@Localizer["About Us"]</a>
+                            <li><a href="@Url.Action("ContactUs", "Account", new {country = ViewData["Country"].ToString()})">@Localizer["Contact"]</a>
+                        </ul>
+                    </nav>
+                    <!-- c_navigation-gutter - END -->
+                </div>
+                <div class="__overlay"></div>
+            </div>
+            <!-- c_gutter - END -->
+        </div>
+        <div id="injectedData" hidden="hidden"></div>
+        <div id="scriptedWrite" hidden="hidden"></div>
+        <div id="scriptedWrite-html5" hidden="hidden"></div>
+        <environment include="Development">
+            <script src="~/lib/jquery/dist/jquery.js"></script>
+            <script src="~/js/ExclusiveWebsite/bloodhound.js"></script>
+            <script src="~/js/ExclusiveWebsite/typeahead.bundle.js"></script>
+            <script src="~/js/ExclusiveWebsite/typeahead.jquery.js"></script>
+            <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+            <script src="~/js/ExclusiveWebsite/main.es5.js"></script>
+            <script src="~/js/ExclusiveWebsite/login.js"></script>
+            <script src="~/js/ExclusiveWebsite/summary.js"></script>
+            <script src="~/js/ExclusiveWebsite/account.js"></script>
+            <script src="~/js/ExclusiveWebsite/banner.js"></script>
+            <script src="~/js/ExclusiveWebsite/offers.js"></script>
+            <script src="~/js/ExclusiveWebsite/payment.js"></script>
+            <script src="~/js/ExclusiveWebsite/redirect.js"></script>
+        </environment>
+        <environment exclude="Development">
+            <script src="~/lib/jquery/dist/jquery.min.js"></script>
+            <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+            <script src="~/js/ExclusiveWebsite/main.es5.js" asp-append-version="true"></script>
+            <script src="~/js/ExclusiveWebsite/exclusivecard-scripts.min.js" asp-append-version="true"></script>
+            <script src="~/js/ExclusiveWebsite/bloodhound.min.js" asp-append-version="true"></script>
+            <script src="~/js/ExclusiveWebsite/typeahead.bundle.js" asp-append-version="true"></script>
+            <script src="~/js/ExclusiveWebsite/typeahead.jquery.min.js" asp-append-version="true"></script>
+        </environment>
+
+        @RenderSection("Scripts", required: false)
+        <script type="text/javascript">
+
+    $(document).ready(function () {
+        var isMobile = '@isMobile';
+        //$(".cc-window").hide();
+        //setTimeout(function () { $(".cc-window").hide(); }, 100);
+        //document.getElementById('cookieconsent').style.display = 'none';
+        if (isMobile==='True')
+        {
+            setTimeout(function () {
+                $('div[aria-label=cookieconsent]').hide();
+            }, 100);
+        }
+
+    });
+    var textValue;
+    $(document).keydown(function(e) {
+    if (e.keyCode == 27) {
+        return false;
+    }
+    });
+
+    jQuery.validator.setDefaults({
+        debug: true,
+        success: "valid",
+        errorClass: "--invalid"
+    });
+    var countrySelected = "@ViewData["Country"]";
+    var jsArray=@Html.Raw(layoutModel?.Merchants);
+
+    // Constructing the suggestion engine
+    var merchants = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        local: jsArray
+    });
+
+    // Initializing the typeahead
+    $('.typeahead').typeahead({
+        hint: true,
+        highlight: true, /* Enable substring highlighting */
+        minLength: 3 /* Specify minimum characters required for showing result */
+        //classNames: "--large"
+    },
+    {
+        name: 'merchants',
+        source: merchants
+        });
+        </script>
+        <!--Lazy loading-->
+        <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded",
+                function () {
+                    var lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
+
+                    if ("IntersectionObserver" in window) {
+                        let lazyImageObserver = new IntersectionObserver(function (entries, observer) {
+                            entries.forEach(function (entry) {
+                                if (entry.isIntersecting) {
+                                    let lazyImage = entry.target;
+                                    lazyImage.src = lazyImage.dataset.src;
+                                    lazyImage.srcset = lazyImage.dataset.srcset;
+                                    lazyImage.classList.remove("lazy");
+                                    lazyImageObserver.unobserve(lazyImage);
+                                }
+                            });
+                        });
+
+                        lazyImages.forEach(function (lazyImage) {
+                            lazyImageObserver.observe(lazyImage);
+                        });
+                    }
+                });
+        </script>
+        <script type="text/javascript">
+            var term;
+            //$("input[name='mainSearchTerms']").keypress(function (e) {
+            //term = $(this).val();
+            // Enter pressed?
+            // if (e.which == 10 || e.which == 13) {
+            // this.form.submit();
+            //  }
+            //});
+
+            $(".mainCountry").click(function (e) {
+                e.preventDefault();
+                var country = $(this).attr("data-value");
+                var url = window.location.href;
+                var breakUrl = url.split('?');
+                var index = -1;
+                if (breakUrl[1] !== "" && breakUrl[1] !== undefined && breakUrl[1] !== null) {
+                    index = breakUrl[1].indexOf("country");
+                }
+                if (index > -1) {
+                    if (breakUrl[1] !== "" && breakUrl[1] !== undefined && breakUrl[1] !== null) {
+                        breakUrl[1] = breakUrl[1].substring(10);
+                    }
+                }
+                var finalUrl = breakUrl[0] + "?country=" + country;
+                if (breakUrl[1] !== "" && breakUrl[1] !== undefined && breakUrl[1] !== null) {
+                    if (index > -1) {
+                        finalUrl = finalUrl + breakUrl[1];
+                    } else {
+                        finalUrl = finalUrl + '&' + breakUrl[1];
+                    }
+                }
+                window.location.href = finalUrl;
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,17 @@
+﻿@model SSOViewModel
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "Transferring you to the Merchant";
+}
+@*<h1>Loading...</h1>*@
+<div class="l_container --mini u_text-align--center" id="redirectDiv">
+    <svg class="c_feather-icon --large --spin u_margin-bottom--s2"><use xlink:href="/images/icons.svg#loader" /></svg>
+    <h1 class="u_margin-bottom--none"><span class="__pre-title">@Localizer["TransferHeading"]</span> @Model.MerchantName</h1>
+</div>
+
+<form method="post" id="samlForm" action="@Model.AcsUrl">
+    <input type="hidden" name="SAMLResponse" value="@Html.Raw(Model.SamlResponseBase64)" />
+    <script language="javascript">
+        document.getElementById("samlForm").submit();// forms[0].submit();
+    </script>
+</form>

@@ -1,0 +1,14 @@
+﻿@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "Account Creation Failed";
+}
+
+<main class="c_main">
+    <section class="c_band --spacious">
+        <div class="l_container --mini u_text-align--center">
+            <svg class="c_feather-icon --large u_margin-bottom--s2 u_color--negative"><use xlink:href="/_assets/images/icons.svg#alert-circle"/></svg>
+            <h1><span class="__pre-title">@Localizer["Account"]</span> @Localizer["Try"]</h1>
+            <a href="@Url.Action("Index", "Home", new { country = ViewData["Country"].ToString() })" class="e_button --small">@Localizer["Home"]</a>
+        </div>
+    </section>
+</main>

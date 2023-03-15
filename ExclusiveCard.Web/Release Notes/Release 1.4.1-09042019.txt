@@ -1,0 +1,21 @@
+﻿US - 922 Hide LoveToShop advert on SC site
+Updated the New Terms and conditions provided on 09-04-2019
+Added a link to Privacy Policy in the footer and updated the content with the doc provided on 09-04-2019
+
+Fixes:
+	- Bug 925 Error saving Paypal IPNs.
+	- Paypal Dates received in PST/PDT are converted and saved in UTC format 
+	- Huge space between Search box and Country Dropdown before login, public site
+	- Responsiveness for the Offer details overlapping in offer Search, public site
+	- Bug 921 Search box picking up Merchant by default
+	- Bug 918 Need to move to second paragraph (FAQ text)
+	- Update CustomerId and MembershipCardId in Customer Payment after IPN is received
+	- Bug 919 PopulateOfferLists api call error
+	- Bug 932 Issue with Registration code
+	- Removed the big full page loader used for sign up, replaced with small activity indicator
+	- Bug 935 -Issue with offer Redirect
+
+Known Issue
+When an exisitng email is given while signing up via registration code, though the error message is thrown
+saying mail exists, but the activity indicator still spinning after correcting the email, but need to click 
+it once again to continue.

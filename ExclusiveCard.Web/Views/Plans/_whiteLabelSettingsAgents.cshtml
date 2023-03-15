@@ -1,0 +1,77 @@
+﻿@model ExclusiveCard.WebAdmin.ViewModels.WhiteLabelSettingsAgents
+@Html.ValidationSummary(false, "", new { @class = "text-danger", autofocus = "autofocus" })
+<div class="form-horizontal col-md-12 mt-40">
+    @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label col-md-3" })
+    <div class="form-group row col-md-6">
+        @Html.DropDownListFor(model => model.Id, Model.Agents, "", new { @class = "form-control roundedInput", @placeholder = "Start Typing", @id = "AgentId" })
+        <div class="col-md-12 black-info-container mt-20">
+            Select the agent who will be sharing the commission  earned on cashback. Click the add new agent button
+            to create a new agent
+        </div>
+    </div>
+    <div class="alter-section col-md-3 d-flex align-items-center">
+        <span class="alternative">Or</span>
+        <button type="button" id="addNewAgentBtn" class="btn float-left">Add New Agent</button>
+    </div>
+
+    <div class="alter-section col-md-3 d-flex align-items-center">
+        <button type="button" id="removeAgent" class="btn float-left">Remove Agent</button>
+    </div>
+</div>
+<div class="agent" id="AgentContainer" style="display: none">
+    @using (Html.BeginForm("SaveAgent", "Plans", FormMethod.Post, new { id = "fromSaveAgent" }))
+    {
+        <div id="AgentFieldContainer" style="display:none">
+            <div class="form-horizontal col-md-12 mt-40">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-5" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.Id, new { htmlattributes = new { @id = "AgentIdVal", @class = "d-none" } })
+                    @Html.EditorFor(model => model.Name, new { htmlattributes = new { @class = "form-control roundedInput", @id = "AgentName" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger col-md-12" })
+                </div>
+            </div>
+
+            <div class="form-horizontal col-md-12 mt-20">
+                @Html.LabelFor(model => model.ReportCode, htmlAttributes: new { @class = "control-label col-md-5" })
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.ReportCode, new { htmlattributes = new { @class = "form-control roundedInput", @id = "AgentReportCode" } })
+                    @Html.ValidationMessageFor(model => model.ReportCode, "", new { @class = "text-danger col-md-12" })
+                </div>
+            </div>
+
+            <div class="form-horizontal col-md-12 mt-20">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-5" })
+                <div class="col-md-4">
+                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control roundedInput textarea-container", @id = "AgentDescription" })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger col-md-12" })
+                </div>
+            </div>
+
+            <div class="form-horizontal row col-md-12 mt-20">
+                @Html.LabelFor(model => model.CommissionPercent, htmlAttributes: new { @class = "control-label col-md-5" })
+                <div class="col-md-1">
+                    @Html.EditorFor(model => model.CommissionPercent, new { htmlattributes = new { @class = "form-control roundedInput allow-numeric" } })
+                    @Html.ValidationMessageFor(model => model.CommissionPercent, "", new { @class = "text-danger col-md-12" })
+                </div>
+                <div class="alternative mt-2">%</div>
+                <div class="col-md-3 black-info-container" style="max-width:22%">This is how much of Exclusive’s share, not from the customers</div>
+                <div id="errorMessageCommission" class="col-md-12 alternative error-text" style="display:none;text-align:center">Enter between 0 to 100.</div>
+            </div>
+        </div>
+
+        <div>
+            @Html.EditorFor(model => model.StartDate, new { htmlattributes = new { @class = "d-none", @id = "AgentStartDate" } })
+            @Html.EditorFor(model => model.EndDate, new { htmlattributes = new { @class = "d-none", @id = "AgentEndDate" } })
+            @Html.EditorFor(model => model.IsDeleted, new { htmlattributes = new { @class = "d-none", @id = "AgentIsDeleted" } })
+        </div>
+
+        <div id="AgentButtonContainer" class="col-md-9 mt-40">
+            <button id="btnSaveAgent" type="submit" class="mini-btn save has-spinner pull-right">
+                Save<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+            </button>
+            <button type="button" data-dismiss="cancel" id="CancelAgent" class="mini-btn has-spinner pull-right" onclick="cancelAgent()">
+                Cancel<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+            </button>
+        </div>
+    }
+</div>

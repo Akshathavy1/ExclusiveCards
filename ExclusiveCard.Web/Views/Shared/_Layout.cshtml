@@ -1,0 +1,284 @@
+﻿@using ExclusiveCard.Enums
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ExclusiveCard.Data.Models.ExclusiveUser> SignInManager
+@inject Microsoft.Extensions.Options.IOptions<ExclusiveCard.WebAdmin.TypedAppSettings> metaOptions
+@{
+    var typedAppSettings = metaOptions.Value;
+}
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name='ir-site-verification-token' value='290599730' />
+    <title>@ViewBag.Title - ExclusiveCard</title>
+    <link href="~/css/styleLayout.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="~/images/favicon.ico" />
+    <environment include="Development">
+        <link href="~/css/simTree.css" rel="stylesheet" />
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/lib/jquery-ui/jquery-ui.css" />
+        <link rel="stylesheet" href="~/lib/jquery-ui/jquery-ui.theme.css" />
+        <link rel="stylesheet" href="~/vendor.min.css" />
+        <link href="~/css/Progress_barbootstrap.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/css/toastr.css" />
+        <link href="~/css/kendo.common.min.css" rel="stylesheet" />
+        <link href="~/css/kendo.default.min.css" rel="stylesheet" />
+        <link href="~/css/kendo.default.mobile.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="~/css/style.css" />
+        <link href="~/plugins/summernote/summernote-lite.css" rel="stylesheet" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+    <div id="header" class="card-header position-fixed align-top col-lg-12 col-md-12 col-sm-12 col-xs-12 row headerDiv">
+        <div class="align-content-start logo col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            <img src="~/images/Logo.svg" alt="Exclusive Card" title="Exclusive Card" height="50" class="pointer" onclick="window.location.href='@Url.Action("Index", "Home")'" />
+        </div>
+        <div class="align-content-center headerName col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <span class="Heading">Exclusive Card</span>
+        </div>
+
+        @if (SignInManager.IsSignedIn(User))
+        {
+            <div class="btn-group col-lg-1 col-md-2 pull-right">
+                <span class="userName" id="userName">@Context.Session.GetString("User")</span>
+                <a href="#" class="nav-link waves-effect" data-toggle="dropdown" id="navimenu">
+                    <i class="fa fa-user-circle-o" id="user-icon-desktop"></i>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    @if (User.IsInRole(Roles.RootUser.ToString()) || User.IsInRole(Roles.AdminUser.ToString()))
+                    {
+                        <li><a href="@Url.Action("Index", "User")"><i class="fa fa-users fa-2x"></i><span id="userdetails">&nbsp;&nbsp;&nbsp;Manage Users</span></a></li>
+                    }
+
+                    <li><a href="@Url.Action("ChangePassword", "Account")"><i class="fa fa-pencil fa-2x"></i><span id="userdetails">&nbsp;&nbsp;&nbsp;Change Password</span></a></li>
+                    <li><a href="@Url.Action("LogoutUser", "Account")"><i class="fa fa-sign-out fa-2x"></i><span id="userdetails">&nbsp;&nbsp;&nbsp;Log out</span></a></li>
+                </ul>
+            </div>
+        }
+    </div>
+
+    <main class="container-fluid">
+        <!--nav sidebar -->
+        <div class="align-content-between menuLeft">
+            @*<aside>*@
+            <nav class="navbar navbar-inverse sidebar navbar-fixed-top" role="navigation">
+                @*<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">*@
+                <div class="nav-side-menu">
+                    <div class="brand">
+                        <div class="smallDiv col-xs-12">
+                            <div class="col-xs-3 logo">
+                                <img src="~/images/logo web.svg" alt="Exclusive Card" title="Exclusive Card" width="70" height="20" />
+                            </div>
+
+                            <p class="headerName col-xs-5">Exclusive Card</p>
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                <div class="align-content-end btn-group col-xs-3">
+                                    <span class="userNamemobile">@Context.Session.GetString("User")</span>
+                                    <a href="#" class="nav-link waves-effect" data-toggle="dropdown" id="navimenu">
+                                        <i class="fa fa-user-circle-o" id="user-icon-mobile"></i>
+                                    </a>
+
+                                    <ul class="dropdown-menu" role="menu" style="margin:auto;">
+                                        @if (User.IsInRole(Roles.RootUser.ToString()) || User.IsInRole(Roles.AdminUser.ToString()))
+                                        {
+                                            <li><a href="@Url.Action("Index", "User")"><i class="fa fa-users fa-fw navmob"></i><span class="navmob">Manage Users</span></a></li>
+                                        }
+                                        <li><a href="@Url.Action("ChangePassword", "Account")"><i class="fa fa-pencil fa-fw navmob"></i><span class="navmob">Change Password</span></a></li>
+                                        <li><a href="@Url.Action("LogoutUser", "Account")"><i class="fa fa-sign-out fa-fw navmob"></i><span class="navmob">Log out</span></a></li>
+                                    </ul>
+                                </div>
+
+                            }
+                        </div>
+                        <span id="menuName" class="Menu">Menu</span>
+                    </div>
+
+                    <i class="fa fa-bars fa toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+
+                    <div class="menu-list">
+                        @if (!User.IsInRole(Roles.RootUser.ToString()))
+                        {
+                            <ul id="menu-content" class="menu-content collapse out">
+                                <li data-toggle="collapse" data-target="#merchant" class="collapsed">
+                                    <a href="@Url.Action("Index", "Merchant")"><i class="fa fa-users fa-sm"></i><span class="nav-menu-name">Merchants</span></a>
+                                </li>
+                                <li data-toggle="collapse" data-target="#offer" class="collapsed">
+                                    <a href="#"><i class="fa fa-gift fa-sm"></i><span class="nav-menu-name">Offers</span><span class="arrow arw"></span></a>@*@Url.Action("Index", "Offer")*@
+                                </li>
+                                <ul class="sub-menu collapse" id="offer">
+                                    <li><a href="@Url.Action("Index", "Offer")"> <i class="fa fa-search fa-sm"></i><span class="nav-submenu-name">Search</span></a></li>
+                                    <li><a href="@Url.Action("ImportFile", "Offer")"><i class="fa fa-upload fa-sm"></i><span class="nav-submenu-name">Import</span></a></li>
+                                    <li><a href="@Url.Action("Offerlist", "Offer")"><i class="fa fa-list-alt fa-sm"></i><span class="nav-submenu-name">Offer List</span></a></li>
+                                </ul>
+
+                                <li data-toggle="collapse" data-target="#customer" class="collapsed">
+                                    <a href="#"><i class="fa fa-address-card fa-sm"></i><span class="nav-menu-name">Customers</span><span class="arrow arw"></span></a>
+                                </li>
+                                <ul class="sub-menu collapse" id="customer">
+                                    <li><a href="@Url.Action("Index", "Customer")"> <i class="fa fa-search fa-sm"></i><span class="nav-submenu-name">Search</span></a></li>
+                                    <li><a href="@Url.Action("Cards", "Customer")"> <i class="fa fa-id-card fa-sm"></i><span class="nav-submenu-name">Cards to Send Out</span></a></li>
+                                </ul>
+
+                                <li data-toggle="collapse" data-target="#category" class="collapsed">
+                                    <a href="@Url.Action("List", "Category")"><i class="fa fa-arrows-alt fa-sm"></i><span class="nav-menu-name">Categories</span></a>
+                                </li>
+                                <li data-toggle="collapse" data-target="#payments" class="collapsed">
+                                    <a href="#"><i class="fa fa-money fa-sm"></i><span class="nav-menu-name">Payments</span><span class="arrow arw"></span></a>
+                                </li>
+                                <ul class="sub-menu collapse" id="payments">
+                                    <li><a href="@Url.Action("PartnerTransactions", "Payments")"><i class="fa fa-money fa-sm"></i><span class="nav-submenu-name">Partner Transactions</span></a></li>
+                                    @*<li><a href="@Url.Action("RewardWithdrawal", "Payments")"> <i class="fa fa-money fa-sm"></i><span class="nav-submenu-name">Customer Withdrawals (TAM)</span></a></li>*@
+                                    <li><a href="@Url.Action("CustomerWithdrawal", "Payments")"> <i class="fa fa-money fa-sm"></i><span class="nav-submenu-name">Customer Withdrawals (Cashback)</span></a></li>
+                                    <li><a href="@Url.Action("FinancialReport", "Payments")"> <i class="fa fa-money fa-sm"></i><span class="nav-submenu-name">Financial Report</span></a></li>
+                                </ul>
+                                <li data-toggle="collapse" data-target="#file" class="collapsed">
+                                    <a href="@Url.Action("Index", "File")"><i class="fa fa-file fa-sm"></i><span class="nav-menu-name">Files</span></a>
+                                </li>
+                                <li data-toggle="collapse" data-target="#reports" class="collapsed">
+                                    <a href="#"><i class="fa fa-pie-chart fa-sm"></i><span class="nav-menu-name">Reconciliation</span><span class="arrow arw"></span></a>
+                                </li>
+                                <ul class="sub-menu collapse" id="reports">
+                                    @*<li><a href="@Url.Action("Index", "Report")"> <i class="fa fa-pie-chart fa-sm"></i><span class="nav-submenu-name">Reconciliation - TAM Payments</span></a></li>*@
+                                    <li><a href="@Url.Action("PartnerWithdrawal", "Report")"> <i class="fa fa-pie-chart fa-sm"></i><span class="nav-submenu-name">Reconciliation - Customer Payments</span></a></li>
+                                </ul>
+
+                                <li data-toggle="collapse" data-target="#newsletters" class="collapsed">
+                                    <a href="#"><i class="fa fa-newspaper-o"></i><span class="nav-menu-name">News Letters</span><span class="arrow arw"></span></a>
+                                </li>
+                                <ul class="sub-menu collapse" id="newsletters">
+                                    <li><a href="@Url.Action("Index", "Newsletter")"> <i class="fa fa-pencil-square-o"></i><span class="nav-submenu-name">Amend Newsletters</span></a></li>
+                                    <li><a href="@Url.Action("Preview", "Newsletter")"> <i class="fa fa-eye"></i><span class="nav-submenu-name">Preview</span></a></li>
+                                </ul>
+
+                                <li data-toggle="collapse" data-target="#Whitelabels" class="collapsed">
+                                    <a href="#"><i class="fa fa-cogs"></i><span class="nav-menu-name">White labels</span><span class="arrow arw"></span></a>
+                                </li>
+                                <ul class="sub-menu collapse" id="Whitelabels">
+                                    <li><a href="@Url.Action("Index", "Plans")"> <i class="fa fa-cog"></i><span class="nav-submenu-name">Settings</span></a></li>
+                                </ul>
+
+                                <li data-toggle="collapse" data-target="#talksport" class="collapsed">
+                                    <a href="#"><i class="fa fa-futbol-o"></i><span class="nav-menu-name">Site Clans</span><span class="arrow arw"></span></a>
+                                </li>
+                                <ul class="sub-menu collapse" id="talksport">
+                                    <li><a href="@Url.Action("Index", "TalkSport")"><i class="fa fa-futbol-o"></i><span class="nav-submenu-name">Club Maintenance</span></a></li>
+                                </ul>
+
+                                <!--OfferHub-->
+                                @*<li>
+                                        <a href="#">
+                                            <i class="fa fa-user fa-lg"></i> Profile
+                                        </a>
+                                    </li>*@
+                            </ul>
+
+                        }
+                    </div>
+                </div>
+            </nav>
+            @*</aside>*@
+        </div>
+        <div class="align-content-between content">
+            <div class="exclusiveTitle position-fixed" id="title-name">
+                @ViewBag.FormTitle
+            </div>
+            <div class="exclusiveContent customerContent" id="add-edit-offer">
+                @RenderBody()
+            </div>
+        </div>
+    </main>
+    <!--Footer-->
+    <footer class="page-footer text-center">
+        <!--Copyright-->
+        <div class="footer-copyright py-2">
+        </div>
+        <!--/.Copyright-->
+    </footer>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+        <script src="~/lib/jquery-ui/jquery-ui.js"></script>
+        <script src="~/js/simTree.js"></script>
+        <script src="~/js/kendo.all.min.js"></script>
+        <script src="~/js/list.min.js"></script>
+        <script src="~/plugins/summernote/summernote-lite.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/vendor.min.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+        </script>
+        @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
+            <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+            <script src="~/vendor.min.js"></script>*@
+
+        <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+        <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+        <script src="~/lib/jquery-ui/jquery-ui.js"></script>
+        <script src="~/js/simTree.js"></script>
+        <script src="~/js/kendo.all.min.js"></script>
+        <script src="~/js/list.min.js"></script>
+        <script src="~/plugins/summernote/summernote-lite.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+    <script src="~/js/exclusiveLayout.js"></script>
+    <script type="text/javascript">
+        var maxImageSize = @typedAppSettings.MaxImageSize;
+        var fullBannerHeight = @typedAppSettings.FullHeight;
+        var fullBannerWidth = @typedAppSettings.FullWidth;
+        var slotHeight = @typedAppSettings.SlotHeight;
+        var slotWidth = @typedAppSettings.SlotWidth;
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "500",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+    </script>
+
+    <!--[if lt IE 9]>
+        <script src="~/plugins/respond.js"></script>
+        <script src="~/plugins/html5shiv.js"></script>
+        <script src="~/plugins/placeholder-IE-fixes.js"></script>
+    <![endif]-->
+</body>
+</html>

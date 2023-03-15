@@ -1,0 +1,42 @@
+﻿@model List<ExclusiveCard.WebAdmin.ViewModels.CustomerDetailsMembershipCardsViewModel>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Cards";
+}
+<table class="table" id="">
+    <thead>
+        <tr>
+            <th class="cardheaders">Date Requested</th>
+            <th class="cardheaders">Username</th>
+            <th class="cardheaders">Card Status</th>
+            <th class="cardheaders">Membership Plan Name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var card in @Model)
+        {
+            <tr class="cardList">
+                <td class="hidden">@card.Id</td>
+                <td>@card.CardRequestedDate.ToString("dd MMM yyyy hh:mm:ss")</td>
+                <td>@card.Username</td>
+                <td>@card.PhysicalCardStatus</td>
+                <td>@card.PlanName</td>
+                <td><a href="#" id="viewbutton" cardId="@card.Id">Edit</a></td>
+
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts
+{
+
+    <script src="~/js/Exclusive/customer.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Customer.setUpEvents();
+        });
+    </script>
+
+}

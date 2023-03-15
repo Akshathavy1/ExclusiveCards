@@ -1,0 +1,21 @@
+﻿@model ExclusiveCard.WebAdmin.Models.ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+<h1 class="text-danger">Exclusive Card Error Page</h1>
+<h2 class="text-danger">An error occurred while processing your request. Please try again.</h2>
+
+@if (Model != null && Model.ShowRequestId && !string.IsNullOrEmpty(Model.RequestId))
+{
+    <p>
+        <strong>Request ID:</strong> <code>@Model.RequestId</code>
+    </p>
+}
+
+@section Scripts
+{
+    <script type="text/javascript">
+        $(".nav-side-menu").css("display", "none");
+    </script>
+}

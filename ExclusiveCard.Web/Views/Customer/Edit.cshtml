@@ -1,0 +1,217 @@
+﻿@model ExclusiveCard.WebAdmin.ViewModels.CustomerDetailsViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Edit";
+}
+
+<style>
+    .content {
+        background-color: #fff !important;
+        border: none;
+    }
+
+    .customerContent {
+        margin-top: 0;
+        margin-left: 0;
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+        background-color: #fff;
+    }
+</style>
+
+@using (Html.BeginForm("Index", "Customer", FormMethod.Get, new { enctype = "multipart/form-data" }))
+{
+
+    <div class="row">
+        <div class="lftcol">
+            <div class="form-group row">
+                <h1 id="title-name" class="edtname title-name">Edit Customers</h1>
+            </div>
+            <div class="form-horizontal">
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.Id, htmlAttributes: new { @class = "control-label col-md-4 cardsearch" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Id, new { htmlattributes = new { @class = "form-control  roundedInput", disabled = "disabled" } })
+                        @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.Username, htmlAttributes: new { @class = "control-label col-md-4 cardsearch" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Username, new { htmlattributes = new { @class = "form-control  roundedInput" } })
+                        @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                    </div>
+
+
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.Forename, htmlAttributes: new { @class = "control-label col-md-4 cardsearch" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Forename, new { htmlattributes = new { @class = "form-control  roundedInput" } })
+                        @Html.ValidationMessageFor(model => model.Forename, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.Surname, htmlAttributes: new { @class = "control-label col-md-4 cardsearch" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Surname, new { htmlattributes = new { @class = "form-control  roundedInput" } })
+                        @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.Dob, htmlAttributes: new { @class = "control-label col-md-4" })
+
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(model => model.Dob, "{0:yyyy-MM-dd}", new { @class = "form-control roundedInput", Type = "date" })
+                        @Html.ValidationMessageFor(model => model.Dob, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.Dateadd, htmlAttributes: new { @class = "control-label col-md-4" })
+
+                    <div class="col-md-8">
+                        @Html.TextBoxFor(model => model.Dateadd, "{0:yyyy-MM-dd}", new { @class = "form-control roundedInput", Type = "date" })
+                        @Html.ValidationMessageFor(model => model.Dateadd, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.MarketingNewsLetter, htmlAttributes: new { @class = "control-label col-md-4" }) @Html.CheckBoxFor(m => m.MarketingNewsLetter, htmlAttributes: new { @class = "control-label col-md-1" })
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.MarketingThirdParty, htmlAttributes: new { @class = "control-label col-md-4" })@Html.CheckBoxFor(m => m.MarketingThirdParty, htmlAttributes: new { @class = "control-label col-md-1" })
+                </div>
+
+
+
+
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.Address1, htmlAttributes: new { @class = "control-label col-md-4 cardsearch" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Address1, new { htmlattributes = new { @class = "form-control  roundedInput" } })
+                        @Html.ValidationMessageFor(model => model.Address1, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.Address2, htmlAttributes: new { @class = "control-label col-md-4 cardsearch" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Address2, new { htmlattributes = new { @class = "form-control  roundedInput" } })
+                        @Html.ValidationMessageFor(model => model.Address2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.Address3, htmlAttributes: new { @class = "control-label col-md-4 cardsearch" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Address3, new { htmlattributes = new { @class = "form-control  roundedInput" } })
+                        @Html.ValidationMessageFor(model => model.Address3, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.Town, htmlAttributes: new { @class = "control-label col-md-4 cardsearch" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Town, new { htmlattributes = new { @class = "form-control  roundedInput" } })
+                        @Html.ValidationMessageFor(model => model.Town, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.District, htmlAttributes: new { @class = "control-label col-md-4 cardsearch" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.District, new { htmlattributes = new { @class = "form-control  roundedInput" } })
+                        @Html.ValidationMessageFor(model => model.District, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.PostCode, htmlAttributes: new { @class = "control-label col-md-4 cardsearch" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.PostCode, new { htmlattributes = new { @class = "form-control  roundedInput" } })
+                        @Html.ValidationMessageFor(model => model.PostCode, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.CountryCode, htmlAttributes: new { @class = "control-label col-md-4 cardsearch" })
+                    <div class="col-md-8">
+                        @Html.DropDownListFor(model => model.CountryCode, Model.CountryItems, "Select", htmlAttributes: new { @class = "form-control roundedInput dropdownInput" })
+                        @Html.ValidationMessageFor(model => model.CountryCode, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.Phone, htmlAttributes: new { @class = "control-label col-md-4" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.Phone, new { htmlattributes = new { @class = "form-control  roundedInput" } })
+                        @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.EmailAddress, htmlAttributes: new { @class = "control-label col-md-4 cardsearch" })
+                    <div class="col-md-8">
+                        @Html.EditorFor(model => model.EmailAddress, new { htmlattributes = new { @class = "form-control  roundedInput" } })
+                        @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group col-md-12">
+                    <div class="form-group col-md-6 custbtns">
+                        <button type="button" id="btnCancelCustomer" class="btn btnCancelCustomer">Cancel</button>
+                    </div>
+                    <div class="form-group col-md-6 custbtns">
+                        <button type="button" id="btnSaveCustomer" class="btn btnSaveCustomer has-spinner pull-right">
+                            Save<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="rtcol">
+            <div class="row pull-right">
+                @if (@Model.ExpiredCardExists || @Model.MultipleCardExists)
+                {
+                    <a class="carddisplay">
+                        Show all cards
+                    </a>
+                }
+            </div>
+            @if (@Model.MembershipCardList?.Count > 0)
+            {
+                <div class="directdisplay" id="membershipcarddetails">
+                    @await Html.PartialAsync("_membershipCardList", @Model.MembershipCardList)
+                </div>
+            }
+            else
+            {
+                <div class="directdisplay" id="membershipcarddetails">
+                </div>
+            }
+        </div>
+    </div>
+}
+
+@section Scripts
+    {
+
+    <script src="~/js/Exclusive/customer.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var type = "@ViewBag.Name";
+            Customer.setUpEvents();
+            Customer.initialiseType(type);
+        });
+    </script>
+
+}

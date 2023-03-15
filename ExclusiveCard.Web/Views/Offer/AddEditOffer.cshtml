@@ -1,0 +1,328 @@
+﻿@model ExclusiveCard.WebAdmin.ViewModels.OfferViewModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Offer";
+    ViewBag.FormTitle = ViewBag.Name + " Offer";
+    if (Model.ListofBranches.Count == 0)
+    {
+        ViewBag.isdisable = "disabled";
+    }
+
+}
+
+@using (Html.BeginForm())
+{
+@Html.AntiForgeryToken()
+<div id="mainDiv" class="form-horizontal col-md-10">
+    @Html.ValidationSummary(false, "", new { @class = "text-danger", autofocus = "autofocus" })
+    @Html.HiddenFor(m => m.RefMerchantId)
+    @Html.HiddenFor(m => m.AffiliateReference)
+    @if (@Model.Id > 0)
+    {
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Id, htmlAttributes: new { @class = "control-label col-md-3", autofocus = "autofocus" })
+        <div class="col-md-2">
+            @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control roundedInput", @readonly = "readonly" } })
+            @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+        </div>
+        @Html.LabelFor(m => m.DateAdded, htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-3">
+            @Html.TextBoxFor(model => model.DateAdded, "{0:yyyy-MM-dd}", new { @class = "form-control roundedInput", Type = "date", @readonly = "readonly" })
+            @Html.ValidationMessageFor(model => model.DateAdded, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    }
+
+    <div class="form-group row merchantDiv">
+        @Html.LabelFor(m => m.MerchantId, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-4">
+            @*@Html.EditorFor(model => model.ContactDetail.CountryCode, new { htmlAttributes = new { @class = "form-control col-md-6" } })*@
+            @Html.DropDownListFor(model => model.MerchantId, Model.ListofMerchants, "Select Merchant", htmlAttributes: new { @class = "form-control roundedInput dropdownInput", @placeholder = "Enter Merchant" })
+            @Html.ValidationMessageFor(model => model.MerchantId, "", new { @class = "text-danger col-md-12" })
+        </div>
+    </div>
+    <!--<div class="form-group row branchselect">
+        @Html.LabelFor(m => m.MerchantBranchId, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-4">-->
+    @*@Html.DropDownListFor(m => m.MerchantBranchId, new SelectList(Model.ListofMerchants, "Value", "Text"), new { @class = "form-control roundedInput ", @multiple = "multiple" })*@
+    <!--@Html.DropDownListFor(m => m.MerchantBranchId, new SelectList(Model.ListofBranches, "Value", "Text"), new { @class = "form-control roundedInput ", @multiple = "multiple" })
+        </div>
+    </div>-->
+    <div class="form-group row branchselect">
+        @Html.LabelFor(m => m.MerchantBranchId, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-4">
+            <select id="MerchantBranchId" multiple="multiple" class="form-control roundedInput" disabled="@ViewBag.isdisable">
+                @foreach (var v in Model.ListofBranches)
+                {
+                    var text = v.Text;
+                    var value = v.Value;
+                    if (v.Selected)
+                    {
+                <option value="@value" selected="selected">@text</option>
+                    }
+                    else
+                    {
+                <option value="@value">@text</option>
+                    }
+                }
+            </select>
+        </div>
+    </div>
+
+    @*<div class="form-group row">
+            @Html.LabelFor(m => m.Branches, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-4 countryList">
+                @{
+                    @await Html.PartialAsync("_countryCode", @Model.ListofBranches)
+                    //Html.RenderPartial("_countryCode", @Model.ListofCountries);
+                }
+            </div>
+        </div>*@
+
+    <div class="form-group row text-left">
+        @Html.LabelFor(m => m.SSOThirdpartySiteId, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-3">
+            @Html.DropDownListFor(model => model.SSOThirdpartySiteId, Model.ListofSSOThirdPartySites, htmlAttributes: new { @class = "form-control roundedInput dropdownInput" })
+        </div>
+        @Html.LabelFor(m => m.ProductCode, htmlAttributes: new { @class = "control-label col-md-3" ,@id="product-code-label" })
+        <div class="col-md-3">
+            @Html.EditorFor(model => model.ProductCode, new { htmlAttributes = new { @class = "form-control roundedInput" } })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        @Html.LabelFor(m => m.AffiliateId, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-4">
+            @Html.DropDownListFor(model => model.AffiliateId, Model.ListofAffiliate, "Select Affiliate", htmlAttributes: new { @class = "form-control roundedInput dropdownInput" })
+            @*@Html.ValidationMessageFor(model => model.AffiliateId, "", new { @class = "text-danger col-md-12" })*@
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.OfferTypeId, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-4">
+            @Html.DropDownListFor(model => model.OfferTypeId, Model.ListofOfferType, "Select OfferType", htmlAttributes: new { @class = "form-control roundedInput dropdownInput", @placeholder = "Enter OfferType" }) @*roundedInput col-md-6*@
+            @Html.ValidationMessageFor(model => model.OfferTypeId, "", new { @class = "text-danger col-md-12" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.StatusId, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-4">
+            @Html.DropDownListFor(model => model.StatusId, Model.ListofStatus, "Select Status", htmlAttributes: new { @class = "form-control roundedInput dropdownInput", @placeholder = "Enter Status" })
+            @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger col-md-12" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.SearchRanking, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-4">
+            @Html.DropDownListFor(model => model.SearchRanking, Model.ListofRanking, htmlAttributes: new { @class = "form-control roundedInput dropdownInput", @placeholder = "Enter Ranking" })
+            @Html.ValidationMessageFor(model => model.SearchRanking, "", new { @class = "text-danger col-md-12" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Reoccuring, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-5">
+            @Html.CheckBoxFor(model => model.Reoccuring, htmlAttributes: new { @class = "" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.ValidIndefintely, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-5">
+            @Html.CheckBoxFor(model => model.ValidIndefintely, htmlAttributes: new { @class = "" })
+        </div>
+    </div>
+
+    <div class="form-group row">
+        @Html.LabelFor(m => m.ValidFrom, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-3">
+            @Html.TextBoxFor(model => model.ValidFrom, "{0:yyyy-MM-dd}", new { @class = "form-control roundedInput", Type = "date" })
+            @Html.ValidationMessageFor(model => model.ValidFrom, "", new { @class = "text-danger col-md-12" })
+        </div>
+
+        @Html.LabelFor(m => m.ValidTo, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-3">
+            @Html.TextBoxFor(model => model.ValidTo, "{0:yyyy-MM-dd}", new { @class = "form-control roundedInput", Type = "date" })
+            @Html.ValidationMessageFor(model => model.ValidTo, "", new { @class = "text-danger col-md-12" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Headline, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.Headline, new { htmlAttributes = new { @class = "form-control roundedInput" } })
+            @Html.ValidationMessageFor(model => model.Headline, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.ShortDescription, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.ShortDescription, new { htmlAttributes = new { @class = "form-control roundedInput", maxlength = 128 } })
+            <p class="pull-right navpatterns">(Max limit 128 Characters)</p>
+            @Html.ValidationMessageFor(model => model.ShortDescription, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.LongDescription, htmlAttributes: new { @class = "control-label col-md-3" })
+
+        <div class="col-md-9">
+            @Html.TextAreaFor(model => model.LongDescription, htmlAttributes: new { @class = "form-control summernotelg input-validation-error", maxlength = 512 })
+            <p class="pull-right navpattern">(Max limit 512 Characters)</p>
+            @Html.ValidationMessageFor(model => model.LongDescription, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Instructions, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.TextAreaFor(model => model.Instructions, htmlAttributes: new { @class = "form-control summernoteins ", maxlength = 512 })
+            <p class="pull-right navpattern">(Max limit 512 Characters)</p>
+            @Html.ValidationMessageFor(model => model.Instructions, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Terms, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.TextAreaFor(model => model.Terms, htmlAttributes: new { @class = "form-control  summernoteterms", maxlength = 512 })
+            <p class="pull-right navpattern">(Max limit 512 Characters)</p>
+            @Html.ValidationMessageFor(model => model.Terms, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Exclusions, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.TextAreaFor(model => model.Exclusions, htmlAttributes: new { @class = "form-control  summernoteexcl", maxlength = 512 })
+            <p class="pull-right navpattern">(Max limit 512 Characters)</p>
+            @Html.ValidationMessageFor(model => model.Exclusions, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.LinkURL, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.LinkURL, new { htmlAttributes = new { @class = "form-control roundedInput" } })
+            @Html.ValidationMessageFor(model => model.LinkURL, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.OfferCode, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.OfferCode, new { htmlAttributes = new { @class = "form-control roundedInput" } })
+            @Html.ValidationMessageFor(model => model.OfferCode, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.RedemptionAccountNumber, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.RedemptionAccountNumber, new { htmlAttributes = new { @class = "form-control roundedInput", maxlength = 32 } })
+            <p class="pull-right navpattern">(Max limit 32 Characters)</p>
+            @Html.ValidationMessageFor(model => model.RedemptionAccountNumber, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.RedemptionProductCode, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            @Html.EditorFor(model => model.RedemptionProductCode, new { htmlAttributes = new { @class = "form-control roundedInput", maxlength = 32 } })
+            <p class="pull-right navpattern">(Max limit 32 Characters)</p>
+            @Html.ValidationMessageFor(model => model.RedemptionProductCode, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Tags, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-9">
+            <div class="ui-widget">
+                @Html.EditorFor(model => model.Tags, new { htmlAttributes = new { @class = "form-control roundedInput col-md-5 tagText" } })
+                @Html.ValidationMessageFor(model => model.Tags, "", new { @class = "text-danger" })
+                <button type="button" id="btnAddTag" class="btn btn-default waves-effect waves-light pull-right">Add</button>
+            </div>
+
+            <div class="col-md-12" id="tagsList">
+                @if (Model.ListofTag != null && Model.ListofTag.Any())
+                {
+                    foreach (ExclusiveCard.WebAdmin.ViewModels.CustomTagList item in Model.ListofTag)
+                    {
+                <div class="tagCard col-md-6">
+
+                    <label class="control-label col-md-4 tagName" tagId='@item.Id'>@item.Tags</label>
+
+                    <button class="col-md-1"><i class="fa fa-times"></i></button>
+                </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Countries, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-4 countryList">
+            @{
+                @await Html.PartialAsync("_countryCode", @Model.ListofCountries)
+                //Html.RenderPartial("_countryCode", @Model.ListofCountries);
+            }
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(m => m.Categories, htmlAttributes: new { @class = "control-label col-md-3" })
+
+        @* TreeView for categories select *@
+        <div id="categoryTree" class="">
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="form-group col-md-6">
+            <button type="button" id="btnCancelOffer" class="btn btnCancel">Cancel</button>
+        </div>
+        <div class="form-group col-md-6">
+            <button type="button" id="btnSaveOffer" class="btn btnSave has-spinner pull-right">
+                Save<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+            </button>
+        </div>
+    </div>
+</div>
+<div id="dialog-confirm" title="Delete Confirmation">
+    <p id="infoMessage"></p>
+</div>
+}
+@section Scripts
+{
+    <link href="https://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/css/bootstrap-multiselect.css"
+          rel="stylesheet" type="text/css" />
+    <script src="https://cdn.rawgit.com/davidstutz/bootstrap-multiselect/master/dist/js/bootstrap-multiselect.js"
+            type="text/javascript"></script>
+    <script src="~/js/Exclusive/offer.js"></script>
+
+    <script type="text/javascript">
+        Offer.setCategories(@Html.Raw(ViewData["Categories"]));
+        Offer.setTags(@Html.Raw(ViewData["Tags"]));
+        Offer.setMerchants(@Html.Raw(ViewData["Merchants"]));
+        Offer.setThirdPartySites(@Html.Raw(ViewData["ThirdPartySites"]));
+        Offer.initialiseFormData();
+        Offer.setUpEvents();
+        Offer.kendoUIBind();
+        if ("@ViewBag.Name" === "Add")
+        {
+            //Offer.setdefaultValue();
+        }
+        Offer.tagAutoComplete();
+        Offer.registerSummernote();
+        $(document).ready(function () {
+            $('#MerchantBranchId').multiselect({ includeSelectAllOption: true });
+            $("#add-edit-offer").scroll(function () {
+                $('.multiselect-container').removeClass('show');
+            });
+        });
+        $(document).ready(function () {
+            if ($("#SSOThirdpartySiteId").val() != "0") {
+                $("#product-code-label").show();
+                $("#ProductCode").show();
+            } else {
+                $("#product-code-label").hide();
+                $("#ProductCode").hide();
+            }
+            $("#SSOThirdpartySiteId").change(function () {
+                if ($(this).val() != "0") {
+                    $("#product-code-label").show();
+                    $("#ProductCode").show();
+                } else {
+                    $("#product-code-label").hide();
+                    $("#ProductCode").hide();
+                }
+            });
+        });
+    </script>
+}

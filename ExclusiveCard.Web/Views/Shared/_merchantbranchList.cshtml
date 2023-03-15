@@ -1,0 +1,32 @@
+﻿@model ExclusiveCard.WebAdmin.ViewModels.MerchantBranchListViewModel
+@*@Html.HiddenFor(m => m.MerchantId)*@
+@Html.HiddenFor(m => m.CurrentPageNumber)
+
+@if (@Model.ListofBranches.Count > 0)
+{
+    foreach (ExclusiveCard.Services.Models.DTOs.MerchantBranch item in @Model.ListofBranches)
+    {
+        <div class="form-group align-items-center row card col-md-12" merchantId="@item.MerchantId" branchId="@item.Id">
+            @Html.HiddenFor(m => item.Id)
+            <div class="col-md-12 row">
+                <label class="control-label col-md-12">
+                    @item.Name
+                    <label id="btnDeleteBranch" class="pull-right btnDeleteBranch ExclusiveLinkItem" branchId="@item.Id" merchantId="@item.MerchantId" href="#">Delete</label>
+                </label>
+            </div>
+        </div>
+    }
+}
+else
+{
+    <div class="form-group align-items-center row card col-md-9">
+        <h5>No branch added</h5>
+    </div>
+}
+
+@if (@Model.ListofBranches != null && @Model.ListofBranches.Any() && @Model.PagingModel.PageCount > 1)
+{   
+    <div class="form-group row col-md-8">
+        @{ @await Html.PartialAsync("_paging", Model.PagingModel); }
+    </div>
+}

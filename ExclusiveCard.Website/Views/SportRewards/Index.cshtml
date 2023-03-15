@@ -1,0 +1,88 @@
+﻿@using ExclusiveCard.Services.Models.DTOs
+@model List<ExclusiveCard.Services.Models.DTOs.League>
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var whiteLabel = (WhiteLabelSettings)ViewBag.WhiteLabel;
+    ViewBag.League = Model;
+}
+
+
+<div class="c_site">
+    <main class="c_main">
+        <section class="custom-padding-top">
+            <div class="l_container --narrow">
+                <h1>@Localizer["SelectClub"]</h1>
+                <p class="u_lead u_margin-bottom--s4 u_margin-bottom--s5--sm">
+                    @Html.GetWhiteLabel(Localizer["SelectClub1"].Value.ToString(), whiteLabel)
+                </p>
+                <p class="u_lead u_margin-bottom--s4 u_margin-bottom--s5--sm">
+                    @Html.GetWhiteLabel(Localizer["SelectClub2"].Value.ToString(), whiteLabel)
+                </p>
+                <p class="u_lead u_margin-bottom--s4 u_margin-bottom--s5--sm">
+                    @Localizer["SelectClub3"]
+                </p>
+
+                <div class="u_margin-bottom--s4 u_margin-bottom--s5--lg">
+                    <h4>@Localizer["Jump"]</h4>
+                    <ul class="l_tag-grid">
+                        @if (Model.Count > 0)
+                        {
+                            foreach (var items in Model)
+                            {
+                                <li class="__item"><a value="@items.Description" class="c_tag">@items.Description</a></li>
+                            }
+                        }
+                    </ul>
+                </div>
+
+                <a href="@Url.Action("Standard", "SportRewards")" class="e_button --block u_margin-bottom--s3" style="overflow-wrap: break-word;white-space: normal;">@Html.GetWhiteLabel(Localizer["Standard"].Value.ToString(), whiteLabel)</a>
+
+                <div class="c_form-container u_margin-bottom--s3">
+                    <h2> @Localizer["Leagues"]</h2>
+                    <p class="__notice js_auto-center c_notification --negative hideContent" id="customError"></p>
+
+                    @if (Model.Count > 0)
+                    {
+                        foreach (var items in Model)
+                        {
+                            <h3 class="--alternative u_margin-bottom--double" id="@items.Description">@items.Description</h3>
+                            <ul class="l_club-grid u_margin-bottom--s4">
+                                @if (items.SiteClan != null)
+                                {
+                                    foreach (var clan in items.SiteClan)
+                                    {
+                                        <li>
+                                            <a description="@items.Description" siteClanId="@clan.Id" class="c_club-select clan">
+                                                <div class="c_crest-fallback" style="--primary:@clan.PrimaryColour; --secondary:@clan.SecondaryColour;">
+                                                </div><label>@clan.Description</label>
+                                            </a>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        }
+                    }
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+@section Scripts
+{   
+    
+    <script src="~/js/ExclusiveWebsite/sport.js?v=2"></script>
+    <script type="text/javascript">
+        
+        $(".c_tag").on('click', function () {
+            var id =  $(this).attr('value');
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        });
+        SportRewards.setUpEvents();
+    </script>
+}
+
+
+

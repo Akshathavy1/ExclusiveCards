@@ -1,0 +1,15 @@
+﻿@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = Localizer["Title"];
+}
+
+<main class="c_main">
+    <section class="c_band">
+        <div class="l_container --narrow">
+            <div class="u_text-align--center">
+                <h1 class="u_margin-bottom--half">@Localizer["Title"]</h1>
+                <p class="u_lead u_margin-bottom--none">Coming soon&hellip;</p>
+            </div>
+        </div>
+    </section>
+</main>

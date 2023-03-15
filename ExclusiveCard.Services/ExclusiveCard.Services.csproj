@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="bin\**" />
+    <EmbeddedResource Remove="bin\**" />
+    <None Remove="bin\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Admin\SSOService.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.9.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.0.0" />
+    <PackageReference Include="CsvHelper" Version="12.1.0" />
+    <PackageReference Include="Google.Apis" Version="1.49.0" />
+    <PackageReference Include="Google.Apis.AndroidPublisher.v3" Version="1.49.0.2175" />
+    <PackageReference Include="Google.Apis.Auth" Version="1.49.0" />
+    <PackageReference Include="Google.Apis.Core" Version="1.49.0" />
+    <PackageReference Include="NCrontab" Version="3.3.1" />
+    <PackageReference Include="NLog" Version="4.7.14" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.14.0" />
+    <PackageReference Include="NPOI" Version="2.5.1" />
+    <PackageReference Include="SSH.NET" Version="2016.0.0" />
+
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ExclusiveCard.Data\ExclusiveCard.Data.csproj" />
+    <ProjectReference Include="..\ExclusiveCard.Enums\ExclusiveCard.Enums.csproj" />
+    <ProjectReference Include="..\ExclusiveCard.Managers\ExclusiveCard.Managers.csproj" />
+    <ProjectReference Include="..\ExclusiveCard.Providers\ExclusiveCard.Providers.csproj" />
+    <ProjectReference Include="..\ExclusiveCard.Services.Interfaces\ExclusiveCard.Services.Interfaces.csproj" />
+    <ProjectReference Include="..\ExclusiveCard.Services.Models\ExclusiveCard.Services.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.AspNetCore.Mvc.ViewFeatures">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.aspnetcore.mvc.viewfeatures\2.1.1\lib\netstandard2.0\Microsoft.AspNetCore.Mvc.ViewFeatures.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,66 @@
+﻿@using ExclusiveCard.Enums
+@using ExclusiveCard.WebAdmin.ViewModels
+@model TransactionsViewModel
+@Html.HiddenFor(m => m.CurrentPageNumber)
+
+@if (@Model.Transactions.Count > 0)
+{
+    <div class="table-responsive">
+        @Html.Hidden("SortField", Model.TransactionSortField)
+        @Html.Hidden("SortDirection", Model.SortDirection)
+        <table class="table" id="transactionTable">
+            <thead>
+                <tr>
+                    <th class="transactionHeading">
+                        @Html.ActionLink("Date", "PartnerTransactions", "Payments", "https", null, null, new { }, new { SelSortField = "CreatedDate" })
+                        @if (@Model.TransactionSortField == PartnerTransactionSortField.CreatedDate)
+                        {<i class="@Model.SortIcon"></i>}
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("Amount", "Amount")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("Payee", "Payee")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("Description", "Description")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("Reference", "Reference")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("Action", "Action")
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in @Model.Transactions)
+                {
+                    <tr class="merchantList">
+                        <td>@item.CreatedDate.ToString("dd MMM yyyy")</td>
+                        <td>@item.Amount</td>
+                        <td>@item.Payee</td>
+                        <td>@item.Description</td>
+                        <td>@item.Reference</td>
+                        <td>
+                            <a class="btn bottomMargin transactionPaid pull-right" href="@Url.Action("DownloadPayment", "Report", new {Id = item.Id})"><i class="fa fa-download"></i></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="form-group align-items-center row col-md-9">
+        <h5 style="margin-top:12pt;">No record found</h5>
+    </div>
+}
+
+@if (Model.Transactions != null && Model.Transactions.Any() && Model.PagingModel.PageCount > 1)
+{
+    <div class="form-group row col-md-8">
+        @{ @await Html.PartialAsync("_paging", @Model.PagingModel); }
+    </div>
+}

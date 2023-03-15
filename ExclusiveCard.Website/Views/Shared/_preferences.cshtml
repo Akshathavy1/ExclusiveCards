@@ -1,0 +1,149 @@
+﻿@inject IViewLocalizer Localizer
+@{
+    var layoutModel = (LayoutViewModel)@ViewBag.LayoutModel;
+
+    if (layoutModel.DiamondStatus == "Pending")
+    {
+        layoutModel.IsDiamondCustomer = true;
+    }
+}
+<h2>@Localizer["Title"]</h2>
+<div class="l_flex --tight">
+    <div class="__column">
+        <div class="c_comparison @(!layoutModel.IsDiamondCustomer?"--current":"")">
+            <div class="__header">
+                <h3>@Localizer["StandardPackage"]</h3>
+
+                @if (layoutModel.IsDiamondCustomer)
+                {
+                    <p>
+                        @Localizer["BasicFeature"]
+                    </p>
+                }
+                else
+                {
+                    <p>
+                        @Localizer["CurrentPackage"]
+                    </p>
+                }
+
+            </div>
+            <div class="__body">
+                <ul class="c_checklist">
+                    <li>@Localizer["BenefitList1"]</li>
+                    <li>@Localizer["BenefitList2"]</li>
+                    @*<li>@Localizer["BenefitList3"]</li>*@
+                    <li>@Localizer["BenefitList4"]</li>
+                    <li class="--disabled">@Localizer["BenefitList5"]</li>
+                    @*<li class="--disabled">@Localizer["BenefitList6"]</li>*@
+                    <li class="--disabled">@Localizer["BenefitList7"]</li>
+                    <li class="--disabled">@Localizer["BenefitList8"]</li>
+                    <li class="--disabled">@Localizer["BenefitList9"]</li>
+                    <li class="--disabled">@Localizer["BenefitList10"]</li>
+                    @*<li class="--disabled">@Localizer["BenefitList11"]</li>*@
+                    @*<li class="--disabled">@Localizer["BenefitList12"]</li>*@
+                    @if (layoutModel.WhiteLabel.Slug == "sport-rewards")
+                    {
+                        <li class="--disabled">@Localizer["BenefitList13"]</li>
+                    }
+                </ul>
+
+                    @if (layoutModel.IsDiamondCustomer)
+                    {
+
+                        <a class="e_button --block --small" href="#" disabled>@Localizer["Downgrade"]</a>
+                    }
+                    else
+                    {
+                        <a class="e_button --block --small" href="#" disabled>@Localizer["Active"]</a>
+                    }
+
+                </div>
+            </div>
+        </div>
+        <div class="__column">
+            <div class="c_comparison @(layoutModel.IsDiamondCustomer?"--current":"")">
+                <div class="__header">
+                    <h3>@Localizer["DiamondPackage"]</h3>
+
+                    @if (layoutModel.IsDiamondCustomer)
+                    {
+                        <p>
+                            @Localizer["ValidTill"] @layoutModel.DiamondExpiry.ToString("dd MMM yyyy")
+                        </p>
+                    }
+                    else
+                    {
+                        <p>@Localizer["BasicFeature"]</p>
+                    }
+                </div>
+                <div class="__body">
+                    <ul class="c_checklist">
+                        <li>@Localizer["BenefitList1"]</li>
+                        <li>@Localizer["BenefitList2"]</li>
+                        @*<li class="singleLine">@Localizer["BenefitList3"]</li>*@
+                        <li>@Localizer["BenefitList4"]</li>
+                        <li>@Localizer["BenefitList5"]</li>
+                        @*<li>@Localizer["BenefitList6"]</li>*@
+                        <li>@Localizer["BenefitList7"]</li>
+                        <li>@Localizer["BenefitList8"]</li>
+                        <li>@Localizer["BenefitList9"]</li>
+                        <li>@Localizer["BenefitList10"]</li>
+                        @*<li>@Localizer["BenefitList11"]</li>*@
+                        @*<li>@Localizer["BenefitList12"]</li>*@
+                        @if (layoutModel.WhiteLabel.Slug == "sport-rewards")
+                        {
+                            <li>@Localizer["BenefitList13"]</li>
+                        }
+                    </ul>
+
+                        @if (layoutModel.IsDiamondCustomer)
+                        {
+                            if (layoutModel.DiamondStatus == ExclusiveCard.Data.Constants.Status.Pending)
+                            {
+                                <a class="e_button --block --small" href="#" disabled>@Localizer["Pending"]</a>
+                            }
+                            else
+                            {
+                                if (layoutModel.WhiteLabel.Slug == "consumer-rights")
+                                {
+                                    <a class="e_button --block --small" href="https://consumer-rights.org/member-plus/" target="_blank">@Localizer["Active"]</a>
+                                }
+                                else
+                                {
+                                    <a class="e_button --block --small" href="#" disabled>@Localizer["Active"]</a>
+                                }
+                            }
+                        }
+                        else if (layoutModel.DiamondStatus == ExclusiveCard.Data.Constants.Status.Pending)
+                        {
+                            <a class="e_button --block --small" href="#" disabled>@Localizer["Pending"]</a>
+                        }
+                        else
+                        {
+                            if (layoutModel.WhiteLabel.Slug == "consumer-rights")
+                            {
+                                <a class="e_button --block --small" href="https://consumer-rights.org/member-plus/" target="_blank">Upgrade</a>
+                            }
+                            else
+                            {
+                                @if (!Context.Request.Headers.ContainsKey("IsMobile"))
+                                {
+                                    <a class="e_button --block --small"  id="upgradebuttondp" href="@Url.Action("Payment", "PayPal", new { customerPlanId = layoutModel.MembershipPlanId, isDiamondUpgrade = true })" rel="noopener">
+                                        <span class="__icon c_icomoon --paypal"></span>
+                                        @Html.GetDiamondCost(Localizer["DiamondPayPalButton"].Value.ToString(), layoutModel.DiamondCost)
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a class="e_button --block --small" id="upgradebuttondp" href="#DiamondUpgrade" rel="noopener">
+                                        @Html.GetDiamondCost(Localizer["DiamondPayPalButton"].Value.ToString(), layoutModel.DiamondCost)
+                                    </a>
+
+                                }
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>

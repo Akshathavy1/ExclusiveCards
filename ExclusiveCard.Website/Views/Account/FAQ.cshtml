@@ -1,0 +1,42 @@
+﻿@using ExclusiveCard.Services.Models.DTOs
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = @Localizer["Title"];
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var whiteLabel = (WhiteLabelSettings)ViewBag.WhiteLabel;
+}
+<main class="c_main">
+    <section class="c_band">
+        <div class="l_container --narrow">
+            <h1>@Localizer["Title"]</h1>
+            <div class="c_content">
+                <h3>@Localizer["Question_1"]</h3>
+                <p>@Localizer["Question_1_Answer"]</p>
+                <hr>
+                <h3>@Localizer["Question_2"]</h3>
+                <p>@Localizer["Question_2_Answer"]</p>
+                <hr>
+                <h3>@Localizer["Question_3"]</h3>
+                <p>@Localizer["Question_3_Answer"]</p>
+                <hr>
+                <h3>@Localizer["Question_4"]</h3>
+                <p>@Localizer["Question_4_Answer"]</p>
+                <hr>
+                <h3>@Localizer["Question_5"]</h3>
+                <p>@Localizer["Question_5_Answer"]</p>
+                <hr>
+                <h3>@Localizer["Question_6"]</h3>
+                <p>@Localizer["Question_6_Answer"]</p>
+                <hr>
+                <h3>@Localizer["Question_7"]</h3>
+                <p>@Localizer["Question_7_Answer"]</p>
+                <hr>
+                <h3>@Localizer["Question_8"]</h3>
+                <p>@Html.GetWhiteLabel(@Localizer["Question_8_Answer"].Value.ToString(), whiteLabel)</p>
+                <hr>
+                <h3>@Localizer["Question_9"]</h3>
+                <p>@Localizer["Question_9_Answer"]</p>
+            </div>
+        </div>
+    </section>
+</main>

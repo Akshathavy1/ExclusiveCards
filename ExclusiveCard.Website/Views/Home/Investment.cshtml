@@ -1,0 +1,90 @@
+﻿@using dto = ExclusiveCard.Services.Models.DTOs
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "Exclusive Investment Option";
+    var whiteLabel = (dto.WhiteLabelSettings)ViewBag.WhiteLabel;
+}
+
+<main class="c_main">
+    <section class="c_band">
+        <div class="l_container --narrow">
+            <h1>@Localizer["Title"]</h1>
+            <div class="c_content">
+                <p class="u_margin-bottom--double">@Html.GetWhiteLabel(Localizer["Description"].Value, whiteLabel)</p>
+
+                <div class="l_flex">
+                    <div class="__column --span-12 --span-6--md">
+                        <div class="c_box">
+                            <h4>@Localizer["Req"]</h4>
+                            <p>@Html.GetWhiteLabel(Localizer["ReqP1"].Value, whiteLabel)</p>
+                        </div>
+                    </div>
+                    <div class="__column --span-12 --span-6--md">
+                        <div class="c_box u_margin-bottom--s3">
+                            <h4>@Localizer["Boost"]</h4>
+                            <p>@Html.GetWhiteLabel(Localizer["BoostP1"].Value, whiteLabel)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <h2>@Localizer["Invest"]</h2>
+
+                <div class="c_box u_margin-bottom--s3">
+                    <h4>@Localizer["Portfolio"]</h4>
+                    <p>@Html.GetWhiteLabel(Localizer["PortfolioP1"].Value, whiteLabel)</p>
+                </div>
+
+                <div class="c_box u_margin-bottom--s3">
+                    <h4>@Html.GetWhiteLabel(Localizer["Performance"].Value, whiteLabel)</h4>
+                    <p>@Localizer["PerformanceP1"]</p>
+                    <p class="u_smallprint">@Localizer["PerformanceP2"]</p>
+                </div>
+
+                <div class="c_box u_margin-bottom--s3">
+                    <h4>@Localizer["Fun"]</h4>
+                    <p>@Localizer["Fun1"]</p>
+                </div>
+
+                <div class="c_box u_margin-bottom--s3">
+                    <h4>@Localizer["Invest1"]</h4>
+                    <p>@Localizer["InvestP1"]</p>
+                    <p>@Localizer["InvestP2"]</p>
+                </div>
+
+                <div class="c_box u_margin-bottom--s3">
+                    <h4>@Localizer["Money"]</h4>
+                    <p>@Localizer["MoneyP1"]</p>
+                </div>
+
+                <hr>
+
+                <h2>@Html.GetWhiteLabel(Localizer["Invest2"].Value, whiteLabel)</h2>
+
+                <div class="c_box u_margin-bottom--s3">
+                    <h4>@Localizer["Choice"]</h4>
+                    <p>@Html.GetWhiteLabel(Localizer["Choice1"].Value, whiteLabel)</p>
+                </div>
+
+                <div class="c_box u_margin-bottom--s3">
+                    <h4>@Localizer["Micro"]</h4>
+                    <p>@Html.GetWhiteLabel(Localizer["Micro1"].Value, whiteLabel)</p>
+                </div>
+
+                <div class="c_box u_margin-bottom--s3">
+                    <h4>@Localizer["Transparency"]</h4>
+                    <p>@Localizer["Transparency1"]</p>
+                    <dl>
+                        <dt>@Localizer["Transparency2"]</dt>
+                        <dd>@Localizer["Transparency3"]</dd>
+                        <dt>@Localizer["Transparency4"]</dt>
+                        <dd>@Localizer["Transparency5"]</dd>
+                        <dt>@Localizer["Transparency6"]</dt>
+                        <dd>@Localizer["Transparency7"]</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

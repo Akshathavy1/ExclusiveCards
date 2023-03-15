@@ -1,0 +1,35 @@
+﻿@model AccountChartViewModel
+@inject IViewLocalizer Localizer
+@using ExclusiveCard.Data.Constants
+
+@{
+    string customerId = Convert.ToString(ViewData["CustomerId"]);
+    string cardId = Convert.ToString(ViewData["CardId"]);
+}
+
+<div class="col-md-4 chartpenmob">
+    <div class="pull-left cartsideheadings">@Localizer["Pending"]</div><br />
+    <img id="question-mark-pending" src="/images/question_mark.png" data-src="/images/question_mark.png"  data-srcset="/images/question_mark.png" class="pull-left img-responsive qmark lazy">
+    <div class="pendingCh" data-dimension="120" data-width="20" data-percent="@Model.PendingPercentage" data-fgcolor="#FFFF00" data-bgcolor="#eee">
+        <a class="details" href="@Url.Action("AccountStatement", "Account", new { customerId = @customerId, cardId = @cardId, currentPage = 1, accountStatus = Status.Pending })">@Model.PendingValue</a>
+    </div>
+</div>
+
+<div class="col-md-4 chartconmob">
+    <div class="pull-left cartsideheadings">@Localizer["Confirmed"]</div><br />
+    <img id="question-mark-confirmed" src="/images/blank.png" data-src="/images/question_mark.png"  data-srcset="/images/question_mark.png" class="pull-left img-responsive qmark lazy">
+    <div class="confirmedCh" data-dimension="120" data-width="20" data-percent="@Model.ConfirmedPercentage" data-fgcolor="#FF8C00" data-bgcolor="#eee">
+        <a class="details" href="@Url.Action("AccountStatement", "Account", new { customerId = @customerId, cardId = @cardId, currentPage = 1, accountStatus = Status.Confirmed })">@Model.ConfirmedValue</a>
+    </div>
+</div>
+
+<div class="col-md-4 chartrevmob">
+    <div class="pull-left cartsideheadings">@Localizer["Received"]</div><br />
+    <img id="question-mark-received" src="/images/blank.png" data-src="/images/question_mark.png"  data-srcset="/images/question_mark.png" class="pull-left img-responsive qmark lazy">
+    <div class="receivedCh" data-dimension="120" data-width="20" data-percent="@Model.ReceivedPercentage" data-fgcolor="#00FF00" data-bgcolor="#eee">
+        <a class="details" href="@Url.Action("AccountStatement", "Account", new { customerId = @customerId, cardId = @cardId, currentPage = 1, accountStatus = Status.Received })">@Model.ReceivedValue</a>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,110 @@
+﻿@model PaymentViewModel
+@inject Microsoft.Extensions.Options.IOptions<TypedAppSettings> metaOptions
+@inject IViewLocalizer Localizer
+
+@{
+    var typedAppSettings = metaOptions.Value;
+    var totalcost = @Model.MembershipCard + @typedAppSettings.PhysicalMembershipCard;
+    ViewData["Title"] = @Localizer["Payment"];
+}
+<h2 class="text-center payheads">
+    @Html.Label(@Localizer["Join Exclusive Card"].Value.ToString())
+</h2>
+
+
+<div class="paydtls bothcards">
+    <div class="row col-md-12">
+        <p class="paydtls">
+            @Localizer["You have chosen to purchase"].Value.ToString()
+        </p>
+    </div>
+  <div class="col-md-12">
+        <table class="table-responsives">
+            <tr>
+               
+                <td class="paymentdtls paydetails">@Model.PlanName @Localizer["at"].Value.ToString()</td>
+                <td class="paymentdtls payamount">&nbsp;£@Model.MembershipCard</td>
+            </tr>
+            <tr>
+                <td class="paymentdtls paydetails">@Localizer["A physical membership card at"].Value.ToString()</td>
+                <td class="paymentdtls payamount">&nbsp;£@typedAppSettings.PhysicalMembershipCard</td>
+            </tr>
+            <tr>
+                <td class="paymentdtls paydetails">@Localizer["This makes a total cost of"].Value.ToString()</td>
+                <td class="paymentdtls payamount">&nbsp;£@totalcost</td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+<div class="paydtls singlecard">
+    <div class="row col-md-12">
+        <p class="paydtls">
+            @Localizer["You have chosen to purchase"].Value.ToString() @Model.PlanName @Localizer["at"].Value.ToString() £@Model.MembershipCard
+        </p>
+    </div>
+
+</div>
+
+@if (Model.Cashback)
+{
+    <div class="row col-md-12">
+        <br />
+        <h3 class="payhead">@Localizer["Choose Payment Method"]</h3>
+    </div>
+}
+<div class="row col-md-12">
+    <div>
+        @if (Model.PayPal && Model.Cashback)
+        {
+            <p class="paydtls">@Localizer["Please note that If you are using future cashback earned to pay for your annual membership, then your digital Exclusive Card on the mobile application will not be displayed, nor will you have access to restaurant or high street offers until your negative balance has been cleared to £0.00."]</p>
+
+            <p class="paydtls">
+                @Localizer["Would you like to clear your negative cashback balance to £0.00 now giving you full access to restaurant and high street offers immediately"]
+            </p>
+            <input type="radio" name="PaymentType" value="PayPal" class="navradiobt">
+            <p class="paymthd paydtls">Yes</p>
+            <input type="radio" name="PaymentType" value="Cashback" class="navradiobt"><p class="paymthd paydtls">No</p>
+        }
+        @if (Model.Cashback && Model.PayPal == false)
+        {
+            <p class="paydtls">
+                @Localizer["Your digital Exclusive Card on the mobile application will not be displayed, nor will you have access to restaurant or high street offers until your negative balance has been cleared to £0.00."]
+            </p>
+        }
+    </div>
+</div>
+
+<div class="row col-md-12">
+    <br />
+    <h3 class="payhead">@Localizer["Terms and Conditions"]</h3>
+</div>
+<div class="row col-md-12">
+    <p class="paydtls">
+        @Localizer["By joining Exclusive Card, I understand that my membership is a recurring subscription and will automatically renew on the expiry date shown on my Exclusive Card at an annual cost of"]<span class="paydtls singlecard"> £@Model.MembershipCard.</span> <span class="paydtls bothcards">£@totalcost.</span>  @Localizer["I understand this renewal will be automatic at then end of each term unless it is cancelled in accordance with the terms and conditions. I agree that I will inform Exclusive Media Ltd of any change to my contact details."]
+    </p>
+    <p class="paydtls">
+        @Localizer["By continuing with this purchase, I acknowledge that I have read and agree to the full terms and conditions of Exclusive Card membership."]
+    </p>
+    <br />
+    <a href="~/account/terms" target="_blank" class="paydtls">@Localizer["View terms and Conditions"]</a>
+    <p>
+        @Html.CheckBox("Check", new { @class = "checkmark" })
+
+        <span class="navcheck paydtls"> @Localizer["*I agree to the terms and Conditions"]</span>
+    </p>
+</div>
+
+<div id="dialog-confirm" title="popupoffers">
+    <p id="infoMessage"></p>
+</div>
+@section Scripts
+    {
+    <script type="text/javascript">
+        Account.setUpEvents();
+    </script>
+}
+
+
+
+

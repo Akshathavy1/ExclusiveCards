@@ -1,0 +1,45 @@
+﻿@model ExclusiveCard.WebAdmin.ViewModels.SearchPaymentsViewModel
+@{
+    Layout = "~/Views/Shared/_NewLayout.cshtml";
+    ViewBag.Title = "Partner Transactions";
+}
+
+<div id="mainDiv" class="col-md-12 Searchforoffers divonemerchant">
+    @Html.ValidationSummary(false, "", new { @class = "text-danger", autofocus = "autofocus" })
+    <div class="form-group row">
+        <div class="col-md-12">
+            <h1 class="col-md-6" id="title-name">Partner Transactions</h1>
+        </div>
+    </div>
+    <div class="col-md-5 form-horizontal">
+        @Html.LabelFor(model => model.StatusId, htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-7">
+            @Html.DropDownListFor(model => model.StatusId, Model.Status, "--Select--", htmlAttributes: new { @class = "form-control roundedInput", @placeholder = "Enter Merchant" })
+            @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger col-md-12" })
+        </div>
+    </div>
+    <div class="col-md-5 form-horizontal">
+        @Html.LabelFor(model => model.PartnerId, htmlAttributes: new { @class = "control-label col-md-4" })
+        <div class="col-md-7">
+            @Html.DropDownListFor(model => model.PartnerId, Model.Partners, "--Select--", htmlAttributes: new { @class = "form-control roundedInput", @placeholder = "Enter Merchant" })
+            @Html.ValidationMessageFor(model => model.PartnerId, "", new { @class = "text-danger col-md-12" })
+        </div>
+    </div>
+    <div class="col-md-2">
+        <button type="button" id="btnSearch" class="btn has-spinner">Search <span class="spinner"><i class="fa fa-spinner fa-spin"></i></span></button>
+    </div>
+</div>
+
+<div id="divTransactions" class="col-md-12 divtwomerchant">
+    @{
+        @await Html.PartialAsync("_transactions", @Model.PartnerTransactions)
+    }
+</div>
+
+@section Scripts
+{
+    <script src="~/js/Exclusive/payment.js"></script>
+    <script type="text/javascript">
+        Payment.setUpEvents();
+    </script>
+}

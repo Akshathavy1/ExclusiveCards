@@ -1,0 +1,4 @@
+﻿[*.cs]
+
+# CS0006: Metadata file 'S:\Exclusive\ExclusiveCard\ExclusiveCard.Website\bin\Debug\netcoreapp2.1\ExclusiveCard.Website.dll' could not be found
+dotnet_diagnostic.CS0006.severity = error

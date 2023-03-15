@@ -1,0 +1,98 @@
+﻿@using dto = ExclusiveCard.Services.Models.DTOs
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "For Businesses";
+    var layoutModel = (LayoutViewModel) ViewBag.LayoutModel;
+    var whiteLabel = (dto.WhiteLabelSettings)ViewBag.WhiteLabel;
+}
+<main class="c_main">
+    <section class="c_band">
+        <div class="l_container --narrow">
+            <h1>@Html.GetWhiteLabel(@Localizer["Title"].Value.ToString(), whiteLabel)</h1>
+            <div class="c_content justifyPara">
+                <p class="u_lead">@Html.GetWhiteLabel(@Localizer["Lead"].Value, whiteLabel)</p>
+                @*<p>@Html.GetWhiteLabel(Localizer["Lead_1"].Value, whiteLabel)</p>*@
+                <p>@Html.GetWhiteLabel(Localizer["Lead_2"].Value, whiteLabel)</p>
+                <hr class="hrFull" />
+                <h2>@Html.GetWhiteLabel(Localizer["Work"].Value, whiteLabel)</h2>
+                <ol>
+                    <li>@Html.GetWhiteLabel(Localizer["Work_1"].Value, whiteLabel)</li>
+                    <li>@Html.GetWhiteLabel(Localizer["Work_2"].Value, whiteLabel)</li>
+                    <li>@Html.GetWhiteLabel(Localizer["Work_3"].Value, whiteLabel)</li>
+                    <li>@Html.GetWhiteLabel(Localizer["Work_4"].Value, whiteLabel)</li>
+                    <li>@Html.GetWhiteLabel(Localizer["Work_5"].Value, whiteLabel)</li>
+                    <li>@Html.GetWhiteLabel(Localizer["Work_6"].Value, whiteLabel)</li>
+                    @*<li>@Html.GetWhiteLabel(Localizer["Work_7"].Value, whiteLabel)</li>
+                    <li>@Html.GetWhiteLabel(Localizer["Work_8"].Value, whiteLabel)</li>*@
+                </ol>
+                <hr class="hrFull" />
+                <h2>@Html.GetWhiteLabel(Localizer["Reward"].Value, whiteLabel)</h2>
+                <h3>@Html.GetWhiteLabel(Localizer["F_Employer"].Value, whiteLabel)</h3>
+                <div class="c_box u_margin-bottom--s3">
+                    <h4>@Html.GetWhiteLabel(Localizer["E_Benefits"].Value, whiteLabel)</h4>
+                    <p>@Html.GetWhiteLabel(Localizer["E_Benefits_1"].Value, whiteLabel)</p>
+                    <p>@Html.GetWhiteLabel(Localizer["E_Benefits_2"].Value, whiteLabel)</p>
+                </div>
+                <h3>@Html.GetWhiteLabel(Localizer["F_Business"].Value, whiteLabel)</h3>
+                <div class="c_box u_margin-bottom--s3">
+                    <h4>@Html.GetWhiteLabel(Localizer["C_Reward"].Value, whiteLabel)</h4>
+                    <p>@Html.GetWhiteLabel(Localizer["C_Reward_1"].Value, whiteLabel)</p>
+                </div>
+                <div class="c_box u_margin-bottom--s3">
+                    <h4>@Html.GetWhiteLabel(Localizer["CPO"].Value, whiteLabel)</h4>
+                    <p>@Html.GetWhiteLabel(Localizer["CPO_1"].Value, whiteLabel)</p>
+                    <ul>
+                        <li>@Html.GetWhiteLabel(Localizer["CPO_a"].Value, whiteLabel)</li>
+                        <li>@Html.GetWhiteLabel(Localizer["CPO_b"].Value, whiteLabel)</li>
+                        <li>@Html.GetWhiteLabel(Localizer["CPO_c"].Value, whiteLabel)</li>
+                        <li>@Html.GetWhiteLabel(Localizer["CPO_d"].Value, whiteLabel)</li>
+                    </ul>
+                    @*<p>@Html.GetWhiteLabel(Localizer["CPO_2"].Value, whiteLabel)</p>*@
+                </div>
+                @*<hr class="hrFull" />
+                <h2>@Html.GetWhiteLabel(Localizer["AHB"].Value, whiteLabel)</h2>
+                <div class="l_flex">
+                    <div class="__column --span-12 --span-6--md u_margin-bottom--s3">
+                        <div class="c_box">
+                            <h4>@Html.GetWhiteLabel(Localizer["F_Account"].Value, whiteLabel)</h4>
+                            @if (layoutModel.WhiteLabel.Slug!="consumer-rights")
+                            {
+                                <p>@Html.GetDiamondCost(Html.GetWhiteLabel(Localizer["F_Account_1"].Value, whiteLabel).ToString(), layoutModel.DiamondCost)</p>
+                            }
+                            else
+                            {
+                                <p>@Html.GetWhiteLabel(Localizer["F_Account_2"].Value, layoutModel.WhiteLabel).ToString())</p>
+                            }
+                        </div>
+                    </div>
+                    <div class="__column --span-12 --span-6--md u_margin-bottom--s3">
+                        <div class="c_box">
+                            <h4>@Html.GetWhiteLabel(Localizer["CF"].Value, whiteLabel)</h4>
+                            <p>@Html.GetWhiteLabel(@Localizer["CF_1"].Value, whiteLabel)</p>
+                        </div>
+                    </div>
+                    <div class="__column --span-12 --span-6--md u_margin-bottom--s3">
+                        <div class="c_box">
+                            <h4>@Html.GetWhiteLabel(Localizer["MS"].Value, whiteLabel)</h4>
+                            <p>@Html.GetWhiteLabel(Localizer["MS_1"].Value, whiteLabel)</p>
+                        </div>
+                    </div>
+                    <div class="__column --span-12 --span-6--md u_margin-bottom--s3">
+                        <div class="c_box">
+                            <h4>@Html.GetWhiteLabel(Localizer["Retail"].Value, whiteLabel)</h4>
+                            <p>@Html.GetWhiteLabel(Localizer["Retail_1"].Value, whiteLabel)</p>
+                        </div>
+                    </div>
+                    <div class="__column --span-12 --span-6--md">
+                        <div class="c_box">
+                            <h4>@Html.GetWhiteLabel(Localizer["DMU"].Value, whiteLabel)</h4>
+                            <p>@Html.GetWhiteLabel(Localizer["DMU_1"].Value, whiteLabel)</p>
+                        </div>
+                    </div>
+                </div>*@
+                <hr class="hrFull" />
+                <p class="c_notification">Click <a href="mailto:@whiteLabel.MainEmail">here</a> @Html.GetWhiteLabel(Localizer["CEC"].Value, whiteLabel)</p>
+            </div>
+        </div>
+    </section>
+</main>

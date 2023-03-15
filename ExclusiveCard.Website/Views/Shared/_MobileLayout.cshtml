@@ -1,0 +1,255 @@
+﻿@inject IViewLocalizer Localizer
+
+@{
+    var layoutModel = (LayoutViewModel)@ViewBag.LayoutModel;
+}
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    <!--Digital window verification 001-->
+    <!-- WGCCxxx -->
+    <meta name="webgains-site-verification" content="ods7bp5a" />
+    <meta name="tradetracker-site-verification" content="3542f8448d0aae91eef30f2cd0d6efe86113f598" />
+    <meta charset="utf-8" />
+    @RenderSection("metatags", false)
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - @layoutModel?.WhiteLabel?.Name</title>
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="@layoutModel?.WhiteLabel?.Name" />
+    <meta property="og:image" content="~/_assets/images/whitelabels/@layoutModel?.WhiteLabel?.Slug/social_share.png" />
+    <meta property="og:image:secure_url" content="~/_assets/images/whitelabels/@layoutModel?.WhiteLabel?.Slug/social_share.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="670" />
+    <link rel="apple-touch-icon" href="~/_assets/images/whitelabels/@layoutModel?.WhiteLabel?.Slug/icon_180.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="~/_assets/images/whitelabels/@layoutModel?.WhiteLabel?.Slug/favicon_16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="~/_assets/images/whitelabels/@layoutModel?.WhiteLabel?.Slug/favicon_32.png" />
+    <link rel="icon" type="image/png" sizes="96x96" href="~/_assets/images/whitelabels/@layoutModel?.WhiteLabel?.Slug/favicon_96.png" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    <environment include="Development">
+        @if (!string.IsNullOrEmpty(layoutModel?.WhiteLabel?.CSSFile))
+        {
+            <link href="~/_assets/styles/@layoutModel.WhiteLabel.CSSFile" rel="stylesheet" />
+        }
+        else
+        {
+            <link href="~/_assets/styles/exclusive.css" rel="stylesheet" />
+        }
+    </environment>
+    <environment exclude="Development">
+        @if (!string.IsNullOrEmpty(layoutModel?.WhiteLabel?.CSSFile))
+        {
+            <link href="~/_assets/styles/@layoutModel.WhiteLabel.CSSFile" rel="stylesheet" />
+        }
+        else
+        {
+            <link href="~/_assets/styles/exclusive.css" rel="stylesheet" />
+        }
+    </environment>
+</head>
+<body>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TBXTV7P" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <div class="c_site">
+        @RenderBody()
+    </div>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+        <script src="~/js/ExclusiveWebsite/main.es5.js"></script>
+        <script src="~/js/ExclusiveWebsite/login.js"></script>
+        <script src="~/js/ExclusiveWebsite/summary.js"></script>
+        <script src="~/js/ExclusiveWebsite/account.js"></script>
+        <script src="~/js/ExclusiveWebsite/banner.js"></script>
+        <script src="~/js/ExclusiveWebsite/offers.js"></script>
+        <script src="~/js/ExclusiveWebsite/payment.js"></script>
+        <script src="~/js/ExclusiveWebsite/redirect.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/js/ExclusiveWebsite/main.es5.js"></script>
+        <script src="~/js/ExclusiveWebsite/exclusivecard-scripts.min.js"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+    <script type="text/javascript">
+    jQuery.validator.setDefaults({
+        debug: true,
+        success: "valid",
+        errorClass: "--invalid"
+    });
+    var countrySelected = "@ViewData["Country"]";
+    //var locationSearch = $(location).attr('search');
+    //if (locationSearch.length > 0) {
+    //    var pos = locationSearch.indexOf("&mainSearchTerm=");
+    //    if (pos >= 0) {
+    //        var filterstr = locationSearch.slice(0, pos);
+    //        locationSearch = locationSearch.replace(filterstr + "&mainSearchTerm=", "");
+    //        if (locationSearch.length > 0) {
+    //            $("input[name='mainSearchTerm']").val(decodeURIComponent(locationSearch));
+    //        }
+    //    }
+    //}
+    </script>
+    <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded",
+        function() {
+            var lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
+
+            if ("IntersectionObserver" in window) {
+                let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            let lazyImage = entry.target;
+                            lazyImage.src = lazyImage.dataset.src;
+                            lazyImage.srcset = lazyImage.dataset.srcset;
+                            lazyImage.classList.remove("lazy");
+                            lazyImageObserver.unobserve(lazyImage);
+                        }
+                    });
+                });
+
+                lazyImages.forEach(function(lazyImage) {
+                    lazyImageObserver.observe(lazyImage);
+                });
+            } else {
+                // Possibly fall back to a more compatible method here
+            }
+        });
+    </script>
+    <script type="text/javascript">
+    $("input[name='mainSearchTerm']").keyup(function(e) {
+        var term = $(this).val();
+        if (term.length >= 3) {
+            term = term.replace(/&/, '%26');
+            Offers.shortSearch(term);
+        }
+    });
+
+    function mainSearchFunction() {
+        var searchTerm = $("input[name='mainSearchTerm']").val();
+        if (searchTerm.length >= 3) {
+            $("input[name='mainSearchTerm']").val(searchTerm);
+            var unmodified = searchTerm;
+            searchTerm = searchTerm.replace(/&/, '%26');
+            //check if the text is equal to the option text,
+            //if yes then redirect to merchant offer screen
+            var datalist = document.querySelector('datalist');
+            var select = document.querySelector('select');
+            var options = select.options;
+            var merchantId = "";
+            var offerId = "";
+
+            for (var i = 0; i < options.length; i++) {
+                if (options[i].value.trim() == unmodified) {
+                    merchantId = options[i].attributes["merchant"].value;
+                    offerId = options[i].attributes["offer"].value;
+                    break;
+                }
+            }
+            if (merchantId !== "" && offerId !== "") {
+                window.location.href = "/Offers/Index?country=" +
+                    countrySelected +
+                    "&merchantId=" +
+                    merchantId +
+                    "&offerId=" +
+                    offerId;
+                return false;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    $(".mainCountry").click(function(e) {
+        e.preventDefault();
+        var country = $(this).attr("data-value");
+        var url = window.location.href;
+        var breakUrl = url.split('?');
+        var index = -1;
+        if (breakUrl[1] !== "" && breakUrl[1] !== undefined && breakUrl[1] !== null) {
+            index = breakUrl[1].indexOf("country");
+        }
+        if (index > -1) {
+            if (breakUrl[1] !== "" && breakUrl[1] !== undefined && breakUrl[1] !== null) {
+                breakUrl[1] = breakUrl[1].substring(10);
+            }
+        }
+        var finalUrl = breakUrl[0] + "?country=" + country;
+        if (breakUrl[1] !== "" && breakUrl[1] !== undefined && breakUrl[1] !== null) {
+            if (index > -1) {
+                finalUrl = finalUrl + breakUrl[1];
+            } else {
+                finalUrl = finalUrl + '&' + breakUrl[1];
+            }
+        }
+        window.location.href = finalUrl;
+    });
+
+    </script>
+
+    <!-- c_gutter - START -->
+    <div class="c_gutter" aria-hidden="true" id="gutterNavigation">
+        <div class="__content">
+            <a href="#" class="__close js_gutter-toggle" data-target="#gutterNavigation" title="Close mobile navigation" aria-label="Close mobile navigation">&times;</a>
+
+            <form class="__search" action="@Url.Action("SearchByText", "Offers")" method="GET">
+                <input type="hidden" name="country" value="@ViewData["Country"]" />
+                <input class="--small" type="search" name="mainSearchTerm" list="merchants" placeholder="@Localizer["Search"]">
+            </form>
+
+            <!-- c_navigation-gutter -->
+            <nav class="c_navigation-gutter">
+                <ul class="__menu">
+                    <li>
+                        <a href="@Url.Action("Index", "Home", new {country = ViewData["Country"]})">@Localizer["HomeMenu"]</a>
+
+                        @if (@layoutModel.IsSignedIn)
+                        {
+                        <li>
+                            <a href="@Url.Action("MyAccount", "MyAccount")">@Localizer["My Account"]</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li><a href="@Url.Action("SignIn", "Account", new {country = ViewData["Country"]})">@Localizer["SignIn_Text"]</a></li>
+
+                        <li><a href="@Url.Action("Index", "Account", new {country = ViewData["Country"]})">@Localizer["Register_Text"]</a></li>
+                        
+                    }
+
+                        <li>
+                            <a href="@Url.Action("Index", "OfferHub")">@Localizer["Offer Hub"]</a>
+                            <ul class="__sub-menu">
+
+                                @foreach (var item in @layoutModel.Categories)
+                                {
+
+                                    <li><a href="@Url.Action("DisplayOffer", "Offers", new { country = ViewData["Country"].ToString(),parentCategoryId=@item.Id,parentCategoryName=@item.Name })">@Localizer[@item.Name]</a></li>
+                                }
+
+                            </ul>
+                        </li>
+                        <li><a href="@Url.Action("AboutUs", "Account", new {country = ViewData["Country"].ToString()})">@Localizer["About Us"]</a>
+                        <li><a href="@Url.Action("ContactUs", "Account", new {country = ViewData["Country"].ToString()})">@Localizer["Contact"]</a>
+                    </ul>
+                </nav>
+                <!-- c_navigation-gutter - END -->
+            </div>
+            <div class="__overlay"></div>
+        </div>
+        <!-- c_gutter - END -->
+        <datalist id="merchants">
+            @*@foreach (var merchant in layoutModel.Merchants)
+                {
+                    <option value="@merchant.Text"></option>
+                }*@
+        </datalist>
+    </body>
+</html>

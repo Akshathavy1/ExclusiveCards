@@ -1,0 +1,53 @@
+﻿@inject IViewLocalizer Localizer
+
+@using dto = ExclusiveCard.Services.Models.DTOs;
+
+
+@{
+    ViewData["Title"] = "Standard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var whiteLabel = (dto.WhiteLabelSettings)ViewBag.WhiteLabel;
+    var token = (dto.UserToken)ViewBag.userToken;
+}
+
+@*@using (Html.BeginForm("CreateAccount", "Account", FormMethod.Post))
+{*@
+    @Html.AntiForgeryToken()
+    
+
+    @if (token != null)
+    {
+        <input type="hidden" id="membershipPlanId" value="@token.MembershipPlanId" name="membershipPlanId" />
+        <input type="hidden" id="token" value="@token.Token" name="token" />
+        @*<input type="hidden" id="siteClanId" value="@Model.Id" name="siteClanId" />*@
+    }
+
+    <div class="c_site custom-min-height">
+        <main class="c_main">
+            <section class="custom-padding-top">
+                <div class="l_container --narrow">
+                    <h1>@Html.GetWhiteLabel(Localizer["Standard"].Value.ToString(), whiteLabel)</h1>
+                    <p>@Html.GetWhiteLabel(Localizer["Standard1"].Value.ToString(), whiteLabel)</p>
+                    <p>@Html.GetWhiteLabel(Localizer["Standard2"].Value.ToString(), whiteLabel)</p>
+                    <p class="u_margin-bottom--s4 u_margin-bottom--s5--sm">@Localizer["GetStarted"]</p>
+                    <div class="l_flex --tight">
+                        <div class="__column --span-6--md">
+                            <a href="@Url.Action("Index", "SportRewards")" class="e_button --block --outline u_margin-bottom--half u_margin-bottom--none--md">@Localizer["BackToClub"]</a>
+                        </div>
+                        <div class="__column --span-6--md">
+                            <button type="submit" id="btnStandard" name="skip" class="e_button --block">@Localizer["CreateAccount"]</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+@*}*@
+@section Scripts
+{
+    <script src="~/js/ExclusiveWebsite/sport.js?v=2"></script>
+    <script type="text/javascript">
+        SportRewards.setUpEvents();
+    </script>
+}

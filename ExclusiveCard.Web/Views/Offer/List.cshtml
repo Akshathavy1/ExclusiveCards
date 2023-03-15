@@ -1,0 +1,192 @@
+﻿@using Microsoft.AspNetCore.Http
+@model ExclusiveCard.WebAdmin.ViewModels.MaintainOfferListsModel
+
+@{
+    Layout = "~/Views/Shared/_NewLayout.cshtml";
+    ViewData["Title"] = "Maintain Offer List";
+   
+}
+
+
+@using (Html.BeginForm("OfferlistSearch", "Offer", FormMethod.Get, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Processing)
+
+    <div id="mainDiv" class="col-md-12 Searchforoffers div1List">
+        @Html.ValidationSummary(false, "", new { @class = "text-danger", autofocus = "autofocus" })
+        <div class="form-group row">
+            <h1 id="title-name" class="text-center">Maintain Offer List</h1>
+        </div>
+
+        <div class="form-horizontal col-md-12">
+            <div class="form-group row">
+                @Html.LabelFor(m => m.OfferListItemId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownListFor(model => model.OfferListItemId, Model.ListofOfferListItems, "Select", htmlAttributes: new { @class = "form-control roundedInput dropdownInput" })
+                    @Html.ValidationMessageFor(model => model.OfferListItemId, "", new { @class = "text-danger" })
+                </div>
+
+                @Html.LabelFor(m => m.CountryCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownListFor(model => model.CountryCode, Model.ListofCountries, "Select Country", htmlAttributes: new { @class = "form-control roundedInput dropdownInput" })
+                    @Html.ValidationMessageFor(model => model.CountryCode, "", new { @class = "text-danger" })
+                </div>
+
+            </div>
+            <div>
+                <p>
+                    <a class="readmore pull-right" href="#">Less (-)</a>
+                </p>
+            </div>
+
+            <div class="more-content">
+                <div class="form-group row">
+                    <div class="col-md-3 text-center">
+                        <h1 id="title-name">Select Offers</h1>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.MerchantId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.MerchantId, Model.ListofMerchants, "Select Merchant", htmlAttributes: new { @class = "form-control roundedInput dropdownInput", @placeholder = "Enter Merchant" })
+                        @Html.ValidationMessageFor(model => model.MerchantId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.AffiliateId, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.DropDownListFor(model => model.AffiliateId, Model.ListofAffiliate, "Select", htmlAttributes: new { @class = "form-control  roundedInput dropdownInput" })
+                        @Html.ValidationMessageFor(model => model.AffiliateId, "", new { @class = "text-danger" })
+                    </div>
+
+                    @Html.LabelFor(m => m.Keyword, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.EditorFor(model => model.Keyword, new { htmlattributes = new { @class = "form-control  roundedInput", @placeholder = "Enter Text" } })
+                        @Html.ValidationMessageFor(model => model.Keyword, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.ValidFrom, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(model => model.ValidFrom, "{0:yyyy-MM-dd}", new { @class = "form-control roundedInput", Type = "date" })
+                        @Html.ValidationMessageFor(model => model.ValidFrom, "", new { @class = "text-danger" })
+                    </div>
+                    @Html.LabelFor(m => m.ValidTo, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.TextBoxFor(model => model.ValidTo, "{0:yyyy-MM-dd}", new { @class = "form-control roundedInput", Type = "date" })
+                        @Html.ValidationMessageFor(model => model.ValidTo, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.OfferType, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.DropDownListFor(model => model.OfferType, Model.ListofOfferType, "Select Type", htmlAttributes: new { @class = "form-control roundedInput dropdownInput" })
+                        @Html.ValidationMessageFor(model => model.OfferType, "", new { @class = "text-danger" })
+                    </div>
+                    @Html.LabelFor(m => m.OfferStatus, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-4">
+                        @Html.DropDownListFor(model => model.OfferStatus, Model.ListofStatus, "Select Status", htmlAttributes: new { @class = "form-control roundedInput dropdownInput" })
+                        @Html.ValidationMessageFor(model => model.OfferStatus, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                @{
+                    <div class="form-group row pull-right">
+                        @*<input type="button" id="btnAddNewsLetter" class="btn pull-right has-spinner" value="NewsLetter" onclick="@("window.location.href='" + @Url.Action("GetEmailTemplate", "Newsletter",new{letterId=1}) + "'");" />*@
+                        <input type="button" id="btnAddNewsLetter"  class="btn pull-right has-spinner" value="NewsLetter" />
+
+                    </div>
+                }
+
+
+                <div class="form-group row pull-right">
+                    <button type="button" id="btnSearchOfferMaintain" class="btn pull-right has-spinner">
+                        Search<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-md-12 divtwoList" style="background-color: #ffffff; padding: 0px;">
+        <div class="row">
+            <div class="form-group col-md-5" id="OfferList" style="padding-left: 0px">
+                <div class="col-md-12" style="background-color: lightgray;border-radius: 5px;padding: 15px;">
+                    <h3>Search Results</h3>
+                    <div id="offersSelect">
+                        @{
+                            @await Html.PartialAsync("_offersSelectItems", @Model.ListtOfOffers)
+                        }
+                    </div>
+                </div>
+            </div>
+
+            @*<div class="form-group col-md-2 text-center">
+                    <br /> <br />
+                    <input type='button' id='btnRight' value='>' class="btn-right" />
+                    <br /> <br />
+                    <input type='button' id='btnLeft' value='<' class="btn-left" />
+                </div>*@
+
+            <div class="form-group col-md-7" id="OfferListItem" style="padding: 0px;">
+                <div class="col-md-12" style="background-color: lightgray; border-radius: 5px; padding: 15px;">
+                    <h3>Offer List</h3>
+                    <div id="offersListPartial">
+                        @{
+                            @await Html.PartialAsync("_offersListSelectItems", @Model.ListtOfOffersListitems)
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div id="dialog-confirm" title="popupoffer">
+                <p id="infoMessage"></p>
+            </div>
+            @*<div id="dialog-confirmNav" title="Confirmation">
+                    <p id="navInfoMessage"></p>
+                </div>*@
+        </div>
+    </div>
+}
+@section Scripts
+{
+    <script src="~/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/Exclusive/offer.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            
+            $(window).resize(function() {
+                if ($(window).width() >= 767) {
+                    $("#offersMain").click();
+                }
+            });
+
+            Offer.setUpEvents();
+            Offer.kendoUIBind();
+            $('#lstBox2 > li:last-child > #downArrow').css('visibility', 'hidden');
+            Offer.pagingControl();
+            if (@Model.ListofOfferListItems.Count > 0) {
+                Offer.setPagination(true);
+            } else {
+                Offer.setPagination(false);
+            }
+            @*if ('@Html.Raw(@ViewData["SourceData"])' !== '' && '@Html.Raw(@ViewData["DestData"])' !== '') {
+                Offer.loadBasicData(@Html.Raw(@ViewData["SourceData"]), @Html.Raw(@ViewData["DestData"]));
+            } else if ('@Html.Raw(@ViewData["SourceData"])' != '') {
+                Offer.loadBasicData(@Html.Raw(@ViewData["SourceData"]), null);
+            }*@
+        });
+
+      
+
+       
+
+    </script>
+}
+
+

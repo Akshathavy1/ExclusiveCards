@@ -1,0 +1,28 @@
+﻿@model OfferHubMainViewModel
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "Offer Hub";
+    Layout = "~/Views/Shared/_MobileLayout.cshtml";
+}
+
+<main class="c_main">
+    <section class="c_band --tight">
+        <div class="l_container">
+            <div class="u_margin-bottom--s4 u_margin-bottom--s5--md">
+                @if (Model.OfferHubs.Count > 0)
+                {
+                    @await Html.PartialAsync("_slider", Model.OfferHubs)
+                }
+            </div>
+            
+            <h2 class="u_text-align--center u_margin-bottom--s4 u_margin-bottom--s5--md">@Localizer["Top_Offers"]</h2>
+
+            <div class="l_offer-grid u_margin-bottom--s4 u_margin-bottom--s5--md">
+                @if (Model.BestCashbackOffers.Count > 0)
+                {
+                    @await Html.PartialAsync("_gridOffers", Model.BestCashbackOffers)
+                }
+            </div>
+        </div>
+    </section>
+</main>

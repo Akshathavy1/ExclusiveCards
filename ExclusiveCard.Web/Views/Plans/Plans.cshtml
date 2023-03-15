@@ -1,0 +1,48 @@
+﻿@model ExclusiveCard.WebAdmin.ViewModels.PlansViewModel
+@{
+    ViewData["Title"] = "Membership Plans";
+    Layout = "~/Views/Shared/_NewLayout.cshtml";
+}
+
+<div id="MembershipPlans" class="col-md-12 Searchforoffers divone pad-16 pb-5">
+    @Html.ValidationSummary(false, "", new { @class = "text-danger", autofocus = "autofocus" })
+    <div class="form-group row">
+        <div class="col-md-12">
+            <h1 class="col-md-6" id="title-name">Membership Plans</h1>
+        </div>
+    </div>
+    <div class="form-horizontal col-md-12">
+        @Html.LabelFor(model => model.WhiteLabelId, htmlAttributes: new { @class = "control-label col-md-3" })
+        <div class="col-md-6">
+            @Html.DropDownListFor(model => model.WhiteLabelId, Model.WhiteLabels, "", htmlAttributes: new { @class = "form-control roundedInput", @placeholder = "Start Typing" })
+            <div class="col-md-12 black-info-container mt-20">Choose the white label site that is/will be the default website for this plan</div>
+        </div>
+    </div>
+
+    <div id="divPlans" style="display:none">
+        @{
+            @await Html.PartialAsync("_whiteLabelSettingsCardProviders", Model)
+        }
+    </div>
+
+    <div id="divMembershipPlans" style="display:none">
+    </div>
+
+    <div id="divAgents" style="display:none">
+    </div>
+</div>
+
+<div id="RegistrationCodes" class="col-md-12 Searchforoffers divone pad-16 pb-5" style="display:none">
+</div>
+@section Scripts
+    {
+    <script src="~/js/Exclusive/plans.js"></script>
+    <script type="text/javascript">
+        $(window).resize(function () {
+            if ($(window).width() >= 767) {
+                $("#offersMain").click();
+            }
+        });
+        Plans.kendoUIBind();
+    </script>
+}

@@ -1,0 +1,34 @@
+﻿@model ExclusiveCard.WebAdmin.ViewModels.PlansViewModel
+@Html.ValidationSummary(false, "", new { @class = "text-danger", autofocus = "autofocus" })
+<div class="form-horizontal col-md-12 mt-40">
+    @Html.LabelFor(model => model.CardProviderId, htmlAttributes: new { @class = "control-label col-md-3" })
+    <div class="form-group row col-md-6">
+        @Html.DropDownListFor(model => model.CardProviderId, Model.CardProviders, "", htmlAttributes: new { @class = "form-control roundedInput", @placeholder = "Start Typing" })
+        <div class="col-md-12 black-info-container mt-20">This is the employer or organisation that is providing the memberships to their employees/members</div>
+    </div>
+    <div class="alter-section col-md-3 d-flex align-items-center">
+        <span class="alternative">Or</span>
+        <button type="button" id="member-plan-btn" class="btn float-left">Add new card provider</button>
+    </div>
+</div>
+<div class="card-provider" id="CardNameContainer" style="display:none">
+    @using (Html.BeginForm("SaveCardProvider", "Plans", FormMethod.Post, new { id = "frmSaveCardProvider" }))
+    {
+        <div class="form-horizontal col-md-12 mt-40">
+            @Html.LabelFor(model => model.CardProviderName, htmlAttributes: new { @class = "control-label col-md-3" })
+            <div class="col-md-6">
+                @Html.EditorFor(model => model.CardProviderId, new { htmlattributes = new { @id = "CardProviderIdVal", @class = "d-none" } })
+                @Html.EditorFor(model => model.CardProviderName, new { htmlattributes = new { @class = "form-control roundedInput", @placeholder = "Enter Text" } })
+                @Html.ValidationMessageFor(model => model.CardProviderName, "", new { @class = "text-danger col-md-12" })
+            </div>
+        </div>
+        <div class="col-md-9 mt-40">
+            <button id="btnSaveCardProvider" type="button" class="mini-btn save has-spinner pull-right">
+                Save<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+            </button>
+            <button type="button" data-dismiss="cancel" id="CancelCardProvider" class="mini-btn has-spinner pull-right">
+                Cancel<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+            </button>
+        </div>
+    }
+</div>

@@ -1,0 +1,25 @@
+﻿@model List<ExclusiveCard.Services.Models.DTOs.Public.OfferSummary>
+@inject IViewLocalizer Localizer
+
+@if (@Model.Count > 0)
+{
+    foreach (var offer in @Model)
+    {
+         <div class="rTableRow pointer" onclick="window.location.href='@Url.Action("Index", "Offers", new { country=@ViewData["Country"], merchantId = @offer.MerchantId, offerId = @offer.OfferId })'">
+             <div class="rTableCell">
+                 @if (!string.IsNullOrEmpty(@offer.MerchantLogoPath))
+                 {
+                     <img src="/images/blank.png" data-src="/Image/GetImage/?path=@offer.MerchantLogoPath"  data-srcset="/Image/GetImage/?path=@offer.MerchantLogoPath" class="img-responsive lazy"/>
+                 }
+                 else
+                 {
+                     <center><h5>@offer.MerchantName</h5></center>
+                 }
+             </div>
+             <div class="rTableCell deal-txt">@offer.OfferHeadline</div>
+             <div class="rTableCell deal-desc"></div>
+             <div class="rTableCell"><img src="/assets/img/right-arrow.png" data-src="/assets/img/right-arrow.png"  data-srcset="/assets/img/right-arrow.png" class="img-responsive lazy"/>
+             </div>
+         </div>
+    }
+}

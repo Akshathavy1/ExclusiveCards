@@ -1,0 +1,179 @@
+{
+	"info": {
+		"_postman_id": "33bf4d4a-24a8-4916-8637-7a30790a6bb5",
+		"name": "Exclusive Rewards API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Live",
+			"item": [
+				{
+					"name": "Cashback - Migrate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://admin.exclusiverewards.co.uk/api/Cashback/MigrateStagingData",
+							"protocol": "https",
+							"host": [
+								"admin",
+								"exclusiverewards",
+								"co",
+								"uk"
+							],
+							"path": [
+								"api",
+								"Cashback",
+								"MigrateStagingData"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cashback - Get Report",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://admin.exclusiverewards.co.uk/api/Cashback/GetTransactionReport?DateFrom=2019-10-01&DateTo=2020-01-06",
+							"protocol": "https",
+							"host": [
+								"admin",
+								"exclusiverewards",
+								"co",
+								"uk"
+							],
+							"path": [
+								"api",
+								"Cashback",
+								"GetTransactionReport"
+							],
+							"query": [
+								{
+									"key": "DateFrom",
+									"value": "2019-10-01"
+								},
+								{
+									"key": "DateTo",
+									"value": "2020-01-06"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "UAT",
+			"item": [
+				{
+					"name": "Cashback - Migrate",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://exclusivecards-testadmin.azurewebsites.net/api/Cashback/MigrateStagingData",
+							"protocol": "https",
+							"host": [
+								"exclusivecards-testadmin",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Cashback",
+								"MigrateStagingData"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UAT  Cashback - Get Report",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://exclusivecards-testadmin.azurewebsites.net/api/Cashback/GetTransactionReport?DateFrom=2019-12-01&DateTo=2020-01-06",
+							"protocol": "https",
+							"host": [
+								"exclusivecards-testadmin",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Cashback",
+								"GetTransactionReport"
+							],
+							"query": [
+								{
+									"key": "DateFrom",
+									"value": "2019-12-01"
+								},
+								{
+									"key": "DateTo",
+									"value": "2020-01-06"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UAT  Populate Offer Lists",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://exclusivecards-testadmin.azurewebsites.net/api/Offer/PopulateOfferLists?date=2019-04-03T23:00:00",
+							"protocol": "https",
+							"host": [
+								"exclusivecards-testadmin",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Offer",
+								"PopulateOfferLists"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2019-04-03T23:00:00"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Daily Maintenance Tasks",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://exclusivecards-testadmin.azurewebsites.net/api/Maintenance/Daily",
+							"protocol": "https",
+							"host": [
+								"exclusivecards-testadmin",
+								"azurewebsites",
+								"net"
+							],
+							"path": [
+								"api",
+								"Maintenance",
+								"Daily"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,123 @@
+﻿@model MerchantOffersViewModel
+@inject IViewLocalizer Localizer
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = $"{@Model.Merchant?.Name} {Localizer["Title"]}";
+    var modelLayout = (LayoutViewModel)@ViewBag.LayoutModel;
+
+}
+
+<main class="c_main">
+    <section class="c_band --tight">
+        <div class="l_container">
+            <div class="c_single-offer">
+                <div class="__header" style="background-color: @(string.IsNullOrEmpty(Model.Merchant?.BrandColour) ? "" : Model.Merchant?.BrandColour)">
+                    @*<div class="__header" @(!string.IsNullOrEmpty(Model.Merchant?.BrandColour) ? "style=''background-color:''" + Model.Merchant?.BrandColour) >*@
+                    @if (!string.IsNullOrEmpty(Model.Logo))
+                    {
+                        <div class="__logo">
+
+                            <img src="/images/blank.png" data-src="/Image/GetImage/?path=@Model.Logo" data-srcset="/Image/GetImage/?path=@Model.Logo" alt="@Model.Merchant?.Name" class="lazy" />
+                        </div>
+                    }
+                    @if (!string.IsNullOrEmpty(Model.FeatureImage))
+                    {
+                        <img src="/images/blank.png" data-src="/Image/GetImage/?path=@Model.FeatureImage" data-srcset="/Image/GetImage/?path=@Model.FeatureImage" alt="@Model.Merchant?.Name" class="__banner lazy" />
+                    }
+                </div>
+                <div class="__body">
+                    <div class="__content" id="_test_">
+                        <h1>@Model.Merchant?.Name @Localizer["Title"]</h1>
+                        <p>@Html.Raw(@Model.Merchant?.LongDescription)</p>
+
+                        @if (ViewBag.merchantBranchCount != 0 && Model.FeaturedOffer != null)
+                        {
+                            <a href="@Url.Action("Index", "MerchantBranch", new { Model.FeaturedOffer.OfferId, Model.FeaturedOffer.MerchantId, ViewBag.logo })">Participating Stores</a>
+                        }
+                        
+                        @if (Model.Merchant?.ContactDetail != null && @Model.Merchant?.ContactDetail.Address1 != null)
+                        {<h5>Address:</h5>
+                            <p>@Model.Merchant?.ContactDetail.Address1 <br /> @Model.Merchant?.ContactDetail.Address2<br /> @Model.Merchant?.ContactDetail.Address3</p>
+                            <iframe src="https://maps.google.com/maps?q=@Model.Merchant?.ContactDetail.Latitude,@Model.Merchant?.ContactDetail.Longitude&hl=es;z=14&amp;output=embed" style=" width: 100%; margin-top: 20px;"></iframe>
+                        }
+                    </div>
+
+                    <div class="__offer">
+                        <h2>@Model.FeaturedOffer?.OfferShortDescription</h2>
+
+                        @if (Model.FeaturedOffer.OfferTypeDescription != ExclusiveCard.Website.Keys.Keys.LocalOffer)
+                        {
+                            @*Check if user is signed in and display cashback button*@
+                            if (modelLayout.IsSignedIn)
+                            {
+
+                                if (Model.FeaturedOffer != null && Model.FeaturedOffer.DeepLinkAvailable)
+                                {
+                                        <a href="@Url.Action("Redirect", "Offers", new { country = ViewData["Country"], offerId = Model.FeaturedOffer.OfferId })" target="_blank" rel="noopener" class="e_button"><span>@Localizer["Cashback"]</span></a>
+                                }
+                                else
+                                {
+                                        <a href="#" rel="noopener" class="e_button" disabled><span>@Localizer["Cashback"]</span></a>
+                                }
+
+                                @*If Diamond membership is not taken display below block*@
+                                if (!modelLayout.IsDiamondCustomer)
+                                {
+                                        <div class="c_upgrade-reminder u_margin-top--s3">
+                                            <p>@Localizer["Diamond"]</p>
+                                            <a href="@Url.Action("MyAccount", "MyAccount", new { diamondCardRequest = true })"><span>@Localizer["Upgrade"]</span></a>
+                                        </div>
+                                }
+                            }
+                            else
+                            {
+                                <!--If user not signed in, then button should be disabled-->
+                                <p class="c_notification --negative">@Localizer["Notify"]</p>
+                                <a href="#" class="e_button --block" disabled><span>@Localizer["Cashback"]</span></a>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+            <h2>@Localizer["Saving"] @Model.Merchant?.Name</h2>
+            <div class="l_flex">
+                <div class="__column --span-12 --span-8--md --span-9--lg">
+                    <div class="l_offer-list u_margin-bottom--s5">
+                        @foreach (var item in @Model.Cashback)
+                        {
+                            <div class="__item">
+                                @{
+                                    @await Html.PartialAsync("_simple", @item)
+                                }
+                            </div>
+                        }
+                    </div>
+                    
+                    @await Html.PartialAsync("_finePrint", @Model)
+                    
+                </div>
+                <div class="__column --span-12 --span-4--md --span-3--lg">
+                    <aside class="c_sidebar">
+                        <div class="__content">
+                            @if (!modelLayout.IsSignedIn)
+                            {
+                                @await Html.PartialAsync("_login", new LoginViewModel())
+                            }
+
+                            @{ @await Html.PartialAsync("_otherOffers", @Model.RelatedOffers)}
+                        </div>
+                    </aside>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+@section Scripts
+    {
+    <script type="text/javascript">
+        Login.setUpEvents();
+    </script>
+
+}

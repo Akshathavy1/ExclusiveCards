@@ -1,0 +1,73 @@
+﻿@model OfferRedemViewModel
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = $"Offer Redemption";
+    var localeModel = (LayoutViewModel) ViewBag.LayoutModel;
+    Model.MembershipCardId = localeModel.MembershipCardId;
+}
+
+<main class="c_main">
+    <section class="c_band">
+        <div class="l_container --mini">
+            <form class="c_form-container" method="GET">
+                @Html.HiddenFor(m => m.Id)
+                @Html.HiddenFor(m => m.UserId)
+                @Html.HiddenFor(m => m.MembershipCardId)
+                @Html.HiddenFor(m => m.OfferId)
+                <h1 class="__title">@Localizer["Title"]</h1>                
+                <p class="__description">@Localizer["Description"]</p>
+                <p class="__notice js_auto-center c_notification --positive hideContent" id="successRedeem"></p>
+                <p class="__notice js_auto-center c_notification --negative hideContent" id="errorRedeem">@Localizer["ErrorMsg"]</p>
+                <div class="c_form-group">
+                    <label for="Address1">@Localizer["Add1"]<span class="__required">@Localizer["Required"]</span></label>
+                    @Html.EditorFor(model => model.Address1, new { htmlAttributes = new { maxlength = 128 } })
+                </div>
+                <div class="c_form-group">
+                    <label for="Address2">@Localizer["Add2"]</label>
+                    @Html.EditorFor(model => model.Address2, new { htmlAttributes = new { maxlength = 128 } })
+                </div>
+                <div class="c_form-group">
+                    <label for="Address3">@Localizer["Add3"]</label>
+                    @Html.EditorFor(model => model.Address3, new { htmlAttributes = new { maxlength = 128 } })
+                </div>
+                <div class="c_form-group">
+                    <label for="Town">@Localizer["Town"] <span class="__required">@Localizer["Required"]</span></label>
+                    @Html.EditorFor(model => model.Town, new { htmlAttributes = new { maxlength = 128 } })
+                </div>
+                <div class="c_form-group">
+                    <label for="County">@Localizer["County"]</label>
+                    @Html.EditorFor(model => model.County, new { htmlAttributes = new { maxlength = 128 } })
+                </div>
+                <div class="c_form-group">
+                    <label for="Postcode">@Localizer["Postcode"] <span class="__required">@Localizer["Required"]</span></label>
+                    @Html.EditorFor(model => model.Postcode, new { htmlAttributes = new { maxlength = 16, placeholder = "PR9 0UT" } })
+                </div>
+                <div class="c_form-group">
+                    <label for="Country">@Localizer["Country"] <span class="__required">@Localizer["Required"]</span></label>
+                    @Html.DropDownListFor(model => model.Country, Model.Countries, "Select Country", htmlAttributes: new { @class = "dropdownInput" })
+                </div>
+                <div class="divContent">
+                    <p class="__description divLeft justifyContent">@Localizer["flexecash"]</p>
+
+                    @if (Model.Redeemed)
+                    {
+                        <button type="submit" id="btnShop" class="pull-right marginTop" disabled>@Localizer["Continue"]</button>
+                    }
+                    else
+                    {
+                        <button type="submit" id="btnShop" class="pull-right marginTop">@Localizer["Continue"]</button>
+                    }
+
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        Offers.setUpEvents();
+    </script>
+}

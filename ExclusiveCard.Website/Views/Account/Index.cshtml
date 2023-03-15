@@ -1,0 +1,49 @@
+﻿@using ExclusiveCard.Services.Models.DTOs
+@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = @Localizer["Title"];
+    var whiteLabel = (WhiteLabelSettings)ViewBag.WhiteLabel;
+}
+<main class="c_main">
+    <section class="c_band">
+        <div class="l_container --narrow">
+            <div class="u_text-align--center">
+                <h1 class="u_margin-bottom--half">@Html.GetWhiteLabel(@Localizer["Band_heading"].Value.ToString(), whiteLabel)</h1>
+                <p class="u_lead u_margin-bottom--s4 u_margin-bottom--s5--sm">@Localizer["Band_description"]</p>
+            </div>
+        </div>
+        <div class="l_container --mini">
+            <form class="c_form-container u_margin-bottom--s4 u_margin-bottom--s5--sm" role="form">
+                <h2 class="__title">@Localizer["Form_title"]</h2>
+
+                @if(whiteLabel.RegistrationUrl != null)
+                {
+                    <p class="__description">@Localizer["Form_whiteLabel_description"]</p>
+                }
+                else
+                {
+                    <p class="__description">@Localizer["Form_description"]</p>
+                }
+                
+                <p class="__notice js_auto-center c_notification --negative" style="display: none;" id="AccountErrorMessage"></p>
+                <div class="l_flex --tight">
+                    <div class="__column --span-12 --sm">
+                        @Html.TextBox("registerCode", null, new { @class = "u_margin-bottom--default u_margin-bottom--none--sm", @placeholder = @Localizer["Registration_placeholder"].Value, maxlength = 30 })
+                        <input style="display:none" type="text" id="RegistrationUrl" value="@whiteLabel.RegistrationUrl" />
+                    </div>
+                    <div class="__column --span-12 --shrink--sm">
+                        <button class="--block" type="submit" id="btnAccountSetup">@Localizer["Account"]</button>
+                    </div>
+                </div>
+            </form>
+            <p class="u_text-align--center">@Localizer["SignIn_description"] <a href="@Url.Action("SignIn","Account", new { country = @ViewData["Country"] })" data-loading="Loading Page">@Localizer["SignIn_text"]</a></p>
+        </div>
+    </section>
+</main>
+@section Scripts
+    {
+    <script type="text/javascript">
+        Login.setUpEvents();
+    </script>
+}

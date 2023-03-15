@@ -1,0 +1,39 @@
+﻿@using ExclusiveCard.Enums
+@inject IViewLocalizer Localizer
+@{
+    var layoutModel = (LayoutViewModel)@ViewBag.LayoutModel;
+    //var invert = Model.WhiteLabel.invertBanner ? "--invert" : string.Empty;
+}
+<!-- c_header - START -->
+
+<div class="c_header">
+
+    <div class="c_charity-notice-talkSports">
+        <div class="l_container">
+            @if (layoutModel.SiteClan.Id > 0)
+            {
+                if (layoutModel.SiteClan.ImagePath != null)
+                {
+                    <div class="__club">
+                        @Localizer["Showing Support For"]<br>
+                        <div>
+                            <img src="~/Image/GetImage?path=@layoutModel.SiteClan.ImagePath&id=@layoutModel.SiteClan.Id"  alt="@layoutModel.SiteClan?.Description" class="ShowingSupportFor">
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="__club">
+                        @Localizer["Showing Support For"]<br>
+                        <div>
+                            <div class="c_crest-fallback" style="--primary: @layoutModel.SiteClan.PrimaryColour; --secondary: @layoutModel.SiteClan.SecondaryColour; font-size: large"></div>
+                            <span class="ShowingSupportForSpan">@layoutModel.SiteClan.Description</span>
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+
+</div>
+<!-- c_header - END -->

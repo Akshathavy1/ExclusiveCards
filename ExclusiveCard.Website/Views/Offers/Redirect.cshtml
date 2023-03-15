@@ -1,0 +1,46 @@
+﻿@model RedirectViewModel
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "Transferring you to the Merchant";
+}
+
+@using (Html.BeginForm("Redirect", "Offers", FormMethod.Get, new { target = "_blank" }))
+{
+    <main class="c_main">
+        <section class="c_band --spacious">
+            <div class="l_container --mini u_text-align--center hideContent" id="redirectDiv">
+                <svg class="c_feather-icon --large --spin u_margin-bottom--s2"><use xlink:href="/images/icons.svg#loader" /></svg>
+                <h1 class="u_margin-bottom--none"><span class="__pre-title">@Localizer["TransferHeading"]</span> @Model.MerchantName</h1>
+            </div>
+        </section>
+    </main>
+}
+
+@section Scripts
+{
+    <script type="text/javascript">
+        var card = null;
+        var tok = null;
+
+        if ("@Model.MembershipCardNumber" !== "") {
+            card = "@Model.MembershipCardNumber";
+        }
+        if ("@Model.Token" !== "") {
+            tok = "@Model.Token";
+        }
+        if ('@Model.DeepLinkUrl' !== '') {
+            (function() {
+                document.addEventListener("DOMContentLoaded",
+                    function(event) {
+                        setTimeout(function() {
+                                window.location.href = "@Model.DeepLinkUrl";
+                            },
+                            2000);
+                    });
+            })();
+        } else {
+            $("#redirectDiv").removeClass("hideContent");
+            Redirect.setUpEvents(@Model.OfferId, card, tok);
+        }
+    </script>
+}

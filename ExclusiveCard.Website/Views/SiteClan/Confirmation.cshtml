@@ -1,0 +1,72 @@
+﻿
+@using dto = ExclusiveCard.Services.Models.DTOs;
+@model dto.SiteClan
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "Club";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var whiteLabel = (dto.WhiteLabelSettings)ViewBag.WhiteLabel;
+    var token = (dto.UserToken)ViewBag.userToken;
+    var SiteOwner = ViewBag.SiteOwner;
+    string strBeneficiaryContent = string.Empty;
+    strBeneficiaryContent = SiteOwner.BeneficiaryConfirmation;
+
+    if (Model != null)
+    {
+        if (Model.League != null)
+        {
+            @Html.HiddenFor(m => Model.League.Description, new { @id = "HdfDescription" })
+        }
+        @Html.HiddenFor(m => m.Id)
+    }
+}
+
+
+@if (token != null)
+{
+    <input type="hidden" id="membershipPlanId" value="@token.MembershipPlanId" name="membershipPlanId" />
+    <input type="hidden" id="token" value="@token.Token" name="token" />
+    <input type="hidden" id="siteClanId" value="@Model.Id" name="siteClanId" />
+}
+
+<div class="c_site custom-min-height">
+    <main class="c_main">
+        <section class="custom-padding-top">
+            <div class="l_container --narrow">
+
+                <div id="divClub">
+                    <h1 class="custom-h1-remove-margin">@SiteOwner.BeneficiaryHeading</h1>
+                    <p class="u_lead custom-p-remove-margin">
+                         @Html.Raw(@Html.GetSiteClan(strBeneficiaryContent, Model, whiteLabel))
+                    </p>
+                </div>
+
+                <div id="divCharity">
+                    <h1>@Localizer["SupportingOrganisation"]</h1>
+                    <p>@Html.GetSiteClan(Localizer["SupportingOrganisation1"].Value.ToString(), Model, whiteLabel)</p>
+                    <p>@Html.GetSiteClan(Localizer["SupportingOrganisation2"].Value.ToString(), Model, whiteLabel)</p>
+                    <p>@Html.GetSiteClan(Localizer["SupportingOrganisation3"].Value.ToString(), Model, whiteLabel)</p>
+                    <p class="u_margin-bottom--s4 u_margin-bottom--s5--sm">@Localizer["GetStarted"]</p>
+                </div>
+
+                <div class="l_flex --tight">
+                    <div class="__column --span-6--md">
+                        <a href="@Url.Action("Index", "SiteClan")" class="e_button --block --outline u_margin-bottom--half">@Localizer["BackToClub"]</a>
+                    </div>
+                    <div class="__column --span-6--md">
+                        <button type="submit" id="btnClub" value="Submit" name="Club" class="e_button --block">@Localizer["CreateAccount"]</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+
+@section Scripts
+{
+    <script src="~/js/ExclusiveWebsite/siteclan.js"></script>
+    <script type="text/javascript">
+        SiteClan.setUpEvents();
+    </script>
+}

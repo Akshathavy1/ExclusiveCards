@@ -1,0 +1,27 @@
+﻿@using ExclusiveCard.Services.Models.DTOs
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "Account Creation Complete";
+    var whiteLabel = (WhiteLabelSettings)ViewBag.WhiteLabel;
+}
+
+<main class="c_main">
+    <section class="c_band --spacious">
+        <div class="l_container --mini u_text-align--center">
+            <svg class="c_feather-icon --large u_margin-bottom--s2 u_color--positive"><use xlink:href="/_assets/images/icons.svg#check" /></svg>
+            <h1><span class="__pre-title">@Localizer["Created"]</span> @Html.GetWhiteLabel(@Localizer["Welcome"].Value.ToString(), whiteLabel)</h1>
+            <h2><span class="__pre-title">@Html.GetWhiteLabel(Localizer["Message"].Value.ToString(), whiteLabel)</span></h2>
+            <a href="@Url.Action("Index","OfferHub",new { country = ViewData["Country"].ToString()})" class="e_button --small">@Localizer["Shopping"]</a>
+            <a href="@Url.Action("DiamondBenefits", "Offers", new { country= ViewData["Country"].ToString() })" class="e_button --small --outline">@Localizer["Claim"]</a>
+        </div>
+    </section>
+</main>
+
+@section Scripts
+    {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Payment.setUpEvents('@ViewBag.CustomProviderId');
+        });
+    </script>
+}

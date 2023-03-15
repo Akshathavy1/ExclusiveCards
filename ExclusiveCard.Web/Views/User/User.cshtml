@@ -1,0 +1,107 @@
+﻿@model ExclusiveCard.WebAdmin.ViewModels.UserViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "User";
+}
+
+@using (Html.BeginForm("SaveUser", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div id="mainDiv" class="col-md-12 form-horizontal">
+        @if (Model.LockoutDate.HasValue)
+        {
+            @Html.LabelFor(m => m.DisabledMessage, htmlAttributes: new { @class = "control-label text-danger" })
+        }
+        @Html.ValidationSummary(false, "", new { @class = "text-danger", autofocus = "autofocus" })
+        @Html.HiddenFor(m => m.Id)
+        <div class="form-horizontal col-md-12">
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control roundedInput" } })
+                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.RoleId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.DropDownListFor(model => model.RoleId, Model.Roles, htmlAttributes: new { @class = "form-control roundedInput col-md-6" })
+                    @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control roundedInput" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.ConfirmEmail, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.ConfirmEmail, new { htmlAttributes = new { @class = "form-control roundedInput" } })
+                    @Html.ValidationMessageFor(model => model.ConfirmEmail, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control roundedInput", type = "password" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control roundedInput", type = "password" } })
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row"></div>
+
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <button type="button" id="btnCancels" class="btn has-spinner">
+                        <span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>Cancel
+                    </button>
+                </div>
+                <div class="col-md-4">
+                    @if (ViewBag.FormTitle == "Edit User" && !Model.LockoutDate.HasValue)
+                    {
+                        <button type="button" id="btnDisable" class="btn has-spinner">
+                            <span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>Disable
+                        </button>
+                    }
+                </div>
+                <div class="col-md-4">
+                    @if (!Model.LockoutDate.HasValue)
+                    {
+                        <button type="button" id="btnCreate" class="btn has-spinner">
+                            <span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>Save
+                        </button>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="userPop" title="Warning" autofocus="autofocus">
+        <h6>Do you really want to cancel?</h6>
+    </div>
+}
+
+@section Scripts
+    {
+    <script src="~/js/Exclusive/user.js"></script>
+    <script>
+        $(document).ready(function () {
+            User.setUpEvents();
+        });
+    </script>
+}

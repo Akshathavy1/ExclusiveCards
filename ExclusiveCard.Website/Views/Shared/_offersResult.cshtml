@@ -1,0 +1,57 @@
+﻿@inject IViewLocalizer Localizer
+@model OffersResultViewModel
+<!--Standard Cashback offers Starts--->
+@if (Model?.StandardOffers?.OfferSummaries?.Count > 0)
+{
+    <div class="row margin-top-20">
+        <h2 class="cashbkoff">@Localizer["Standard Cashback Offer"]</h2>
+        <div class="displayResult" typeId="@Model?.StandardOffers?.OfferSummaries?.FirstOrDefault()?.OfferTypeId">
+            @await Html.PartialAsync("_offersDetail", @Model.StandardOffers, new ViewDataDictionary(this.ViewData) { { "OfferType", "Standard" } })
+        </div>
+    </div>
+}
+<!--Standard Cashback offers Ends--->
+<!--Best Cashback Codes Starts--->
+@if (Model?.CashbackOffers?.OfferSummaries?.Count > 0)
+{
+    <div class="row margin-top-20">
+        <h2 class="cashbkoff">@Localizer["Cashback"]</h2>
+        <div class="displayResult" typeId="@Model?.CashbackOffers?.OfferSummaries?.FirstOrDefault()?.OfferTypeId">
+            @await Html.PartialAsync("_offersDetail", @Model.CashbackOffers, new ViewDataDictionary(this.ViewData) { { "OfferType", "Cashback" } })
+        </div>
+    </div>
+}
+<!--Best Cashback Codes Ends--->
+<!--Best Voucher Codes Starts--->
+@if (Model?.VoucherCodeOffers?.OfferSummaries?.Count > 0)
+{
+    <div class="row margin-top-20">
+        <h2 class="cashbkoff">@Localizer["Voucher Code"]</h2>
+        <div class="displayResult" typeId="@Model?.VoucherCodeOffers?.OfferSummaries?.FirstOrDefault()?.OfferTypeId">
+            @await Html.PartialAsync("_offersDetail", @Model.VoucherCodeOffers, new ViewDataDictionary(this.ViewData) { { "OfferType", "Voucher" } })
+        </div>
+    </div>
+}
+<!--Best Voucher Codes Ends--->
+<!--High Street and Restaurant Codes Starts--->
+@if (Model?.HighStreetandRestaurantOffers?.OfferSummaries?.Count > 0)
+{
+    <div class="row margin-top-20 ">
+        <h2 class="cashbkoff">@Localizer["High Street & Restaurant"]</h2>
+        <div class="displayResult" typeId="@Model?.HighStreetandRestaurantOffers?.OfferSummaries?.FirstOrDefault()?.OfferTypeId">
+            @await Html.PartialAsync("_offersDetail", @Model.HighStreetandRestaurantOffers, new ViewDataDictionary(this.ViewData) { { "OfferType", "HighStreetRestaurant" } })
+        </div>
+    </div>
+}
+<!--High Street and Restaurant Codes Ends--->
+<!--Sales Starts--->
+@if (Model?.SalesOffers?.OfferSummaries?.Count > 0)
+{
+    <div class="row margin-top-20 margin-bottom-10">
+        <h2 class="cashbkoff">@Localizer["Sales"]</h2>
+        <div class="displayResult" typeId="@Model?.SalesOffers?.OfferSummaries?.FirstOrDefault()?.OfferTypeId">
+            @await Html.PartialAsync("_offersDetail", @Model.SalesOffers, new ViewDataDictionary(this.ViewData) { { "OfferType", "Sales" } })
+        </div>
+    </div>
+}
+<!--Sales Ends--->

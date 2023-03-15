@@ -1,0 +1,47 @@
+﻿@model AccountViewModel
+@using ExclusiveCard.Enums
+@inject IViewLocalizer Localizer
+@{
+    var layoutModel = (LayoutViewModel)@ViewBag.LayoutModel;
+}
+
+<div class="l_container">
+    <ul>
+        <li title="@Localizer["PendingT"].Value"><span>@Localizer["Pending"]</span> £@Model.Pending</li>
+        <li title="@Localizer["ConfirmedT"].Value"><span>@Localizer["Confirmed"]</span> £@Model.Confirmed</li>
+        <li title="@Localizer["ReceivedT"].Value"><span>@Localizer["Received"]</span> £@Model.Balance</li>
+        @if (Model.MembershipPlanType == MembershipPlanTypeEnum.BenefitRewards.ToString())
+        {
+            <li title="@Localizer["CashbackDonatedT"]"><span>@Localizer["CashbackDonated"]</span> £@Model.DonatedAmount </li>
+        }
+
+        @if (Model.MembershipPlanType == MembershipPlanTypeEnum.PartnerReward.ToString() || Model.MembershipPlanType == MembershipPlanTypeEnum.BenefitRewards.ToString())
+        {
+            if ((Model.Received + Model.Invested < 10m) || string.IsNullOrEmpty(Model.NiNumber))
+            {
+                @*<li class="__notice">
+                        <p>@Localizer["Open"]</p>
+                        <ol>
+                            <li class="@((Model.Received >= 10 || Model.Invested > 0m) ? "--met" : "")"><a href="@Url.Action("Deposit", "MyAccount", new {country = @ViewData["Country"]})">Over £10 </a>@Localizer["Fund"]</li>
+                            <li id="niNNumber" class="@(!string.IsNullOrEmpty(Model.NiNumber) ? "--met" : "")">@Localizer["Your"] <a href="" class="niNumber">@Localizer["NiN"]</a></li>
+                        </ol>
+                    </li>*@
+            }
+            else
+            {
+                @*<li title="@Localizer["InvestedT"]"><span>@Localizer["Invested"]</span> £@Model.Invested</li>*@
+                <li title="@Localizer["CurrentT"]" class="u_color--positive"><span>@Localizer["Current"]</span> £@Model.Balance</li>
+            }
+
+            @*<li><a href="@Url.Action("Deposit", "MyAccount", new {country = @ViewData["Country"]})" class="e_button --small" @(layoutModel.EmailConfirmed ? "" : "disabled")>@Localizer["Deposit"]</a></li>*@
+        }
+        else
+        {
+            @*<li></li>
+                <li></li>
+                <li></li>*@
+        }
+
+
+    </ul>
+</div>

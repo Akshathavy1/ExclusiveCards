@@ -1,0 +1,105 @@
+﻿@model List<ExclusiveCard.Services.Models.DTOs.Public.OfferSummary>
+@inject IViewLocalizer Localizer
+
+@{
+    string type = Convert.ToString(ViewData["OfferType"]);
+}
+@if (@Model.Count > 0)
+{
+    foreach (ExclusiveCard.Services.Models.DTOs.Public.OfferSummary offer in @Model)
+    {
+        <div class="profile-event">
+            <div class="overflow-h bdr">
+                <div class="row">
+                    <div class="col-md-3 col-sm-3">
+                        <p></p>
+                        
+                        <div class="row">
+                            @Html.Hidden("OfferId", @offer.OfferId)
+                            @if (!string.IsNullOrEmpty(@offer.MerchantLogoPath))
+                            {
+                                <img src="/images/blank.png" data-src="/Image/GetImage/?path=@offer.MerchantLogoPath"  data-srcset="/Image/GetImage/?path=@offer.MerchantLogoPath" class="img-responsive imagevh lazy" /> <p></p>
+                            }
+                            else
+                            {
+                                <img />
+                            }
+                        </div>
+                       
+                    </div>
+
+                    <div class="col-md-6 col-sm-6">
+                        <div class="row homemob">
+                            <br />
+                            <span class="headcash">@offer.MerchantName</span>
+
+                        </div>
+                       
+                        <div class="row homemob">
+                            <p></p>
+                            @if (type != "Cashback" && type != "Voucher")
+                            {
+                                <span class="headdesp">@offer.OfferHeadline</span>
+                            }
+                        </div>
+                        <div class="row homemob">
+                           <p></p>
+                            <span class="headdesl rdfull">@Html.Raw(@offer.OfferShortDescription)</span>
+                        </div>
+                    </div>
+                    
+                        <div class="col-md-3 col-sm-3">
+                            @if (type == "Cashback" || type == "Voucher")
+                            {
+                                <div class="col-md-12"><div class="row homemob"><br /><span class="headdiscount">@offer.OfferHeadline</span></div></div>
+                            }
+                            else
+                            {
+                                <div class="col-md-12"><div class="row homemob"><br /><span class="headdiscount">@*@offer.OfferHeadline*@</span></div></div>
+                            }
+                            @if (type == "Cashback" || type == "Standard")
+                            {
+                                <div class="col-md-12">
+                                    <div class="row homemob"><br />
+                                        <button class="btn-cashback btnHomeCashback" merchantId="@offer.MerchantId" offerId="@offer.OfferId">
+                                            @Localizer["Get Cashback"]<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+                                        </button><p></p>
+                                    </div>
+                                </div>
+                            }
+                            else if (type == "Voucher")
+                            {
+                                <div class="col-md-12">
+                                    <div class="row homemob"><br />
+                                        <button class="btn-cashback btnHomeCashback" merchantId="@offer.MerchantId" offerId="@offer.OfferId">
+                                            @Localizer["Get Offer"]<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+                                        </button><p></p>
+                                    </div>
+                                </div>
+                            }
+                            else if (type == "HighStreet" || type == "HighStreetRestaurant" || type == "Sales")
+                            {
+                                <div class="col-md-12">
+                                    <div class="row homemob"><br />
+                                        <button class=" btn-cashback btnHomeCashback" merchantId="@offer.MerchantId" offerId="@offer.OfferId">
+                                            @Localizer["Get Deal"]<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+                                        </button><p></p>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="col-md-12">
+                                    <div class="row homemob"><br />
+                                        <button class="btn-cashback btnHomeCashback" merchantId="@offer.MerchantId" offerId="@offer.OfferId">
+                                            @Localizer["Get Cashback"]<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+                                        </button><p></p>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+            </div>
+        </div>
+    }
+}

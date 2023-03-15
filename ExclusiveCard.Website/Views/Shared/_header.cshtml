@@ -1,0 +1,122 @@
+﻿@using ExclusiveCard.Enums
+@inject IViewLocalizer Localizer
+@{
+    var layoutModel = (LayoutViewModel)@ViewBag.LayoutModel;
+    var whiteLabel = layoutModel.WhiteLabel;
+    //var invert = Model.WhiteLabel.invertBanner ? "--invert" : string.Empty;
+}
+<!-- c_header - START -->
+
+    <div class="c_header">
+        @if (whiteLabel.SiteType != null && Enum.GetName(typeof(SiteType),whiteLabel.SiteType)=="Benefits")
+        {
+            <!-- c_charity-notice - START -->
+                <div class="c_charity-notice">
+                    <div class="l_container">
+                        <p>Don't forget, <strong>30%</strong> of your earned cashback is automatically donated to <a href="@whiteLabel.CharityUrl" target="_blank" rel="noopener">@whiteLabel.CharityName</a>. Thank you for your support, and we hope you enjoy all the benefits that this platform offers.</p>
+                    </div>
+                </div>
+                <!-- c_charity-notice - END -->
+        }
+        <!-- c_banner - START -->
+    <div class="c_banner --invert">
+        <div class="l_container">
+            <div class="l_flex --tight --loose--lg --align-center --justify-between">
+                <div class="__column --shrink--md">
+                    <div class="__branding">
+                        <a class="__logo" href="@Url.Action("Index", "Home", new {country = @ViewData["Country"]})">
+                            <img src="~/_assets/images/WhiteLabels/@layoutModel.WhiteLabel?.Slug/@layoutModel.WhiteLabel?.Logo" class="imgmob" alt="@layoutModel.WhiteLabel?.Name">
+                        </a>
+                        @if (layoutModel.SiteClan.Id > 0)
+                        {
+                            if (layoutModel.SiteClan.ImagePath != null)
+                            {
+                                <div class="__club mob_logo" style="margin-left:15px">
+                                    @Localizer["ShowingSupportFor"]<br>
+                                    <div>
+                                        <img src="~/Image/GetImage?path=@layoutModel.SiteClan.ImagePath&id=@layoutModel.SiteClan.Id" alt="@layoutModel.SiteClan?.Description" class="siteclanImage">
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="__club mob_logo" style="margin-left:15px">
+                                    @Localizer["ShowingSupportFor"]<br>
+                                    <strong>
+                                        <div class="c_crest-fallback" style="--primary: @layoutModel.SiteClan.PrimaryColour; --secondary: @layoutModel.SiteClan.SecondaryColour"></div>
+                                        @layoutModel.SiteClan.Description
+                                    </strong>
+                                </div>
+                            }
+                        }
+                    </div>
+                </div>
+
+                <div class="__column u_display--none u_display--block--md">
+                    <form class="__search" action="@Url.Action("SearchByText", "Offers")" method="GET">
+                        <input type="hidden" name="country" value="@ViewData["Country"]" />
+                        <input type="search" name="mainSearchTerm" value="" placeholder="@Localizer["Search for merchants"].Value"
+                               aria-label="Search for merchants">
+                        <button type="submit" aria-label="Submit" id="btnmainSearchTerm"><svg class="c_feather-icon"><use xlink:href="/images/icons.svg#search" /></svg></button>
+                    </form>
+                </div>
+
+                @if (@layoutModel.IsSignedIn)
+                {
+                    <div class="__column --shrink mobcenter">
+                        <ul class="__actions">
+                            <li>
+                                <a class="__action --overview" display: inline-block;text-decoration: none;" href="@Url.Action("MyAccount", "MyAccount")"><strong>@Localizer["My Account"]</strong> <small>£@layoutModel.CurrentValue @Localizer["Earned"]</small></a>
+                            </li>
+                            <li>
+                                <a class="__action --icon" href="@Url.Action("MyAccount", "MyAccount")" title="My Account" aria-label="My Account"><svg class="c_feather-icon"><use xlink:href="/images/icons.svg#user" /></svg></a>
+                            </li>
+                            <li class="u_display--none--md">
+                                <a class="__action --icon js_gutter-toggle" href="#" data-target="#gutterNavigation" title="Open mobile navigation" aria-label="Open mobile navigation"><svg class="c_feather-icon"><use xlink:href="/images/icons.svg#menu" /></svg></a>
+                            </li>
+                        </ul>
+                    </div>
+                }
+                else
+                {
+
+                    <div class="__column --shrink mobcenter">
+                        <ul class="__actions">
+                            <li class="u_display--none u_display--block--sm"><a class="__action" href="@Url.Action("SignIn", "Account", new {country = ViewData["Country"].ToString()})" title="Login">@Localizer["Login"].Value.ToString()</a></li>
+                            
+                            <li class="u_display--none u_display--block--sm"><a class="__action --highlight" href="@Url.Action("Index", "Account", new {country = ViewData["Country"].ToString()})" title="Join">@Localizer["Register"].Value.ToString()</a></li>
+
+                            <li class="u_display--none--sm"><a class="__action --icon" href="@Url.Action("SignIn", "Account", new {country = ViewData["Country"].ToString()})" title="Login" aria-label="Login"><svg class="c_feather-icon"><use xlink:href="/images/icons.svg#user" /></svg></a></li>
+                            <li class="u_display--none--md"><a class="__action --icon js_gutter-toggle" href="#" data-target="#gutterNavigation" title="Open mobile navigation" aria-label="Open mobile navigation"><svg class="c_feather-icon"><use xlink:href="/images/icons.svg#menu" /></svg></a></li>
+                        </ul>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+        <!-- c_banner - END -->
+        <!-- c_navigation-primary -->
+        <div class="c_navigation-primary">
+            <nav>
+                <ul>
+                    <li>
+                        <a class="--emphasise" href="@Url.Action("DiamondBenefits", "Offers", new {country = ViewData["Country"].ToString()})">@Localizer["Upgrade"]</a>
+                    </li>
+                    <li><a class="--emphasise" href="@Url.Action("Index","LocalOffer", new {@layoutModel?.WhiteLabel.Id,country = ViewData["Country"].ToString()})">@Localizer["Local Offer"]</a></li>
+
+                    <li><a class="--emphasise" href="@Url.Action("Index", "OfferHub", new {country = ViewData["Country"].ToString()})">@Localizer["Offer Hub"]</a></li>
+                    @if (layoutModel.Categories != null)
+                    {
+                        @foreach (var item in @layoutModel.Categories)
+                        {
+                            <li><a href="@Url.Action("DisplayOffer", "Offers", new {country = ViewData["Country"].ToString(), parentCategoryId = @item.Id, parentCategoryName = @item.Name})">@Localizer[item.Name].Value</a></li>
+                        }
+                    }
+
+
+                </ul>
+            </nav>
+        </div>
+        <!-- c_navigation-primary - END -->
+    </div>
+        <!-- c_header - END -->

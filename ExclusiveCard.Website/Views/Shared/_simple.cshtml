@@ -1,0 +1,88 @@
+﻿@model ExclusiveCard.Services.Models.DTOs.Public.OfferSummary
+@inject IViewLocalizer Localizer
+
+@{
+    int offerId = (int)ViewBag.Offer;
+    var layoutModel = (LayoutViewModel)@ViewBag.LayoutModel;
+    ViewBag.logo = Model.MerchantLogoPath;
+    int merchantbranchCount = ViewBag.merchantBranchCount;
+}
+<!-- c_simple-offer -->
+<div class="c_simple-offer @(Model.OfferId == offerId ? "--wiggle js_auto-center":"")">
+    <div class="__logo">
+        @if (!string.IsNullOrEmpty(@Model.MerchantLogoPath))
+        {
+            <img src="/images/blank.png" data-src="/Image/GetImage/?path=@Model.MerchantLogoPath" data-srcset="/Image/GetImage/?path=@Model.MerchantLogoPath" alt="@Model.MerchantName" class="lazy" />
+        }
+        else
+        {
+            <img class="img-responsive" />
+        }
+    </div>
+    <div class="__content">
+        <h2>@Html.Raw(@Model.OfferShortDescription)</h2>
+        <p>@Html.Raw(Model.OfferLongDescription)</p>
+        @if (!String.IsNullOrEmpty(Model.OfferTerms) && Model.OfferTypeDescription == ExclusiveCard.Website.Keys.Keys.LocalOffer)
+        {
+            <p>@Html.Raw(Model.OfferTerms)</p>
+        }
+        @if (merchantbranchCount != 0)
+        {
+            <a href="@Url.Action("Index", "MerchantBranch", new { Model.OfferId,Model.MerchantId,ViewBag.logo })">Participating Stores</a>
+        }
+
+        @if (layoutModel.IsSignedIn && Model.OfferTypeDescription == ExclusiveCard.Website.Keys.Keys.VoucherType)
+        {
+            <code>@Model.OfferCode</code>
+        }
+    </div>
+
+    @if (layoutModel.IsSignedIn && (Model.DeepLinkAvailable || Model.IsSSOConfigured))
+    {
+        if (Model.OfferTypeDescription == ExclusiveCard.Website.Keys.Keys.LocalOffer)
+        {
+            //Do what?
+            if (layoutModel.IsDiamondCustomer)
+            {
+                <a href="@Url.Action("Redirect", "Offers", new { country = ViewData["Country"], offerId = Model.OfferId })" target="_blank" offerId="@Model.OfferId" rel="noopener" class="e_button --small"><span>@Localizer["Voucher"]</span></a>
+            }
+            else
+            {
+                <a href="#" class="e_button --small" title="@Localizer["Diamond"].Value.ToString()" disabled><span>@Localizer["Local"]</span></a>
+            }
+        }
+        else
+        if (Model.OfferTypeDescription == ExclusiveCard.Website.Keys.Keys.CashbackType || Model.OfferTypeDescription == ExclusiveCard.Website.Keys.Keys.StandardType)
+        {
+            <a href="@Url.Action("Redirect", "Offers", new { country = ViewData["Country"], offerId = Model.OfferId })" target="_blank" rel="noopener" class="e_button --small"><span>@Localizer["Cashback"]</span></a>
+        }
+        else if (Model.OfferTypeDescription == ExclusiveCard.Website.Keys.Keys.VoucherType)
+        {
+            <a href="@Url.Action("Redirect", "Offers", new { country = ViewData["Country"], offerId = Model.OfferId })" target="_blank" offerId="@Model.OfferId" rel="noopener" class="e_button --small"><span>@Localizer["Voucher"]</span></a>
+        }
+        else if (Model.OfferTypeDescription == ExclusiveCard.Website.Keys.Keys.SalesType)
+        {
+            <a href="@Url.Action("Redirect", "Offers", new { country = ViewData["Country"], offerId = Model.OfferId })" target="_blank" rel="noopener" class="e_button --small"><span>@Localizer["Sales"]</span></a>
+        }
+    }
+    else
+    {
+        if (Model.OfferTypeDescription == ExclusiveCard.Website.Keys.Keys.LocalOffer)
+        {
+            <a href="#" class="e_button --small" title="@Localizer["Register"].Value.ToString()" disabled><span>@Localizer["Local"]</span></a>
+        }
+        else if (Model.OfferTypeDescription == ExclusiveCard.Website.Keys.Keys.CashbackType || Model.OfferTypeDescription == ExclusiveCard.Website.Keys.Keys.StandardType)
+        {
+            <a href="#" class="e_button --small" title="@Localizer["Register"].Value.ToString()" disabled><span>@Localizer["Cashback"]</span></a>
+        }
+        else if (Model.OfferTypeDescription == ExclusiveCard.Website.Keys.Keys.VoucherType)
+        {
+            <a href="#" class="e_button --small" title="@Localizer["Register"].Value.ToString()" disabled><span>@Localizer["Voucher"]</span></a>
+        }
+        else if (Model.OfferTypeDescription == ExclusiveCard.Website.Keys.Keys.SalesType)
+        {
+            <a href="#" class="e_button --small" title="@Localizer["Register"].Value.ToString()" disabled><span>@Localizer["Sales"]</span></a>
+        }
+    }
+</div>
+<!-- c_simple-offer - END -->

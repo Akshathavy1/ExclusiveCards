@@ -1,0 +1,30 @@
+﻿@inject IViewLocalizer Localizer
+@{
+    var layoutModel = (LayoutViewModel)@ViewBag.LayoutModel;
+}
+
+@*<div class="c_content">
+    <p class="u_lead">@Html.GetWhiteLabel(Localizer["Welcome"].Value, layoutModel.WhiteLabel)</p>
+    <p>@Html.GetWhiteLabel(Localizer["Welcome1"].Value, layoutModel.WhiteLabel)</p>
+</div>*@
+<div class="l_feature-grid u_margin-y--s4 u_margin-y--s5--lg">
+    
+    <div class="__item">
+        <div class="c_feature">
+            <svg class="__icon c_feather-icon"><use xlink:href="/_assets/images/icons.svg#download" /></svg>
+            <div class="__content">
+                <h3>@Localizer["App"]</h3>
+                <p>@Html.GetWhiteLabel(Localizer["App1"].Value, layoutModel.WhiteLabel)</p>
+            </div>
+        </div>
+    </div>
+    <div class="__item">
+        <div class="c_feature">
+            <svg class="__icon c_feather-icon"><use xlink:href="/_assets/images/icons.svg#shopping-bag" /></svg>
+            <div class="__content">
+                <h3>@Localizer["Retailers"]</h3>
+                <p>@Localizer["Retailers1"]</p>
+            </div>
+        </div>
+    </div>
+</div>

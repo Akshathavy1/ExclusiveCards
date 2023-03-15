@@ -1,0 +1,143 @@
+﻿@model ExclusiveCard.WebAdmin.ViewModels.WhiteLabelSettingMembershipPlan
+@Html.ValidationSummary(false, "", new { @class = "text-danger", autofocus = "autofocus" })
+
+<div class="form-horizontal col-md-12 mt-40">
+    @Html.LabelFor(model => model.Id, htmlAttributes: new { @class = "control-label col-md-3" })
+    <div class="col-md-6">
+        @Html.DropDownListFor(model => model.Id, Model.MembershipPlans, "", htmlAttributes: new { @class = "form-control roundedInput", @placeholder = "Start Typing", @id = "MembershipPlanId" })
+        <div class="col-md-12 black-info-container mt-20">
+            If the membership plan already exists, select it from the list above. Alternatively, click the add new
+            membership plan button to create a new plan
+        </div>
+    </div>
+    <div class="alter-section col-md-3 d-flex align-items-center">
+        <span class="alternative">Or</span>
+        <button type="button" id="member-plantype-btn" onclick="addNewMembershipPlan()" class="btn save float-left">Add New Membership Plan</button>
+    </div>
+</div>
+
+<div class="MembershipPlan" id="MembershipPlanContainer" style="display:none">
+    @using (Html.BeginForm("SaveMembershipPlans", "Plans", FormMethod.Post, new { id = "frmMembershipPlanId" }))
+    {
+        <div class="form-horizontal col-md-12 mt-40">
+            @Html.LabelFor(model => model.MembershipLevelId, htmlAttributes: new { @class = "control-label col-md-5" })
+            <div class="csselect col-md-3">
+                @Html.DropDownListFor(model => model.MembershipLevelId, Model.ListOfMembershipTypes, htmlAttributes: new { @class = "form-control roundedInput dropdownInput" })
+                @Html.ValidationMessageFor(model => model.MembershipLevelId, "", new { @class = "text-danger col-md-12" })
+            </div>
+        </div>
+        <div class="form-horizontal col-md-12 mt-20">
+            @Html.LabelFor(model => model.MembershipPlanTypeId, htmlAttributes: new { @class = "control-label col-md-5" })
+            <div class="csselect col-md-3">
+                @Html.DropDownListFor(model => model.MembershipPlanTypeId, Model.ListOfPlanTypes, htmlAttributes: new { @class = "form-control roundedInput dropdownInput" })
+                @Html.ValidationMessageFor(model => model.MembershipPlanTypeId, "", new { @class = "text-danger col-md-12" })
+            </div>
+        </div>
+        <div class="form-horizontal col-md-12 mt-20">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-5" })
+            <div class="form-group row col-md-4">
+                @Html.EditorFor(model => model.Id, new { htmlattributes = new { @id = "PlanId", @class = "d-none" } })
+                @Html.EditorFor(model => model.Description, new { htmlattributes = new { @class = "form-control roundedInput" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger col-md-12" })
+            </div>
+        </div>
+        <div class="form-horizontal col-md-12 mt-20">
+            @Html.LabelFor(model => model.Duration, htmlAttributes: new { @class = "control-label col-md-5" })
+            <div class="form-group row col-md-2">
+
+                @Html.EditorFor(model => model.Duration, new { htmlattributes = new { @class = "form-control roundedInput pad-16 allow-numeric", @id = "MembershipLength" } })
+                @Html.ValidationMessageFor(model => model.Duration, "", new { @class = "text-danger col-md-12" })
+            </div>
+            <div class="col-md-1 alternative alt-text">Days</div>
+            <div id="errorMsgMembership" class="alternative error-text" style="display:none;">Enter between 7 to 36500.</div>
+        </div>
+        <div class="form-horizontal row col-md-12">
+            <label class="control-label col-md-5">Sign Up Available</label>
+            @Html.LabelFor(model => model.ValidFrom, htmlAttributes: new { @class = "date-title-text pad-l-16" })
+            <div class="form-group row m-0">
+                <input type="text" id="membershipValidFrom" readonly class="custom-datepicker-input">
+                @Html.EditorFor(model => model.ValidFrom, "dd\\/MM\\/yyyy", new { htmlattributes = new { @class = "d-none" } })
+                <button id="MembershipValidIconFrom" class="date-picker-icon" type="button"><i class="material-icons mt-1">calendar_today</i></button>
+            </div>
+            @Html.LabelFor(model => model.ValidTo, htmlAttributes: new { @class = "date-title-text" })
+            <div class="form-group row m-0">
+                <input type="text" id="membershipValidTo" readonly class="custom-datepicker-input">
+                @Html.EditorFor(model => model.ValidTo, new { htmlattributes = new { @class = "d-none" } })
+                <button id="MembershipValidIconTo" onclick="membershipValidIconTo()" class="date-picker-icon" type="button"><i class="material-icons mt-1">calendar_today</i></button>
+            </div>
+        </div>
+        <div class="form-horizontal col-md-12 mt-20">
+            @Html.LabelFor(model => model.NumberOfCards, htmlAttributes: new { @class = "control-label col-md-5" })
+            <div class="form-group row col-md-2">
+                @Html.EditorFor(model => model.NumberOfCards, new { htmlattributes = new { @class = "form-control roundedInput pad-16 allow-numeric", @id = "MaximumNumberOfMemberships" } })
+                @Html.ValidationMessageFor(model => model.NumberOfCards, "", new { @class = "text-danger col-md-12" })
+            </div>
+            <div id="errorMsgMax" class="alternative error-text" style="display:none;">Enter between 1 to 1,000,000,000.</div>
+        </div>
+
+        <div class="form-horizontal row col-md-12">
+            @Html.LabelFor(model => model.PaidByEmployer, htmlAttributes: new { @class = "control-label col-md-5" })
+            <div class="form-group row pt-2 pl-4">
+
+                @Html.RadioButtonFor(model => model.PaidByEmployer, "true", new { htmlattributes = new { @class = "form-control roundedInput " } })
+                <div class="alternative ml-2">Yes</div>
+            </div>
+            <div class="form-group row pt-2">
+                @Html.RadioButtonFor(model => model.PaidByEmployer, "false", new { htmlattributes = new { @class = "form-control roundedInput" } })
+                <div class="alternative ml-2">No</div>
+            </div>
+
+            <div id="DivPoundId" class="alternative pad-t-4 pr-2">£</div>
+            @Html.EditorFor(model => model.PartnerCardPrice, new { htmlattributes = new { @class = "col-md-1 form-control roundedInput", type = "number", step = "any" } })
+            <div id="errorMsg" class="alternative error-text ml-1" style="display:none;">Enter between 1.00 to 99.99.</div>
+            @Html.ValidationMessageFor(model => model.PartnerCardPrice, "", new { @class = "text-danger col-md-12" })
+        </div>
+
+        <div class=form-horizontal col-md-12">
+            <div class="col-md-5 cash-back-title">Cashback Sharing</div>
+            <div class="col-md-4 black-info-container" style="margin:44px 15px 0">How the cashback is split</div>
+        </div>
+        <div class="form-horizontal col-md-12">
+            @Html.LabelFor(model => model.DeductionPercentage, htmlAttributes: new { @class = "control-label col-md-5" })
+            <div class="form-group row col-md-1">
+                @Html.EditorFor(model => model.DeductionPercentage, new { htmlattributes = new { @class = "form-control roundedInput allow-numeric" } })
+                @Html.ValidationMessageFor(model => model.DeductionPercentage, "", new { @class = "text-danger col-md-12" })
+            </div>
+            <div class="alternative alt-text">%</div>
+        </div>
+        <div class="form-horizontal row col-md-12">
+            @Html.LabelFor(model => model.CustomerCashbackPercentage, htmlAttributes: new { @class = "control-label col-md-5" })
+            <div class="form-group row col-md-1">
+                @Html.EditorFor(model => model.CustomerCashbackPercentage, new { htmlattributes = new { @class = "form-control roundedInput allow-numeric" } })
+                @Html.ValidationMessageFor(model => model.CustomerCashbackPercentage, "", new { @class = "text-danger col-md-12" })
+            </div>
+            <div class="alternative alt-text">%</div>
+            <div id="errorMsgCashback" class="col-md-5 alternative error-text" style="display:none;">The combined total should be 100.</div>
+        </div>
+        <div id="BenefactorPercentageContainer" class="form-horizontal col-md-12">
+            @Html.LabelFor(model => model.BenefactorPercentage, htmlAttributes: new { @class = "control-label col-md-5" })
+            <div class="form-group row col-md-1">
+                @Html.EditorFor(model => model.BenefactorPercentage, new { htmlattributes = new { @class = "form-control roundedInput allow-numeric" } })
+                @Html.ValidationMessageFor(model => model.BenefactorPercentage, "", new { @class = "text-danger col-md-12" })
+            </div>
+            <div class="alternative alt-text">%</div>
+        </div>
+        <div>
+            @Html.EditorFor(model => model.PartnerId, new { htmlattributes = new { @class = "d-none" } })
+            @Html.EditorFor(model => model.CurrencyCode, new { htmlattributes = new { @class = "d-none" } })
+            @Html.EditorFor(model => model.MinimumValue, new { htmlattributes = new { @class = "d-none" } })
+            @Html.EditorFor(model => model.PaymentFee, new { htmlattributes = new { @class = "d-none" } })
+            @Html.EditorFor(model => model.AgentCodeId, new { htmlattributes = new { @class = "d-none" } })
+            @Html.EditorFor(model => model.SiteCategoryId, new { htmlattributes = new { @class = "d-none" } })
+        </div>
+
+        <div class="col-md-9 mt-40">
+            <button id="btnSaveMembershipPlan" type="submit" class="mini-btn save has-spinner pull-right">
+                Save<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+            </button>
+            <button type="button" data-dismiss="cancel" id="CancelMembershipPlan" class="mini-btn has-spinner pull-right">
+                Cancel<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+            </button>
+        </div>
+    }
+</div>

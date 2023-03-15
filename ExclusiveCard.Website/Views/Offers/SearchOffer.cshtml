@@ -1,0 +1,59 @@
+﻿@model OffersDisplayViewModel
+@inject IViewLocalizer Localizer
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Search Results for " + @Model.MainSearchTerm;
+}
+
+<main class="c_main">
+    <section class="c_band --tight">
+        <div class="l_container">
+            @if (!string.IsNullOrEmpty(Model.MainSearchTerm))
+            {
+                <h1>@Localizer["SearchResults"] '@Model.MainSearchTerm'</h1>
+            }
+            <div class="l_flex">
+                <div class="__column --span-12 --span-4--md --span-3--lg" id="offerFilters">
+                    <form role="form">
+                        <aside class="c_sidebar --toggleable" id="sidebar">
+                            <div class="__toggler">@Localizer["Filter"] <svg class="c_feather-icon"><use xlink:href="/images/icons.svg#menu" /></svg></div>
+                            <div class="__content" id="searchSidebarFilter">
+                                @{
+                                    @await Html.PartialAsync("_category", @Model.Categories, new ViewDataDictionary(this.ViewData) { { "CategoryHeader", @Localizer["Category"].Value.ToString() } })
+                                }
+                                @{
+                                    @await Html.PartialAsync("_offerType", @Model.OfferTypes, new ViewDataDictionary(this.ViewData) { { "OfferTypeHeader", @Localizer["OfferTypeHeader"].Value.ToString() } })
+                                }
+                                <div class="c_widget">
+                                    <div class="__content"><button class="--block --square" type="button" id="btnApply">@Localizer["ApplyButton"]</button></div>
+                                </div>
+                            </div>
+                        </aside>
+                    </form>
+                </div>
+                <div class="__column --span-12 --span-8--md --span-9--lg" id="searchContentFilter">
+
+                    @if (Model.PagedOffersView?.OfferSummaries?.Count > 0)
+                    {
+                        @await Html.PartialAsync("_offersDetail", @Model.PagedOffersView)
+                    }
+                    else
+                    {
+                        <div style="text-align: center" id="noResult">
+                            <h4 style="color: #e74c3c">@Localizer["No records found"]</h4>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+@section Scripts
+    {
+    <script type="text/javascript">
+        Offers.setUpEvents();
+        $("#offerCount").val(@Model.PagedOffersView.PagingView.PageSize);
+        $("#offerSort").val('@Model.OfferSort');
+        $("input[name='mainSearchTerm']").val('@Html.Raw(Model.MainSearchTerm)');
+    </script>
+}

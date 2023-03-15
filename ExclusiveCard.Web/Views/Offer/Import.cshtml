@@ -1,0 +1,172 @@
+﻿@model ExclusiveCard.WebAdmin.ViewModels.FileImportModel
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Offer File Import";
+    ViewBag.FormTitle = "Offer File Import";
+}
+
+@using (Html.BeginForm("SaveFile", "Offer", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @*<h2 class="text-center">Offer File Import</h2>*@
+    <br />
+    <br />
+    <div class="form-horizontal col-md-12">
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.TotalRecords)
+        @Html.HiddenFor(m => m.Success)
+        <div class="form-group row">
+            @Html.LabelFor(m => m.AffiliateId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownListFor(model => model.AffiliateId, Model.AffiliateList, "Enter text", htmlAttributes: new { @class = "form-control roundedInput dropdownInput" })
+                @Html.ValidationMessageFor(model => model.AffiliateId, "", new { @class = "text-danger" })
+            </div>
+            <p>
+                <span class="affiliateSpinner" style="display:none;"><i class="fa fa-spinner fa-spin fa-2x"></i></span>
+            </p>
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(m => m.FileTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownListFor(model => model.FileTypeId, Model.FileTypes, "Enter text", htmlAttributes: new { @class = "form-control roundedInput dropdownInput" })
+                @Html.ValidationMessageFor(model => model.FileTypeId, "", new { @class = "text-danger" })
+            </div>
+            @*<p>
+                    <span class="fileSpinner" ><i class="fa fa-spinner fa-spin fa-2x"></i></span>
+                </p>*@
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(m => m.ImportCountryCode, new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownListFor(m => m.ImportCountryCode, Model.ListofCountries, htmlAttributes: new { @class = "form-control roundedInput dropdownInput" })
+                @Html.ValidationMessageFor(m => m.ImportCountryCode, "", new { @class = "text-danger col-md-12" })
+            </div>
+        </div>
+        <div class="form-group row">
+            @Html.LabelFor(m => m.File, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @*<div class="col-md-3 filebox">
+                        @Html.EditorFor(model => model.File, new { htmlAttributes = new { @class = "form-control roundedInput" } })
+                    </div>*@
+
+                <div class="col-md-2 control-label">
+                    @*<label for="FileSelected">...</label>*@
+                    <input type="file" value="Browse" id="FileSelected" name="FileSelected" onchange="add(this)">
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="col-md-2"></div>
+            <div class="col-md-5  hidden" id="messageExists">
+                <span class="importspinner" style="display: none;"><i class="fa fa-spinner fa-spin"></i></span>
+                <span class="errmsg">File exists for importing data.</span>
+            </div>
+
+            @if (@Model.Failed > 0 && @Model.ImportStatus == @Model.Migrated)
+            {
+                <div class="col-md-10 row control-label">
+                    Error File report: <a href="@Url.Action("DownloadFile", "Offer", new { path = @Model.ErrorFilePath })"><i class="fa fa-download" aria-hidden="true" id="exportCsv"></i></a>
+                </div>
+            }
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-10">
+            <div class="col-md-8 hidden" id="recordCountMessage">
+                <span class="control-label">Total Records : @Model.TotalRecords &nbsp;&nbsp; Imported : @Model.Success &nbsp;&nbsp; Failed : @Model.Failed &nbsp;&nbsp; Updated : @Model.Updates &nbsp;&nbsp;  Duplicates : @Model.Duplicates</span><br>
+                @if (@Model.Failed > 0 && @Model.ImportStatus == @Model.Migrated)
+                {
+                    <span class="control-label">Please download error file and click complete button to complete the process</span>
+                }
+                else
+                {
+                    <span class="control-label">Click complete button to complete the process</span>
+                }
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-12">
+                <div class="col-md-2"></div>
+                <div class="col-md-5">
+                    <div class="progress" id="progress" style="display:none;">
+                        <div id="progressbar" class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="col-md-8">
+            @*<input type="button" value="Import" id="show" class="pull-right importbtn">*@
+            <button type="button" class="btn completebtn has-spinner pull-right">
+                Complete<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+            </button>
+            <button type="button" class="btn importbtn has-spinner pull-right">
+                Import<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+            </button>
+        </div>
+    </div>
+}
+<script>
+    var fileExtension = ['csv'];
+    function add(input) {
+        if (input.files && input.files[0]) {
+            var maxImageSize = 50;
+            if ($.inArray($("#FileSelected").val().split('.').pop().toLowerCase(), fileExtension) === -1) {
+                $("#FileSelected").val("");
+                toastr.error("Only .csv format is allowed.", "Invalid File Format");
+            }
+            else if ((input.files[0].size / 1024 / 1024) > maxImageSize) {
+                $("#FileSelected").val("");
+                toastr.error("File size has exceeded it max limit of " + maxImageSize + " MB");
+            }
+            else {
+                Offer.assignToFileData(input.files[0]);
+            }
+        }
+    }
+</script>
+@section Scripts
+{
+    <script src="~/js/Exclusive/offer.js"></script>
+    <script type="text/javascript">
+        Offer.setUpEvents();
+        Offer.kendoUIBind();
+        Offer.loadAffiliate(@Html.Raw(ViewData["Affiliates"]));
+        $(".affiliateSpinner").hide();
+        $(".fileSpinner").hide();
+        $(window).resize(function() {
+            if ($(window).width() >= 767) {
+                $("#offersMain").click();
+            }
+        });
+        if ((@Model.TotalRecords > 0 && ("@Model.CurrentStatus" !== "Complete" && "@Model.CurrentStatus" !== "Failed")) || "@Model.CurrentStatus" === "New" || "@Model.CurrentStatus" === "Uploaded" || "@Model.CurrentStatus" === "Processed" || "@Model.CurrentStatus" === "Processing")
+        {
+            $(".importbtn").attr("disabled", true);
+        }
+        else
+        {
+            $(".importbtn").removeAttr("disabled");
+        }
+        if (@Model.ImportStatus === @Model.Migrated) {
+            $(".completebtn").removeAttr("disabled");
+            $("#recordCountMessage").removeClass("hidden");
+        } else {
+            $(".completebtn").attr("disabled", true);
+        }
+        if ("@Model.CurrentStatus" === "New" && "@Model.File" !== "") {
+            $("#messageExists").removeClass("hidden");
+        }
+
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if ("@Model.CurrentStatus" === "New" || "@Model.CurrentStatus" === "Processing" || "@Model.CurrentStatus" === "Uploaded" &&
+                (parseInt($("#AffiliateId").find(":selected").val()) > 0 && parseInt($("#FileTypeId").find(":selected").val()) > 0)) {
+                $(".importspinner").show();
+                $("#messageExists").removeClass("hidden");
+                $('#messageExists .errmsg').text('Import in progress ' + '@(@Model.Failed + @Model.Success + @Model.Duplicates + @Model.Updates)' + ' of ' + '@Model.TotalRecords');
+                Offer.getProcessingStatus();
+            }
+        });
+    </script>
+}

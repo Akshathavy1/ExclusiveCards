@@ -1,0 +1,131 @@
+﻿.pull-right {
+    float: right;
+}
+
+.hideContent {
+    display: none;
+}
+
+.topMargin {
+    margin-top: 20px;
+}
+
+checkbox.\--invalid {
+    border-color: #cc3f32 !important
+}
+
+.justifyContent {
+    text-align: justify;
+}
+
+.homeStrong {
+    font-size: 1rem !important;
+}
+
+.conditionalText {
+    font-size: 0.8rem !important;
+    font-style: italic !important;
+    margin-bottom: 0 !important;
+}
+
+.customSection {
+    padding-bottom: 1% !important;
+}
+
+.conditionalDiv {
+    margin-top: 1% !important;
+}
+
+.leftMargin {
+    margin-left: 4%;
+    font-size: .7181844298rem
+}
+
+.divContent {
+    display: inline-block;
+}
+
+.divLeft {
+    max-width: 60%;
+    float: left;
+}
+
+.marginTop {
+    margin-top: 15%;
+}
+
+#myInput {
+    font-weight: bold;
+    color: black;
+}
+.bs-example {
+    font-family: sans-serif;
+    position: relative;
+    margin: 100px;
+}
+
+.typeahead, .tt-query, .tt-hint {
+    border: 2px solid #CCCCCC;
+    border-radius: 8px;
+    font-size: 22px; /* Set input font size */
+    height: 30px;
+    line-height: 30px;
+    outline: medium none;
+    padding: 8px 12px;
+}
+
+.typeahead {
+    background-color: #FFFFFF;
+}
+
+.typeahead:focus {
+    border: 2px solid #0097CF;
+}
+
+.tt-query {
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+}
+
+.tt-hint {
+    color: #999999;
+}
+
+.tt-menu {
+    display: block;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 12px;
+    padding: 8px 0;
+    width: 422px;
+}
+
+.tt-suggestion {
+    font-size: 22px; /* Set suggestion dropdown font size */
+    padding: 3px 20px;
+    background-color: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 12px !important;
+    padding: 8px 8px;
+    width: 422px;
+}
+
+.tt-suggestion:hover {
+    cursor: pointer;
+    background-color: #0097CF;
+    color: #FFFFFF;
+}
+
+.tt-suggestion p {
+    margin: 10px;
+}
+
+.tt-dataset {
+    background-color: #ffffff !important;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 12px;
+}

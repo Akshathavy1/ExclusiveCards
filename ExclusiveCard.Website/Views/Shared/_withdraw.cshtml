@@ -1,0 +1,67 @@
+﻿@model WithdrawViewModel
+@inject IViewLocalizer Localizer
+
+<div class="__column --span-12 --span-8--md">
+    <h2>@Localizer["Title"]</h2>
+    <form class="c_form-container" method="GET">
+        <h3 class="__title">@Localizer["Details"]</h3>
+        <p class="__notice js_auto-center c_notification --positive hideContent" id="successMsg">@Localizer["SuccessMsg"]</p>
+        <p class="__notice js_auto-center c_notification --negative hideContent" id="ErrorMsg">@Localizer["ErrorMsg"]</p>
+        @Html.HiddenFor(m => m.RequestExists)
+        @Html.HiddenFor(m => m.CustomerId)
+        @Html.HiddenFor(m => m.BankDetailId)
+        @Html.HiddenFor(m => m.PartnerRewardId)
+        @Html.HiddenFor(m => m.AvailableFund)
+        @if (((Model.Status != "Confirmed" && Model.MembershipPlanType=="BenefitRewards" )|| (Model.Status != "Pending" && Model.MembershipPlanType=="PartnerReward" )) && Model.Status != "Requested")
+        {
+            <div class="c_form-group" id="divWithdrawalForm">
+                <div class="c_form-group">
+                    <label for="account_name">@Localizer["WAmount"] <span class="__required">@Localizer["Required"]</span></label>
+                    <div class="c_currency-input">
+                        <div class="__input">
+                            <input type="number" name="withdrawal_amount" value="@Model.WithdrawAmount" id="withdrawal_amount" step="0.01" min="0" max="@Model.AvailableFund" aria-label="Withdrawal Amount" required>
+                        </div>
+                        
+                            <div class="__note">
+                                <small>@Localizer["Available"]</small>
+                                <p id="AvailableFund">£@Model.AvailableFund</p>
+                            </div>
+                        
+
+                    </div>
+                </div>
+                <div class="c_form-group">
+                    <label for="account_name">@Localizer["Name"] <span class="__required">@Localizer["Required"]</span></label>
+                    @Html.TextBoxFor(model => model.Name, new { Type = "text" })
+                </div>
+                <div class="l_flex --tight">
+                    <div class="__column --span-12 --lg">
+                        <div class="c_form-group">
+                            <label for="account_number">@Localizer["Number"] <span class="__required">@Localizer["Required"]</span></label>
+                            @Html.TextBoxFor(model => model.AccountNumber, new { Type = "text", placeholder = "1234 5678" })
+                        </div>
+                    </div>
+                    <div class="__column --span-12 --shrink--lg">
+                        <div class="c_form-group">
+                            <label for="account_sortcode">@Localizer["Sortcode"] <span class="__required">@Localizer["Required"]</span></label>
+                            @Html.TextBoxFor(model => model.SortCode, new { Type = "text", placeholder = "12-34-56", maxlength = 8 })
+                        </div>
+                    </div>
+                </div>
+                <div class="c_form-group">
+                    <label for="password">@Localizer["Password"] <span class="__required">@Localizer["Required"]</span></label>
+                    @Html.TextBoxFor(model => model.Password, new { Type = "password" })
+                </div>
+                <div class="c_form-group --actions">
+                    <button class="btn v2_button" id="btnWithdraw" type="submit" value="Withdraw Funds">
+                        @Localizer["Withdraw"]
+                    </button>
+                </div>
+            </div>
+        }
+        else
+        {
+            <p class="__notice js_auto-center c_notification --positive" id="successMsg">@Localizer["SuccessMsg"]</p>
+        }
+    </form>
+</div>

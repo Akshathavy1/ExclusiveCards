@@ -1,0 +1,153 @@
+﻿@using ExclusiveCard.Services.Models.DTOs;
+@model List<MerchantBranch>
+@inject IViewLocalizer Localizer
+
+@{
+    var logo = ViewBag.Logo;
+    var key = ViewBag.GoogleApi;
+    var latitude = string.Empty;
+    var longitude = string.Empty;
+    var layoutModel = (LayoutViewModel)@ViewBag.LayoutModel;
+}
+<section class="c_band --tight">
+    <div class="l_container">
+        <div>
+            <h2>Participating Stores</h2>
+            <div class="offerlist-map u_margin-bottom--s5 l_flex">
+                <div class="__column --span-12 --span-12--sm --span-6--lg">
+                    <div class="l_offer-list">
+                        <div class="ParticipatingBranches">
+                            @if (Model.Count > 0)
+                            {
+                                @foreach (MerchantBranch item in Model)
+                                {
+                                    @if (item != null)
+                                    {
+                                        <div class="PracticingBranchContents">
+                                            <div class="c_simple-offer">
+                                                <div class="__logo">
+                                                    @if (!string.IsNullOrEmpty(logo))
+                                                    {
+
+                                                        <img src="/images/blank.png" data-src="/Image/GetImage/?path=@logo" data-srcset="/Image/GetImage/?path=@logo" alt="@item.Name" class="lazy" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img class="img-responsive" />
+                                                    }
+                                                </div>
+                                                <div>
+                                                </div>
+
+                                                <div class="__content">
+                                                    <strong>@Html.Raw(item.Name)</strong>
+                                                    @if (item.ContactDetail != null)
+                                                    {
+
+                                                <div class="contact-address">
+                                                    @if (item.ContactDetail.Address1 != null && item.ContactDetail.Address2 != null && item.ContactDetail.Address3 != null)
+                                                    {
+                                                        <p>
+                                                            @item.ContactDetail.Address1, <br /> @item.ContactDetail.Address2, @item.ContactDetail.Address3,
+                                                            @item.ContactDetail.Town @item.ContactDetail.District @item.ContactDetail.PostCode
+                                                        </p>
+                                                    }
+                                                    @if (item.ContactDetail.Address1 != null && @item.ContactDetail.Address2 != null && @item.ContactDetail.Address3 == null)
+                                                    {
+                                                        <p>
+                                                            @item.ContactDetail.Address1, <br /> @item.ContactDetail.Address2,
+                                                            @item.ContactDetail.Town @item.ContactDetail.District @item.ContactDetail.PostCode
+                                                        </p>
+                                                    }
+                                                    @if (item.ContactDetail.Address2 != null && item.ContactDetail.Address3 != null && @item.ContactDetail.Address1 == null)
+                                                    {
+                                                        <p>
+                                                            @item.ContactDetail.Address2, <br /> @item.ContactDetail.Address3,
+                                                            @item.ContactDetail.Town @item.ContactDetail.District @item.ContactDetail.PostCode
+                                                        </p>
+                                                    }
+                                                    @if (item.ContactDetail.Address1 != null && item.ContactDetail.Address3 != null && @item.ContactDetail.Address2 == null)
+                                                    {
+                                                        <p>
+                                                            @item.ContactDetail.Address1, <br /> @item.ContactDetail.Address3,
+                                                            @item.ContactDetail.Town @item.ContactDetail.District @item.ContactDetail.PostCode
+                                                        </p>
+                                                    }
+                                                    @if (item.ContactDetail.Address1 != null && item.ContactDetail.Address3 == null && @item.ContactDetail.Address2 == null)
+                                                    {
+                                                        <p>
+                                                            @item.ContactDetail.Address1 <br /> 
+                                                            @item.ContactDetail.Town @item.ContactDetail.District @item.ContactDetail.PostCode
+                                                        </p>
+                                                    }
+                                                    @if (item.ContactDetail.Address1 == null && item.ContactDetail.Address3 != null && @item.ContactDetail.Address2 == null)
+                                                    {
+                                                        <p>
+                                                            @item.ContactDetail.Address3 <br />
+                                                            @item.ContactDetail.Town @item.ContactDetail.District @item.ContactDetail.PostCode
+                                                        </p>
+                                                    }
+                                                    @if (item.ContactDetail.Address1 == null && item.ContactDetail.Address3 == null && @item.ContactDetail.Address2 != null)
+                                                    {
+                                                        <p>
+                                                            @item.ContactDetail.Address2 <br />
+                                                            @item.ContactDetail.Town @item.ContactDetail.District @item.ContactDetail.PostCode
+                                                        </p>
+                                                    }
+                                                    @if (item.ContactDetail.Latitude != null && item.ContactDetail.Longitude != null)
+                                                    {
+                                                        <a class="openMap" style="cursor: pointer; text-decoration: underline" onclick="maping(@item.ContactDetail.Latitude,@item.ContactDetail.Longitude)">Open Map</a>
+
+                                                    }
+                                                </div>
+
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+
+                                }
+
+                            }
+                            else
+                            {
+                                <div class="c_notification --negative">
+                                    <p style="text-align:center">No branches with similar offer</p>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class=" __column --span-12 --span-12--sm --span-6--lg">
+                    <div id="divMap" class="route-map">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+    <script src="https://maps.googleapis.com/maps/api/js?key=@key"></script>
+    <script type="text/javascript">
+        console.log("https://maps.googleapis.com/maps/api/js?key=" + @key);
+        function maping(latitude, longitude) {
+            document.getElementById("divMap").style.height = "570px";
+            // The location of Uluru
+            const uluru = { lat: latitude, lng: longitude };
+            // The map, centered at Uluru
+            const map = new google.maps.Map(document.getElementById("divMap"), {
+                zoom: 15,
+                center: uluru,
+            });
+            // The marker, positioned at Uluru
+            const marker = new google.maps.Marker({
+                position: uluru,
+                map: map,
+            });
+            $("html, body").animate({ scrollTop: $('#divMap').offset().top }, 500);
+        }
+    </script>
+
+}

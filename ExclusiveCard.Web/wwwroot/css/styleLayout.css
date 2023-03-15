@@ -1,0 +1,1005 @@
+﻿@font-face {
+    font-family: "GeoSansLight";
+    src: url("/font/GeosansLight.ttf") format("truetype");
+}
+
+header.navbar + nav.navbar {
+    /* margin-top: 20pt;same margin-bottom .navbar */
+}
+
+.navbar.navbar-default.navbar-fixed-top {
+    margin-top: 0;
+}
+
+.sidebar.navbar-fixed-top {
+    margin-top: 0;
+}
+
+@media (min-width: 768px) and (max-width: 998px) {
+    .navbar.navbar-default.navbar-fixed-top {
+        margin-top: 75pt;
+    }
+
+    /*.sidebar.navbar-fixed-top {
+        margin-top: 112.5pt;
+    }*/
+}
+
+/* Custom navbar default: global*/
+
+.navbar.navbar-default {
+    background-color: #f8f8f8;
+    border-color: #e7e7e7;
+    margin: 0;
+    border-radius: 0;
+}
+
+    .navbar.navbar-default .navbar-brand {
+        color: white; /*#666;*/
+        text-shadow: none;
+        min-width: 112.5pt;
+        line-height: 50pt !important;
+        display: block;
+    }
+
+    .navbar.navbar-default .navbar-nav > li > a {
+        color: #666;
+        text-shadow: none;
+    }
+
+    .navbar.navbar-default .navbar-nav > li > a {
+        color: #666;
+        text-shadow: none;
+    }
+
+        .navbar.navbar-default .navbar-nav > li > a:hover {
+            color: #acc47f;
+        }
+
+    .navbar.navbar-default .navbar-nav > .active > a {
+        color: #fff;
+        background-color: #acc47f;
+    }
+
+        .navbar.navbar-default .navbar-nav > .active > a:hover {
+            color: #608224;
+            background-color: #acc47f;
+        }
+
+    .navbar.navbar-default .caret {
+        border-top-color: #ccc;
+        border-bottom-color: #ccc;
+    }
+
+        .navbar.navbar-default .caret:hover {
+            border-top-color: #333;
+            border-bottom-color: #333;
+        }
+
+/* Custom sidebar menu */
+
+/*Remove rounded coners*/
+
+nav.sidebar.navbar {
+    border-radius: 0pt;
+}
+
+nav.sidebar, .main {
+    -webkit-transition: margin 200ms ease-out;
+    -moz-transition: margin 200ms ease-out;
+    -o-transition: margin 200ms ease-out;
+    transition: margin 200ms ease-out;
+}
+
+/* Add gap to nav and right windows.*/
+.main {
+    padding: 7.5pt 7.5pt 0 7.5pt;
+}
+
+/* .....NavBar: Icon only with coloring/layout.....*/
+
+/*small/medium side display*/
+@media (min-width: 768px) {
+    .headerDiv {
+        visibility: visible;
+    }
+    /*Allow main to be next to Nav*/
+    .main {
+        position: absolute;
+        width: calc(100% - 30pt); /*keeps 100% minus nav size*/
+        margin-left: 30pt;
+        float: right;
+    }
+
+    /*lets nav bar to be showed on mouseover*/
+    nav.sidebar:hover + .main {
+        margin-left: 150pt;
+    }
+
+    /*Center Brand*/
+    nav.sidebar.navbar.sidebar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+        margin-left: 0pt;
+        display: block;
+        line-height: 50pt !important;
+    }
+    /*Center Brand*/
+    nav.sidebar .navbar-brand, nav.sidebar .navbar-header {
+        text-align: center;
+        width: 100%;
+        margin-left: 0pt;
+        display: block;
+        line-height: 50pt !important;
+    }
+
+    /*Center Icons*/
+    nav.sidebar a {
+        padding-right: 9.75pt;
+        min-width: 75pt;
+    }
+
+    /*custom sidebar nav*/
+    nav.sidebar ul.nav.navbar-nav {
+        margin: 0;
+    }
+
+    nav.sidebar.navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+        color: white;
+    }
+
+    /*adds border top to first nav box */
+    nav.sidebar .navbar-nav > li:first-child {
+        border-top: 0.75pt #e5e5e5 solid;
+    }
+
+    /*adds border to bottom nav boxes*/
+    nav.sidebar .navbar-nav > li {
+        border-bottom: 0.75pt #e5e5e5 solid;
+    }
+        /*adds background on hover*/
+        nav.sidebar .navbar-nav > li:hover {
+            color: #fff;
+            background-color: #43600E;
+        }
+        /*removes border last element*/
+        nav.sidebar .navbar-nav > li.last {
+            border-bottom: none;
+        }
+
+    /* Colors/style dropdown box*/
+    nav.sidebar .navbar-nav .open .dropdown-menu {
+        position: static;
+        float: none;
+        width: auto;
+        margin-top: 0;
+        background-color: transparent;
+        border: 0;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+    /*allows nav box to use 100% width*/
+    nav.sidebar .navbar-collapse, nav.sidebar .container-fluid {
+        padding: 0 0pt 0 0pt;
+    }
+
+    /*colors dropdown box text */
+    .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
+        color: #777;
+    }
+
+    /*O quanto o menu irá esconder á esquerda*/
+    /*gives sidebar width/height*/
+    nav.sidebar {
+        width: 0;
+        height: 100%;
+        margin-left: 0pt;
+        float: left;
+        z-index: 8000;
+        margin-bottom: 0pt;
+    }
+
+        /*give sidebar 100% width;*/
+        nav.sidebar li {
+            width: 100%;
+        }
+
+        /* Move nav to full on mouse over*/
+        nav.sidebar:hover {
+            margin-left: 0pt;
+        }
+    /*for hiden things when navbar hidden*/
+    .forAnimate {
+        opacity: 0;
+    }
+}
+
+/* .....NavBar: Fully showing nav bar..... */
+
+@media (min-width: 1330px) {
+    /*     Allow main to be next to Nav
+    .main{
+      width: calc(100% - 150pt); keeps 100% minus nav size
+      margin-left: 150pt;
+    }
+
+    Show all nav
+    nav.sidebar{
+      margin-left: 0pt;
+      float: left;
+    }
+    Show hidden items on nav
+    nav.sidebar .forAnimate{
+      opacity: 1;
+    } */
+}
+
+nav.sidebar .navbar-nav .open .dropdown-menu > li > a:hover, nav.sidebar .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #CCC;
+    background-color: transparent;
+}
+
+nav:hover .forAnimate {
+    opacity: 1;
+}
+
+/*---- FIM SLIDE MENU*/
+
+.nav-side-menu {
+    font-family: Geosans light;
+    font-size: 15pt;
+    background-color: #2e353d;
+    position: fixed;
+    width: 187.5pt;
+    height: 78%;
+    color: #fff;
+    border-radius: 7.5pt;
+}
+
+    .nav-side-menu .brand {
+        background-color: #2e353d; /*#23282e;*/
+        line-height: 0;
+        display: block;
+        text-align: center;
+        font-size: 15pt;
+        color: white;
+        margin-top: 0;
+        font-family: Geosans light !important;
+        border-radius: 7.5pt
+    }
+
+    .nav-side-menu .toggle-btn {
+        display: none;
+    }
+
+    .nav-side-menu ul,
+    .nav-side-menu li {
+        list-style: none;
+        padding: 0pt;
+        margin: 0pt;
+        line-height: 26.25pt;
+        cursor: pointer;
+        background-color: #2e353d;
+        /*
+    .collapsed{
+       .arrow:before{
+                 font-family: FontAwesome;
+                 content: "\f053";
+                 display: inline-block;
+                 padding-left:7.5pt;
+                 padding-right: 7.5pt;
+                 vertical-align: middle;
+                 float:right;
+            }
+     }
+*/
+    }
+
+        .nav-side-menu ul :not(collapsed) .arrow:before,
+        .nav-side-menu li :not(collapsed) .arrow:before {
+            font-family: FontAwesome;
+            content: "\f078";
+            display: inline-block;
+            padding-left: 7.5pt;
+            padding-right: 7.5pt;
+            vertical-align: middle;
+            float: right;
+        }
+
+        .nav-side-menu ul .active,
+        .nav-side-menu li .active {
+            /*border-left: 2.25pt solid #d19b3d;
+            background-color: #B8A15D;/*#4f5b69;*/
+        }
+
+        .nav-side-menu ul .sub-menu li.active,
+        .nav-side-menu li .sub-menu li.active {
+            color: #d19b3d;
+        }
+
+            .nav-side-menu ul .sub-menu li.active a,
+            .nav-side-menu li .sub-menu li.active a {
+                color: #d19b3d;
+            }
+
+        .nav-side-menu ul .sub-menu li,
+        .nav-side-menu li .sub-menu li {
+            background-color: #2e353d;
+            border: none;
+            line-height: 21pt;
+            border-bottom: 0.75pt solid #23282e;
+            padding-left: 5pt;
+        }
+
+            .nav-side-menu ul .sub-menu li:hover,
+            .nav-side-menu li .sub-menu li:hover {
+                background-color: #B8A15D;
+            }
+
+            .nav-side-menu ul .sub-menu li:before,
+            /*.nav-side-menu li .sub-menu li:before {
+                font-family: FontAwesome;
+                content: "\f105";
+                display: inline-block;
+                padding-left: 7.5pt;
+                padding-right: 7.5pt;
+                vertical-align: middle;
+            }*/
+            .nav-side-menu li {
+                padding-left: 0pt;
+                border-left: 2.25pt solid #2e353d;
+                border-bottom: 0.75pt solid #23282e;
+            }
+
+                .nav-side-menu li a {
+                    text-decoration: none;
+                    color: white /*#e1ffff*/;
+                }
+
+                    .nav-side-menu li a i {
+                        padding-left: 7.5pt;
+                        width: 30pt;
+                        padding-right: 15pt;
+                    }
+
+                .nav-side-menu li:hover {
+                    border-left: 2.25pt solid #C5B358; /*#d19b3d;*/
+                    background-color: #B8A15D; /*#4f5b69;*/
+                    -webkit-transition: all 1s ease;
+                    -moz-transition: all 1s ease;
+                    -o-transition: all 1s ease;
+                    -ms-transition: all 1s ease;
+                    transition: all 1s ease;
+                }
+
+@media (max-width: 767px) {
+    .nav-side-menu {
+        /*position: relative;
+        width: 100%;
+        margin-bottom: 7.5pt;*/
+    }
+
+        .nav-side-menu .toggle-btn {
+            display: block;
+            position: absolute;
+            right: 15.5pt;
+            top: 2.5pt;
+            /*cursor: pointer;
+            z-index: 10 !important;
+            padding: 2.25pt;
+            width: 30pt;
+            text-align: center;*/
+            /*background-color: #ffffff;
+            color: #000;*/
+        }
+
+    .brand {
+        text-align: left !important;
+        font-size: 15pt;
+        /*padding-left: 20pt;*/
+        line-height: 30pt !important;
+        display: block;
+        font-family: Geosans light;
+    }
+}
+
+@media (min-width: 767px) {
+    .nav-side-menu .menu-list .menu-content {
+        display: block;
+    }
+}
+
+.navbar {
+    padding: 0 0 !important;
+}
+
+body {
+    margin: 0pt !important;
+    padding: 0pt !important;
+}
+
+@media(min-width: 320px) {
+    #menuName {
+        display: none !important;
+    }
+
+    .logo {
+        padding: 0;
+        margin: 0;
+    }
+
+    .smallDiv {
+        visibility: visible;
+        justify-content: center;
+        padding-left: 0 !important;
+    }
+
+    .headerDiv {
+        display: none !important;
+    }
+
+    .headerName {
+        font-size: 7.5pt;
+        padding: 0;
+        margin: 0;
+    }
+
+    .nav-side-menu {
+        height: 10%;
+        width: 100%;
+        margin-top: -18.7%;
+        margin-left: -4.6%;
+        border-radius: 0;
+        margin-bottom: 0;
+    }
+}
+
+@media(min-width: 360px) {
+    #menuName {
+        display: none !important;
+    }
+
+    .smallDiv {
+        visibility: visible;
+        justify-content: center;
+        padding-left: 0 !important;
+    }
+
+    .headerDiv {
+        display: none !important;
+    }
+
+    .headerName {
+        font-size: 11.25pt;
+    }
+
+    .nav-side-menu {
+        height: 10%;
+        width: 100%;
+        margin-top: -18%;
+        margin-left: -4.1%;
+        border-radius: 0;
+        margin-bottom: 0;
+    }
+}
+
+@media(min-width: 411px) {
+    #menuName {
+        display: none !important;
+    }
+
+    .smallDiv {
+        visibility: visible;
+        justify-content: center;
+        padding-left: 0 !important;
+    }
+
+    .headerDiv {
+        display: none !important;
+    }
+
+    .headerName {
+        font-size: 15pt;
+    }
+
+    .nav-side-menu {
+        height: 10%;
+        width: 100%;
+        margin-top: -17%;
+        margin-left: -4.1%;
+        border-radius: 0;
+        margin-bottom: 0;
+    }
+}
+
+@media(min-width: 568px) {
+    #menuName {
+        display: none !important;
+    }
+
+    .smallDiv {
+        visibility: visible;
+        justify-content: center;
+        padding-left: 0 !important;
+    }
+
+    .headerDiv {
+        display: none !important;
+    }
+
+    .headerName {
+        font-size: 15pt;
+    }
+
+    .nav-side-menu {
+        height: 10%;
+        width: 100%;
+        margin-top: -11%;
+        margin-left: -4.1%;
+        border-radius: 0;
+        margin-bottom: 0;
+    }
+}
+
+@media(min-width: 600px) and (min-height:960px) {
+    #menuName {
+        display: none !important;
+    }
+
+    .smallDiv {
+        visibility: visible;
+        justify-content: center;
+        padding-left: 0 !important;
+    }
+
+    .headerDiv {
+        display: none !important;
+    }
+
+    .headerName {
+        font-size: 15pt;
+    }
+
+    .nav-side-menu {
+        height: 10%;
+        width: 100%;
+        margin-top: -13%;
+        margin-left: -4.1%;
+        border-radius: 0;
+        margin-bottom: 0;
+    }
+}
+
+@media(min-width: 768px) {
+    #Menu {
+        padding-top: 15pt;
+        display: block !important;
+    }
+
+    .smallDiv {
+        visibility: hidden;
+    }
+
+    .headerDiv {
+        display: block !important;
+    }
+
+    .headerName {
+        font-size: 18.75pt;
+    }
+
+    .nav-side-menu {
+        margin-left: 0;
+        border-radius: 7.5pt;
+        margin-top: 0%;
+        width: 22%;
+        height: 82%;
+    }
+}
+
+@media (min-width: 812px) and (min-height: 375px) {
+    #menuName {
+        padding-top: 15pt;
+        display: block !important;
+    }
+
+    .smallDiv {
+        visibility: hidden;
+    }
+
+    .headerDiv {
+        display: block !important;
+    }
+
+    .headerName {
+        font-size: 18.75pt;
+    }
+
+    .nav-side-menu {
+        margin-left: 0;
+        border-radius: 7.5pt;
+        margin-top: 0%;
+        width: 20%;
+        height: 70%;
+    }
+}
+
+@media (min-width: 823px) and (min-height: 411px) {
+    #menuName {
+        padding-top: 15pt;
+        display: block !important;
+    }
+
+    .smallDiv {
+        visibility: hidden;
+    }
+
+    .headerDiv {
+        display: block !important;
+    }
+
+    .headerName {
+        font-size: 18.75pt;
+    }
+
+    .nav-side-menu {
+        margin-left: 0;
+        border-radius: 7.5pt;
+        margin-top: 0%;
+        width: 20%;
+        height: 70%;
+    }
+}
+
+@media (min-width: 960px) and (min-height: 600px) {
+    #menuName {
+        padding-top: 15pt;
+        display: block !important;
+    }
+
+    .smallDiv {
+        visibility: hidden;
+    }
+
+    .headerDiv {
+        display: block !important;
+    }
+
+    .headerName {
+        font-size: 18.75pt;
+    }
+
+    .nav-side-menu {
+        margin-left: 0;
+        border-radius: 7.5pt;
+        margin-top: 0;
+        width: 18%;
+        height: 77%;
+    }
+}
+
+@media (min-width: 1024px) and (min-height: 768px) {
+    #menuName {
+        padding-top: 15pt;
+        display: block !important;
+    }
+
+    .smallDiv {
+        visibility: hidden;
+    }
+
+    .headerDiv {
+        display: block !important;
+    }
+
+    .headerName {
+        font-size: 18.75pt;
+    }
+
+    .nav-side-menu {
+        margin-left: 0;
+        border-radius: 7.5pt;
+        margin-top: 0;
+        width: 20%;
+        height: 78%;
+    }
+}
+
+@media (min-width: 1024px) and (min-height: 1366px) {
+    #menuName {
+        padding-top: 15pt;
+        display: block !important;
+    }
+
+    .smallDiv {
+        visibility: hidden;
+    }
+
+    .headerDiv {
+        display: block !important;
+    }
+
+    .headerName {
+        font-size: 18.75pt;
+    }
+
+    .nav-side-menu {
+        margin-left: 0;
+        border-radius: 7.5pt;
+        margin-top: 0;
+        width: 20%;
+        height: 84%;
+    }
+}
+
+@media (min-width: 1280px) {
+    #menuName {
+        padding-top: 20px;
+        display: block !important;
+    }
+
+    .smallDiv {
+        visibility: hidden;
+    }
+
+    .headerDiv {
+        display: block !important;
+    }
+
+    .headerName {
+        font-size: 18.75pt;
+    }
+
+    .nav-side-menu {
+        margin-left: 0;
+        border-radius: 7.5pt;
+        margin-top: 0;
+        width: 15.5%;
+        height: 78%;
+    }
+}
+
+@media(min-width: 1366px) and (min-height:420px) and (max-height:767px) {
+    #menuName {
+        padding-top: 15pt;
+        display: block !important;
+    }
+
+    .smallDiv {
+        visibility: hidden;
+    }
+
+    .headerDiv {
+        display: block !important;
+    }
+
+    .headerName {
+        font-size: 18.75pt;
+    }
+
+    .nav-side-menu {
+        margin-left: 0;
+        border-radius: 7.5pt;
+        margin-top: 0;
+        width: 15.5%;
+        height: 78%;
+    }
+}
+
+@media(min-width: 1366px) and (min-height:768px) and (max-height:900px) {
+    #menuName {
+        padding-top: 15pt;
+        display: block !important;
+    }
+
+    .smallDiv {
+        visibility: hidden;
+    }
+
+    .headerDiv {
+        display: block !important;
+    }
+
+    .headerName {
+        font-size: 18.75pt;
+    }
+
+    .nav-side-menu {
+        margin-left: 0;
+        border-radius: 7.5pt;
+        margin-top: 0;
+        width: 15.5%;
+        height: 78%;
+    }
+}
+
+@media(min-width: 1366px) and (min-height:1024px) {
+    #menuName {
+        padding-top: 15pt;
+        display: block !important;
+    }
+
+    .smallDiv {
+        visibility: hidden;
+    }
+
+    .headerDiv {
+        display: block !important;
+    }
+
+    .headerName {
+        font-size: 18.75pt;
+    }
+
+    .nav-side-menu {
+        margin-left: 0;
+        border-radius: 7.5pt;
+        margin-top: 0;
+        width: 15.5%;
+        height: 81%;
+    }
+}
+
+@media(min-width: 1440px) {
+    #menuName {
+        padding-top: 15pt;
+        display: block !important;
+    }
+
+    .smallDiv {
+        visibility: hidden;
+    }
+
+    .headerDiv {
+        display: block !important;
+    }
+
+    .headerName {
+        font-size: 18.75pt;
+    }
+
+    .nav-side-menu {
+        margin-left: 0;
+        border-radius: 7.5pt;
+        margin-top: 0;
+        width: 15.5%;
+        height: 78%;
+    }
+}
+
+@media(min-width: 1500px) {
+    #menuName {
+        padding-top: 15pt;
+        display: block !important;
+    }
+
+    .smallDiv {
+        visibility: hidden;
+    }
+
+    .headerDiv {
+        display: block !important;
+    }
+
+    .headerName {
+        font-size: 18.75pt;
+    }
+
+    .nav-side-menu {
+        margin-left: 0;
+        border-radius: 7.5pt;
+        margin-top: 0;
+        width: 15.5%;
+        height: 78%;
+    }
+
+    /*Center Icons*/
+    nav.sidebar a {
+        padding-right: 9.75pt;
+        min-width: 75pt;
+    }
+}
+
+.goldColor {
+    color: #d19b3d;
+}
+
+/*Menu*/
+.Menu {
+    color: #2e353d;
+    position: relative;
+    top: -15pt;
+    left: -15pt;
+    font-family: GeoSansLight;
+    font-size: 15pt;
+}
+
+@media screen and (max-width: 480px) {
+    .Menu {
+        display: none;
+    }
+}
+
+/* Heading*/
+.Heading {
+    font-family: GeoSansLight;
+    font-size: 25pt;
+    color: #b8a360;
+}
+/* User Menu*/
+.userNamemobile {
+    color: white;
+    position: fixed;
+    right: 33.75pt;
+    top: 18.75pt;
+    font-family: GeoSansLight !important;
+    font-size: 10pt !important;
+}
+
+/* Mobile view header*/
+.smallDiv {
+    background-color: #2E353D !important;
+}
+
+.nav-menu-name {
+    font-family: GeoSansLight !important;
+    font-size: 20pt;
+}
+
+.nav-submenu-name {
+    font-family: GeoSansLight !important;
+    font-size: 15pt;
+}
+
+#title-name {
+    font-family: calibri !important;
+    font-weight: bold;
+    font-size: 20pt !important;
+    color: #b8a360;
+    white-space: nowrap;
+}
+
+#title-names {
+    font-family: calibri !important;
+    font-weight: bold;
+    font-size: 20pt;
+    color: black;
+}
+
+.navmob {
+    color: #fff;
+    margin-left: -11.25pt;
+}
+/* Offer Page View*/
+.section {
+    width: 109%;
+    height: 230pt;
+    border-radius: 20pt;
+    border: 0.75pt solid black;
+    margin-bottom: 30pt;
+    padding: 7.5pt;
+    box-shadow: 3.75pt 7.5pt;
+}
+
+/* Offer Page Buttons*/
+.Addoffer {
+    border-radius: 6pt;
+    margin-right: -588.75pt;
+    position: absolute;
+    right: 0;
+}
+
+.Addsearch {
+    border-radius: 6pt;
+    margin-top: 117.75pt;
+    margin-right: -770pt;
+    position: absolute;
+    right: 0;
+}
+
+.offerHeading, .merchantList, .userHeading {
+    white-space: nowrap;
+}
+
+.navoffsd {
+    width: 30%;
+}

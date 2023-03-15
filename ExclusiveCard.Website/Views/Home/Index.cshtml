@@ -1,0 +1,438 @@
+﻿@using ExclusiveCard.Enums
+@using ExclusiveCard.Services.Models.DTOs
+@using Microsoft.AspNetCore.Http
+@inject IViewLocalizer Localizer
+@inject IHttpContextAccessor HttpContextAccessor
+
+@section metatags
+    {
+    <meta name="verification" content="e8731147cce8624272b5c32cb012adac" />
+    <meta name="fo-verify" content="dd573ead-e5ab-4212-b943-fc185e88f40f" />
+}
+
+@{
+    ViewData["Title"] = @Localizer["Home Page"];
+    var layoutModel = (LayoutViewModel)@ViewBag.LayoutModel;
+    var whiteLabel = (WhiteLabelSettings)ViewBag.WhiteLabel;
+    var images = ViewBag.Images;
+    var offerList = ViewBag.OfferList;
+
+    string isMobileKey = "IsMobile";
+    bool isMobile = false;
+    string sIsMobile = HttpContextAccessor.HttpContext.Session.GetString(isMobileKey);
+
+    if (!string.IsNullOrEmpty(sIsMobile))
+    {
+        bool.TryParse(sIsMobile, out isMobile);
+    }
+    if (!isMobile)
+    {
+        if (Context.Request.Headers.ContainsKey(isMobileKey))
+        {
+            Boolean.TryParse(Context.Request.Headers[isMobileKey], out isMobile);
+        }
+        else if (Context.Request.Query[isMobileKey].Count > 0)
+        {
+            Microsoft.Extensions.Primitives.StringValues queryVal;
+            if (Context.Request.Query.TryGetValue(isMobileKey, out queryVal))
+            {
+                Boolean.TryParse(queryVal[0], out isMobile);
+            }
+        }
+        if (isMobile)
+        {
+            HttpContextAccessor.HttpContext.Session.SetString(isMobileKey, true.ToString());
+        }
+    }
+
+}
+
+
+<!-- c_hero - START -->
+<div class="c_hero">
+    <div class="l_container">
+        <div class="__contents">
+            @if (whiteLabel.Slug != "sport-rewards")
+            {
+                <h1>@Localizer["Hero_title"]</h1>
+
+                <p>@Localizer["Hero_description"]</p>
+            }
+            else
+            {
+                <h1>@Localizer["Hero_titleTS"]<span class="talkSPortcolor">@Localizer["TALKSPORT"]</span></h1>
+                <p>@Localizer["Hero_descriptionTS"]</p>
+            }
+
+            @if (layoutModel != null && layoutModel.IsSignedIn)
+            {
+                <h4><span class="__pre-title">Welcome Back</span> @layoutModel.CustomerName</h4>
+                <ul>
+                    @*<li><a href="@Url.Action("MyAccount","MyAccount",new { country = ViewData["Country"].ToString()})" class="e_button" title="@Localizer["Hero_LinkMyAccount"].Value.ToString()">@Localizer["Hero_LinkMyAccount"]</a></li>*@
+                    <li><a href="@Url.Action("Index","OfferHub",new { country = ViewData["Country"].ToString()})" class="e_button" title="@Localizer["Hero_LinkMyAccount"].Value.ToString()">@Localizer["Hero_LinkMyAccount"]</a></li>
+                    @*<li><a href="@Url.Action("Index","OfferHub",new { country = ViewData["Country"].ToString() })" class="e_button --outline" title="@Localizer["Hero_LinkDashboard"].Value.ToString()">@Localizer["Hero_LinkDashboard"]</a></li>*@
+                </ul>
+            }
+            else
+            {
+                <ul>
+                    <li><a href="@Url.Action("Index", "Account", new { country = ViewData["Country"].ToString() })" class="e_button" title="@Localizer["Hero_RegisterLink"].Value.ToString()">@Localizer["Hero_RegisterLink"]</a></li>
+                </ul>
+            }
+        </div>
+        <div class="__video">
+            <video playsinline autoplay muted loop>
+                <source src="~/images/home_hero.mp4" type="video/mp4" />
+            </video>
+        </div>
+    </div>
+</div>
+<!-- c_hero - END -->
+
+@if(whiteLabel.SiteType!=null && Enum.GetName(typeof(SiteType), whiteLabel.SiteType) == "Benefits")
+{
+    @*{%- if site.whitelabel.charity %}*@
+    <section class="c_band --dark">
+        <div class="l_container --narrow">
+            <div class="l_flex --loose">
+                <div class="__column --span-12 --shrink--sm">
+                    <svg class="u_color--action u_margin-bottom--double" viewBox="0 0 24 24" width="6em" height="6em" stroke="currentColor" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 12 20 22 4 22 4 12"></polyline>
+                        <rect x="2" y="7" width="20" height="5"></rect>
+                        <line x1="12" y1="22" x2="12" y2="7"></line>
+                        <path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"></path>
+                        <path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"></path>
+                    </svg>
+                </div>
+                <div class="__column --span-12 --sm">
+                    <h2 class="u_margin-bottom--half">@Localizer["Support"]</h2>
+                    <p class="u_margin-bottom--none">@Html.GetWhiteLabel(@Localizer["SupportText"].Value.ToString(), whiteLabel)</p>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    @*{%- endif %}*@
+}
+
+
+<main class="c_main">
+    <section class="c_band --white --tight">
+        <div class="l_container u_text-align--center u_margin-bottom--s3">
+            <h3 class="u_margin-bottom--none --alternative">@Localizer["MarqueeText"]</h3>
+        </div>
+        <div class="glide --marquee">
+            <div data-glide-el="track" class="glide__track">
+                <ul class="glide__slides">
+                    @foreach (var image in images)
+                    {
+                        if (whiteLabel.Slug != "leyton-orient" || !image.Contains("dominos"))
+                        {
+                            <li class="glide__slide"><img src=@image alt=@System.IO.Path.GetFileNameWithoutExtension(image)></li>
+                        }
+                    }
+                </ul>
+                @*<ul class="glide__slides">
+                    <li class="glide__slide"><img src="/images/PlaceHolder-Merchants/boots.jpg" alt="Boots"></li>
+                    <li class="glide__slide"><img src="/images/PlaceHolder-Merchants/asos.png" alt="ASOS"></li>
+                    <li class="glide__slide"><img src="/images/PlaceHolder-Merchants/body-shop.jpg" alt="The Body Shop"></li>
+                    <li class="glide__slide"><img src="/images/PlaceHolder-Merchants/boohoo.png" alt="boohoo"></li>
+                    <li class="glide__slide"><img src="/images/PlaceHolder-Merchants/bt.jpg" alt="BT"></li>
+                    <li class="glide__slide"><img src="/images/PlaceHolder-Merchants/currys.png" alt="Currys PC World"></li>
+                    @if (whiteLabel.Slug != "leyton-orient")
+                {
+                    <li class="glide__slide"><img src="/images/PlaceHolder-Merchants/dominos.jpg" alt="Dominos"></li>
+                }
+                    <li class="glide__slide"><img src="/images/PlaceHolder-Merchants/guess.png" alt="Guess"></li>
+                    <li class="glide__slide"><img src="/images/PlaceHolder-Merchants/hotels-com.png" alt="Hotels.com"></li>
+                    <li class="glide__slide"><img src="/images/PlaceHolder-Merchants/jd-williams.jpg" alt="JD Williams"></li>
+                    <li class="glide__slide"><img src="/images/PlaceHolder-Merchants/jd.jpg" alt="JD Sports"></li>
+                    <li class="glide__slide"><img src="/images/PlaceHolder-Merchants/papa-johns.png" alt="Papa Johns"></li>
+                    <li class="glide__slide"><img src="/images/PlaceHolder-Merchants/prettylittlething.png" alt="prettylittlething"></li>
+                    <li class="glide__slide"><img src="/images/PlaceHolder-Merchants/sports-direct.jpg" alt="Sports Direct"></li>
+                    <li class="glide__slide"><img src="/images/PlaceHolder-Merchants/tk-maxx.jpg" alt="TK Maxx"></li>
+                    <li class="glide__slide"><img src="/images/PlaceHolder-Merchants/topman.png" alt="TOPMAN"></li>
+                    <li class="glide__slide"><img src="/images/PlaceHolder-Merchants/waitrose.jpg" alt="Waitrose"></li>
+                </ul>*@
+        </div>
+    </div>
+    <!-- glide--marquee - END -->
+</section>
+
+
+
+<section class="c_band" hidden>
+    <div class="l_container">
+        <h2 class="u_text-align--center u_margin-bottom--s4 u_margin-bottom--s5--lg">
+            <span class="__pre-title">@Localizer["PreTitle1"]</span>
+            @Localizer["HeadText1"]
+        </h2>
+        <ol class="c_cashback-process">
+            <li>
+                <h3>@Localizer["Browse"]</h3>
+                @Html.GetWhiteLabel(@Localizer["BrowseText"].Value.ToString(), whiteLabel)
+            </li>
+            <li>
+                <h3>@Localizer["Shop"]</h3>
+                @Localizer["ShopText"]
+            </li>
+            <li>
+                <h3>@Localizer["Cashback"]</h3>
+                @Localizer["CashbackText"]
+            </li>
+            <li class="--highlight">
+                <h3>@Localizer["Invest"]</h3>
+                @Localizer["InvestText"]
+            </li>
+        </ol>
+    </div>
+</section>
+
+<section class="c_band">
+    <div class="l_container">
+        <div class="l_flex --align-end --justify-between">
+            <div class="__column --span-12 --span-12--xl">
+                <h2 class="u_text-align--center u_margin-bottom--s4 u_margin-bottom--s5--lg">
+                    <span class="__pre-title">@Localizer["PreTitle1"]</span>
+                    @Localizer["HeadText1"]
+                </h2>
+                <ol class="c_cashback-process u_margin-bottom--s4 u_margin-bottom--s5--lg u_margin-bottom--none--xl">
+                    <li>
+                        <h3>@Localizer["Browse"]</h3>
+                        @Html.GetWhiteLabel(@Localizer["BrowseText"].Value.ToString(), whiteLabel)
+                    </li>
+                    <li>
+                        <h3>@Localizer["Shop"]</h3>
+                        @Localizer["ShopText"]
+                    </li>
+                    <li>
+                        <h3>@Localizer["Cashback"]</h3>
+                        @Localizer["CashbackText"]
+                    </li>
+                    <li>
+                        <h3>@Localizer["Vouchers"]</h3>
+                        @Localizer["VouchersText"]
+                    </li>
+                    <li>
+                        <h3>@Localizer["localOffer"]</h3>
+                        @Localizer["localOfferText"]
+                    </li>
+                    <li>
+                        <h3>@Localizer["EVouchersGift"]</h3>
+                        @Localizer["EVouchersGiftText"]
+                    </li>
+                    <li>
+                        <h3>@Localizer["EmployeeBenefits"]</h3>
+                        @Localizer["EmployeeBenefitsText"]
+                    </li>
+                    <li>
+                        <h3>@Localizer["PromoteBusiness"]</h3>
+                        @Localizer["PromoteBusinessText"]
+                    </li>
+                </ol>
+            </div>
+            <div class="__column --span-12 --span-5--xl">
+                @if (layoutModel != null && layoutModel.WhiteLabel.Slug == "consumer-rights")
+                {
+                    <img src="/images/blank.png" data-src="/images/info.png" data-srcset="/images/info.png" class="img-responsive imagevh lazy" />
+                }
+                else
+                {
+                        @*
+                            <video width="1280" height="720" controls preload="none" poster="/images/explainer_poster.png">
+                                <source src="/images/explainer.mp4" type="video/mp4">
+                            </video>
+                        *@
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@if (whiteLabel.Slug != "consumer-rights" && isMobile==false)
+{
+    <section class="c_band --dark --apps --spacious">
+        <div class="l_container --mini">
+            <div class="l_flex">
+                <div class="__column --span-12 u_text-align--center">
+                    <h2><span class="__pre-title">@Localizer["AppDownload1"]&hellip;</span>@Localizer["AppDownload2"]</h2>
+                    <p class="u_margin-bottom--s4">@Localizer["AppDownload3"]</p>
+                    <ul class="l_flex --tight --align-center --justify-center">
+                        @if (whiteLabel.Slug == "sport-rewards")
+                        {
+                            <li class="__column --shrink u_margin-bottom--half"><a href="https://apps.apple.com/us/app/exclusive-talksport-rewards/id1547968555" target="_blank" rel="noopener"><img src="/_assets/images/apple_app_store.svg" height="60" width="179" alt="Apple App Store"></a></li>
+                            <li class="__column --shrink u_margin-bottom--half"><a href="https://play.google.com/store/apps/details?id=com.ExclusiveMediaLtd.talkSPORTRewardsApp" target="_blank" rel="noopener"><img src="/_assets/images/google_play_store.svg" height="60" width="179" alt="Google Play Store"></a></li>
+                        }
+                        else
+                        {
+                            <li class="__column --shrink u_margin-bottom--half"><a href="https://apps.apple.com/us/app/exclusive-rewards/id1533082512" target="_blank" rel="noopener"><img src="/_assets/images/apple_app_store.svg" height="60" width="179" alt="Apple App Store"></a></li>
+                            <li class="__column --shrink u_margin-bottom--half"><a href="https://play.google.com/store/apps/details?id=com.ExclusiveMediaLtd.ExclusiveRewardsApp" target="_blank" rel="noopener"><img src="/_assets/images/google_play_store.svg" height="60" width="179" alt="Google Play Store"></a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <img src="/_assets/images/apps_background.jpg" alt="">
+    </section>
+}
+
+
+@if (offerList!=null)
+{
+    <section class="c_band --white">
+        <div class="l_container">
+            <h2 class="u_text-align--center u_margin-bottom--s4 u_margin-bottom--s5--md">Some of our top offers</h2>
+            <div class="l_offer-grid">
+                @foreach (var offer in offerList)
+                {
+                    <div class="__item">
+                        <a href="@Url.Action("Index", "Offers", new {country = @ViewData["Country"], merchantId = @offer.MerchantId, offerId = @offer.OfferId})" class="c_grid-offer">
+                            @if (!string.IsNullOrEmpty(offer.FeatureImage))
+                            {
+                                <img class="__image lazy" src="/images/blank.png" data-src="/Image/GetImage?Path=@offer.FeatureImage" data-srcset="/Image/GetImage?Path=@offer.FeatureImage" alt="@offer.MerchantName">
+                            }
+                            else
+                            {
+                                <img class="__image" />
+                            }
+                            <div class="__content">
+                                @if (!string.IsNullOrEmpty(offer.Logo))
+                                {
+                                    <div class="__logo">
+                                        <img class="lazy" src="/images/blank.png" data-src="/Image/GetImage?Path=@offer.Logo" data-srcset="/Image/GetImage?Path=@offer.Logo" alt="@offer.MerchantName">
+                                    </div>
+                                }
+                                <h2><span>@offer.MerchantName</span>@offer.OfferShortDescription</h2>
+                                <p>@Html.Raw(offer.OfferLongDescription)</p>
+                            </div>
+                        </a>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}
+
+@if (layoutModel == null || !layoutModel.IsSignedIn || !layoutModel.IsDiamondCustomer || (layoutModel.DiamondStatus != "Active" && layoutModel.DiamondStatus != "Pending"))
+{
+    <section class="c_band --dark">
+        <div class="l_container">
+            <div class="l_flex --loose--sm --justify-between --align-center">
+                <div class="__column --span-12 --span-5--lg u_text-align--center u_text-align--left--lg">
+                    <h2><span class="__pre-title">Get Even More Benefits with Our&hellip;</span>@Localizer["Upgrade"]</h2>
+                    <p class="u_margin-bottom--double u_lead">
+                        @Localizer["Sec3C4Description"] @if (!layoutModel.ConsumerRights)
+                                                        {@Html.GetDiamondCost(Localizer["Sec3C4Description1"].Value, layoutModel.DiamondCost)}
+                    </p>
+                    <p class="u_margin-bottom--s5 u_margin-bottom--none--lg"><a href="@Url.Action("DiamondBenefits", "Offers", new {country = ViewData["Country"].ToString()})" class="e_button --small">@Localizer["Find"]</a></p>
+                </div>
+                <div class="__column --span-12 --span-6--lg">
+                    <svg height="0" width="0" style="position:absolute;">
+                        <defs>
+                            <clipPath id="diamond" clipPathUnits="objectBoundingBox">
+                                <path d="M0.777,0 l0.001,0 c0.003,0,0.006,0.001,0.009,0.003 l0,0 c0.002,0.002,0.005,0.004,0.007,0.007 l0,0.001 l0.2,0.311 c0.009,0.013,0.008,0.035,-0.001,0.047 c0,0,0,0.001,-0.001,0.001 l-0.476,0.621 c-0.002,0.002,-0.003,0.004,-0.005,0.005 l0,0 c-0.003,0.002,-0.007,0.004,-0.01,0.004 c-0.004,0,-0.007,-0.001,-0.01,-0.004 l0,0 c-0.002,-0.001,-0.004,-0.003,-0.005,-0.005 l-0.476,-0.621 c0,0,0,-0.001,-0.001,-0.001 c-0.009,-0.013,-0.01,-0.034,-0.001,-0.047 l0.2,-0.311 l0,-0.001 c0.002,-0.003,0.004,-0.005,0.007,-0.007 l0,0 c0.003,-0.002,0.006,-0.003,0.009,-0.003 l0.001,0 l0.554,0" />
+                            </clipPath>
+                        </defs>
+                    </svg>
+
+                    <div class="glide --diamond">
+                        <div data-glide-el="track" class="glide__track">
+                            <ul class="glide__slides">
+                                <li class="glide__slide"><img src="/images/diamond-benefits/diamond_slide_9.jpg" alt="Get access to our local high street deals across the UK"></li>
+                                <li class="glide__slide"><img src="/images/diamond-benefits/diamond_slide_5.jpg" alt="Get an Extra 10% off at Chesire Oaks"></li>
+                                <li class="glide__slide"><img src="/images/diamond-benefits/diamond_slide_6.jpg" alt="Up to 25% off Your Gym Membership"></li>
+                                <li class="glide__slide"><img src="/images/diamond-benefits/diamond_slide_7.jpg" alt="20% off Food and Drink With PubTokens"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+}
+<section class="c_band">
+    <div class="l_container --mini">
+        <div class="u_text-align--center">
+            <h2 class="u_margin-bottom--half">@Localizer["Features"]</h2>
+            <p class="u_lead u_margin-bottom--s4 u_margin-bottom--s5--sm">@Localizer["Sec3P1Tag"]</p>
+        </div>
+    </div>
+    <div class="l_container">
+        <div class="l_feature-grid --boxes">
+            <div class="__item">
+                <div class="c_box c_feature --horizontal">
+                    <svg class="__icon c_feather-icon"><use xlink:href="/images/icons.svg#star"></use></svg>
+                    <div class="__content">
+                        <h3>@Localizer["Sec3C6Title"]</h3>
+                        <p>@Html.GetWhiteLabel(@Localizer["Sec3C6Description"].Value.ToString(), whiteLabel)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="__item">
+                <div class="c_box c_feature --horizontal">
+                    <svg class="__icon c_feather-icon"><use xlink:href="/images/icons.svg#arrow-up-circle"></use></svg>
+                    <div class="__content">
+                        <h3>@Localizer["Sec3C4Title"]</h3>
+                        <p>@Html.GetDiamondCost(Localizer["Sec3C4Description"].Value, layoutModel.DiamondCost)</p>
+                    </div>
+                </div>
+            </div>
+            @*<div class="__item">
+                        <div class="c_box c_feature --horizontal">
+                            <svg class="__icon c_feather-icon"><use xlink:href="/images/icons.svg#trending-up"></use></svg>
+                            <div class="__content">
+                                <h3>@Localizer["Sec3C1Title"]</h3>
+                                <p>@Localizer["Sec3C1Description"]</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="__item">
+                        <div class="c_box c_feature --horizontal">
+                            <svg class="__icon c_feather-icon"><use xlink:href="/images/icons.svg#layout"></use></svg>
+                            <div class="__content">
+                                <h3>@Localizer["Sec3C5Title"]</h3>
+                                <p>@Localizer["Sec3C5Description"]</p>
+                            </div>
+                        </div>
+                    </div>*@
+            <div class="__item">
+                <div class="c_box c_feature --horizontal">
+                    <svg class="__icon c_feather-icon"><use xlink:href="/images/icons.svg#sliders"></use></svg>
+                    <div class="__content">
+                        <h3>@Localizer["Sec3C2Title"]</h3>
+                        <p>@Localizer["Sec3C2Description"]</p>
+                    </div>
+                </div>
+            </div>
+                
+            @if (isMobile==false)
+            {
+                <div class="__item">
+                    <div class="c_box c_feature --horizontal">
+                        <svg class="__icon c_feather-icon"><use xlink:href="/images/icons.svg#alert-triangle"></use></svg>
+                        <div class="__content">
+                            <h3>@Localizer["Sec3C3Title"]</h3>
+                            <p>@Html.GetWhiteLabel(@Localizer["Sec3C3Description"].Value.ToString(), whiteLabel)</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+</main>
+@if (layoutModel.SponsorImages.Count>0)
+{
+    <section class="c_band --white --tight">
+        <div class="l_container">
+            <h3 class="--alternative u_text-align--center u_margin-bottom--s3">@Localizer["OurPartners"]</h3>
+            <ul class="l_logo-grid">
+                @foreach (var item in layoutModel.SponsorImages)
+                {
+                    <li class="__item"><img src="~/_assets/images/WhiteLabels/@layoutModel.WhiteLabel?.Slug/@item.File" alt="@layoutModel.WhiteLabel?.Name"></li>
+                }
+            </ul>
+        </div>
+    </section>
+}

@@ -1,0 +1,326 @@
+﻿@model ExclusiveCard.WebAdmin.ViewModels.MerchantViewModel
+@{
+    ViewBag.Title = "Merchant";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.FormTitle = ViewBag.Name + " Merchant";
+
+}
+@using (Html.BeginForm())
+{
+    <div class="col-md-12" id="mainDiv">
+        @Html.ValidationSummary(false, "", new { @class = "text-danger", autofocus = "autofocus" })
+        <div class="col-md-12 row">
+            <div class="col-md-7 removePadding form-horizontal">
+                @if (Model.Id > 0)
+                {
+                    <div class="form-group row">
+                        @Html.LabelFor(m => m.Id, htmlAttributes: new { @class = "control-label  col-md-5 " })
+                        <div class="col-md-7">
+                            @Html.EditorFor(model => model.Id, new { htmlAttributes = new { @class = "form-control roundedInput", @readonly = "readonly" } })
+                            @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                }
+
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.Name, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-7">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control roundedInput", maxlength = 128 } })
+                        <p class="pull-right navpatterns">(Max limit 128 Characters)</p>
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.ShortDescription, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-7">
+                        @Html.EditorFor(model => model.ShortDescription, new { htmlAttributes = new { @class = "form-control roundedInput", maxlength = 128 } })
+                        <p class="pull-right navpatterns">(Max limit 128 Characters)</p>
+                        @Html.ValidationMessageFor(model => model.ShortDescription, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @*<div class="form-group row">
+                        @Html.LabelFor(m => m.LongDescription, htmlAttributes: new { @class = "control-label col-md-5" })
+                        <div class="col-md-7">
+                            @Html.TextAreaFor(model => model.LongDescription, htmlAttributes: new { @class = "form-control roundedInput txtarea ", @rows = 2, @cols = "", maxlength = 512 })
+                            <p class="pull-right navpattern">(Max limit 512 Characters)</p>
+                            @Html.ValidationMessageFor(model => model.LongDescription, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
+
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.LongDescription, htmlAttributes: new { @class = "control-label col-md-5" })
+
+                    <div class="col-md-7">
+                        @Html.TextAreaFor(model => model.LongDescription, htmlAttributes: new { @class = "form-control summernotelg", maxlength = 8000 })
+                        <p class="pull-right navpattern">(Max limit 8000 Characters)</p>
+                        @Html.ValidationMessageFor(model => model.LongDescription, "", new { @class = "text-danger" })
+
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.Terms, htmlAttributes: new { @class = "control-label col-md-5" })
+
+                    <div class="col-md-7">
+                        @Html.TextAreaFor(model => model.Terms, htmlAttributes: new { @class = "form-control summernoteterms", maxlength = 8000 })
+                        <p class="pull-right navpattern">(Max limit 8000 Characters)</p>
+                        @Html.ValidationMessageFor(model => model.Terms, "", new { @class = "text-danger" })
+
+                    </div>
+
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.WebSite, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-7">
+                        @Html.EditorFor(model => model.WebSite, new { htmlAttributes = new { @class = "form-control roundedInput", maxlength = 512 } })
+                        <p class="pull-right navpatterns">(Max limit 512 Characters)</p>
+                        @Html.ValidationMessageFor(model => model.WebSite, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.FeatureImageOfferText, htmlAttributes: new { @class = "control-label col-md-5 marginTop" })
+                    <div class="col-md-7">
+                        @Html.CheckBoxFor(model => model.FeatureImageOfferText, new { htmlAttributes = new { @class = "form-control roundedInput", maxlength = 512 } })
+                        @Html.ValidationMessageFor(model => model.FeatureImageOfferText, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(m => m.BrandColor, htmlAttributes: new { @class = "control-label col-md-5" })
+                    <div class="col-md-7">
+
+                        @if (!string.IsNullOrEmpty(@Model.BrandColor))
+                        {
+                            @*<input type="color" id="zBrandColor" class="form-control roundedInput" value="@Model.BrandColor" />*@
+                            @Html.EditorFor(model => model.BrandColor, new { htmlAttributes = new { @class = "form-control roundedInput", type = "color" } })
+                        }
+                        else
+                        {
+                            @Html.EditorFor(model => model.BrandColor, new { htmlAttributes = new { @class = "form-control roundedInput", type = "color" } })
+                            @*<input type="color" id="zBrandColor" class="form-control roundedInput" value="#ff0000" />*@
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-1"></div>
+            <div class="col-md-4">
+                <div class="col-md-12">
+                    <center>
+                        <span id="title-names">Merchant Images</span>
+                    </center>
+                    <span id="carouselImage">
+                        @{ @await Html.PartialAsync("_carouselView", Model.MerchantImages); }
+                    </span>
+                </div>
+                <div class="col-md-12">
+                    <center>
+                        <span id="title-names">Disabled Logo</span>
+                    </center>
+                    <span id="disabledImage">
+                        @{
+                            @await Html.PartialAsync("_logo", Model.DisabledLogo);
+                        }
+                    </span>
+                </div>
+
+                <div class="col-md-12">
+                    <center>
+                        <span id="title-names">Feature Image</span>
+                    </center>
+                    <span id="featureImage">
+                        @{
+                            @await Html.PartialAsync("_featureImage", Model.FeatureImage);
+                        }
+                    </span>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="col-md-8 form-group">
+            <span class="col-md-4 subHeaderTitle" id="title-names">Social Media</span>
+        </div>
+        <div class="col-md-7 form-horizontal">
+            <div id="SocialMediaItems">
+                @for (var index = 0; index < Model.SocialMediaLinks.Count; index++)
+                {
+                    var SocialMediaItem = Model.SocialMediaLinks[index];
+                    <div class="form-group row">
+                        @Html.HiddenFor(m => SocialMediaItem.SocialMediaCompanyId)
+                        <label class="control-label col-md-5">@SocialMediaItem.Name:</label>
+                        <div class="col-md-7">
+                            @Html.EditorFor(model => SocialMediaItem.URI, new { htmlAttributes = new { @class = "form-control roundedInput", id = $"SocialMediaLinks[{index}]", maxlength = 512 } })
+                            <p class="pull-right navpatterns">(Max limit 512 Characters)</p>
+                            @Html.ValidationMessageFor(model => SocialMediaItem.URI, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                }
+            </div>
+
+
+
+            <div id="title-names">Private Contact Details </div>
+            <br />
+            @Html.HiddenFor(model => model.ContactDetailId)
+            <div class="form-group row">
+                @Html.LabelFor(m => m.LandlinePhone, htmlAttributes: new { @class = "control-label col-md-5" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.LandlinePhone, new { htmlAttributes = new { @class = "form-control roundedInput", maxlength = 16 } })
+                    <p class="pull-right navpatterns">(Max limit 16 Characters)</p>
+                    @Html.ValidationMessageFor(model => model.LandlinePhone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(m => m.MobilePhone, htmlAttributes: new { @class = "control-label col-md-5" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.MobilePhone, new { htmlAttributes = new { @class = "form-control roundedInput", maxlength = 16 } })
+                    <p class="pull-right navpatterns">(Max limit 16 Characters)</p>
+                    @Html.ValidationMessageFor(model => model.MobilePhone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(m => m.EmailAddress, htmlAttributes: new { @class = "control-label col-md-5" })
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "form-control roundedInput", maxlength = 512 } })
+                    <p class="pull-right navpatterns">(Max limit 512 Characters)</p>
+                    @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-8 form-group">
+            <span class="col-md-4 subHeaderTitle" id="title-names">Branches</span>
+        </div>
+        <div class="form-group  col-md-12">
+            <div class="col-md-6"></div>
+
+            <div class="col-md-6">
+                <button type="button" id="btnAddBranch" class="btn has-spinner pull-right">
+                    Add Branch<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+                </button>
+            </div>
+        </div>
+        @if (Model.MerchantBranchList != null && Model.MerchantBranchList.ListofBranches.Any())
+        {
+            <div class="col-md-8" id="divBranchList">
+                @{
+                    @await Html.PartialAsync("_merchantbranchList", Model.MerchantBranchList);
+                }
+            </div>
+        }
+
+        <div class="form-group  col-md-12">
+            <div class="form-group col-md-6 ">
+                <button type="button" id="btnCancel" class="btn">Cancel</button>
+            </div>
+            <div class="form-group col-md-6">
+                <button type="button" id="btnSaveMerchants" class="btn has-spinner pull-right">
+                    Save<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <input type="file" style="display:none" name="Image-file" id="Image-file" accept=".jpg,.tif,.jpeg,.png,.gif" onchange="show(this, 1)">
+    </div>
+    <div class="form-group row">
+        <input type="file" style="display:none" name="Disabled-file" id="Disabled-file" accept=".jpg,.tif,.jpeg,.png,.gif" onchange="show(this, 2)">
+    </div>
+    <div class="form-group row">
+        <input type="file" style="display:none" name="Feature-file" id="Feature-file" accept=".jpg,.tif,.jpeg,.png,.gif" onchange="show(this, 3)">
+    </div>
+    <div id="dialog-confirm" title="Delete Confirmation">
+        <p id="infoMessage"></p>
+    </div>
+}
+<script>
+    var fileExtension = ['jpeg', 'jpg', 'png', 'tif', 'gif'];
+    function addImage() {
+        $('#Image-file').click();
+    }
+    function addFeatureImage() {
+        $('#Feature-file').click();
+    }
+    function addDisabledImage() {
+        $('#Disabled-file').click();
+    }
+    function show(input, type) {
+        // $("#wait").show();
+        if (input.files && input.files[0]) {
+            var maxImageSize = 50;
+            if (type === 1 && $.inArray($("#Image-file").val().split('.').pop().toLowerCase(), fileExtension) === -1) {
+                $("#Image-file").val("");
+                toastr.error("Only .jpeg, .jpg, .png, .tif, .gif formats are allowed.", "Invalid File Format");
+            } else if (type === 2 && $.inArray($("#Disabled-file").val().split('.').pop().toLowerCase(), fileExtension) === -1) {
+                $("#Disabled-file").val("");
+                toastr.error("Only .jpeg, .jpg, .png, .tif, .gif formats are allowed.", "Invalid File Format");
+            } else if (type === 3 && $.inArray($("#Feature-file").val().split('.').pop().toLowerCase(), fileExtension) === -1) {
+                $("#Feature-file").val("");
+                toastr.error("Only .jpeg, .jpg, .png, .tif, .gif formats are allowed.", "Invalid File Format");
+            }
+            else if (type === 1 && (input.files[0].size / 1024 / 1024) > maxImageSize) {
+                $("#Image-file").val("");
+                toastr.error("File size has exceeded it max limit of " + maxImageSize + " MB");
+            }
+            else if (type === 2 && (input.files[0].size / 1024 / 1024) > maxImageSize) {
+                $("#Disabled-file").val("");
+                toastr.error("File size has exceeded it max limit of " + maxImageSize + " MB");
+            }
+            else if (type === 3 && (input.files[0].size / 1024 / 1024) > maxImageSize) {
+                $("#Feature-file").val("");
+                toastr.error("File size has exceeded it max limit of " + maxImageSize + " MB");
+            }
+            else {
+                //var filerdr = new FileReader();
+                //filerdr.onload = function (e) {
+
+                //$('#Image-file').attr('src', e.target.result);
+                //if (e.target.result !== undefined && e.target.result !== null) {
+                //    //logic
+                //}
+                //}
+                //filerdr.readAsDataURL(input.files[0]);
+                var id = $("#Id").val();
+                if (type === 1) {
+                    Merchant.addMerchantImage(id, input.files[0]);
+                } else if (type === 2) {
+                    Merchant.addMerchantDisabledLogo(id, input.files[0]);
+                } else if (type === 3) {
+                    Merchant.addMerchantFeatureImage(id, input.files[0]);
+                }
+            }
+        }
+        //$(".spinner").hide();
+        // $("#wait").hide();
+    }//MarchantImage
+</script>
+@section Scripts
+    {
+    <script src="~/js/Exclusive/merchant.js"></script>
+    <script type="text/javascript">
+        Merchant.setUpEvents();
+        Merchant.initialiseFormData();
+        Merchant.registerSummernote();
+        //$("#BrandColor").shieldColorPicker({
+        //    value: "#faf1f1",
+        //    showLetter: true
+        //});
+
+         @*if ("@ViewBag.Name" === "Add") {
+             //$("#btnAddBranch").attr("disabled", true);
+        }
+        //else {
+        //    //$("#btnAddBranch").removeAttr("disabled");
+        //}*@
+    </script>
+}

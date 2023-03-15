@@ -1,0 +1,94 @@
+﻿@model List<ExclusiveCard.Services.Models.DTOs.Public.OfferSummary>
+@inject IViewLocalizer Localizer
+<center>
+    <div id="myCarousels" class="carousel slide carousel-v1">
+        <div class="carousel-inner neweffect">
+
+            @for (var i = 0; i < Model.Count; i++)
+            {
+                if (i == 0)
+                {
+                    <div class="item active imgmvt pointer" onclick="window.location.href='@Url.Action("Index", "Offers", new { country=@ViewData["Country"], merchantId = Model[i].MerchantId, offerId = @Model[i].OfferId })'">
+                        <br />
+                        @if (!string.IsNullOrEmpty(@Model[i].MerchantLogoPath))
+                        {
+                            <img src="/images/blank.png" data-src="/Image/GetImage/?path=@Model[i].MerchantLogoPath"  data-srcset="/Image/GetImage/?path=@Model[i].MerchantLogoPath" class="img-responsive lazy">
+                        }
+                        else
+                        {
+                            <center><h5>@Model[i].MerchantName</h5></center>
+                        }
+                            <div class="new-row">
+                                <div class="half-row ad-heading">
+                                    <br />
+                                    <span class="ad-desc">@Model[i].OfferHeadline</span>
+                                </div>
+                                @{
+                                    if (@Model[i].TimePending > 60)
+                                    {
+                                        decimal hour = Math.Round(Convert.ToDecimal(@Model[i].TimePending / 60));
+                                        <div class="half-row ad-time ">@hour Hour<br /> @Localizer["Remaining"]</div>
+                                    }
+                                    else if (@Model[i].TimePending > 1 || @Model[i].TimePending == 0)
+                                    {
+                                        <div class="half-row ad-time ">@Model[i].TimePending Minutes<br /> @Localizer["Remaining"]</div>
+                                    }
+                                    else if (@Model[i].TimePending == 1)
+                                    {
+                                        <div class="half-row ad-time ">@Model[i].TimePending Minute<br /> @Localizer["Remaining"]</div>
+                                    }
+                                }
+                            </div>
+                    </div>
+                }
+                else
+                {
+                    <div class="item imgmvt pointer" onclick="window.location.href='@Url.Action("Index", "Offers", new { country=@ViewData["Country"], merchantId = Model[i].MerchantId, offerId = @Model[i].OfferId })'">
+                        <br />
+                        @if (!string.IsNullOrEmpty(@Model[i].MerchantLogoPath))
+                        {
+                            <img src="/images/blank.png" data-src="/Image/GetImage/?path=@Model[i].MerchantLogoPath"  data-srcset="/Image/GetImage/?path=@Model[i].MerchantLogoPath" class="img-responsive lazy">
+                        }
+                        else
+                        {
+                            <center><h5>@Model[i].MerchantName</h5></center>
+                        }
+                        <div class="new-row">
+                            <div class="half-row ad-heading">
+                                <br />
+                                <span class="ad-desc">@Model[i].OfferHeadline</span>
+                            </div>
+                            @{
+                                if (@Model[i].TimePending > 60)
+                                {
+                                    decimal hour = Math.Round(Convert.ToDecimal(@Model[i].TimePending / 60));
+                                    <div class="half-row ad-time ">@hour Hour<br /> @Localizer["Remaining"]</div>
+                                }
+                                else if (@Model[i].TimePending > 1 || @Model[i].TimePending == 0)
+                                {
+                                    <div class="half-row ad-time ">@Model[i].TimePending Minutes<br /> @Localizer["Remaining"]</div>
+                                }
+                                else if (@Model[i].TimePending == 1)
+                                {
+                                    <div class="half-row ad-time ">@Model[i].TimePending Minute<br /> @Localizer["Remaining"]</div>
+                                }
+                            }
+                        </div>
+                    </div>
+                }
+            }
+
+        </div>
+        @if (@Model.Count > 1)
+        {
+            <div class="carousel-arrow">
+                <a class="left carousel-control" href="#myCarousels" data-slide="prev">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                <a class="right carousel-control" href="#myCarousels" data-slide="next">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+        }
+    </div>
+</center>

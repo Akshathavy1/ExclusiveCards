@@ -1,0 +1,129 @@
+﻿@model IEnumerable<ExclusiveCard.WebAdmin.ViewModels.RegistrationCodesSummary>
+@Html.ValidationSummary(false, "", new { @class = "text-danger", autofocus = "autofocus" })
+<div class="form-group row">
+    <div>
+        <h1 class="title-container" id="title-name">Registration Codes</h1>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="col-md-9 table-reg-code">
+        <thead>
+            <tr class="table-line">
+                <th class="reg-code-heading">Code Type</th>
+                <th class="reg-code-heading">Valid From</th>
+                <th class="reg-code-heading">Valid To</th>
+                <th class="reg-code-heading">Total Number</th>
+                <th class="reg-code-heading">Download</th>
+                <th class="reg-code-heading">URL</th>
+                <th class="reg-code-heading">Registration Code</th>
+            </tr>
+            @foreach (var item in @Model)
+            {
+                <tr class="table-line">
+
+                    @if (item.ListOfRegistrationCodes.Count == 1)
+                    {
+                        <td class="reg-code">Shared</td>
+                    }
+                    else if (item.ListOfRegistrationCodes.Count == 0)
+                    {
+                        <td class="reg-code">Unique Code</td>
+                    }
+                    else
+                    {
+                        <td class="reg-code"></td>
+                    }
+
+                    <td class="reg-code">@item.ValidFrom.Substring(0, 10).Replace('-', '/')</td>
+                    <td class="reg-code">@item.ValidTo.Substring(0, 10).Replace('-', '/')</td>
+                    <td class="reg-code total-number">@item.NumberOfCodes</td>
+                    <td class="reg-code">
+                        @if (item.ListOfRegistrationCodes.Count == 0)
+                        {
+                            <button class="btnUrl download-icon" onclick="window.location.href = '@Url.Action("DownloadRegistrationCode", "Plans", new { registrationSummaryId = @item.Id, membershipPlanId = @item.MembershipPlanId, storagePath = @item.StoragePath })'">
+                                <i class="fa fa-download" aria-hidden="true" id="exportCsv"></i>
+                            </button>
+                        }
+                    </td>
+                    <td class="reg-code">
+                        @if (item.ListOfRegistrationCodes.Count == 1)
+                        {
+                            <button class="btnUrl" onclick="urlClick(@item.Id)" data-value="@item.Id">[URL]</button>
+                        }
+                    </td>
+                    <td class="reg-code">
+                        @if (item.ListOfRegistrationCodes.Count == 1)
+                        {
+                            <button class="btnUrl" style="color:#212529" onclick="clickToCopy(@item.Id)" data-value="@item.Id">@item.ListOfRegistrationCodes[@item.ListOfRegistrationCodes.Count - 1].RegistartionCode</button>
+                        }
+                    </td>
+                </tr>
+            }
+        </thead>
+    </table>
+</div>
+
+<div class="col-md-12 add-new-button-container">
+    <div class="col-md-9"></div>
+    <button type="button" id="addNewRegCodeBtn" class="col-md-3 btn float-left add-button">Add New Registration Codes</button>
+</div>
+
+<div id="createNewRegistrationCodeContainer" style="display: none">
+    @using (Html.BeginForm("SaveRegistrationCode", "Plans", FormMethod.Post, new { id = "formSaveRegCode" }))
+    {
+        <div class="form-horizontal col-md-12 row mb-3">
+            <label class="control-label code-label col-md-2">Codes Available</label>
+            <div class="col-md-3 from-container row">
+                <label class="reg-code-label pr-2">From:</label>
+                <input type="text" id="validFrom" readonly class="custom-datepicker-input">
+                <button id="validIconFrom" class="date-picker-icon" type="button"><i class="material-icons mt-1">calendar_today</i></button>
+            </div>
+            <div class="col-md-3 from-container row">
+                <label class="reg-code-label pr-2">To:</label>
+                <input type="text" id="validTo" readonly class="custom-datepicker-input">
+                <button id="validIconTo" class="date-picker-icon" type="button"><i class="material-icons mt-1">calendar_today</i></button>
+            </div>
+        </div>
+
+        <div class="form-horizontal col-md-12 row mb-3">
+            <label class="control-label code-label col-md-2">Code Type</label>
+            <div class="col-md-3 code-type-container row">
+                <input type="radio" name="codeType" class="codeType" value="unique" />
+                <span class="alternative pl-2">Unique Codes</span>
+            </div>
+            <div class="col-md-3 from-container row">
+                <input type="radio" name="codeType" class="codeType" value="shared" />
+                <span class="alternative pl-2">Shared Code</span>
+            </div>
+        </div>
+
+        <div id="NumberOfCodes" style="display:none" class="form-horizontal col-md-12 row mt-3">
+            <label class="control-label code-label col-md-2">Number of Codes</label>
+            <input type="number" id="numberOfCodes" class="form-control roundedInput col-md-1 allow-numeric pad-13">
+            <div id="errorMessageCode" class="alternative error-text ml-3" style="display:none;">Enter between 1 and 10,000.</div>
+        </div>
+
+        <div id="NumberOfUses" style="display:none" class="form-horizontal col-md-12 row mt-3">
+            <label class="control-label code-label col-md-2">Number of Uses</label>
+            <input type="number" id="numberOfUses" class="form-control roundedInput col-md-3 allow-numeric pad-13">
+            <div id="errorMessageUses" class="alternative error-text ml-3" style="display:none;">Enter between 1 and 10,000.</div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="col-md-7 black-info-container" style="margin:20px 0 0 30px">
+                Unique will generate multiple codes that can only be used once each, shared will generate a single
+                code than can be used multiple times
+            </div>
+        </div>
+
+        <div class="col-md-9 mt-5">
+            <button id="btnSaveRegCode" type="submit" class="mini-btn save has-spinner pull-right">
+                Save<span id="fileSpinner"><i class="fa fa-spinner fa-spin"></i></span>
+            </button>
+            <button type="button" id="cancelRegistrationCode" class="mini-btn has-spinner pull-right">
+                Cancel<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+            </button>
+        </div>
+    }
+</div>

@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Home Page" xml:space="preserve">
+    <value>T_Home Page</value>
+  </data>
+  <data name="Browse" xml:space="preserve">
+    <value>T_Browse</value>
+  </data>
+  <data name="BrowseText" xml:space="preserve">
+    <value>T_Search thousands of your favourite retailers with {{Name}}.</value>
+  </data>
+  <data name="Cashback" xml:space="preserve">
+    <value>T_Cashback</value>
+  </data>
+  <data name="CashbackText" xml:space="preserve">
+    <value>T_Sit tight and your cashback will arrive in your account shortly.</value>
+  </data>
+  <data name="AppDownload1" xml:space="preserve">
+    <value>T_Browse on the go</value>
+  </data>
+  <data name="AppDownload2" xml:space="preserve">
+    <value>T_Download our Phone Apps</value>
+  </data>
+  <data name="AppDownload3" xml:space="preserve">
+    <value>T_Available on both iOS and Android. Browse offers and vouchers on the go and get access to your Rewards Account directly from within the app!</value>
+  </data>
+  <data name="Features" xml:space="preserve">
+    <value>T_Exclusive Benefits</value>
+  </data>
+  <data name="HeadText1" xml:space="preserve">
+    <value>T_We Do Things Differently</value>
+  </data>
+  <data name="HeadText2" xml:space="preserve">
+    <value>T_It Grows in Your Exclusive Investment T_Account</value>
+  </data>
+  <data name="Invest" xml:space="preserve">
+    <value>T_Invest</value>
+  </data>
+  <data name="InvestText" xml:space="preserve">
+    <value>T_We can invest your cashback so you can sit back and watch it grow!</value>
+  </data>
+  <data name="MarqueeText" xml:space="preserve">
+    <value>T_Cashback and Voucher Codes from thousands of retailers</value>
+  </data>
+  <data name="More" xml:space="preserve">
+    <value>T_More!</value>
+  </data>
+  <data name="PreTitle1" xml:space="preserve">
+    <value>T_Not Your Average Cashback…</value>
+  </data>
+  <data name="PreTitle2" xml:space="preserve">
+    <value>T_Money Doesn't Grow on Trees…</value>
+  </data>
+  <data name="Sec2List1" xml:space="preserve">
+    <value>T_Open Your Investment</value>
+  </data>
+  <data name="Sec2List2" xml:space="preserve">
+    <value>T_Alternatively open your</value>
+  </data>
+  <data name="Sec2List4" xml:space="preserve">
+    <value>T_Thousands</value>
+  </data>
+  <data name="Sec3C1Description" xml:space="preserve">
+    <value>T_A percentage of every purchase ends up in your investment account, earning you money as you sleep. Shop as normal and watch your account balance grow.</value>
+  </data>
+  <data name="Sec3C1Title" xml:space="preserve">
+    <value>T_Invest Without Spending a Penny</value>
+  </data>
+  <data name="Sec3C2Description" xml:space="preserve">
+    <value>T_You can leave your cashback in your cashback account and watch it grow or withdraw your free money at any time into your own personal bank account.</value>
+  </data>
+  <data name="Sec3C2Title" xml:space="preserve">
+    <value>T_Complete Flexibility</value>
+  </data>
+  <data name="Sec3C3Description" xml:space="preserve">
+    <value>T_Don’t forget to download our mobile apps for both iOS and Android so that you can shop, save and earn at any time whilst on the go.</value>
+  </data>
+  <data name="Sec3C3Title" xml:space="preserve">
+    <value>T_Our Mobile Phone Apps</value>
+  </data>
+  <data name="Sec3C4Description" xml:space="preserve">
+    <value>T_Gain access to our Diamond Package deals including our regional and national high street offers</value>
+  </data>
+  <data name="Sec3C4Title" xml:space="preserve">
+    <value>T_Membership Upgrade Option</value>
+  </data>
+  <data name="Sec3C5Description" xml:space="preserve">
+    <value>T_Login to your personal dashboard to see where your money is currently invested.</value>
+  </data>
+  <data name="Sec3C5Title" xml:space="preserve">
+    <value>T_Investment Dashboard</value>
+  </data>
+  <data name="Sec3C6Description" xml:space="preserve">
+    <value>T_You can create your free {{Name}} account and start gaining the benefits straight away.</value>
+  </data>
+  <data name="Sec3C6Title" xml:space="preserve">
+    <value>T_Totally Free to Join</value>
+  </data>
+  <data name="Sec3P1Tag" xml:space="preserve">
+    <value>T_Investing in your future has never been so simple!</value>
+  </data>
+  <data name="Sec4Description" xml:space="preserve">
+    <value>T_{{Name}} bring you the very best cashback deals and offers from thousands of top brands.</value>
+  </data>
+  <data name="Sec4Title" xml:space="preserve">
+    <value>T_Familiar Brands</value>
+  </data>
+  <data name="Shop" xml:space="preserve">
+    <value>T_Shop</value>
+  </data>
+  <data name="ShopText" xml:space="preserve">
+    <value>T_Simply click our "Get Cashback" buttons then just shop like you normally would.</value>
+  </data>
+  <data name="Title2P1Tag" xml:space="preserve">
+    <value>T_Your investment account can beat the average deposit account interest rate of &lt;span class="c_tooltip" title="thisismoney.co.uk. National average paid by banks July 2018 - July 2019"&gt;0.83%&lt;/span&gt; by returning almost &lt;span class="c_tooltip" title="TAM Asset Management Ltd. 29.39% over 5 years from 1/10/14 - 30/09/19"&gt;6%&lt;/span&gt; per year, whilst offering you much more flexibility and freedom over your cash.</value>
+  </data>
+  <data name="BtnBrowse" xml:space="preserve">
+    <value>T_Browse Latest Deals</value>
+  </data>
+  <data name="Title2P2Tag" xml:space="preserve">
+    <value>T_Your cashback investment account is yours to do with as you choose. Withdraw, invest and even top it up with your own savings to see your cash grow faster.</value>
+  </data>
+  <data name="Hero_title" xml:space="preserve">
+    <value>T_Make Life Rewarding</value>
+  </data>
+  <data name="Hero_titleTS" xml:space="preserve">
+    <value>T_Exclusive Rewards Supporting Sport Together With </value>
+  </data>
+  <data name="Hero_description" xml:space="preserve">
+    <value>T_The rewards provider with a difference.</value>
+  </data>
+  <data name="Hero_descriptionTS" xml:space="preserve">
+    <value>&lt;strong&gt;T_Support Sport - While You Shop&lt;/strong&gt;</value>
+  </data>
+  <data name="Hero_linkToOfferHub" xml:space="preserve">
+    <value>T_View Latest Offers</value>
+  </data>
+  <data name="Hero_RegisterLink" xml:space="preserve">
+    <value>T_Accept Invite</value>
+  </data>
+  <data name="Hero_ForBusinessesLink" xml:space="preserve">
+    <value>T_Inform Your Employer</value>
+  </data>
+  <data name="BtnLatest" xml:space="preserve">
+    <value>T_Browse Latest Deals</value>
+  </data>
+  <data name="Find" xml:space="preserve">
+    <value>T_Find Out More</value>
+  </data>
+  <data name="Join" xml:space="preserve">
+    <value>T_Join {{Name}}</value>
+  </data>
+  <data name="Upgrade" xml:space="preserve">
+    <value>T_Diamond Account Upgrade</value>
+  </data>
+  <data name="Sec2List1Text" xml:space="preserve">
+    <value>T_Simply enter your National Insurance Number on your {{Name}} account page at any time and we take care of everything else.</value>
+  </data>
+  <data name="Sec2List2Text" xml:space="preserve">
+    <value>T_All cashback earned will then be transferred directly into your investment account as soon as it is cleared</value>
+  </data>
+  <data name="Sec2List3Text" xml:space="preserve">
+    <value>T_Profit on investment accounts over the last five years.</value>
+  </data>
+  <data name="Sec2List4Text" xml:space="preserve">
+    <value>T_Merchants offering cashback with {{Name}}.</value>
+  </data>
+  <data name="Sec2List5Text" xml:space="preserve">
+    <value>T_Average cashback earnt per person per year.</value>
+  </data>
+  <data name="Sec2List6Text" xml:space="preserve">
+    <value>T_Only £10 needed to open an investment account.</value>
+  </data>
+  <data name="Sec2List1_sub1" xml:space="preserve">
+    <value>T_Account When You Reach</value>
+  </data>
+  <data name="Sec2List1_sub2" xml:space="preserve">
+    <value>T_£10.00 Of Cashback</value>
+  </data>
+  <data name="Sec2List2_sub1" xml:space="preserve">
+    <value>T_investment account at sign up</value>
+  </data>
+  <data name="Sec2List2_sub2" xml:space="preserve">
+    <value>T_by making a £10.00 deposit.</value>
+  </data>
+  <data name="Hero_LinkDashboard" xml:space="preserve">
+    <value>T_View Investment Dashboard</value>
+  </data>
+  <data name="Hero_LinkMyAccount" xml:space="preserve">
+    <value>T_Browse Now</value>
+  </data>
+  <data name="Title2P3Tag" xml:space="preserve">
+    <value>T_Past performance is not a guide to future returns and the value of investments and the income from it, may go down as well as up and may fall below the amount initially invested.</value>
+  </data>
+  <data name="Title2P4Tag" xml:space="preserve">
+    <value>T_Further Investment Details</value>
+  </data>
+  <data name="Sec3C4Description1" xml:space="preserve">
+    <value>T_for only £{{DiamondCost}} per year!</value>
+  </data>
+  <data name="Vouchers" xml:space="preserve">
+    <value>T_Vouchers</value>
+  </data>
+  <data name="VouchersText" xml:space="preserve">
+    <value>T_We also offer daily voucher codes and promotions to save you even more.</value>
+  </data>
+  <data name="localOffer" xml:space="preserve">
+    <value>T_Local Deals</value>
+  </data>
+  <data name="localOfferText" xml:space="preserve">
+    <value>T_Save hundreds of pounds a year with our local high street deals.</value>
+  </data>
+  <data name="OurPartners" xml:space="preserve">
+    <value>T_Our Partners</value>
+  </data>
+  <data name="TALKSPORT" xml:space="preserve">
+    <value>talkSPORT</value>
+  </data>
+  <data name="EmployeeBenefits" xml:space="preserve">
+    <value>T_Employee Benefits</value>
+  </data>
+  <data name="EmployeeBenefitsText" xml:space="preserve">
+    <value>T_Give full annual membership to your employees as a gift. &lt;a href="https://www.cognitoforms.com/ExclusiveRewards1/corporatemembershiporderform" target="_blank"&gt;Contact Us&lt;/a&gt;</value>
+  </data>
+  <data name="EVouchersGift" xml:space="preserve">
+    <value>T_E Vouchers &amp; Gift Cards</value>
+  </data>
+  <data name="EVouchersGiftText" xml:space="preserve">
+    <value>T_Simply spend as cash in store or send to a friend as a gift.</value>
+  </data>
+  <data name="PromoteBusiness" xml:space="preserve">
+    <value>T_Promote Your Business</value>
+  </data>
+  <data name="PromoteBusinessText" xml:space="preserve">
+    <value>T_Advertise your business for FREE both regionally and nationally.&lt;br&gt;&lt;a href="https://www.cognitoforms.com/ExclusiveRewards1/offerconfirmationform" target="_blank"&gt;Contact Us&lt;/a&gt;</value>
+  </data>
+  <data name="Support" xml:space="preserve">
+    <value>T_Thank You for Your Support</value>
+  </data>
+  <data name="SupportText" xml:space="preserve">
+    <value>T_As a member of {{Name}} you will be showing your support for &lt;a href="{{CharityUrl}}" target="_blank" rel="noopener"&gt;{{CharityName}}&lt;/a&gt; by donating &lt;span class="c_tooltip" title="Actual percentage might fluctuate depending on your account status. We always guarantee that 100% of the cashback earned will be received by you and your beneficiary."&gt;30%&lt;/span&gt; of the cashback you earn from transactions. You will be able to see how much you have donated so far on your account page. We very much appreciate your generous contribution and we hope you enjoy all of the benefits that we are offering via our platform.</value>
+  </data>
+</root>

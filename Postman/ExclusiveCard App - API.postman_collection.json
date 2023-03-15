@@ -1,0 +1,354 @@
+{
+	"info": {
+		"_postman_id": "d8ac8ffd-d692-4faf-8da5-da2e2334b8b6",
+		"name": "ExclusiveCard App - API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Registration and Login",
+			"item": [
+				{
+					"name": "RegisterByCode",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"AppId\":\"67759d99-772b-4d53-af65-3ef714285594\",\"UserName\":null,\"Password\":\"DANNY2018\"}"
+						},
+						"url": {
+							"raw": "https://exclusivecard.co.uk/api/user/register/",
+							"protocol": "https",
+							"host": [
+								"exclusivecard",
+								"co",
+								"uk"
+							],
+							"path": [
+								"api",
+								"user",
+								"register",
+								""
+							]
+						},
+						"description": "."
+					},
+					"response": []
+				},
+				{
+					"name": "CreateAccount",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"AppId\":\"67759d99-772b-4d53-af65-3ef714285594\"\n\t,\"Token\":\"c95114e7-148a-486f-bfc3-bef1d929576d\"\n\t,\"Forename\":\"Joe\"\n\t,\"Surname\":\"Testson\"\n\t,\"Email\":\"test13@ijustwantanapp.com\"\n\t,\"Password\":\"1App4u\"\n\t,\"Address1\":\"1 High Street\"\n\t,\"Town\":\"High Town\"\n\t,\"County\":\"Merseyside\"\n\t,\"Postcode\":\"L39 1AB\"\n\t,\"CountryCode\":\"UK\"\n\t,\"MarketingPreferences\":[\"True\", \"False\"]\n}\n"
+						},
+						"url": {
+							"raw": "https://exclusivecard.co.uk/api/user/account/",
+							"protocol": "https",
+							"host": [
+								"exclusivecard",
+								"co",
+								"uk"
+							],
+							"path": [
+								"api",
+								"user",
+								"account",
+								""
+							]
+						},
+						"description": "Creates a new Exclusive Card account "
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"AppId\":\"67759d99-772b-4d53-af65-3ef714285594\"\n\t,\"UserName\":\"ian.barber@ijustwantanapp.com\"\n\t,\"Password\":\"1App4u\"\n}"
+						},
+						"url": {
+							"raw": "https://exclusivecard.co.uk/api/user/login/",
+							"protocol": "https",
+							"host": [
+								"exclusivecard",
+								"co",
+								"uk"
+							],
+							"path": [
+								"api",
+								"user",
+								"login",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validate Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"AppId\":\"67759d99-772b-4d53-af65-3ef714285594\"\n\t,\"Token\": \"30618865-893d-4e49-945a-a32a0189e22c\"\n\t,\"UserName\":\"ian.barber@ijustwantanapp.com\"\n\n}"
+						},
+						"url": {
+							"raw": "https://exclusivecard.co.uk/api/user/login/validate/",
+							"protocol": "https",
+							"host": [
+								"exclusivecard",
+								"co",
+								"uk"
+							],
+							"path": [
+								"api",
+								"user",
+								"login",
+								"validate",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Deals",
+			"item": [
+				{
+					"name": "Deal Search",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"AppId\":\"67759d99-772b-4d53-af65-3ef714285594\"\n\t,\"DealId\":0\n\t,\"Category\":null\n\t,\"Keyword\":\"Ben\"\n\t,\"Location\":null\n\t,\"UserName\":\"ian.barber@ijustwantanapp.com\"\n\t,\"UserToken\":\"30618865-893d-4e49-945a-a32a0189e22c\"\n\t,\"PageNumber\":1\n\t,\"PageSize\":20\n}\n"
+						},
+						"url": {
+							"raw": "https://exclusive.cards/api/deals/",
+							"protocol": "https",
+							"host": [
+								"exclusive",
+								"cards"
+							],
+							"path": [
+								"api",
+								"deals",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Deal",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"AppId\":\"67759d99-772b-4d53-af65-3ef714285594\"\n\t,\"DealId\":2654\n\t,\"Category\":null\n\t,\"Keyword\":null\n\t,\"Location\":null\n\t,\"UserName\":\"ian.barber@ijustwantanapp.com\"\n\t,\"UserToken\":\"30618865-893d-4e49-945a-a32a0189e22c\"\n\t,\"PageNumber\":1\n\t,\"PageSize\":20\n}"
+						},
+						"url": {
+							"raw": "https://exclusive.cards/api/deal/",
+							"protocol": "https",
+							"host": [
+								"exclusive",
+								"cards"
+							],
+							"path": [
+								"api",
+								"deal",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Partner",
+			"item": [
+				{
+					"name": "PartnerLogin",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Referer",
+								"value": "ijwaa.com",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://localhost:44325/api/partner/Login?userName=TestUser637199779624986851&password=Password1!",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44325",
+							"path": [
+								"api",
+								"partner",
+								"Login"
+							],
+							"query": [
+								{
+									"key": "userName",
+									"value": "TestUser637199779624986851"
+								},
+								{
+									"key": "password",
+									"value": "Password1!"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CustomerSignOn",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJUZXN0VXNlcjYzNzE5OTc3OTYyNDk4Njg1MSIsInJvbGUiOiJQYXJ0bmVyQVBJIiwibmJmIjoxNTg0NjA1NDIwLCJleHAiOjE1ODQ2MDkwMjAsImlhdCI6MTU4NDYwNTQyMCwiaXNzIjoiaHR0cHM6Ly9leGNsdXNpdmVyZXdhcmRzLmNvLnVrIiwiYXVkIjoibG9jYWxob3N0OjQ0MzI1In0.63XAlHMthQNis0Grq_akLp4Os1uF2x6pcA89de67KYo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Referer",
+								"value": "ijwaa.com",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:44325/api/partner/Customer/SignOn?customerUserName=newuser2@mctest.com",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44325",
+							"path": [
+								"api",
+								"partner",
+								"Customer",
+								"SignOn"
+							],
+							"query": [
+								{
+									"key": "customerUserName",
+									"value": "newuser2@mctest.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CustomerCreateAccount",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiJUZXN0VXNlcjYzNzE5OTc3OTYyNDk4Njg1MSIsInJvbGUiOiJQYXJ0bmVyQVBJIiwibmJmIjoxNTg0NTU1NDI3LCJleHAiOjE1ODQ1NTkwMjcsImlhdCI6MTU4NDU1NTQyNywiaXNzIjoiaHR0cHM6Ly9leGNsdXNpdmVyZXdhcmRzLmNvLnVrIiwiYXVkIjoibG9jYWxob3N0OjQ0MzI1In0.ETr_YBwFMCut2PTbKeFZQLgmkH14RwBFFEg8DtAt5sQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Referer",
+								"type": "text",
+								"value": "ijwaa.com",
+								"disabled": true
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"Username\": \"newuser2@mctest.com\",\n    \"Customer\": {\n        \"Title\": \"Miss\",\n        \"Forename\": \"Alice\",\n        \"Surname\": \"Tester\",\n        \"DateOfBorth\": \"1980-12-01\",\n        \"MarketingNewsLetter\": false,\n        \"MarketingThirdParty\": false,\n        \"NINumber\": \"\",\n        \"ContactDetail\": {\n            \"EmailAddress\": \"newuser2@mctest.com\"\n        },\n        \"CustomerSecurityQuestions\": [\n            {\n                \"SecurityQuestionId\": 1,\n                \"Answer\": \"Smith\"\n            }\n        ]\n    },\n    \"CountryCode\": \"GBP\",\n    \"RegistrationCode\": \"ExTam3\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:44325/api/partner/Customer/CreateAccount",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "44325",
+							"path": [
+								"api",
+								"partner",
+								"Customer",
+								"CreateAccount"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	]
+}

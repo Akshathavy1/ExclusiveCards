@@ -1,0 +1,61 @@
+﻿@model OfferHubMainViewModel
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "Offer Hub";
+}
+
+<main class="c_main">
+    <section class="c_band --tight">
+        <div class="l_container">
+            <div class="u_margin-bottom--s4 u_margin-bottom--s5--md">
+                @if (Model.OfferHubs.Count > 0)
+                {
+                    @await Html.PartialAsync("_slider", Model.OfferHubs)
+                }
+            </div>
+            @*<div class="u_text-align--center u_margin-bottom--s4 u_margin-bottom--s5--md">
+                <h2 class="u_margin-bottom--half">@Localizer["Top_Offers"]</h2>
+                <p class="u_margin-bottom--none">@Localizer["Offer_short"]</p>
+            </div>*@
+            <h2 class="u_text-align--center u_margin-bottom--s4 u_margin-bottom--s5--md">@Localizer["Top_Offers"]</h2>
+
+            <div class="l_offer-grid u_margin-bottom--s4 u_margin-bottom--s5--md">
+                @if (Model.BestCashbackOffers.Count > 0)
+                {
+                    @await Html.PartialAsync("_gridOffers", Model.BestCashbackOffers)
+                }
+            </div>
+
+            <div class="u_text-align--center u_margin-bottom--s4 u_margin-bottom--s5--md">
+                <h2 class="u_margin-bottom--half">@Localizer["Offer_Categories"]</h2>
+                <p class="u_margin-bottom--none">@Localizer["Categories_Short"]</p>
+            </div>
+
+            <ul class="l_category-grid">
+                @if (Model.Categories != null)
+                {
+                    @foreach (var category in Model.Categories)
+                    {
+                        <li class="__item">
+                            <a class="c_category" href="@Url.Action("DisplayOffer","Offers",new { country = ViewData["Country"].ToString(),parentCategoryId=@category.Id,parentCategoryName=@category.Name })">
+                                @if (category.CategoryFeatureDetails?.FirstOrDefault()?.SelectedImage != null)
+                                {
+                                    //TODO:Include selected Image on hover and Unselected Image on mouseover
+                                    <img class="lazy" src="/images/blank.png" data-src="/Image/GetImage?Path=@category.CategoryFeatureDetails?.FirstOrDefault()?.SelectedImage"
+                                         data-srcset="/Image/GetImage?Path=@category.CategoryFeatureDetails?.FirstOrDefault()?.SelectedImage"
+                                         alt="@category.Name">
+                                }
+                                else
+                                {
+                                    <img src="/images/blank.png" alt="@category.Name">
+                                }
+                                <span>@category.Name</span>
+                            </a>
+                        </li>
+                    }
+                }
+
+            </ul>
+        </div>
+    </section>
+</main>

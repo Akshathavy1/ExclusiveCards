@@ -1,0 +1,34 @@
+﻿@model List<Tuple<ExclusiveCard.Services.Models.DTOs.Public.OfferSummary, ExclusiveCard.Services.Models.DTOs.Public.OfferSummary>>
+@inject IViewLocalizer Localizer
+@foreach (var item in Model)
+{
+    <tr>
+        <td class="bkclr pointer" onclick="window.location.href='@Url.Action("Index", "Offers", new { country=@ViewData["Country"], merchantId = @item.Item1.MerchantId, offerId = @item.Item1.OfferId })'">
+            @if (!string.IsNullOrEmpty(@item.Item1.MerchantLogoPath))
+            {
+                <img src="/images/blank.png" data-src="/image/GetImage/?path=@item.Item1.MerchantLogoPath"  data-srcset="/image/GetImage/?path=@item.Item1.MerchantLogoPath" class="ad-center img-responsive lazy" merchantId ="@item.Item1.MerchantId" offerId="@item.Item1.OfferId" />
+            }
+            else
+            {
+                <center><h5 class="ad-center">@item.Item1.MerchantName</h5></center>
+            }
+            <h2 class="discounts">@item.Item1.OfferHeadline</h2>
+            <p class="materials">@*@Localizer["on groceries"]*@</p>
+        </td>
+        @if (@item.Item2 != null)
+        {
+            <td class="bkclr pointer" onclick="window.location.href='@Url.Action("Index", "Offers", new { country=@ViewData["Country"], merchantId = @item.Item2.MerchantId, offerId = @item.Item2.OfferId })'">
+                @if (!string.IsNullOrEmpty(@item.Item2.MerchantLogoPath))
+                {
+                    <img src="/images/blank.png" data-src="/image/GetImage/?path=@item.Item2.MerchantLogoPath"  data-srcset="/image/GetImage/?path=@item.Item2.MerchantLogoPath" class="ad-center img-responsive lazy" merchantId ="@item.Item2.MerchantId" offerId="@item.Item2.OfferId" />
+                }
+                else
+                {
+                    <center><h5 class="ad-center">@item.Item1.MerchantName</h5></center>
+                }
+                <h2 class="discounts">@item.Item2.OfferHeadline</h2>
+                <p class="materials">@*@Localizer["on trainers"]*@</p>
+            </td>
+        }
+    </tr>
+}

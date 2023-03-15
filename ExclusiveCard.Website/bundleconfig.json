@@ -1,0 +1,69 @@
+[
+  {
+    "outputFileName": "wwwroot/assets/css/style.min.css",
+    "inputFiles": [
+      "wwwroot/assets/css/style.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/ExclusiveWebsite/exclusivecard-scripts.min.js",
+    "inputFiles": [
+      "wwwroot/js/ExclusiveWebsite/account.js",
+      "wwwroot/js/ExclusiveWebsite/banner.js",
+      "wwwroot/js/ExclusiveWebsite/login.js",
+      "wwwroot/js/ExclusiveWebsite/offers.js",
+      "wwwroot/js/ExclusiveWebsite/payment.js",
+      "wwwroot/js/ExclusiveWebsite/summary.js",
+      "wwwroot/js/ExclusiveWebsite/redirect.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/jquery.bootstrap.min.js",
+    "inputFiles": [
+      "wwwroot/assets/plugins/jquery/jquery.min.js",
+      "wwwroot/assets/plugins/jquery/jquery-migrate.min.js",
+      "wwwroot/assets/plugins/bootstrap/js/bootstrap.min.js",
+      "wwwroot/assets/js/plugins/jquery-validation/dist/jquery.validate.min.js",
+      "wwwroot/assets/js/plugins/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js",
+      "wwwroot/assets/js/plugins/jquery-ui/jquery-ui.min.js",
+      "wwwroot/assets/js/kendo.all.min.js",
+      "wwwroot/lib/simTree/sim.min.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/js.implementing.plugins.min.js",
+    "inputFiles": [
+      "wwwroot/assets/js/jssor.slider-27.5.0.min.js",
+      "wwwroot/assets/plugins/owl-carousel/owl-carousel/owl.carousel.min.js",
+      "wwwroot/assets/js/plugins/owl-carousel.min.js",
+      "wwwroot/assets/plugins/Chart/jquery.easypiechart.min.js",
+      "wwwroot/assets/plugins/toastr/toastr.min.js",
+      "wwwroot/assets/plugins/back-to-top.min.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/header.footer.css",
+    "inputFiles": [
+      "wwwroot/assets/css/headers/header-default.min.css",
+      "wwwroot/assets/css/headers/header-v8.min.css",
+      "wwwroot/assets/css/footers/footer-v1.min.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/simTree.font-awesome.css",
+    "inputFiles": [
+      "wwwroot/lib/simTree/simTree.min.css",
+      "wwwroot/assets/plugins/font-awesome/css/font-awesome.min.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/implementing-plugins.css",
+    "inputFiles": [
+      "wwwroot/assets/css/kendo.default.min.css",
+      "wwwroot/assets/css/kendo.common.min.css",
+      "wwwroot/assets/css/kendo.default.mobile.min.css",
+      "wwwroot/assets/plugins/owl-carousel/owl-carousel/owl.carousel.min.css",
+      "wwwroot/assets/plugins/toastr/toastr.min.css"
+    ]
+  }
+]

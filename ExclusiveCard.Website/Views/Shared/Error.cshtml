@@ -1,0 +1,28 @@
+﻿@model ErrorViewModel
+@{
+    ViewData["Title"] = "Error";
+}
+
+<h1 class="u_text-align--center u_margin-top--default u_margin-bottom--s4 u_margin-bottom--s5--lg">
+    <span class="__pre-title">
+        Oops, something went wrong. We are working on getting this fixed as soon as possible.
+    </span>
+</h1>
+
+@if (Model != null && Model.ShowRequestId && !string.IsNullOrEmpty(Model.RequestId))
+{
+    <p>
+        <strong>Request ID:</strong> <code>@Model.RequestId</code>
+    </p>
+}
+
+<h2 class="u_text-align--center u_margin-bottom--s4 u_margin-bottom--s5--lg">
+    <span class="__pre-title">
+        You may be able to try again by using the back button in your browser,
+        or <a href="/Home">click here </a> to return to the home page.
+    </span>
+</h2>
+
+@*<h1 class="text-danger">Exclusive Card Error Page</h1>*@
+@*<h2 class="text-danger">An error occurred while processing your request. Please try again.</h2>*@
+

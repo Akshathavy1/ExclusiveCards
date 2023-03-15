@@ -1,0 +1,68 @@
+﻿@model ExclusiveCard.WebAdmin.ViewModels.LocalOfferList
+
+@Html.HiddenFor(m => m.CurrentPageNumber)
+
+@if (Model.ListOfOffer != null && Model.ListOfOffer.Count > 0)
+{
+    <div class="table-responsive">
+        <table class="table" id="merchantstable">
+            <thead>
+                <tr>
+                    <th class="merchantHeading">Merchant</th>
+                    <th class="merchantHeading">Start Date</th>
+                    <th class="merchantHeading">End Date</th>
+                    <th class="merchantHeading">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.ListOfOffer.Count; i++)
+                {
+                    <tr class="merchantList">
+                        <td>@Model.ListOfOffer[i].MerchantName</td>
+                        <td>
+                            @if (@Model.ListOfOffer[i].StartDate < DateTime.UtcNow)
+                            {
+                                @Model.ListOfOffer[i].StartDate.Value.ToString("dd MMM yyyy")
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(x => x.ListOfOffer[i].StartDate, "{0:yyyy-MM-dd}", new { @class = "form-control roundedInput col-md-6 startDate", Type = "date" })
+                            }
+                        </td>
+                        <td>
+                            @if (@Model.ListOfOffer[i].EndDate.HasValue && @Model.ListOfOffer[i].EndDate < DateTime.UtcNow)
+                            {
+                                @Model.ListOfOffer[i].EndDate.Value.ToString("dd MMM yyyy")
+                            }
+                            else
+                            {
+                                @Html.TextBoxFor(x => x.ListOfOffer[i].EndDate, "{0:yyyy-MM-dd}", new { @class = "form-control roundedInput col-md-6 endDate", Type = "date" })
+                            }
+                        </td>
+                        <td>
+                            @if (@Model.ListOfOffer[i].Action == true)
+                            {
+                                <button type="button" class="btnSave btn has-spinner" id="@Model.ListOfOffer[i].Id">
+                                    Save <span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+                                </button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="form-group align-items-center row col-md-9">
+        <h5 style="margin-top:12pt;">No record found</h5>
+    </div>
+}
+
+@if (Model.ListOfOffer != null && Model.ListOfOffer.Any() && Model.PagingViewModel.PageCount > 1)
+{
+    <div class="form-group row col-md-8">
+        @{ @await Html.PartialAsync("_paging", @Model.PagingViewModel); }
+    </div>
+}

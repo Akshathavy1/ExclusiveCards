@@ -1,0 +1,39 @@
+﻿@model ExclusiveCard.WebAdmin.ViewModels.OfferListMaintainViewModel
+<div id="">
+    @if (Model.ListofOffers.Count == 0)
+    {
+        <div class="list-unstyled listbx list">
+            @Html.Raw("<span style='padding-left:10px;'>No Records</span>")
+        </div>
+    }
+    else
+    {
+        <table class="table" id="tblOfferSearch">
+            <thead>
+                <tr>
+                    <th>Merchant Name</th>
+                    <th>Short Description</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ListofOffers)
+                {
+                    <tr>
+                        <td style="font-weight: bold;" class="offerMerchantName">@item.MerchantName</td>
+                        <td style="font-weight: bold;" class="offerShortDescription">@item.OfferShortDescription</td>
+                        <td offerId="@item.OfferId" fromDate="@item.ValidFrom" toDate="@item.ValidTo" style="font-weight: bold" class="addOfferToListItem">Add</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @if (Model.ListofOffers != null && Model.ListofOffers.Any() && Model.PagingModel.PageCount > 1)
+        {
+            <div class="form-group row col-md-10" id="offerListPaging">
+                @{ @await Html.PartialAsync("_paging", @Model.PagingModel) }
+            </div>
+        }
+    }
+</div>
+
+

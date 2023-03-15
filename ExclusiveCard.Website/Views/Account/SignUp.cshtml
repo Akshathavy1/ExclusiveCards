@@ -1,0 +1,84 @@
+﻿@inject IViewLocalizer Localizer
+
+@{
+    ViewData["Title"] = @Localizer["Sign-Up"];
+}
+
+<div class="col-md-12 margin-top-20">
+    @Html.Hidden("CustomerId", (string)@ViewBag.Customer?.ToString())
+    <div class="headerName col-md-12 row">
+        @Html.Label(@Localizer["Sign Up Options"].Value.ToString())
+    </div>
+    <div class="col-md-12 row mediumText text-center">
+        <p>@Localizer["Please choose from one of the following Sign-up options:"].Value.ToString()</p>
+    </div>
+    <div class="col-md-12 row centerContent">
+        <div class="col-md-12 inline-group divContent">
+            <div class="col-md-3">
+                <div class="row">
+                    <img src="/images/blank.png" data-src="/images/purchase-exclusive-card.jpg" data-srcset="/images/purchase-exclusive-card.jpg" class="imgClass1 img-responsive lazy" />
+                </div>
+
+                <div class="row subHeaderName">
+                    @Html.Label("NewMembership", @Localizer["New Membership"].Value.ToString())
+                </div>
+                <div class="row mediumText justifyText">
+                    @Html.Label("Desccard", Localizer["Purchase a full year membership to Exclusive Card here."].Value.ToString())
+                </div>
+                <div class="row  mediumText justifyText">
+                    @Html.Label("Desc", Localizer["Get immediate full access to Cashback, Voucher Codes and fantastic High Street Discounts."].Value.ToString())
+                </div>
+                <div class="row text-center mediumText">
+                    @Html.Label("amount", @Localizer["£19.95"].Value.ToString())
+                </div>
+                <div class="row text-center">
+                    <p>
+                        <a class="btn newbuy btn-theme has-spinner" id="btnBuyNow">
+                            @Localizer["Buy Now"]<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+                        </a>
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="col-md-3">
+                <div class="row">
+                    <img src="/images/blank.png" data-src="/images/single-cards.jpg" data-srcset="/images/single-cards.jpg" class="imgClass img-responsive lazy" />
+                </div>
+                <div class="row subHeaderName">
+                    @Html.Label("PreRegistered", Localizer["Have You Got A Sign-Up Code?"].Value.ToString())
+                </div>
+                <div class="row  mediumText new-signup justifyText">
+                    @Html.Label("SignInHere", Localizer["Please enter your 6 digit sign-up code below to setup your account."].Value.ToString())
+                </div>
+                <div class="row  mediumText justifyText">
+                    @Html.Label("Descr", Localizer["Get access to Cashback, Voucher Codes and fantastic High Street Discounts"].Value.ToString())
+                </div>
+                <div class="row text-center mediumText">
+                    @Html.Label("Descr", Localizer["Enter Sign-Up code"].Value.ToString())
+                </div>
+                <div class="row">
+                    @Html.TextBox("registerCode", null, new { @class = "form-control", @placeholder = Localizer["Enter Registration Number"].Value })
+                </div>
+                <div class="row text-center">
+                    <p>
+                        <a class="btn set-up-buy btn-theme has-spinner" id="btnAccountSetup">
+                            @Localizer["Setup Account"]&nbsp;&nbsp; <span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+                        </a>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="dialog-confirm" title="popupoffers">
+    <p id="infoMessage"></p>
+</div>
+@section Scripts
+    {
+    <script type="text/javascript">
+        Account.setUpEvents();
+    </script>
+}

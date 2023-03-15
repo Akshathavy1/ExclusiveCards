@@ -1,0 +1,2 @@
+﻿///<binding AfterBuild='Update all files' />
+produceoutput=false

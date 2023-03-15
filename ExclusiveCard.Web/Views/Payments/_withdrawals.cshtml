@@ -1,0 +1,86 @@
+﻿@using ExclusiveCard.WebAdmin.ViewModels
+@using ExclusiveCard.Enums
+@model WithdrawalsList
+@Html.HiddenFor(m => m.CurrentPageNumber)
+
+@if (@Model.Withdrawals.Count > 0)
+{
+    <div class="table-responsive">
+        @Html.Hidden("SortField", Model.WithdrawalSortField)
+        @Html.Hidden("SortDirection", Model.SortDirection)
+        <table class="table" id="transactionTable">
+            <thead>
+                <tr>
+                    <th class="transactionHeading">
+                        @Html.ActionLink("Customer Name", "CustomerWithdrawal", "Payments", "https", null, null, new { }, new { SelSortField = "FileName" })
+                        @if (@Model.WithdrawalSortField == WithdrawalSortField.CustomerName)
+                        {<i class="@Model.SortIcon"></i>}
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("Name on Account")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("Account Number")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("SortCode", "Sortcode")
+                    </th>
+                    @if (Model.Withdrawals.First().Status == "PaidOut")
+                    {
+                        <th class="transactionHeading">
+                            @Html.Label("Amount paid to the customer", "Amount Paid")
+                        </th>
+                        <th class="transactionHeading">
+                            @Html.Label("PayOut Date", "PayOut Date")
+                        </th>
+                    }
+                    else
+                    {
+                        <th class="transactionHeading">
+                            @Html.Label("Amount requested by customer", "Requested Amount")
+                        </th>
+                    }
+                    <th class="transactionHeading"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in @Model.Withdrawals)
+                {
+                    <tr class="merchantList">
+                        <td>@item.Name</td>
+                        <td>@item.AccountName</td>
+                        <td>@item.AccountNumber</td>
+                        <td>@item.SortCode</td>
+                        <td>£@item.ConfirmedAmount</td>
+                        @if (item.Status == "PaidOut")
+                        {
+                            <td>@item.PayOutDate?.ToString("dd MMM yyyy")</td>
+
+                        }
+                        <td>
+                            @if (item.Status == ExclusiveCard.Data.Constants.Status.Confirmed || item.Status == ExclusiveCard.Data.Constants.Status.Requested)
+                            {
+                                <button type="button" class="withdrawPaid btn has-spinner" rewardId="@item.Id">
+                                    Paid <span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+                                </button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="form-group align-items-center row col-md-9">
+        <h5 style="margin-top:12pt;">No record found</h5>
+    </div>
+}
+
+@if (Model.Withdrawals != null && Model.Withdrawals.Any() && Model.PagingModel.PageCount > 1)
+{
+    <div class="form-group row col-md-8">
+        @{ @await Html.PartialAsync("_paging", @Model.PagingModel); }
+    </div>
+}

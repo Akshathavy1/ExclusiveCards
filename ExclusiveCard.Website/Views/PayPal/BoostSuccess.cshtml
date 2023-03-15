@@ -1,0 +1,27 @@
+﻿@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "Deposit Received";
+}
+
+<main class="c_main">
+    <section class="c_band --spacious">
+        <div class="l_container --mini u_text-align--center">
+            <svg class="c_feather-icon --large u_margin-bottom--s2 u_color--positive"><use xlink:href="/_assets/images/icons.svg#check" /></svg>
+            <h1><span class="__pre-title">@Localizer["Title"]</span> @Localizer["Thanks"]</h1>
+            <h2><span class="__pre-title">@Localizer["Message1"]</span></h2>
+            <h2><span class="__pre-title">@Localizer["Message2"]</span></h2>
+            <h2><span class="__pre-title">@Localizer["Message3"]</span></h2>
+            <a href="@Url.Action("MyAccount", "MyAccount")" class="e_button --small">@Localizer["Return"]</a>
+        </div>
+    </section>
+</main>
+
+@*@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Summary.setUpEvents();
+            Summary.paymentSuccess('@ViewBag.CustomProviderId');
+        });
+    </script>
+}*@

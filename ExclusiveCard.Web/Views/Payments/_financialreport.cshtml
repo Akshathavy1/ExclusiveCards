@@ -1,0 +1,69 @@
+﻿@using ExclusiveCard.WebAdmin.ViewModels
+@model FinancialReport
+@Html.HiddenFor(m => m.CurrentPageNumber)
+
+@if (@Model.FinancialReportViewModel.Count > 0)
+{
+    <div class="table-responsive">
+        @Html.Hidden("SortField", Model.WithdrawalSortField)
+        @Html.Hidden("SortDirection", Model.SortDirection)
+        <table class="table" id="transactionTable">
+            <thead>
+                <tr>
+                    <th class="transactionHeading">
+                        @Html.Label("Description", "Description")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("Beneficiary", "Beneficiary")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("BeneficiaryCommission", "Beneficiary Commission")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("TalkSportCommission", "TalkSport Commission")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("ExclusiveCommission", "Exclusive Commission")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("CashbackAmount", "Confirmed Cashback")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("ClickCount", "Click-Through's")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("CustomerCount", "Total Number of Customers")
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in @Model.FinancialReportViewModel)
+                {
+                    <tr>
+                        <td>@item.Description</td>
+                        <td>@item.Beneficiary</td>
+                        <td>£ @item.BeneficiaryCommission</td>
+                        <td>£ @item.TalkSportCommission</td>
+                        <td>£ @item.ExclusiveCommission</td>
+                        <td>£ @item.CashbackAmount</td>
+                        <td>@item.ClickCount</td>
+                        <td>@item.CustomerCount</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="form-group align-items-center row col-md-9">
+        <h5 style="margin-top:12pt;">No record found</h5>
+    </div>
+}
+
+@if (Model.FinancialReportViewModel != null && Model.FinancialReportViewModel.Any() && Model.PagingModel.PageCount > 1)
+{
+    <div class="form-group row col-md-8">
+        @{ @await Html.PartialAsync("_paging", @Model.PagingModel); }
+    </div>
+}

@@ -1,0 +1,141 @@
+﻿@using ExclusiveCard.WebAdmin.ViewModels
+@model TransactionsViewModel
+@Html.HiddenFor(m => m.CurrentPageNumber)
+
+@if (@Model.CustomerWithdrawals.Count > 0)
+{
+    <div class="table-responsive">
+        @Html.Hidden("SortField", Model.TransactionSortField)
+        @Html.Hidden("SortDirection", Model.SortDirection)
+        <table class="table" id="transactionTable">
+            <thead>
+                <tr>
+                    <th class="transactionHeading">
+                        @Html.Label("Contact Name", "Contact Name")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("Email Address", "Email Address")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("PO Address 1", "PO Address 1")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("PO Address 2", "PO Address 2")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("PO Address 3", "PO Address 3")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("PO Address 4", "PO Address 4")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("PO City", "PO City")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("PO Region", "PO Region")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("PO Postal Code", "PO Postal Code")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("PO Country", "PO Country")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("Invoice Number", "Invoice Number")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("Invoice Date", "Invoice Date")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("Due Date", "Due Date")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("Total", "Total")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("Inventory Item Code", "Inventory Item Code")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("Description", "Description")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("Quantity", "Quantity")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("Unit Amount", "Unit Amount")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("Account Code", "Account Code")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("TaxType", "TaxType")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("Tax Amount", "Tax Amount")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("Tracking Name 1", "Tracking Name 1")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("Tracking Option 1", "Tracking Option 1")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("Tracking Name 2", "Tracking Name 2")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("Tracking Option 2", "Tracking Option 2")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("Currency", "Currency")
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in @Model.CustomerWithdrawals)
+                {
+                <tr class="merchantList">
+                    <td>@item.ContactName</td>
+                    <td>@item.EmailAddress</td>
+                    <td>@item.POAddressLine1</td>
+                    <td>@item.POAddressLine2</td>
+                    <td>@item.POAddressLine3</td>
+                    <td>@item.POAddressLine4</td>
+                    <td>@item.POCity</td>
+                    <td>@item.PORegion</td>
+                    <td>@item.POPostalCode</td>
+                    <td>@item.POCountry</td>
+                    <td>@item.InvoiceNumber</td>
+                    <td>@item.InvoiceDate.ToString("dd MMM yyyy")</td>
+                    <td>@item.DueDate.ToString("dd MMM yyyy")</td>
+                    <td>£@item.Total</td>
+                    <td>@item.InventoryItemCode</td>
+                    <td>@item.Description</td>
+                    <td>@item.Quantity</td>
+                    <td>£@item.UnitAmount</td>
+                    <td>@item.AccountCode</td>
+                    <td>@item.TaxType</td>
+                    <td>@item.TaxAmount</td>
+                    <td>@item.TrackingName1</td>
+                    <td>@item.TrackingOption1</td>
+                    <td>@item.TrackingName2</td>
+                    <td>@item.TrackingOption2</td>
+                    <td>@item.Currency</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="form-group align-items-center row col-md-9">
+        <h5 style="margin-top:12pt;">No record found</h5>
+    </div>
+}
+
+@if (Model.Transactions != null && Model.Transactions.Any() && Model.PagingModel.PageCount > 1)
+{
+    <div class="form-group row col-md-8">
+        @{ @await Html.PartialAsync("_paging", @Model.PagingModel); }
+    </div>
+}

@@ -1,0 +1,17 @@
+﻿@model LayoutViewModel
+@{
+    ViewData["Title"] = "SuccessUnsubscribed";
+    var layoutModel = (LayoutViewModel)@ViewBag.LayoutModel;
+}
+
+<div class="c_hero">
+
+    <div class="l_container">
+        <div class="__content">
+            <strong> @layoutModel.WhiteLabel.Name</strong>
+            <p>You have successfully unsubscribed from newsletters. This change can take up to one week to take effect and you may still receive additional newsletters during that time..</p>
+        </div>
+    </div>
+   
+</div>
+

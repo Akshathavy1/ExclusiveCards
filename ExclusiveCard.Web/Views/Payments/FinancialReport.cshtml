@@ -1,0 +1,60 @@
+﻿@model ExclusiveCard.WebAdmin.ViewModels.SearchFinancialReportViewModel
+@{
+    Layout = "~/Views/Shared/_NewLayout.cshtml";
+    ViewBag.Title = "FinancialReport";
+}
+
+<div id="mainDiv" class="col-md-12 Searchforoffers divonemerchant">
+    @Html.ValidationSummary(false, "", new { @class = "text-danger", autofocus = "autofocus" })
+    <div class="form-group row">
+        <div class="col-md-12">
+            <h1 class="col-md-6" id="title-name">FinancialReport</h1>
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.TextBoxFor(model => model.StartDate, "{0:yyyy-MM-dd}", new { @class = "form-control roundedInput", Type = "date" })
+            @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger col-md-12" })
+        </div>
+        @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.TextBoxFor(model => model.EndDate, "{0:yyyy-MM-dd}", new { @class = "form-control roundedInput", Type = "date" })
+            @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger col-md-12" })
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-md-12">
+            <button type="button" id="btnFinancialRptSearch" class="btn pull-right btn has-spinner">Search <span class="spinner"><i class="fa fa-spinner fa-spin"></i></span></button>
+        </div>
+    </div>
+</div>
+
+
+<div id="divFinancialReport" class="col-md-12 divtwomerchant">
+    @{
+        if (Model.FinancialReport.PagingModel.RowCount > 0)
+        {
+            <div class="form-group row">
+                <div class="col-md-12" style="padding-top: 8px;">
+                    <a class="btn bottomMargin transactionPaid pull-right" href="@Url.Action("DownloadFinancialReport", "Payments", new {startDate = Model.StartDate, endDate = @Model.EndDate, RowCount = @Model.FinancialReport.PagingModel.RowCount})"><i class="fa fa-download"></i></a>
+                </div>
+            </div>
+        }
+       
+        <div class="form-group row">
+            <div class="col-md-12">
+                @await Html.PartialAsync("_financialreport", @Model.FinancialReport)
+            </div>
+        </div>
+        
+    }
+</div>
+
+@section Scripts
+    {
+    <script src="~/js/Exclusive/withdrawal.js"></script>
+    <script type="text/javascript">
+        Withdraw.setUpEvents();
+    </script>
+}

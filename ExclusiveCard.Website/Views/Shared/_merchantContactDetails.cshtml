@@ -1,0 +1,93 @@
+﻿@model PagedBranchContactViewModel
+
+@foreach (var branch in Model.MerchantBranches)
+{
+    <span>@Html.Raw(branch.Name)</span><br />
+    @if (branch.ContactDetail != null)
+    {
+
+        <span>
+            @if (!string.IsNullOrEmpty(branch.ContactDetail.Address1))
+            {
+                @Html.Raw(@branch.ContactDetail.Address1)
+                @if (!branch.ContactDetail.Address1.Contains(","))
+                {
+                    @Html.Raw(",")
+                }
+            }
+
+            @if (!string.IsNullOrEmpty(branch.ContactDetail.Address2))
+            {
+                @Html.Raw(branch.ContactDetail.Address2)
+                @if (!branch.ContactDetail.Address2.Contains(","))
+                {
+                    @Html.Raw(",")
+                }
+            }
+            @if (!string.IsNullOrEmpty(branch.ContactDetail.Address3))
+            {
+                @Html.Raw(branch.ContactDetail.Address3)
+                @if (!branch.ContactDetail.Address3.Contains(","))
+                {
+                    @Html.Raw(",")
+                }
+            }
+            @if (!string.IsNullOrEmpty(branch.ContactDetail.Town))
+            {
+                @Html.Raw(branch.ContactDetail.Town)
+                @if (!branch.ContactDetail.Town.Contains(","))
+                {
+                    @Html.Raw(",")
+                }
+            }
+            @if (!string.IsNullOrEmpty(branch.ContactDetail.District))
+            {
+                @Html.Raw(branch.ContactDetail.District)
+                @if (!branch.ContactDetail.District.Contains(","))
+                {
+                    @Html.Raw(",")
+                }
+            }
+            @if (!string.IsNullOrEmpty(branch.ContactDetail.PostCode))
+            {
+                @Html.Raw(branch.ContactDetail.PostCode)
+                @if (!branch.ContactDetail.PostCode.Contains(","))
+                {
+                    @Html.Raw(",")
+                }
+            }
+
+        </span>
+        @if (!string.IsNullOrEmpty(@branch.ContactDetail.LandlinePhone) || !string.IsNullOrEmpty(@branch.ContactDetail.MobilePhone))
+        {
+            @Html.Raw("Phone:")
+            @if (!string.IsNullOrEmpty(branch.ContactDetail.LandlinePhone))
+            {
+                @branch.ContactDetail.LandlinePhone
+                @if (!string.IsNullOrEmpty(branch.ContactDetail.MobilePhone))
+                {
+                    @Html.Raw(",")
+                }
+            }
+            @if (!string.IsNullOrEmpty(branch.ContactDetail.MobilePhone))
+            {
+                @branch.ContactDetail.MobilePhone
+            }
+        }
+    }
+    <br />
+    <span class="rdfull">@branch.ShortDescription</span>
+    <br />
+    <span class="rdfull">@branch.LongDescription</span>
+    <hr>
+}
+
+@if (Model?.PagingView.PageCount > 1)
+{
+    <div class="form-group row col-md-12 offerType">
+        @{ @await Html.PartialAsync("_paging", @Model.PagingView) }
+    </div>
+}
+
+
+

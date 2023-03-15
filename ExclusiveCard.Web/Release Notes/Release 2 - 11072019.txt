@@ -1,0 +1,17 @@
+New Features:
+	- US 1050, Add code to webpage Header
+	- US 1053, Mark Cashback transaction as Received based on the Paid field received in the JSON data
+
+Bug Fixes:
+	- Bug 964, Deletion of merchant not working
+	- US 1037, Admin Panel, editing username is not updating email in the user and contact detail
+	- US 1042, Rich text not displaying properly on website
+	- US 1044, Disable membership doesn't show any user feedback or update once done
+	- US 1049, Problems adding offers to Offer List
+		- When refreshed as soon as the offer the moved to offer list form the offer Results, 
+		prompt is being displayed for the user to decide whether they want the changes they made to be saved or not.
+
+No able to replicate:
+	- US 1047, Date Fields on Offer Search not on correct field
+
+Note: Please execute the script - ExclusiveCard.Web\Dev Scripts\v2\Sql_Script_12072019

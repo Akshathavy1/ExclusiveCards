@@ -1,0 +1,70 @@
+﻿@using ExclusiveCard.Services.Models.DTOs
+@model List<ExclusiveCard.Services.Models.DTOs.League>
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var whiteLabel = (WhiteLabelSettings)ViewBag.WhiteLabel;
+    ViewBag.League = Model;
+    var siteOwner = ViewBag.SiteOwner;
+}
+
+<div class="c_site custom-min-height">
+    <main class="c_main">
+        <section class="custom-padding-top">
+            <div class="l_container --narrow">
+
+                <h1 class="custom-h1-remove-margin">@siteOwner.ClanHeading</h1>
+                <p class="u_lead custom-p-remove-margin">
+                     @Html.Raw(@siteOwner.ClanDescription)
+                </p>                
+
+                <a href="@Url.Action("Standard", "SiteClan")" class="e_button --block u_margin-bottom--s3" style="overflow-wrap: break-word;white-space: normal;">@Html.GetWhiteLabel(Localizer["Standard"].Value.ToString(), whiteLabel)</a>           
+
+                <div class="c_form-container u_margin-bottom--s3">
+                    <h2> @Localizer["Darts"]</h2>
+                    <p class="__notice js_auto-center c_notification --negative hideContent" id="customError"></p>
+
+                    @if (Model.Count > 0)
+                    {
+                        foreach (var items in Model)
+                        {
+                            <h3 class="--alternative u_margin-bottom--double" id="@items.Description" hidden>@items.Description</h3>
+                            <ul class="l_club-grid u_margin-bottom--s4">
+                                @if (items.SiteClan != null)
+                                {
+                                    foreach (var clan in items.SiteClan)
+                                    {
+                                        <li>
+                                            <a description="@items.Description" siteClanId="@clan.Id" class="c_club-select clan">
+                                                <div class="c_crest-fallback" style="--primary:@clan.PrimaryColour; --secondary:@clan.SecondaryColour;">
+                                                </div><label>@clan.Description</label>
+                                            </a>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        }
+                    }
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+@section Scripts
+{
+
+    <script src="~/js/ExclusiveWebsite/siteclan.js"></script>
+    <script type="text/javascript">
+
+        $(".c_tag").on('click', function () {
+            var id =  $(this).attr('value');
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        });
+        SiteClan.setUpEvents();
+    </script>
+}
+
+
+

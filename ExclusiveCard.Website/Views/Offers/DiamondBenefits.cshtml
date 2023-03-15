@@ -1,0 +1,60 @@
+﻿@model List<ExclusiveCard.Services.Models.DTOs.Public.OfferSummary>
+@inject IViewLocalizer Localizer
+@{
+    ViewBag.Title = "Diamond Account Benefits";
+    var layoutModel = (LayoutViewModel)@ViewBag.LayoutModel;
+}
+
+<div class="c_hero --tight">
+    <div class="l_container">
+        <div class="__contents --centered">
+            <h1>@Localizer["Title"]</h1>
+            <p>@Localizer["Description"]</p>
+        </div>
+    </div>
+</div>
+
+<main class="c_main">
+    <section class="c_band">
+        <div class="l_container">
+            <div class="c_content">
+                @if (!layoutModel.IsDiamondCustomer && layoutModel.IsSignedIn)
+                {
+                    <div class="c_upgrade-reminder u_margin-bottom--s4">
+                        <h2>@Localizer["DiamondCardBenefitsHeader"]</h2>
+                        <p>
+                            @Localizer["DiamondCardBenefitsDescription"].Value
+                            @if (layoutModel.WhiteLabel.Slug!="consumer-rights")
+                            {@Html.GetDiamondCost(@Localizer["DiamondCardBenefitsDescription1"].Value.ToString(), layoutModel.DiamondCost)
+                        }
+                        </p>
+                        <a href=@Url.Action("MyAccount","MyAccount",new{diamondCardRequest=true})><span>@Localizer["UpgradeAccount"]</span></a> @*"Package","Account"*@
+                    </div>
+                }
+
+                @if (!layoutModel.EmailConfirmed && layoutModel.IsSignedIn)
+                {
+                    <p class="c_notification --negative" id="confirmEmailMsg">@Localizer["Validation"]</p>
+                    <p class="c_notification --positive hideContent" id="confirmEmailSent">@Localizer["ValidationLink"]</p>
+                }
+
+                <div class="l_benefit-grid">
+
+                    @if (Model != null && Model.Count > 0)
+                    {
+                        {
+                            @(await Html.PartialAsync("_diamondOffersGrid", Model))
+                        }
+                    }
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        Summary.setUpEvents();
+    </script>
+}

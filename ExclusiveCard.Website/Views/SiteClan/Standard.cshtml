@@ -1,0 +1,52 @@
+﻿@using dto = ExclusiveCard.Services.Models.DTOs;
+
+@model dto.SiteClan
+@inject IViewLocalizer Localizer
+@using ExclusiveCard.Services.Models.DTOs
+
+
+@{
+    ViewData["Title"] = "Standard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var whiteLabel = (dto.WhiteLabelSettings)ViewBag.WhiteLabel;
+    var token = (dto.UserToken)ViewBag.userToken;
+    var SiteOwner = ViewBag.SiteOwner;
+    string strStarndardContent = string.Empty;
+    strStarndardContent = SiteOwner.StarndardRewardConfirmation;
+}
+
+@if (token != null)
+{
+    <input type="hidden" id="membershipPlanId" value="@token.MembershipPlanId" name="membershipPlanId" />
+    <input type="hidden" id="token" value="@token.Token" name="token" />
+}
+
+<div class="c_site custom-min-height">
+    <main class="c_main">
+        <section class="custom-padding-top">
+            <div class="l_container --narrow">
+                <h1 class="custom-h1-remove-margin">@SiteOwner.StarndardHeading</h1>
+                <p class="u_lead custom-p-remove-margin">
+                    @Html.Raw(@Html.GetSiteClan(strStarndardContent, Model, whiteLabel))
+                </p>
+
+                <div class="l_flex --tight">
+                    <div class="__column --span-6--md">
+                        <a href="@Url.Action("Index", "SiteClan")" class="e_button --block --outline u_margin-bottom--half u_margin-bottom--none--md">@Localizer["BackToClub"]</a>
+                    </div>
+                    <div class="__column --span-6--md">
+                        <button type="submit" id="btnStandard" name="skip" class="e_button --block">@Localizer["CreateAccount"]</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+@section Scripts
+{
+    <script src="~/js/ExclusiveWebsite/siteclan.js"></script>
+    <script type="text/javascript">
+        SiteClan.setUpEvents();
+    </script>
+}

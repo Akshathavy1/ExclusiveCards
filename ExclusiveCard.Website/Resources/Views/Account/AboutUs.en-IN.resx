@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>T_About</value>
+  </data>
+  <data name="About_link" xml:space="preserve">
+    <value>T_If you would like further information regarding the exciting plans we have, then please contact us by email on: contact@exclusivecard.co.uk</value>
+  </data>
+  <data name="About_us" xml:space="preserve">
+    <value>T_We are here and we have so many exciting new ideas to bring to you over the coming weeks and months.  Our website will continue to grow and improve rapidly over a short period. More merchants are being added all the time and in addition our website will continue to gain new features and unique options of how to use your cashback.</value>
+  </data>
+  <data name="AHB" xml:space="preserve">
+    <value>T_Account Holder Benefits</value>
+  </data>
+  <data name="CEC" xml:space="preserve">
+    <value>T_Contact the Exclusive Rewards Team to find out more and discuss your options.</value>
+  </data>
+  <data name="CF" xml:space="preserve">
+    <value>T_Complete Flexibility, 24/7 Dashboard</value>
+  </data>
+  <data name="CF_1" xml:space="preserve">
+    <value>T_Use the 24/7 dashboard to see where your cashback is currently invested. Withdraw your cash whenever you want or you can even top it up with your own money using our optional boost your investment feature.</value>
+  </data>
+  <data name="CPO" xml:space="preserve">
+    <value>T_Corporate Partner Options</value>
+  </data>
+  <data name="CPO_1" xml:space="preserve">
+    <value>T_Gift your customers and/or employees your choice of membership:</value>
+  </data>
+  <data name="CPO_a" xml:space="preserve">
+    <value>T_Free Membership Account (Members have the option to upgrade themselves).</value>
+  </data>
+  <data name="CPO_b" xml:space="preserve">
+    <value>T_Upgraded Diamond Membership Account</value>
+  </data>
+  <data name="CPO_c" xml:space="preserve">
+    <value>T_We can even create for your company a fully branded White Label Rewards Site offering incredible brand awareness every time your members shop online. Please ask for more details.</value>
+  </data>
+  <data name="CPO_d" xml:space="preserve">
+    <value>T_We also offer a Benefit Rewards plan that will allow 30% of your members cashback to be diverted and donated to a good cause of your choice. Once again please ask for more details.</value>
+  </data>
+  <data name="C_Reward" xml:space="preserve">
+    <value>T_Customer Rewards</value>
+  </data>
+  <data name="C_Reward_1" xml:space="preserve">
+    <value>T_If customer retention is amongst your list of priorities, a customer reward scheme is essential. Gift a personal Exclusive Rewards account to each of your loyal customers, offering them extensive savings, cashback deals and thousands of voucher code and promotional benefits for using your services or product. Improve customer satisfaction and brand loyalty will follow.</value>
+  </data>
+  <data name="DMU" xml:space="preserve">
+    <value>T_Diamond Membership Upgrade</value>
+  </data>
+  <data name="DMU_1" xml:space="preserve">
+    <value>T_TBC</value>
+  </data>
+  <data name="E_Benefits" xml:space="preserve">
+    <value>T_Employee Benefits</value>
+  </data>
+  <data name="E_Benefits_1" xml:space="preserve">
+    <value>T_Happy employees are productive employees, and happiness comes from job satisfaction. Whilst many factors effect job satisfaction, more than a third of employees admit employee benefits are amongst their top consideration when accepting a new job.</value>
+  </data>
+  <data name="E_Benefits_2" xml:space="preserve">
+    <value>T_Exclusive Rewards is the perfect addition to any employee benefits scheme, offering hundreds of pounds per year savings on things they would buy anyway.</value>
+  </data>
+  <data name="F_Account" xml:space="preserve">
+    <value>T_Free Account</value>
+  </data>
+  <data name="F_Account_1" xml:space="preserve">
+    <value>T_Enjoy all the benefits of your {{Name}} account for free, for life. Or why not upgrade to our Diamond membership for just £{{DiamondCost}} to access higher cashback rates and incredible high street and leisure discounts that will save you hundreds of pounds per year.</value>
+  </data>
+  <data name="F_Business" xml:space="preserve">
+    <value>T_For Businesses</value>
+  </data>
+  <data name="F_Employer" xml:space="preserve">
+    <value>T_For Employers</value>
+  </data>
+  <data name="Lead" xml:space="preserve">
+    <value>T_{{Name}} has arrived to revolutionise the employee benefit, customer loyalty and charitable or donation markets.</value>
+  </data>
+  <data name="Lead_1" xml:space="preserve">
+    <value>T_Partnered with TAM Asset Management to manage client's investment accounts, {{Name}} makes investment easy for the everyday individual, and with no personal cash outlay required.</value>
+  </data>
+  <data name="Lead_2" xml:space="preserve">
+    <value>T_The platform is by invitation only and combines cashback from thousands of retailers and daily updated voucher codes and promotions saving our members potentially hundreds of pounds per year.</value>
+  </data>
+  <data name="MS" xml:space="preserve">
+    <value>T_Multiply Your Savings</value>
+  </data>
+  <data name="MS_1" xml:space="preserve">
+    <value>Our {{Name}} investment account could generate 6% profit per year, compared to an average of just 0.83% interest on a conventional deposit account.</value>
+  </data>
+  <data name="Retail" xml:space="preserve">
+    <value>T_Over 4000 Retailers</value>
+  </data>
+  <data name="Retail_1" xml:space="preserve">
+    <value>T_Claim exclusive cashback and discounts from over 4000 favourite retailers.</value>
+  </data>
+  <data name="Reward" xml:space="preserve">
+    <value>T_Why choose Exclusive Rewards?</value>
+  </data>
+  <data name="Work" xml:space="preserve">
+    <value>T_How Does it Work?</value>
+  </data>
+  <data name="Work_1" xml:space="preserve">
+    <value>T_New members sign up with their unique free code provided to them by their introducer/employer or corporate institution.</value>
+  </data>
+  <data name="Work_2" xml:space="preserve">
+    <value>T_A member would now log in to their account and select their desired retailer they wish to shop with.</value>
+  </data>
+  <data name="Work_3" xml:space="preserve">
+    <value>T_Once a member has clicked the retailer cashback button and has been redirected to the retailer's website, they would simply shop as normal and the cashback will be applied to their Rewards account</value>
+  </data>
+  <data name="Work_4" xml:space="preserve">
+    <value>T_Upon reaching a balance of £5.00 in their cashback account, members can withdraw all or part of their cashback balance to a bank account of their choice..</value>
+  </data>
+  <data name="Work_5" xml:space="preserve">
+    <value>T_Our optional benefit reward plan allows for 30% of cashback earned by a member to be donated to a beneficiary. If this plan is selected the donated balance will display on the members account page.</value>
+  </data>
+  <data name="Work_6" xml:space="preserve">
+    <value>T_We also offer thousands of daily voucher code and promotional deals via the platform and these additional benefits can usually be used in conjunction with cashback.</value>
+  </data>
+  <data name="Work_7" xml:space="preserve">
+    <value>T_Money is accessible at any point, via the withdrawal button on their cashback account.</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>T_For Businesses</value>
+  </data>
+  <data name="CPO_2" xml:space="preserve">
+    <value>T_Remember, an Exclusive Rewards account can be operated as a conventional cashback account or can be connected to our investment account option. This is the personal choice of the individual user and can be selected when opening their Exclusive Rewards account.</value>
+  </data>
+  <data name="Work_8" xml:space="preserve">
+    <value>T_Money is sent back to the customer but as their investment account is already open, any cashback received in the future goes direct to the investment account without requiring the £10.00 start off balance</value>
+  </data>
+  <data name="F_Account_2" xml:space="preserve">
+    <value>T_Enjoy all the benefits of your {{Name}} account for free, for life. Or why not upgrade to our Diamond membership to access higher cashback rates and incredible high street and leisure discounts that will save you hundreds of pounds per year.</value>
+  </data>
+</root>

@@ -1,0 +1,17 @@
+﻿New Feature:
+	- US 954, webgains links not working
+	- US 771, Display slot banners for adverts (moving to blob storage is not done)
+	- Us 931, UI changes for mobile display of adverts
+	- US 835, Create exclusive card social media addresses for websites
+    - US 916, Add Fake cashout button
+	- US 960, Daily maintenance tasks
+	
+
+Bug Fixes:
+	- Bug 959, Offer import should not update deleted offers
+	- Bug 957, Customer screen not updating username
+	- Bug 956, Customer address fields missing on Admin tool
+	- Bug 951, Out of memory error on admin site
+	
+Note: Please execute the script - ExclusiveCard.Web\Dev Scripts\v1.5\Sql_Script_26042019
+Note: App settings for website social media addresses should be removed. 

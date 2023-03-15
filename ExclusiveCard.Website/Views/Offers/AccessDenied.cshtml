@@ -1,0 +1,29 @@
+﻿@model OfferAccessDeniedViewModel
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = @Localizer["PageName"];
+}
+<div class="c_hero --tight">
+    <div class="l_container">
+        <div class="__contents --centered">
+            <h1>@Model.OfferMerchant</h1>
+            <p>@Model.ShortDescription</p>
+        </div>
+    </div>
+</div>
+<main class="c_main">
+    <section class="c_band --tight">
+        <div class="l_container">
+            <div style="text-align: center">
+                @if (!Model.IsLoggedIn)
+                {
+                    <p>@Localizer["LogInFirst"]</p>
+                }
+                @if (Model.IsDiamondMemberNeeded)
+                {
+                    <p>@Localizer["DiamondMember"]</p>
+                }
+            </div>
+        </div>
+    </section>
+</main>

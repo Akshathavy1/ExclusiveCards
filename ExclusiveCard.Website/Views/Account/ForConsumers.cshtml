@@ -1,0 +1,27 @@
+﻿@using dto = ExclusiveCard.Services.Models.DTOs
+@inject IViewLocalizer Localizer
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "For Consumers";
+    var whiteLabel = (dto.WhiteLabelSettings)ViewBag.WhiteLabel;
+}
+<main class="c_main">
+    <section class="c_band">
+        <div class="l_container --narrow">
+            <h1>@Localizer["Title"]</h1>
+            <div class="c_content">
+                <p class="u_lead">@Html.GetWhiteLabel(@Localizer["Content_Description"].Value, whiteLabel)</p>
+                <h2>@Localizer["Question"]</h2>
+                <p class="u_lead">@Localizer["AnswerType"]</p>
+                <ul>
+                    <li>@Localizer["AnswerType1"]</li>
+                    <li>@Localizer["AnswerType2"]</li>
+                    <li>@Localizer["AnswerType3"]</li>
+                    <li>@Localizer["AnswerType4"]</li>
+                    <li>@Localizer["AnswerType5"]</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</main>
+

@@ -1,0 +1,53 @@
+﻿@model ExclusiveCard.WebAdmin.ViewModels.InvestmentSearchViewModel
+
+@{
+    Layout = "~/Views/Shared/_NewLayout.cshtml";
+    ViewBag.Title = "Reconciliation - TAM Payments";
+}
+
+<div id="mainDiv" class="col-md-12 Searchforoffers divonemerchant">
+    @Html.ValidationSummary(false, "", new { @class = "text-danger", autofocus = "autofocus" })
+    <div class="form-group row">
+        <div class="col-md-12">
+            <h1 class="col-md-6" id="title-name">Reconciliation - TAM Payments</h1>
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.TextBoxFor(model => model.StartDate, "{0:yyyy-MM-dd}", new { @class = "form-control roundedInput", Type = "date" })
+            @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger col-md-12" })
+        </div>
+        @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.TextBoxFor(model => model.EndDate, "{0:yyyy-MM-dd}", new { @class = "form-control roundedInput", Type = "date" })
+            @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger col-md-12" })
+        </div>
+    </div>
+    <div class="form-group row">
+        @Html.LabelFor(model => model.PartnerId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-4">
+            @Html.DropDownListFor(model => model.PartnerId, Model.Partners, null, htmlAttributes: new { @class = "form-control roundedInput", @placeholder = "Report Type" })
+            @Html.ValidationMessageFor(model => model.PartnerId, "", new { @class = "text-danger col-md-12" })
+        </div>
+        <div class="col-md-4"></div>
+        <div class="col-md-2">
+            <button type="button" id="btnSearch" class="btn has-spinner">Search <span class="spinner"><i class="fa fa-spinner fa-spin"></i></span></button>
+        </div>
+    </div>
+    
+</div>
+
+<div id="divTransactions" class="col-md-12 divtwomerchant">
+    @{
+        @await Html.PartialAsync("_transactionsList", @Model.Transactions)
+    }
+</div>
+
+@section Scripts
+    {
+    <script src="~/js/Exclusive/report.js"></script>
+    <script type="text/javascript">
+        Report.setUpEvents();
+    </script>
+}

@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Question_1" xml:space="preserve">
+    <value>What Is Cashback?</value>
+  </data>
+  <data name="Question_1_Answer" xml:space="preserve">
+    <value>Cashback is quite simply money that you get back as a percentage of what you spend when making a purchase on-line. Each merchant that you purchase from may offer different levels of cashback and this will be deposited into your cashback account for you to withdraw into your own bank account or let it accumulate in your cashback account to be used for a specific purpose.  We love to call cashback….‘FREE’ money, because that is actually exactly what it is.</value>
+  </data>
+  <data name="Question_2" xml:space="preserve">
+    <value>How Does Cashback Work?</value>
+  </data>
+  <data name="Question_2_Answer" xml:space="preserve">
+    <value>In real terms we are giving you our money. We advertise the merchants on our website and for guiding you to their site from our website to make purchases, we would be paid by the retailer for that service. But as a valued member we will give back to you 100% of your cashback. When you have made a purchase on-line with any of the merchants that we work with and importantly have been directed to the merchant’s website from our website, then a cashback transaction has been activated.</value>
+  </data>
+  <data name="Question_3" xml:space="preserve">
+    <value>When Do I Get Paid My Cashback?</value>
+  </data>
+  <data name="Question_3_Answer" xml:space="preserve">
+    <value>The cashback will never be available immediately as of course there are periods required for goods to possibly be returned by yourself as unsuitable or faulty, however within a day or two you will normally see a ‘pending’ balance in your cashback account. Once the merchant has paid an affiliate network which is a platform that we work with to advertise the merchants, then the affiliate network will pass your money to us. Once we have received this, your cashback balance will immediately be displayed as available. The process normally takes between 30-60 days for your balance to show as ‘available’ in your cashback account but is completely in the hands of the merchant that you have purchased from. Once requested, you will receive your funds from us within 7 working days but will normally be less than this.</value>
+  </data>
+  <data name="Question_4" xml:space="preserve">
+    <value>What Type Of Purchases Can I Get Cashback From?</value>
+  </data>
+  <data name="Question_4_Answer" xml:space="preserve">
+    <value>When you shop on our website you will be able to save money on just about anything. From now on you will receive cashback when shopping for clothes, household goods, electrical equipment, flights, holidays, insurance, mobile phones, in fact the list goes on.</value>
+  </data>
+  <data name="Question_5" xml:space="preserve">
+    <value>Can I Use Voucher Codes And Get Cashback On The Same Transaction?</value>
+  </data>
+  <data name="Question_5_Answer" xml:space="preserve">
+    <value>In simple terms the answer to this question is yes. As you would expect, all the merchants we deal with have different terms and conditions and you should always read our deal description before a purchase to ensure you are not disappointed with the level of cashback received. When using a Voucher Code in conjunction with your Cashback account you may find that the cashback is the same as usual or you may find with many merchants that the cashback level is reduced. There may even be the occasional merchant who does not allow Voucher Codes to be used in conjunction with Cashback.</value>
+  </data>
+  <data name="Question_6" xml:space="preserve">
+    <value>Why Did I Not Receive The Cashback I Expected?</value>
+  </data>
+  <data name="Question_6_Answer" xml:space="preserve">
+    <value>If for any reason you don’t receive cashback on a particular transaction that you were expecting, there may be a number of reasons. For example, it may be to do with cookies on your computer not tracking correctly or it could be an error with the tracking link from the merchant. It may also be that you have used an unauthorised Voucher Code that was not provided by ourselves. Lots of companies provide voucher codes but, more often than not, they are invalid or out of date.&lt;/p&gt;
+          &lt;p&gt;Cashback rates can be altered at any time by a merchant and this can be both up or down and so it may be in some cases that you receive more than expected. If a merchant lowers the level and we have not been able to alter the rates quickly enough on our website, this could be a reason why you have received slightly less.</value>
+  </data>
+  <data name="Question_7" xml:space="preserve">
+    <value>How Do I Make A Claim?</value>
+  </data>
+  <data name="Question_7_Answer" xml:space="preserve">
+    <value>We are always here to help and we do our best to ensure that you receive all of the cashback that you are entitled to and so if ever there is any reason to believe that the correct level of cashback or even no cashback has been paid on a transaction, then please contact us immediately via our ‘Cashback Claim’ and we will endeavour to resolve any issues.&lt;/p&gt;
+          &lt;p&gt;Any claim must be submitted within 10 days of the transaction as we will not be able to chase a claim older than this with a merchant.&lt;/p&gt;
+          &lt;p&gt;We will chase all claims reported but we can only pay cashback to you that is paid by the merchants. We reserve the right to stop chasing a claim at any time if it is clear the merchant is not going to pay an untracked payment. Although the Cashback system is reliable, please do not base any purchase decisions purely based on the expected cashback as it cannot be 100% guaranteed.</value>
+  </data>
+  <data name="Question_8" xml:space="preserve">
+    <value>Other Reasons For Not Receiving Cashback</value>
+  </data>
+  <data name="Question_8_Answer" xml:space="preserve">
+    <value>Where a Merchant offers a flat cashback amount and this is more than the actual transaction value.&lt;/p&gt;
+          &lt;p&gt;Mobile App to Mobile App transactions do not qualify for cashback.&lt;/p&gt;
+          &lt;p&gt;Using Voucher or promotional codes not supplied or approved by {{CardName}}</value>
+  </data>
+  <data name="Question_9" xml:space="preserve">
+    <value>Is Cashback Taxable?</value>
+  </data>
+  <data name="Question_9_Answer" xml:space="preserve">
+    <value>If you are concerned regarding the possibility that Cashback is deemed to be taxable then we strongly recommend that you seek your own up to date advice regarding this. However, cashback is considered a discount received and as such does not need to be declared as income.</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Frequently Asked Questions</value>
+  </data>
+</root>

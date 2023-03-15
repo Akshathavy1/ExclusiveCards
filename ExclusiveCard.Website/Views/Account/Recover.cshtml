@@ -1,0 +1,35 @@
+﻿@model ExclusiveCard.Website.Models.LoginViewModel
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = @Localizer["Recover"];
+}
+
+<main class="c_main">
+    <section class="c_band">
+        <div class="l_container --mini">
+            <form class="c_form-container" role="form">
+                <h1 class="__title">@Localizer["title"]</h1>
+                <p class="__description">@Localizer["description"]</p>
+                <p class="__notice js_auto-center c_notification --negative hideContent" id="errorNoticeMessage"></p>
+                <p class="__notice js_auto-center c_notification --positive hideContent" id="successNoticeMessage" ></p>
+                <div class="c_form-group">
+                    @Html.LabelFor(m => m.Username)
+                    @Html.EditorFor(model => model.Username,
+                        new { htmlAttributes = new { @class = "",
+                            PlaceHolder = @Localizer["UserName_Placeholder"].Value.ToString(), Type= "text"} })
+                </div>
+                <div class="c_form-group --actions">
+                    <button type="button" class="--block" id="ForgotPassword">@Localizer["title"]</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+@section Scripts
+    {
+    <script src="~/js/ExclusiveWebsite/login.js"></script>
+    <script type="text/javascript">
+        Login.setUpEvents();
+    </script>
+}
+

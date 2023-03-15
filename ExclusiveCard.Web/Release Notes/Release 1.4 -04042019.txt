@@ -1,0 +1,14 @@
+- bug 910 fix to AWIN Import Stored Procedure, offers updated incorrectly
+- US 795, 814, 876, 894, 895, 898, 909, 911, 914 for delivery in the release
+	- bug 918 pending
+- Tested as per US 791, fixed bugs raised under Responsive Bugs
+
+- Known issues to be fixed in next release
+	- Payment Date received from IPN is in PDT format and sometimes in PST format, converting to UTC is pending.
+	- there is a huge space between Search box and Country dropdown because of MyAccount and Sign out buttons, this space will be removed in future release
+	- Sign-Up page responsiveness is pending
+	- Pagination for Merchant Contact details, US 814
+
+
+- Sql Script - Dev Scripts --> Sql_Script_04042019 to be executed
+	

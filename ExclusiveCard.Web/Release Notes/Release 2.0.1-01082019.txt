@@ -1,0 +1,8 @@
+﻿New Features:
+	US 66 - Add image for SC in right top Advert Panel
+
+Bug Fixes:
+	68 - Logging in Cashback Transaction and Managers
+	   - Summary Field modified to NVARCHAR(128) from NVARCHAR(30) to resolve long merchant name issue
+
+Note: Please execute the script - ExclusiveCard.Web\Dev Scripts\v2.0.1\Sql_Script_01082019

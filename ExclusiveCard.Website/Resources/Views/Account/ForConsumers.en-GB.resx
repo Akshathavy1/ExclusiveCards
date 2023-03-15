@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AnswerType" xml:space="preserve">
+    <value>Your account gives you access to cashback, voucher code deals and savings at thousands of retailers. Every time you shop online just purchase your items via your rewards account to claim your cashback and discounts. </value>
+  </data>
+  <data name="AnswerType1" xml:space="preserve">
+    <value>Simply search for the retailer, product or category that you desire and then just click the Get Cashback or Offer button to be transferred directly to the retailer’s website. You are now connected and tracked and you should shop as you normally would.  Any voucher code savings should be applied at checkout and your free cashback will automatically appear on your Rewards account page very soon after. It’s as simple as that!!  Don’t let that free money get away.</value>
+  </data>
+  <data name="AnswerType2" xml:space="preserve">
+    <value>All cashback transactions that you have made will go through a three-step process. You will see your pending cashback almost immediately in your account and then very soon it will move to the confirmed status. This is when the retailer has confirmed that the transaction you have made is valid. Finally, your cashback will then move to received status once the retailer has paid the cashback to us.</value>
+  </data>
+  <data name="AnswerType3" xml:space="preserve">
+    <value>Once you have accumulated just £5.00 in your received balance you will then be able to withdraw all or part of your cashback into the bank account of choice by simply clicking the withdrawal tab.</value>
+  </data>
+  <data name="AnswerType4" xml:space="preserve">
+    <value>If you have been set up on one of our Benefit rewards plans, this means that you have kindly agreed to donate 30% of your free cashback to support your chosen beneficiary. This will show on your accounts page in the donated balance.</value>
+  </data>
+  <data name="AnswerType5" xml:space="preserve">
+    <value>We want you to really enjoy using your rewards account and ensure you get all of your cashback. It is only fair to tell you that in a very small number of cases a transaction may not track correctly and this can be for a number of reasons. It may be the cookies or extensions on your computer or it may be a broken link with a retailer. It’s rare, but it can definitely happen. If this should ever happen with one of your transactions we would ask you to simply get in touch via the options on our contact page and we will always try to trace the transaction with the retailer and put this right.</value>
+  </data>
+  <data name="Content_Description" xml:space="preserve">
+    <value>{{Name}} is a personal, invitation only cashback and rewards account. Once you have been provided with your very own registration code and set up your account, you will then have access to exclusive top cashback deals from thousands of retailers and daily voucher code and promotional deals.</value>
+  </data>
+  <data name="Question" xml:space="preserve">
+    <value>How Does it Work?</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>For Consumers</value>
+  </data>
+</root>

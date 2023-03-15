@@ -1,0 +1,85 @@
+﻿@model ExclusiveCard.WebAdmin.ViewModels.TalkSportViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NewLayout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "TalkSport", FormMethod.Get, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div id="mainDiv" class="col-md-12 Searchforoffers divone">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger", autofocus = "autofocus" })
+        <div class="form-group row">
+            <h1 id="title-name" class="text-center">Select League</h1>
+        </div>
+        <div class="form-horizontal form-group row">
+            @Html.LabelFor(model => model.Leagues, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownListFor(model => model.LeagueId, Model.Leagues, "Select League", htmlAttributes: new { @class = "form-control roundedInput dropdownInput" })
+                @Html.ValidationMessageFor(model => model.LeagueId, "", new { @class = "text-danger col-md-12" })
+            </div>
+            @Html.LabelFor(model => model.SiteCategories, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownListFor(model => model.SiteCategoryId, Model.SiteCategories, "Select Site Category", htmlAttributes: new { @class = "form-control roundedInput dropdownInput" })
+                @Html.ValidationMessageFor(model => model.SiteCategoryId, "", new { @class = "text-danger col-md-12" })
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="button" id="btnSearchOffer" class="btn pull-right has-spinner">
+                Search<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+            </button>
+        </div>
+
+        <div class="form-group row hidden">
+            <input type="file" style="display:none" name="Image-file" id="Image-file" accept=".jpg,.tif,.jpeg,.png,.gif" onchange="show(this)">
+        </div>
+    </div>
+}
+<div id="secondDiv" class="col-md-12 divtwomerchant table-responsive">
+    @{
+        @await Html.PartialAsync("_clubList")
+    }
+</div>
+
+
+<script type="text/javascript">
+    var fileExtension = ['jpeg', 'jpg', 'png', 'tif', 'gif'];
+    var siteClanId=0;
+    function addImage(id) {
+        siteClanId = id;
+        $('#Image-file').click();
+    }
+    function deleteSiteClanImage(id) {
+        talkSport.deleteSiteClanImage(id);
+    }
+    
+    function show(input) {
+        if (input.files && input.files[0]) {
+            var maxImageSize = 50;
+            if ($.inArray($("#Image-file").val().split('.').pop().toLowerCase(), fileExtension) === -1) {
+                $("#Image-file").val("");
+                toastr.error("Only .jpeg, .jpg, .png, .tif, .gif formats are allowed.", "Invalid File Format");
+            }
+            else if ((input.files[0].size / 1024 / 1024) > maxImageSize) {
+                $("#Image-file").val("");
+                toastr.error("File size has exceeded it max limit of " + maxImageSize + " MB");
+            }
+            else {
+                talkSport.updateSiteClanImage(siteClanId, input.files[0]);
+            }
+        }
+
+    }
+
+</script>
+
+
+
+@section Scripts
+{
+    <script src="~/js/Exclusive/talksport.js?v=2"></script>
+    <script type="text/javascript">
+        talkSport.setUpEvents();
+    </script>
+}

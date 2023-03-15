@@ -1,0 +1,16 @@
+﻿@model List<ExclusiveCard.WebAdmin.ViewModels.CustomCountryList>
+
+@foreach (ExclusiveCard.WebAdmin.ViewModels.CustomCountryList item in Model)
+{
+    <div class="checkbox">
+        @if (item.Accepted)
+        {
+            <label><input type="checkbox" checked name="countryCode" value="@item.Value">@item.Name</label>
+        }
+        else
+        {
+            <label><input type="checkbox" name="countryCode" value="@item.Value">@item.Name</label>
+        }
+    </div>
+}
+

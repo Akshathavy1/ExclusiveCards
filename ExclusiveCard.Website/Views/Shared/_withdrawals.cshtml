@@ -1,0 +1,48 @@
+﻿@model TransactionLogList
+@inject IViewLocalizer Localizer
+
+@if (@Model.Transactions.Count > 0)
+{
+    <h3>@Localizer["Title"]</h3>
+    <div class="u_horizontal-scroller">
+        <table class="c_withdrawal-table">
+            <thead>
+                <tr>
+                    <th class="--datetime">Date & Time</th>
+                    <th class="--status">Status</th>
+                    <th class="--value">Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in @Model.Transactions)
+                {
+                    <tr>
+                        <td class="--date">@item.Date.ToString("dd MMM yyyy HH:mm")</td>
+                        @if (item.Status == ExclusiveCard.Data.Constants.Status.Pending ||
+                       item.Status == ExclusiveCard.Data.Constants.Status.Requested)
+                        {
+                            <td class="--status u_color--negative" data-value="3">@item.Status</td>
+                        }
+                        else if (item.Status == ExclusiveCard.Data.Constants.Status.Processing)
+                        {
+                            <td class="--status u_color--neutral" data-value="2">@item.Status</td>
+                        }
+                        else if (item.Status == ExclusiveCard.Data.Constants.Status.Paid ||
+                                 item.Status == ExclusiveCard.Data.Constants.Status.PaidOut)
+                        {
+                            <td class="--status u_color--positive" data-value="1">@item.Status</td>
+                        }
+                        <td class="--value">@item.Value</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+@if (Model.Transactions != null && Model.Transactions.Any() && Model.PagingViewModel.PageCount > 1)
+{
+    <div class="form-group row col-md-8">
+        @{ @await Html.PartialAsync("_paging", @Model.PagingViewModel); }
+    </div>
+}

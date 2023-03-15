@@ -1,0 +1,16 @@
+﻿New Feature:
+	- US 948, About Us Page
+
+Bug Fixes:
+	- Bug 933, Issue with Cashback not updating Status
+		- Cashback Summary was getting 0 when declined transaction had arrived. Fixed this issue
+	- Bug 934, Cashback Summary not update for Donation Plan Type
+		- Account Type C summary was not updating. created a method to update that
+	- Bug 950, PayPal Recurring Payments duplicating records AGAIN
+		- Fixed creation of duplicate records in CustomerPayment, MembershipCard and CahbackSummary by creating customer Payment in first step
+
+	- Bug 952, Paypal payment failed to create membership card - AGAIN
+		- Else condition was missing to send email
+	- Bug 953, New PayPal Payment failed to record customer payment
+		- CustomerPayment --> Detail field had MaxLength as 50, increased to 1024
+Note: Please execute the migration script 

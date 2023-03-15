@@ -1,0 +1,48 @@
+﻿@model ExclusiveCard.WebAdmin.ViewModels.CustomerSearchViewModel
+
+@if (@Model.ListofCustomerSummary.Count > 0)
+{
+    <div class="table-responsive">
+        <table class="table" id="offerstable">
+            <thead>
+                <tr>
+                    <th class=""><span>Username</span></th>
+                    <th class=""><span>Forename</span></th>
+                    <th class=""><span>Surname</span></th>
+                    <th class=""><span>DOB</span></th>
+                    <th class=""><span>Postcode</span></th>
+                    <th class=""><span>CardNumber</span></th>
+                    <th class=""><span>Action</span></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in @Model.ListofCustomerSummary)
+                {
+                    <tr class="customerList">
+                        <td>@item.Username</td>
+                        <td>@item.Forename</td>
+                        <td>@item.Surname</td>
+                        <td>@item.Dob?.ToString("dd MMM yyyy")</td>
+                        <td>@item.Postcode</td>
+                        <td>@item.CardNumber</td>
+                        <td><a href="#" id="editbutton" customerId="@item.Id">Edit</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="form-group align-items-center row col-md-9">
+        <h5 style="margin-top:12pt;">No record found</h5>
+    </div>
+}
+@if (Model.ListofCustomerSummary != null && Model.ListofCustomerSummary.Any() && Model.PagingModel.PageCount > 1)
+{
+    <div id="divCustomerList" class="form-group row col-md-8">
+        @{
+            @await Html.PartialAsync("_paging", @Model.PagingModel)
+        }
+    </div>
+}

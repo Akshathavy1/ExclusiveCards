@@ -1,0 +1,322 @@
+﻿@*@model PagedOffersViewModel*@
+@using System.Text.RegularExpressions
+@model List<ExclusiveCard.Services.Models.DTOs.Public.OfferSummary>
+@inject IViewLocalizer Localizer
+
+@inject SignInManager<ExclusiveCard.Data.Models.ExclusiveUser> SignInManager
+
+@{
+    string type = Convert.ToString(ViewData["OfferType"]);
+    string termsMessage = Convert.ToString(ViewData["OfferTerms"]);
+    string instructionsMessage = Convert.ToString(ViewData["OfferInstructions"]);
+    int selected = Convert.ToInt32(ViewData["SelectedOffer"]);
+    var isSignedIn = SignInManager.IsSignedIn(User);
+}
+
+@foreach (ExclusiveCard.Services.Models.DTOs.Public.OfferSummary offer in Model)
+{
+    var linkAvailable = 0;
+    if (@offer.DeepLinkAvailable)
+    {
+        linkAvailable = 1;
+    }
+    <div class="profile-event">
+        @if (offer.OfferId == selected)
+        {
+            <div class="overflow-h selectedOffer" id="particularoffer" tabindex="0">
+                <div class="row navsline">
+                    <div class="col-md-2 naviline">
+                        <p></p>
+                        <div class="row">
+                            @if (!string.IsNullOrEmpty(@offer.MerchantLogoPath))
+                            {
+                                <img src="/images/blank.png" data-src="/Image/GetImage?path=@offer.MerchantLogoPath"  data-srcset="/Image/GetImage?path=@offer.MerchantLogoPath" class="img-responsive imagevh lazy" />
+                            }
+                            else
+                            {
+                                <img />
+                            }
+                            <p></p>
+                        </div>
+                    </div>
+                    <div class="col-md-8 naviline  navfnt">
+                        <div class="row merchantmob">
+                            <br /> <span class="rdfull">
+                                @if (!string.IsNullOrEmpty(@offer.OfferLongDescription) && !string.Equals(Regex.Replace(@offer.OfferLongDescription, "<.*?>", string.Empty).Trim(), @offer.OfferShortDescription, StringComparison.CurrentCultureIgnoreCase))
+                                {
+                                    @offer.OfferShortDescription
+                                }
+                                else if (string.IsNullOrEmpty(@offer.OfferLongDescription) && !string.IsNullOrEmpty(@offer.OfferShortDescription))
+                                {
+                                    @offer.OfferShortDescription
+                                }
+                            </span>
+                        </div>
+                        <p></p>
+                        <div class="row merchantmob">
+                            <span class="rowMore">@Html.Raw(offer.OfferLongDescription)</span>
+                            <span class="rowHide">@Html.Raw(offer.OfferLongDescription)<a href='#' class='tless'> Hide</a></span>
+                        </div>
+                        <div class="row merchantmob">
+                            <span class="col-md-4 naviline  navfnts">
+
+                                @if (isSignedIn)
+                                {
+                                <a class="inspop">
+                                    @Localizer["Instructions"]
+                                    @if (!string.IsNullOrEmpty(@offer.OfferInstructions))
+                                    {
+                                        @Html.Hidden("Instructions", @offer.OfferInstructions)
+                                    }
+                                    else
+                                    {
+                                        @Html.Hidden("Instructions", @Localizer[instructionsMessage].Value)
+                                    }
+
+                                </a>
+                                }
+                            </span>
+                            <span class="col-md-4 naviline navfnts">
+
+                                <a class="termpop">
+                                    @Localizer["Terms"]
+                                    @if (!string.IsNullOrEmpty(@offer.OfferTerms))
+                                    {
+                                        @Html.Hidden("Terms", @offer.OfferTerms)
+                                    }
+                                    else
+                                    {
+                                        @Html.Hidden("Terms", @Localizer[termsMessage].Value)
+                                    }
+
+                                </a>
+
+                            </span>
+                            <span class="col-md-4 naviline navfnts">
+                                @if (!string.IsNullOrEmpty(@offer.OfferExclusions))
+                                {
+                                <a class="exlpop">
+                                    @Localizer["Exclusions"]  @Html.Hidden("Exclusions", @offer.OfferExclusions)
+                                </a>
+                                }
+                            </span>
+                        </div>
+                    </div>
+                    @*@if (type == "Voucher")
+                        {
+                            <div class="col-md-2 naviline navfnts codepop"><br />Get Code @Html.Hidden("Code", @offer.OfferCode)</div>
+                        }
+                        else
+                        {
+                            <div class="col-md-2 naviline">
+                                <br />
+                            </div>
+                        }*@
+
+                    @if (type == "Cashback" || type == "Standard")
+                    {
+                        <center>
+                            <div class="col-md-2 naviline">
+                                <br />
+                                <button merchantId="@offer.MerchantId" offerId="@offer.OfferId" linkUrl="@linkAvailable" class="btn-cashback btnDetailCashback  btcenter">@Localizer["Get Cashback"]</button><p></p>
+                            </div>
+                        </center>
+                    }
+                    else if (type == "ExclusiveCard")
+                    {
+                        <center>
+                            <div class="col-md-2 naviline">
+                                <br />
+                                <button merchantId="@offer.MerchantId" offerId="@offer.OfferId" linkUrl="@linkAvailable" class="btn-cashback btnDetailCashback  btcenter">@Localizer["Get Offer"]</button><p></p>
+                            </div>
+                        </center>
+                    }
+                    else if (type == "Voucher")
+                    {
+                        <center>
+                            <div class="col-md-2 naviline  two-btns">
+                                <br />
+                                @if (!string.IsNullOrEmpty(@offer.OfferCode) && isSignedIn)
+                                {
+                                    <button class="btn-getcode btcenter codepop">&nbsp;&nbsp;@Localizer["Get Code"] @Html.Hidden("Code", @offer.OfferCode)</button>
+                                }
+                                <br /><p></p>
+                                      <button merchantId="@offer.MerchantId" offerId="@offer.OfferId" linkUrl="@linkAvailable" class="btn-cashback btnDetailCashback  btcenter gooffer">@Localizer["Go to Offer"]</button><p></p>
+
+                            </div>
+                        </center>
+                    }
+                    else if (type == "HighStreet" || type == "HighStreetRestaurant")
+                    {
+                        <center>
+                            <div class="col-md-2 naviline">
+                                <br /><br />
+                                      @*<button merchantId="@offer.MerchantId" offerId="@offer.OfferId" linkUrl="@linkAvailable" class="btn-cashback btnDetailCashback  btcenter">@Localizer["Get Deal"]</button><p></p>*@
+                            </div>
+                        </center>
+                    }
+                    else
+                    {
+                        <center>
+                            <div class="col-md-2 naviline">
+                                <br />
+                                <button merchantId="@offer.MerchantId" offerId="@offer.OfferId" linkUrl="@linkAvailable" class="btn-cashback btnDetailCashback  btcenter">@Localizer["Get Offer"]</button><p></p>
+                            </div>
+                        </center>
+                    }
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="overflow-h bdrs">
+                <div class="row navsline">
+                    <div class="col-md-2 naviline ">
+                        <p></p>
+
+                        <div class="row">
+
+                            @if (!string.IsNullOrEmpty(@offer.MerchantLogoPath))
+                            {
+                                <img src="/images/blank.png" data-src="/Image/GetImage?path=@offer.MerchantLogoPath"  data-srcset="/Image/GetImage?path=@offer.MerchantLogoPath" class="img-responsive imagevh lazy" />
+                            }
+                            else
+                            {
+                                <img />
+                            }
+                            <p></p>
+                        </div>
+
+                    </div>
+                    <div class="col-md-8 naviline navfnt">
+                        <div class="row merchantmob">
+                            <br /> <span class="rdfull">
+                                @if (!string.IsNullOrEmpty(@offer.OfferLongDescription) && !string.Equals(Regex.Replace(@offer.OfferLongDescription, "<.*?>", string.Empty).Trim(), @offer.OfferShortDescription, StringComparison.CurrentCultureIgnoreCase))
+                                {
+                                    @offer.OfferShortDescription
+                                }
+                                else if (string.IsNullOrEmpty(@offer.OfferLongDescription) && !string.IsNullOrEmpty(@offer.OfferShortDescription))
+                                {
+                                    @offer.OfferShortDescription
+                                }
+
+                            </span>
+                        </div>
+                        <div class="row merchantmob">
+                            <span class="rowMore">@Html.Raw(offer.OfferLongDescription)</span>
+                            <span class="rowHide">@Html.Raw(offer.OfferLongDescription)<a href='#' class='tless'> Hide</a></span>
+                        </div>
+                        <div class="row merchantmob">
+                            <span class="col-md-4 naviline  navfnts">
+                                @if (isSignedIn)
+                                {
+                                <a class="inspop">
+                                    @Localizer["Instructions"]
+                                    @if (!string.IsNullOrEmpty(@offer.OfferInstructions))
+                                    {
+                                        @Html.Hidden("Instructions", @offer.OfferInstructions)
+                                    }
+                                    else
+                                    {
+                                        @Html.Hidden("Instructions", @Localizer[instructionsMessage].Value)
+                                    }
+
+                                </a>
+                                }
+                            </span>
+                            <span class="col-md-4 naviline navfnts">
+                                <a class="termpop">
+                                    @Localizer["Terms"]
+                                    @if (!string.IsNullOrEmpty(@offer.OfferTerms))
+                                    {
+                                        @Html.Hidden("Terms", @offer.OfferTerms)
+                                    }
+                                    else
+                                    {
+                                        @Html.Hidden("Terms", @Localizer[termsMessage].Value)
+                                    }
+
+                                </a>
+                            </span>
+                            <span class="col-md-4 naviline navfnts">
+                                @if (!string.IsNullOrEmpty(@offer.OfferExclusions))
+                                {
+                                <a class="exlpop">
+                                    @Localizer["Exclusions"] @Html.Hidden("Exclusions", @offer.OfferExclusions)
+                                </a>
+                                }
+                            </span>
+                        </div>
+                    </div>
+                    @*@if (type == "Voucher")
+                        {
+                            <div class="col-md-2 naviline navfnts codepop"><br />Get Code @Html.Hidden("Code", @offer.OfferCode)</div>
+                        }
+                        else
+                        {
+                            <div class="col-md-2 naviline">
+                                <br />
+                            </div>
+                        }*@
+
+                    @if (type == "Cashback" || type == "Standard")
+                    {
+                        <center>
+                            <div class="col-md-2 naviline">
+                                <br />
+                                <button merchantId="@offer.MerchantId" offerId="@offer.OfferId" linkUrl="@linkAvailable" class="btn-cashback btnDetailCashback  btcenter">@Localizer["Get Cashback"]</button><p></p>
+                            </div>
+                        </center>
+                    }
+                    else if (type == "ExclusiveCard")
+                    {
+                        <center>
+                            <div class="col-md-2 naviline ">
+                                <br />
+                                <button merchantId="@offer.MerchantId" offerId="@offer.OfferId" linkUrl="@linkAvailable" class="btn-cashback btnDetailCashback  btcenter">@Localizer["Get Offer"]</button><p></p>
+                            </div>
+                        </center>
+                    }
+                    else if (type == "Voucher")
+                    {
+                        @*<div class="col-md-2 naviline codepop">
+                                <br />
+                                <button merchantId="@offer.MerchantId" offerId="@offer.OfferId" class="btn-cashback  btcenter">Get Code</button>
+                            </div>*@
+                        <center>
+                            <div class="col-md-2 naviline two-btns">
+                                <br />
+                                @if (!string.IsNullOrEmpty(@offer.OfferCode) && isSignedIn)
+                                {
+                                <button class="btn-getcode btcenter codepop">&nbsp;&nbsp;@Localizer["Get Code"] @Html.Hidden("Code", @offer.OfferCode)</button>
+                                }
+                                <br /><p></p>
+                                      <button merchantId="@offer.MerchantId" offerId="@offer.OfferId" linkUrl="@linkAvailable" class="btn-cashback btnDetailCashback  btcenter gooffer">@Localizer["Go to Offer"]</button><p></p>
+
+                            </div>
+                        </center>
+                    }
+                    else if (type == "HighStreet" || type == "HighStreetRestaurant")
+                    {
+                        <center>
+                            <div class="col-md-2 naviline ">
+                                <br /><br />
+                                      @*<button merchantId="@offer.MerchantId" offerId="@offer.OfferId" linkUrl="@linkAvailable" class="btn-cashback btnDetailCashback btcenter">@Localizer["Get Deal"]</button><p></p>*@
+                            </div>
+                        </center>
+                    }
+                    else
+                    {
+                        <center>
+                            <div class="col-md-2 naviline ">
+                                <br />
+                                <button merchantId="@offer.MerchantId" offerId="@offer.OfferId" linkUrl="@linkAvailable" class="btn-cashback btnDetailCashback  btcenter">@Localizer["Get Offer"]</button><p></p>
+                            </div>
+                        </center>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+}
+

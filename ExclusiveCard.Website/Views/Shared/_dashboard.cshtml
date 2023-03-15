@@ -1,0 +1,26 @@
+﻿@model ExclusiveCard.Website.Models.TamViewModel
+@inject IViewLocalizer Localizer
+
+<div class="__column --span-12 --span-8--md">
+    <h2>@Localizer["title"]</h2>
+
+    <div class="c_form-container" method="GET">
+        <h3 class="__title">@Localizer["account"]</h3>
+        <p class="__description">@Localizer["description"]</p>
+        @if (!string.IsNullOrEmpty(Model.Password))
+        {
+            <dl class="u_margin-bottom--none">
+                <dt>@Localizer["url"]</dt>
+                <dd><a href="@Model.Url" target="_blank" rel="noopener">@Model.Url</a></dd>
+                <dt>@Localizer["username"]</dt>
+                <dd>@Model.Username</dd>
+                <dt>@Localizer["password"]</dt>
+                <dd><code>@Model.Password</code></dd>
+            </dl>
+        }
+        else
+        {
+            <p class="c_notification --negative u_margin-bottom--none">@Localizer["message"]</p>
+        }
+    </div>
+</div>

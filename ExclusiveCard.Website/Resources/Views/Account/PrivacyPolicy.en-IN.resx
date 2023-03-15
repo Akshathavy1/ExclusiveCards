@@ -1,0 +1,252 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Heading" xml:space="preserve">
+    <value>T_Privacy Policy</value>
+  </data>
+  <data name="Intro_para_1" xml:space="preserve">
+    <value>T_Your privacy is always of paramount importance to us and we are committed to the protection of your personal data at all times.</value>
+  </data>
+  <data name="Intro_para_2" xml:space="preserve">
+    <value>T_Below we have set out how we will keep your data safe when you visit Exclusive Rewards and/or any white label versions or derivatives powered by Exclusive Media Limited</value>
+  </data>
+  <data name="SubHeading_1" xml:space="preserve">
+    <value>T_Notice</value>
+  </data>
+  <data name="SubHeading_10" xml:space="preserve">
+    <value>T_Use of Data Overseas</value>
+  </data>
+  <data name="SubHeading_10_intro_para_1" xml:space="preserve">
+    <value>T_From time to time your data may be used in connection with a third party that is based outside of the UK. Some of the merchants we work with are based overseas and if you create transactions with such companies then your data will be shared with such companies.</value>
+  </data>
+  <data name="SubHeading_10_intro_para_2" xml:space="preserve">
+    <value>T_Your details however will only ever be shared with merchants in countries that offer or have guaranteed the required level of protection by the European Commission. Similarly, any data shared with companies in the US requires them to offer protection to personal data to the level required by law between Europe and the USA.</value>
+  </data>
+  <data name="SubHeading_11" xml:space="preserve">
+    <value>T_Security of Your Data</value>
+  </data>
+  <data name="SubHeading_11_intro_para_1" xml:space="preserve">
+    <value>T_All employees or agents of {{DisplayName}} that need to have access to your data in order to offer you the service that you would expect from the company and you membership, are governed by strict guidelines as to the use of your data in any unauthorised way or in any way that puts your personal data at risk. All members of staff or agents of {{DisplayName}} that may have any direct or indirect access to your data in the line of their work are subject to a signed duty of confidentiality agreement.</value>
+  </data>
+  <data name="SubHeading_11_intro_para_2" xml:space="preserve">
+    <value>T_In the case of a member no longer being associated with {{Name}} or having a membership with {{Name}}, such person may request Exclusive Media Ltd to delete and erase any remaining personal data from our system completely. However, we would re-assure all members that even after a subscription termination, all personal data will be treated with the same respect and confidentiality as was offered during an active membership.</value>
+  </data>
+  <data name="SubHeading_11_intro_para_3" xml:space="preserve">
+    <value>T_At all times you have full protection under data protection laws and have the right of access to the personal data we hold about you in the form of a copy of your personal data from our system.</value>
+  </data>
+  <data name="SubHeading_11_intro_para_4" xml:space="preserve">
+    <value>T_In respect of a request for information regarding personal data on our systems we reserve the right to request information to confirm your identity and confirm that you are the person with the legal right to such information.</value>
+  </data>
+  <data name="SubHeading_11_intro_para_5" xml:space="preserve">
+    <value>T_We will provide all such information with no charge to the client except in cases where requests for information become repetitive or the grounds for such a request are deemed unfounded. In such cases a charge may be incurred by the client to receive any repeated requests or we may simply refuse to comply with such requests.</value>
+  </data>
+  <data name="SubHeading_11_intro_para_6" xml:space="preserve">
+    <value>T_The system of Affiliate marketing has a requirement to create tracking links that track transactions, payments, and refunds. The affiliate platform is an intermediary between our site and the retailers who provide the products or services that we are able to make available to our members and to include cashback. This service naturally creates the requirement for data transfer and sharing to enable the entire cashback service to function. Your data is of primary importance to us at all times, as per this privacy policy. Only enter into an {{Name}} membership with Exclusive Media Ltd if you are happy with and fully understand all of the information supplied.</value>
+  </data>
+  <data name="SubHeading_1_intro" xml:space="preserve">
+    <value>T_The following privacy notice will inform you of how we will handle your data when you are using the website {{URL}} The use of our website includes the signing up process, browsing the site generally and by way of purchase of products searched via our website.  Please read this notice carefully to ensure you fully understand how and why we will use your personal data.</value>
+  </data>
+  <data name="SubHeading_2" xml:space="preserve">
+    <value>T_Who We Are</value>
+  </data>
+  <data name="SubHeading_2_intro_para_1" xml:space="preserve">
+    <value>T_Company Name: Exclusive Media Ltd</value>
+  </data>
+  <data name="SubHeading_2_intro_para_2" xml:space="preserve">
+    <value>T_Contact Email address for enquiries: enquiries@exclusiverewards.co.uk</value>
+  </data>
+  <data name="SubHeading_2_intro_para_3" xml:space="preserve">
+    <value>T_Company Address:  15 Hoghton Street, Southport, United Kingdom, PR9 0NS</value>
+  </data>
+  <data name="SubHeading_2_intro_para_4" xml:space="preserve">
+    <value>T_If you have any concerns regarding any aspect of the protection of your personal data, please contact us immediately to enable us to deal with your concerns or complaints.</value>
+  </data>
+  <data name="SubHeading_3" xml:space="preserve">
+    <value>T_Changes to This Privacy Policy</value>
+  </data>
+  <data name="SubHeading_3_intro_para_1" xml:space="preserve">
+    <value>T_We would request that you will inform us of any changes to your personal data during the period that you are using our website as we will endeavour to hold accurate and current data at all times.</value>
+  </data>
+  <data name="SubHeading_3_intro_para_2" xml:space="preserve">
+    <value>T_This policy will be updated from time to time.</value>
+  </data>
+  <data name="SubHeading_4" xml:space="preserve">
+    <value>T_Third Party Links</value>
+  </data>
+  <data name="SubHeading_4_intro_para_1" xml:space="preserve">
+    <value>T_Our website will naturally include links to third party sites, plug-ins and applications. We have no control over such links and the data that can be obtained by a third party, by you clicking the links. We would always advise you to read the privacy policy of each website you visit when you leave our site.</value>
+  </data>
+  <data name="SubHeading_5" xml:space="preserve">
+    <value>T_Data That We May Collect</value>
+  </data>
+  <data name="SubHeading_5_intro_para_1" xml:space="preserve">
+    <value>T_The personal data that we collect regarding a person relates to any information from which a person may be identified but does not include anonymous data.</value>
+  </data>
+  <data name="SubHeading_5_intro_para_2" xml:space="preserve">
+    <value>T_We may collect, store and transfer the following types of data.</value>
+  </data>
+  <data name="SubHeading_5_intro_para_3" xml:space="preserve">
+    <value>T_By creating or opening an account with Exclusive Rewards you must accept that data may be collected automatically by using cookies or any other similar action. Furthermore, as you navigate and use the features of our website, we may collect further data in the form of usage and profile data and preference data. If you do not wish to allow us to collect or share any data mentioned or not specifically mentioned above, we must request that you do not open or register for an account on the Exclusive Rewards website which is operated by Exclusive Media Ltd. The above guidance is also related to you or anybody that you may allow to use or give access to, your account.</value>
+  </data>
+  <data name="SubHeading_5_intro_para_4" xml:space="preserve">
+    <value>T_We may also, when you use our website receive and share personal data from third party websites about you. By using the Exclusive Rewards website and opening an account with Exclusive Rewards you must accept that we will almost certainly receive information such as technical data, analytics, transactional data, profile data and other unspecified forms of data from such third-party websites. If you do not agree with this or any data being received, then we once again state that you do not open an account with Exclusive Rewards.</value>
+  </data>
+  <data name="SubHeading_5_intro_para_5" xml:space="preserve">
+    <value>T_A third party may be any person, company or organisation that we reasonably need to liase with (and limited to this purpose), in order to offer you the service you would expect from being an Exclusive Rewards member and using the Exclusive Rewards website.</value>
+  </data>
+  <data name="SubHeading_5_pointA" xml:space="preserve">
+    <value>T_Data relating to your identity which will include your full name, date of birth, marital status, any title by which you may be known and any identifying username that you may use within the website. We will also store your email address.</value>
+  </data>
+  <data name="SubHeading_5_pointB" xml:space="preserve">
+    <value>T_We may store your bank account details, the details of your payment card, a billing address and a delivery address.</value>
+  </data>
+  <data name="SubHeading_5_pointC" xml:space="preserve">
+    <value>T_We will store details regarding your purchases and the products, services and preferences that you may have viewed within our site.</value>
+  </data>
+  <data name="SubHeading_5_pointD" xml:space="preserve">
+    <value>T_We may also hold details of your account profile such as usernames and passwords, login data, location and IP address and information relating to browser plug-ins, operating systems and time zone settings.</value>
+  </data>
+  <data name="SubHeading_6" xml:space="preserve">
+    <value>T_REASONS THAT WE MAY USE YOUR DATA</value>
+  </data>
+  <data name="SubHeading_6_intro_para_1" xml:space="preserve">
+    <value>T_Exclusive Media Ltd will only use your data in the interest of our business which will allow us to offer you the service that using our website demands. We will never use your data or information for any activity that may be deemed by us to be detrimental in any way to you or in any way that is not of legitimate interest to the operation of your Exclusive Rewards account. If you have any reason of concern as to how we may use data or how we have used your data we would ask you to contact us at enquiries@exclusiverewards.co.uk.</value>
+  </data>
+  <data name="SubHeading_6_intro_para_2" xml:space="preserve">
+    <value>T_We do require a certain level of data from you to enable us to complete performance of contract between Exclusive Media Ltd and yourself. If you are unable or unwilling to provide such data, we are unable to enter into a contract and allow you to open an Exclusive Rewards account.</value>
+  </data>
+  <data name="SubHeading_7" xml:space="preserve">
+    <value>T_Cookies</value>
+  </data>
+  <data name="SubHeading_7_intro_para_1" xml:space="preserve">
+    <value>T_At any time, you can set your browser to accept cookies however we would not recommend this. Our website will not offer you all the available functions if cookies are disabled. Your cashback may also not track properly if cookies are disabled.</value>
+  </data>
+  <data name="SubHeading_8" xml:space="preserve">
+    <value>T_Opting Out</value>
+  </data>
+  <data name="SubHeading_8_intro_para_1" xml:space="preserve">
+    <value>T_You can of course at any time opt out of any promotional materials that may be sent by contacting us at enquiries@exclusiverewards.co.uk or by opting out as an option at the bottom of any email that is sent to you by ourselves.</value>
+  </data>
+  <data name="SubHeading_9" xml:space="preserve">
+    <value>T_Promotional Material</value>
+  </data>
+  <data name="SubHeading_9_intro_para_1" xml:space="preserve">
+    <value>T_We will from time to time contact you in relation to marketing materials that may fit your preferences however we will never sell your data or personal details to any company outside the Exclusive Media Limited Group for marketing purposes.  Your details will only be shared with third parties who are involved in the preparation of marketing for Exclusive Media Limited and related products.</value>
+  </data>
+</root>

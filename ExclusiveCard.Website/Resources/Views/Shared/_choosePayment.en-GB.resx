@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Join Exclusive Card" xml:space="preserve">
+    <value>Join Exclusive Card</value>
+  </data>
+  <data name="Pay late with cashback earned" xml:space="preserve">
+    <value>Pay late with cashback earned</value>
+  </data>
+  <data name="Pay now with Paypal or credit / debit card" xml:space="preserve">
+    <value>Pay now with Paypal or credit / debit card</value>
+  </data>
+  <data name="Payment" xml:space="preserve">
+    <value>Payment</value>
+  </data>
+  <data name="Please note you will not receive your exclusive Card (both via the app or through the post) untill the card has been paid off." xml:space="preserve">
+    <value>Please note you will not receive your exclusive Card (both via the app or through the post) untill the card has been paid off.</value>
+  </data>
+  <data name="subscription service and will automatically renew on the expiry date shown on your Exclusive Card." xml:space="preserve">
+    <value>subscription service and will automatically renew on the expiry date shown on your Exclusive Card.</value>
+  </data>
+  <data name="You have chosen to purchase one year full membership card at £19.99. Exclusive card is an ongoing" xml:space="preserve">
+    <value>You have chosen to purchase one year full membership card at £19.99. Exclusive card is an ongoing</value>
+  </data>
+  <data name="You will not have access to restaurant or high street offers without card" xml:space="preserve">
+    <value>You will not have access to restaurant or high street offers without card</value>
+  </data>
+  <data name="Terms and Conditions" xml:space="preserve">
+    <value>Terms and Conditions</value>
+  </data>
+  <data name="*I agree to the terms and Conditions" xml:space="preserve">
+    <value>*I agree to the terms and Conditions</value>
+  </data>
+  <data name="View terms and Conditions" xml:space="preserve">
+    <value>View terms and Conditions</value>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="Paypal Subscribe" xml:space="preserve">
+    <value>Paypal Subscribe</value>
+  </data>
+  <data name="By Continuing with this order I acknowledge that I have read and I agree to the full terms and conditions of Exclusive Card membership" xml:space="preserve">
+    <value>By Continuing with this order I acknowledge that I have read and I agree to the full terms and conditions of Exclusive Card membership</value>
+  </data>
+  <data name="By joining Exclusive Card I Understand that my membership is an onging subscription service and will automatically renew on the expiry date shown on my Exclusive Card for an annual fee of £19.99. I understand my membership will continue to renew towards the end of each subsequent annual term unless it is cancelled in accordance with the terms and conditions. I argee to inform Exclusive Media Ltd if any of my contact details Change." xml:space="preserve">
+    <value>By joining Exclusive Card I Understand that my membership is an onging subscription service and will automatically renew on the expiry date shown on my Exclusive Card for an annual fee of £19.99. I understand my membership will continue to renew towards the end of each subsequent annual term unless it is cancelled in accordance with the terms and conditions. I argee to inform Exclusive Media Ltd if any of my contact details Change.</value>
+  </data>
+  <data name="A physical membership card at" xml:space="preserve">
+    <value>A physical membership card at</value>
+  </data>
+  <data name="This makes a total cost of" xml:space="preserve">
+    <value>This makes a total cost of</value>
+  </data>
+  <data name="You have chosen to purchase" xml:space="preserve">
+    <value>You have chosen to purchase</value>
+  </data>
+  <data name="By continuing with this purchase, I acknowledge that I have read and agree to the full terms and conditions of Exclusive Card membership." xml:space="preserve">
+    <value>By continuing with this purchase, I acknowledge that I have read and agree to the full terms and conditions of Exclusive Card membership.</value>
+  </data>
+  <data name="By joining Exclusive Card, I understand that my membership is a recurring subscription and will automatically renew on the expiry date shown on my Exclusive Card at an annual cost of" xml:space="preserve">
+    <value>By joining Exclusive Card, I understand that my membership is a recurring subscription and will automatically renew on the expiry date shown on my Exclusive Card at an annual cost of</value>
+  </data>
+  <data name="I understand this renewal will be automatic at then end of each term unless it is cancelled in accordance with the terms and conditions. I agree that I will inform Exclusive Media Ltd of any change to my contact details." xml:space="preserve">
+    <value>I understand this renewal will be automatic at then end of each term unless it is cancelled in accordance with the terms and conditions. I agree that I will inform Exclusive Media Ltd of any change to my contact details.</value>
+  </data>
+  <data name="One month membership card at" xml:space="preserve">
+    <value>One month membership card at</value>
+  </data>
+  <data name="One year full membership card at" xml:space="preserve">
+    <value>One year full membership card at</value>
+  </data>
+  <data name="Please note that If you are using future cashback earned to pay for your annual membership, then your digital Exclusive Card on the mobile application will not be displayed, nor will you have access to restaurant or high street offers until your negative balance has been cleared to £0.00." xml:space="preserve">
+    <value>Please note that If you are using future cashback earned to pay for your annual membership, then your digital Exclusive Card on the mobile application will not be displayed, nor will you have access to restaurant or high street offers until your negative balance has been cleared to £0.00.</value>
+  </data>
+  <data name="Would you like to clear your negative cashback balance to £0.00 now giving you full access to restaurant and high street offers immediately" xml:space="preserve">
+    <value>Would you like to clear your negative cashback balance to £0.00 now giving you full access to restaurant and high street offers immediately</value>
+  </data>
+  <data name="Your digital Exclusive Card on the mobile application will not be displayed, nor will you have access to restaurant or high street offers until your negative balance has been cleared to £0.00." xml:space="preserve">
+    <value>Your digital Exclusive Card on the mobile application will not be displayed, nor will you have access to restaurant or high street offers until your negative balance has been cleared to £0.00.</value>
+  </data>
+  <data name="at" xml:space="preserve">
+    <value>at</value>
+  </data>
+</root>

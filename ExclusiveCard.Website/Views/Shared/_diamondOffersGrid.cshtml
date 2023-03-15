@@ -1,0 +1,41 @@
+﻿@model List<ExclusiveCard.Services.Models.DTOs.Public.OfferSummary>
+@inject IViewLocalizer Localizer
+@{
+    var layoutModel = (LayoutViewModel)@ViewBag.LayoutModel;
+}
+@foreach (var item in Model)
+{
+    <div class="__item">
+        <!-- c_grid-benefit -->
+        <div class="c_grid-benefit">
+            <div class="__content">
+                <div class="__logo">
+                    @if (!string.IsNullOrEmpty(item.MerchantLogoPath))
+                    {
+                        <img class="lazy" src="/images/blank.png" data-src="/Image/GetImage?Path=@item.MerchantLogoPath" data-srcset="/Image/GetImage?Path=@item.MerchantLogoPath" alt="@item.MerchantName">
+                    }
+                    else
+                    {
+                        <img alt="@item.MerchantName"/>
+                    }
+                </div>
+                <h2>@item.OfferShortDescription</h2>
+                <p>@Html.Raw(item.OfferLongDescription)</p>
+
+                @if (layoutModel.IsSignedIn && layoutModel.IsDiamondCustomer && layoutModel.EmailConfirmed)
+                {
+                    if (!string.IsNullOrEmpty(item.OfferCode))
+                    {
+                         <code>@item.OfferCode</code>
+                    }
+                    <a href="@Url.Action("Redirect","Offers", new {offerId = item.OfferId})" class="e_button --small --block" target="_blank" rel="noopener"><span>@Localizer["ClaimBenefit"]</span></a>
+                }
+                else
+                {
+                    <a href="#" class="e_button --small --block" disabled><span>@Localizer["ClaimBenefit"]</span></a>
+                }
+            </div>
+        </div>
+        <!-- c_grid-benefit - END -->
+    </div>
+}

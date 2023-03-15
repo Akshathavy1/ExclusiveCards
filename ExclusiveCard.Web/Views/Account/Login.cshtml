@@ -1,0 +1,63 @@
+﻿@model ExclusiveCard.WebAdmin.ViewModels.LoginViewModel
+@{
+
+    Layout = "~/Views/Shared/_LoginLayout.cshtml";
+    ViewBag.Title = "Login";
+}
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="logindetails">
+        <div class="form-group row heading goldBackground ">
+            <div class="col-md-12">
+                <span>Sign In</span>
+            </div>
+        </div>
+   <br />
+        
+        <div class="form-group centerContent row">
+            <div class="col-md-12 navlogin">
+                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control roundedInput login-text", PlaceHolder = "Username" } })
+                @Html.ValidationMessageFor(model => model.Username)
+            </div>
+        </div>
+       <div class="form-group centerContent row">
+            <div class="col-md-12">
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { type = "password", @class = "form-control roundedInput login-text", PlaceHolder = "Password" } })
+                @Html.ValidationMessageFor(model => model.Password)
+            </div>
+        </div>
+
+        <div class="form-group error">
+            @if (@ViewBag.Failedcount != null)
+            {
+                <label> Failed Attempt count is: @ViewBag.Failedcount</label>
+            }
+
+            @if (@ViewBag.NotValidUser != null)
+            {
+                <label> @ViewBag.NotValidUser</label>
+            }
+        </div>
+
+        <div class="form-group centerContent row loginbtns">
+            <div class="col-md-12 ">
+                <button id="btnConfirm" class="btn has-spinner">
+                    Confirm<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+                </button>
+                <button id="btnCancels" class="btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts
+{
+    <script src="~/js/Exclusive/account.js"></script>
+    <script>
+        $(document).ready(function () {
+            Account.setUpEvents();
+        });
+    </script>
+
+}

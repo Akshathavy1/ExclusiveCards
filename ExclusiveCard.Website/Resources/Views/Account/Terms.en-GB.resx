@@ -1,0 +1,492 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Account" xml:space="preserve">
+    <value>Account Security</value>
+  </data>
+  <data name="Account_1" xml:space="preserve">
+    <value>Exclusive Media Limited operate our systems to reduce the risks of any fraudulent activity, but we naturally rely on our members to be equally vigilant and responsible. Your account details should not be shared with anyone and if you ever suspect that your login details or passwords or any codes that you may use to enter or use your account and furthermore anything that may affect your privacy have been compromised then we urge you to notify us promptly so that we can take the necessary steps to re-instate your privacy with new account settings. We urge you to ensure that your account details are kept confidential at all times.</value>
+  </data>
+  <data name="Account_2" xml:space="preserve">
+    <value>Exclusive Media Limited reserve the right to disable an account if we feel that an account is in anyway compromised in relation to security or terms of use. It is also at the discretion of Exclusive Media Limited to terminate an account if we suspect abuse or any fraudulent activity with the possibility of the forfeiture of any cashback earnings within the said account.</value>
+  </data>
+  <data name="Agreement" xml:space="preserve">
+    <value>The Agreement</value>
+  </data>
+  <data name="Agreement_1" xml:space="preserve">
+    <value>No third party shall have any rights under the above terms and conditions and having read all the above terms and conditions you will only apply for Exclusive Rewards membership once having fully understood and accepted all conditions. You must be over 16 years old to open an Exclusive Rewards account.  We reserve the right to refuse membership or terminate an account at any time.</value>
+  </data>
+  <data name="CD" xml:space="preserve">
+    <value>Cost and Delivery</value>
+  </data>
+  <data name="CD_1" xml:space="preserve">
+    <value>The current price of Exclusive Rewards membership will be clearly displayed on the website {{URL}} and will supersede any price displayed and advertised on any promotional material. We will endeavour to keep up to date and replace all such promotional materials and all subsequently released promotional material will reflect a current displayed price of Exclusive Rewards membership on the website at the time of release. The current website pricing structure will always take precedence at the point of application for membership except in an obvious case of error. Exclusive Rewards membership and usage is accessed via the website and our mobile application and your valid membership card is displayed on the mobile application.</value>
+  </data>
+  <data name="CD_2" xml:space="preserve">
+    <value>If membership is secured via a corporate code, no payments will ever be requested other than for the option of the upgraded diamond package, if selected.</value>
+  </data>
+  <data name="Communication" xml:space="preserve">
+    <value>Communication</value>
+  </data>
+  <data name="Communication_1" xml:space="preserve">
+    <value>The business model for Exclusive Rewards is Electronic and therefore acceptance of the terms and conditions includes acceptance and agreement that information, notices and all other communications will be of an electronic nature and you accept that this complies with all legal requirements. Your statutory rights are not affected.</value>
+  </data>
+  <data name="CR" xml:space="preserve">
+    <value>Contractual Rights</value>
+  </data>
+  <data name="CR_1" xml:space="preserve">
+    <value>When applying for membership of Exclusive Rewards you are requesting the use of the privileges offered to Exclusive Rewards members for the period specified at the point of application. A standard Exclusive Rewards membership is on-going and does not need to be renewed. If you choose to upgrade to our diamond option, membership/subscription will automatically renew annually but you have the right to cancel within 30 days from the date that any payment is made. In the case of cancellation within this 30 day period, any accrued bonus cashback earned within the period will be reversed and your account status will return to standard level.   We should be informed of your request to cancel your diamond membership status by email to enquiries@exclusiverewards.co.uk.  We will send to you a confirmation email confirming such cancellation. We do not provide for any refunds after 30 days of purchase or renewal.</value>
+  </data>
+  <data name="Heading" xml:space="preserve">
+    <value>Terms &amp; Conditions</value>
+  </data>
+  <data name="Info" xml:space="preserve">
+    <value>Information About Our Website</value>
+  </data>
+  <data name="Info_1" xml:space="preserve">
+    <value>Exclusive Media Limited will, at all times, endeavour to make the information displayed and promoted on the website as accurate and up to date as possible. The content on the site cannot be guaranteed to be accurate and up to date at all times and to this end we can make no guarantees whether express or implied to the accuracy of the content and cannot be held responsible for errors or inaccurate information or expected savings not being received for any reason.</value>
+  </data>
+  <data name="Info_2" xml:space="preserve">
+    <value>For Clarity we do not accept responsibility or liability for any of the following:</value>
+  </data>
+  <data name="Info_3" xml:space="preserve">
+    <value>A voucher or promotional code obtained from the site that does not function</value>
+  </data>
+  <data name="Info_4" xml:space="preserve">
+    <value>Any loss of revenue or business or anticipated cashback savings</value>
+  </data>
+  <data name="Info_5" xml:space="preserve">
+    <value>Any loss arising from the inability to access the website</value>
+  </data>
+  <data name="Info_6" xml:space="preserve">
+    <value>Any dispute with a partner company relating to savings not being received when expected</value>
+  </data>
+  <data name="Info_7" xml:space="preserve">
+    <value>Any dispute regarding accuracy of the description of any product or service promoted</value>
+  </data>
+  <data name="Info_8" xml:space="preserve">
+    <value>In the case that we are found liable to you for any reasonable reason our liability shall never be more than the total value of cashback received during one calendar year or for the total value of the promotional saving that was expected from any single transaction.</value>
+  </data>
+  <data name="Info_9" xml:space="preserve">
+    <value>Other than as expressly stated earlier in the terms and conditions (4.1-4.4) we do not accept responsibility for any loss or damage incurred by using our website.</value>
+  </data>
+  <data name="Interruptions" xml:space="preserve">
+    <value>Interruptions To Our Service</value>
+  </data>
+  <data name="Interruptions_1" xml:space="preserve">
+    <value>Exclusive Media Limited reserves the right to suspend the website for operational or business reasons at any time. Although we expect uninterrupted service of the website there may be unforeseen reasons for a forced restriction of availability. In such a case Exclusive Media Limited will endeavour to return to full availability of access to the site as quickly as possible. We cannot guarantee that the website or content or a section of the website will have uninterrupted access. In the case of an anticipated maintenance period we will give reasonable notice of the website being temporarily suspended, in advance.</value>
+  </data>
+  <data name="Intro" xml:space="preserve">
+    <value>Introduction</value>
+  </data>
+  <data name="Intro_1_Exclusive" xml:space="preserve">
+    <value>The following are the terms and conditions relating to the supply and the use of Exclusive Rewards website, Mobile applications and/or any white label version or derivative of the Exclusive Rewards website powered by Exclusive Media Ltd. Please read all the terms and conditions and ensure that you understand everything completely prior to using our site.</value>
+  </data>
+  <data name="Intro_1" xml:space="preserve">
+    <value>The following are the terms and conditions relating to the supply and the use of Exclusive Rewards website and/or any white label version or derivative of the Exclusive Rewards website powered by Exclusive Media Ltd.  In each case that you will read Exclusive Rewards this will be intended and agreed as {{Name}}. Please read all the terms and conditions and ensure that you understand everything completely prior to using our site.</value>
+  </data>
+  <data name="Intro_2" xml:space="preserve">
+    <value>By using Exclusive Rewards website or mobile application, you agree to be bound to these terms and conditions, and we retain the right to alter the terms and conditions herein at any time and give you notice by posting any amendments onto our website. The terms and conditions relating to the time that you applied for your membership will remain in force unless such terms and conditions are required to change by law or governmental authority.</value>
+  </data>
+  <data name="Law" xml:space="preserve">
+    <value>Law and Jurisdiction</value>
+  </data>
+  <data name="Law_1" xml:space="preserve">
+    <value>Any disputes arising from the above terms and conditions shall be interpreted in accordance with the English law and subject to the jurisdiction of the English Courts. If you are a resident of Northern Ireland or Scotland, you may bring any proceedings in the country of your residence.</value>
+  </data>
+  <data name="Law_2" xml:space="preserve">
+    <value>Before using our site please also refer to our separate privacy policy.</value>
+  </data>
+  <data name="Liability" xml:space="preserve">
+    <value>Liability</value>
+  </data>
+  <data name="Liability_1" xml:space="preserve">
+    <value>Exclusive Rewards serves only as passing on the services or goods at reduced and discounted prices of participating businesses and cannot be held responsible for any losses or liabilities arising from or in connection with said services or goods. We accept no responsibility for bad service or bad experiences arising from using the services of the participating business.  Any arising dispute between an Exclusive Rewards member and a participating business is between the member and said business and we cannot be party to any dispute arising.  In addition, Exclusive Media Limited gives no warranty in any way for the services and products accessed through or displayed upon our website.</value>
+  </data>
+  <data name="Liability_2" xml:space="preserve">
+    <value>Furthermore, in a case of non-payment of cashback or an inactive promo code by any participating business even if displayed on our website or subject to e-mail notification we cannot be held responsible for any loss of potential savings, time, business or income by an Exclusive Rewards member. However, in the case of non-acceptance of the electronic card or failure of an advertised code or promotion for an advertised or current offer being promoted on the website, Exclusive Media Limited will mediate between both parties to try to recover the value of the expected savings as per our agreement with participating businesses. For the sake of certainty once again, Exclusive Media Limited cannot be held responsible for the loss of savings, time, business or income in such case.</value>
+  </data>
+  <data name="Liability_3" xml:space="preserve">
+    <value>None of the above exclusions exclude or limits our liability against the following:</value>
+  </data>
+  <data name="Liability_a" xml:space="preserve">
+    <value>Negligence causing death or injury.</value>
+  </data>
+  <data name="Liability_b" xml:space="preserve">
+    <value>Deliberate fraud or misrepresentation.</value>
+  </data>
+  <data name="Liability_c" xml:space="preserve">
+    <value>Any obligation by section 12 of the Sale of Goods Act 1979 or section 2 of the Supply of Goods and Services Act 1982.</value>
+  </data>
+  <data name="Liability_d" xml:space="preserve">
+    <value>Any further legal obligations.</value>
+  </data>
+  <data name="Management" xml:space="preserve">
+    <value>The Management of Your Exclusive Account</value>
+  </data>
+  <data name="Management_1" xml:space="preserve">
+    <value>In order to ensure that you are kept fully updated with any important announcements or information you must keep your account up to date at all times. This includes ensuring that your email address is your current contact email and the email attached to your Exclusive Rewards membership. Please do not mark emails received from us as Spam or Junk mail as again you may miss important information regarding your account or cashback income or deals, offers or promotions that may well be of interest to you. You have the facility to filter the emails you will receive from us within your account settings in order to only receive those of genuine interest. Please be aware that you cannot filter out emails that we deem to be essential to the smooth running of your Exclusive Rewards membership.</value>
+  </data>
+  <data name="Management_2" xml:space="preserve">
+    <value>Please ensure that email addresses or any other information relating to your account is not in any way abusive or could be deemed abusive. Exclusive Media Limited reserve the right to terminate any account if it is decided there is anything of a fraudulent or abusive nature either within the account details or the way an account is operated.</value>
+  </data>
+  <data name="Management_3" xml:space="preserve">
+    <value>If you would like to terminate your account with us simply email us on enquiries@exclusiverewards.co.uk from the email that is connected to your Exclusive Card account. You can of course cancel your membership at any time. If you cancel membership any remaining cashback within your cashback account will be paid to you only if you have reached the withdrawal threshold. If this threshold has not been reached at the point of cancellation any cashback in the account will be forfeited.</value>
+  </data>
+  <data name="Member" xml:space="preserve">
+    <value>How Does My Membership Work and How Do I Make Savings with Each Feature?</value>
+  </data>
+  <data name="Member_1" xml:space="preserve">
+    <value>On The High Street To Receive Discounts.</value>
+  </data>
+  <data name="Member_10" xml:space="preserve">
+    <value>Cashback will only be ‘tracked’ if you visit the retailer site directly from the cashback link on our website as linking from an advert or sponsored link may or may not activate the cashback. As you would imagine cashback is an automated process involving a series of links between ourselves and the retailer which must be connected to activate the correct payment to you our member.</value>
+  </data>
+  <data name="Member_11" xml:space="preserve">
+    <value>Navigating away from our website to a third-party site or failure to complete the transaction in full at the time of linking from Exclusive Rewards website may also interrupt the transaction link and may result in cashback not being applied.</value>
+  </data>
+  <data name="Member_12" xml:space="preserve">
+    <value>There are certain rules and levels of cashback which may vary even via a single partner company and we recommend that you read the terms and conditions of each individual cashback offer to be fully aware of what cashback you will receive.  For example, a company may be paying different levels of cashback on furniture than they do on clothing or although unusual, it may be that certain companies will only offer cashback on your first purchase from them so please be aware that you should fully understand what you will receive before making your purchase.</value>
+  </data>
+  <data name="Member_13" xml:space="preserve">
+    <value>You must be logged into your Exclusive Rewards account to make a link work and receive cashback.  Cashback payments are at the retailer’s discretion, at all times, and we will not be liable if a retailer deems a transaction to not have qualified for cashback for any reason.</value>
+  </data>
+  <data name="Member_14" xml:space="preserve">
+    <value>If you close your account or your account is terminated by us or disabled for any reason with cashback still available to withdraw then any cashback in the account will be forfeited.</value>
+  </data>
+  <data name="Member_15" xml:space="preserve">
+    <value>If you close your account and the threshold for withdrawal has not been reached and therefore you are unable to withdraw the cashback then again, the cashback in the account will be forfeited. We recommend you maintain your account until the threshold is reached and withdraw your cashback prior to closing it.</value>
+  </data>
+  <data name="Member_16" xml:space="preserve">
+    <value>In the event of expected cashback not being paid to you by a retailer we will endeavour to follow up your claim and try to correct the problem with the retailer or give you a valid reason why the cashback was not paid to you.  It is important to understand that Exclusive Media Limited are not liable to you for any unpaid cashback and the retailer decision on whether to pay is final. If we do not receive the cashback from the retailer we cannot and will not be able to pay the cashback to you. Once again, we will do our best to resolve any dispute or error, but we cannot be responsible to pay you at any time for unpaid cashback by a retailer.</value>
+  </data>
+  <data name="Member_17" xml:space="preserve">
+    <value>In the event of cashback being paid to you in error for whatever reason, therefore meaning the cashback was not actually due, we retain the right to reclaim the incorrect payments made from your cashback account.</value>
+  </data>
+  <data name="Member_18" xml:space="preserve">
+    <value>It is very important to understand the ownership of the cashback. We are passing to you, our member, the commissions that we would make by directing your business to a partner company website. Under the terms of our agreement with you as a member, we are happy to pass on  cashback received by us for the transactions you make with our partner companies. All monies are held on deposit by us until the point at which you take legal possession and entitlement to the cashback which is at the point of a successful withdrawal from your Exclusive Rewards account or the transfer of such cashback into an investment vehicle, that has been linked to the cashback account.</value>
+  </data>
+  <data name="Member_19" xml:space="preserve">
+    <value>You as the account holder and owner of the email linked to your account will receive the cashback into your account if any other person was to log into your account with your permission and make transactions that qualify for cashback.</value>
+  </data>
+  <data name="Member_2" xml:space="preserve">
+    <value>Your Electronic version of your Exclusive Rewards is always available to you by logging in to the Exclusive Rewards mobile application which is available on both Android and Apple platforms.</value>
+  </data>
+  <data name="Member_20" xml:space="preserve">
+    <value>You agree by using your Exclusive Rewards membership and for the avoidance of doubt, that we may refuse to pay cashback, even if already received by ourselves, for any reason if we so choose.</value>
+  </data>
+  <data name="Member_21" xml:space="preserve">
+    <value>How To Claim Your Cashback</value>
+  </data>
+  <data name="Member_22" xml:space="preserve">
+    <value>Claiming your cashback is very simple and is activated via the account section of your Exclusive Rewards membership. There are some very simple rules to follow.</value>
+  </data>
+  <data name="Member_23" xml:space="preserve">
+    <value>Once your cashback has reached the ‘received’ status on your account, you may withdraw your cashback at any time by simply requesting a withdrawal to your chosen bank account from your Exclusive Rewards account page. You may withdraw all or part of your balance at any time, but the minimum withdrawal amount is £5.00.  Cashback is not available for withdrawal until the minimum threshold for withdrawal of £5.00 has been reached in your received balance on your account page.</value>
+  </data>
+  <data name="Member_24" xml:space="preserve">
+    <value>If your account is a benefit rewards account where a percentage of your cashback earned is being donated to a beneficiary, you do not need to activate the separate donation balance. This will be automatically recorded and transferred directly to your beneficiary. Your beneficiary will receive the full donation balance with no charge for administration, resulting in 100% of the donated balance for the beneficiary. There is no minimum threshold for transfer to your beneficiary and your current available donation will be made to your beneficiary on an agreed basis with your beneficiary. This will be on a monthly or quarterly basis. The donated balance on the account page will continue as an accrued value of all donations made to your beneficiary.</value>
+  </data>
+  <data name="Member_25" xml:space="preserve">
+    <value>You must ensure that the details of your chosen bank account are entered correctly as payment into an incorrect account will not be our responsibility. Any payment made incorrectly due to the wrong information being submitted may not be recoverable but even if they are, will almost certainly be subject to fees for recovery. We are not liable for any delays in you receiving your cashback.</value>
+  </data>
+  <data name="Member_26" xml:space="preserve">
+    <value>The period from withdrawal of cashback to the funds reaching your chosen bank account is not the responsibility of {{Name}} as this is dictated by the normal procedure of the payable method. We recommend that you allow between 2-5 working days for your cashback to arrive in your selected bank account.</value>
+  </data>
+  <data name="Member_27" xml:space="preserve">
+    <value>Investment Account (If Selected)</value>
+  </data>
+  <data name="Member_28" xml:space="preserve">
+    <value>Your Exclusive Rewards is invested for you directly into a GIA (General Investment Account). This means that when the cashback received and cleared into your Exclusive Rewards Account reaches for the first time a threshold of £10.00, it will immediately activate an account administered by an FCA regulated asset management company and your cashback will be transferred by us on your behalf.</value>
+  </data>
+  <data name="Member_29" xml:space="preserve">
+    <value>Your cashback will then be invested in various investment models such as stocks and shares enabling anticipated growth of your funds with no input from yourself.</value>
+  </data>
+  <data name="Member_3" xml:space="preserve">
+    <value>When shopping with Exclusive Rewards in a shopping centre we always recommend that you review the terms and conditions relating to the deal on our website as there may be exclusions and instructions of how to obtain the agreed discounts and we recommend that you always check all of our deals for any exclusions that may affect your expectations.</value>
+  </data>
+  <data name="Member_30" xml:space="preserve">
+    <value>Your cashback balance remains visible and available for you to withdraw at any time in full or a part thereof by simply clicking the withdrawal button on your account.</value>
+  </data>
+  <data name="Member_31" xml:space="preserve">
+    <value>When a withdrawal is activated your selected withdrawal amount will be returned to your Exclusive Rewards account for instant repayment to your chosen bank account.</value>
+  </data>
+  <data name="Member_32" xml:space="preserve">
+    <value>Once your investment account is opened for the first time, future cashback received will automatically be transferred to your investment account for continued investment.</value>
+  </data>
+  <data name="Member_33" xml:space="preserve">
+    <value>All forms of investment, which we may undertake on your behalf, involve risk. The value of investments and the income derived from them is not guaranteed and it can fall as well as rise.</value>
+  </data>
+  <data name="Member_4" xml:space="preserve">
+    <value>Voucher Codes &amp;amp; Promo Codes</value>
+  </data>
+  <data name="Member_5" xml:space="preserve">
+    <value>When shopping on-line, Exclusive Rewards allows you to take advantage of thousands of exclusive promotional codes enabling you to save money when making purchases on-line. We are a closed group membership that means only by logging in to your Exclusive Rewards account will you be able to see the voucher codes and promo codes to be used when shopping on our partner company websites, so we therefore recommend that you immediately log in to your account as soon as you visit the website or mobile application. We work with some of the biggest companies and our deals may be permanent on-going savings each time you use a particular company website or may be shorter deals that last for weeks or months or may even be flash deals that we are able to bring to you on a daily or weekly basis. We must state that all voucher codes and promotional codes promoted via Exclusive Rewards website or mobile application are provided to us by our partner companies and we give no guarantee that they are always current or valid. We do our best, on a daily basis, to ensure that all codes are active and working but errors can be made and so we are not liable in any way if a voucher codes fails to apply an expected or advertised saving.</value>
+  </data>
+  <data name="Member_6" xml:space="preserve">
+    <value>Cashback</value>
+  </data>
+  <data name="Member_7" xml:space="preserve">
+    <value>Your Exclusive Rewards membership also allows you to obtain Cashback on almost everything you buy on-line that is linked by simply going through the Exclusive Rewards website. We are dealing on-line with many thousands of the country’s and world’s best-known retailers and this will save our regular users hundreds, potentially even thousands of pounds per year. For us to bring you and for you to use this incredible feature we do need to make you fully aware of how Cashback functions.</value>
+  </data>
+  <data name="Member_8" xml:space="preserve">
+    <value>How To Earn Cashback</value>
+  </data>
+  <data name="Member_9" xml:space="preserve">
+    <value>All of the cashback that you are about to earn by using your Exclusive Rewards membership is a transaction that you will make directly with the retailer website and not actually through us. We are just making it happen for you.  The retailer will know who you are because of your account with us and certain tracking links that our website provides to identify you and all the purchases that you make and to provide the cashback.  Within a short period of your purchase being completed you will see in your Exclusive Rewards account as ‘pending’ the cashback earned from the transaction. Once the retailer validates the purchase and has paid the commission to us it is now available to you and will show as an available balance in your Exclusive Rewards account. This can take a period of time due to administration but also due to legal positions such as cooling off periods that may allow you to cancel a transaction or return goods that are not required for a refund. A typical period before cashback is available to withdraw in accordance with our pay out terms and conditions is around 30-60 days, but this can be longer or shorter and is fully dependent on the retailer and not us. By using our website and the cashback elements of it you must agree that, in order for us to track and confirm your purchase, it is necessary for the affiliate networks to share an order ID with us relating to your purchase.</value>
+  </data>
+  <data name="Use" xml:space="preserve">
+    <value>Use of Exclusive Rewards Site</value>
+  </data>
+  <data name="Use_1" xml:space="preserve">
+    <value>If your Exclusive Rewards membership is upgraded and has an expiry date, a participating business will not accept an expired Exclusive Card. Access to the detailed deal or promotion sections of the website may be ended upon the expiry of membership.  The cashback sections of the website will still allow full access and this part of your membership will not expire.</value>
+  </data>
+  <data name="Use_10" xml:space="preserve">
+    <value>You must not link any websites to us that may be deemed inappropriate in any way or may be considered explicit or offensive.</value>
+  </data>
+  <data name="Use_11" xml:space="preserve">
+    <value>You may not establish any links that in any way suggests an association with us without full prior authority and if any authority to insert links or make other use of any of our content is to be requested please contact us at enquiries@exclusiverewards.co.uk. We reserve the right to withdraw any unauthorised links without any notice being given.</value>
+  </data>
+  <data name="Use_12" xml:space="preserve">
+    <value>Our site contains links to other sites which are provided by third parties and our partner companies. These links and the information provided there-in are for information purposes and as part of our service to you as a member.  At no time are these links to be deemed or interpreted as having approval by Exclusive Media Limited as to the accuracy of the information. We will not accept liability for the content being inaccurate or for any link that may not work or be expired. If at any time you find any such link that for any reason may not be fully correct or working, we would ask you to let us know immediately to help-me@exclusiverewards.co.uk so that the link can be fixed or removed.</value>
+  </data>
+  <data name="Use_13" xml:space="preserve">
+    <value>If any element of the conditions and use of our website are deemed unenforceable then all such terms shall be deemed to be superseded by a further enforceable provision that most closely complies with the original intent. All other terms and conditions will continue to apply in the original intended form.</value>
+  </data>
+  <data name="Use_2" xml:space="preserve">
+    <value>Membership is not transferrable and is to be used only by the registered member. Any misuse of membership may lead to the closure of the account.  A participating business has the full right to not accept an Exclusive Card if the registered member is not present.</value>
+  </data>
+  <data name="Use_3" xml:space="preserve">
+    <value>Any reported misuse of an Exclusive Card may result in non-renewal upon expiry.</value>
+  </data>
+  <data name="Use_4" xml:space="preserve">
+    <value>Members are recommended to check the website prior to using an Exclusive Card for a specific visit to a participating business to establish any possible restrictions to the use of the card on for example, a specific day of the week, the number of people in your party or the possibility of the requirement to pre-book.  These are just three examples of a possible restriction.  In this case Exclusive Media Limited cannot be held responsible for the non-acceptability of a card due to advertised restrictions.</value>
+  </data>
+  <data name="Use_5" xml:space="preserve">
+    <value>Members are also recommended to check all terms and conditions for any on-line promo code or cashback deal prior to making a purchase or connecting to a participating businesses website.</value>
+  </data>
+  <data name="Use_6" xml:space="preserve">
+    <value>Participating businesses can withdraw from Exclusive Rewards at any time and although we will endeavour to remove such a business from our website promptly, Exclusive Media Limited cannot be held responsible for the possibility of delay to this action causing non-acceptance of Exclusive Card or the acceptance of an advertised promotion or cashback.</value>
+  </data>
+  <data name="Use_7" xml:space="preserve">
+    <value>Offers advertised are almost always (but not always) excluded from any other offers and promotions within a given business and Exclusive Card may not be accepted in conjunction with any other such offers or promotions at any given time. This may in some cases also be true of a cashback transaction as some participating businesses will not always allow cashback in conjunction with a promo code discount. By using our website, it is confirmed that you agree with our terms of use.</value>
+  </data>
+  <data name="Use_8" xml:space="preserve">
+    <value>Our site is highly protected by firewalls against potential virus’ and other types of technological threat, but we do not guarantee the security of our site and will not be held responsible for loss, damage or any disruption caused whilst using material from our website. It remains your responsibility to use your own anti-virus protection software at all times.</value>
+  </data>
+  <data name="Use_9" xml:space="preserve">
+    <value>It is a criminal offence to knowingly introduce or attempt to introduce any kind of virus or technological threat to our website or attempt to gain access to our website or the server upon which our website or any data is hosted. We will report any such attempt or invasion to the relevant authorities and will fully co-operate with them by disclosing any information required to identify the culprit.</value>
+  </data>
+  <data name="Who" xml:space="preserve">
+    <value>Who Are Exclusive Media Limited?</value>
+  </data>
+  <data name="Who_1" xml:space="preserve">
+    <value>Exclusive Rewards is operated by: Exclusive Media Limited and is a company registered in England and Wales with the company number: 11616720.</value>
+  </data>
+  <data name="Work" xml:space="preserve">
+    <value>How Does Our Site Work?</value>
+  </data>
+  <data name="Work_1" xml:space="preserve">
+    <value>What are the benefits offered to our members?</value>
+  </data>
+  <data name="Work_2" xml:space="preserve">
+    <value>Members of Exclusive Rewards benefit from many different money-saving options that may or may not be able to be used in conjunction with each other.  All our partner companies have individual rules relating to the combined use of various offers and we suggest strongly that the terms and conditions of each of our offers are read prior to making any on-line purchase or using your Exclusive Card in the high street. We offer thousands of deals on our website and endeavour to keep all our deals up to date and accurate. However, we can accept no responsibility for any inaccuracies or expired deals or promotional codes that no longer work.</value>
+  </data>
+  <data name="Work_3" xml:space="preserve">
+    <value>We offer hundreds of on-going or long-term promotional code and voucher code savings from our on-line partners.</value>
+  </data>
+  <data name="Work_4" xml:space="preserve">
+    <value>We offer fantastic daily or short-term flash deals from some of the largest companies in the UK for our members to take advantage of.</value>
+  </data>
+  <data name="Work_5" xml:space="preserve">
+    <value>We also offer cashback on almost all your on-line purchases. We state almost all, as on some occasions, cashback may for example be only available on your first purchase from a partner company or for example a company may not allow a promo code to be used in conjunction with a cashback facility. As stated before, we are governed by the terms and conditions of our partner companies, but it is our intention to make as many savings as possible for our members.  These occasions are not the general rule and you should, in most cases be able to obtain cashback or the combined use of voucher codes and cashback potentially saving you hundreds or even thousands of pounds per year.</value>
+  </data>
+  <data name="Member_34" xml:space="preserve">
+    <value>The investment account option is not available to any member under the age of 18. Any member aged between 16-18 years old can and will operate their account as a 'cashback only' account and will not have access to our investment product option.</value>
+    <comment>Member_34</comment>
+  </data>
+  <data name="Member_35" xml:space="preserve">
+    <value>The investment account can be opened at any time, even before reaching the accrued cashback threshold of £10.00. Our website allows the deposit of £10.00 which will open your investment account and deposit the £10.00 into the investment account. There is a one-off charge of £1.00 to open the account this way. Once the account is open then all cashback earned subsequently will be deposited into your investment account directly from your Exclusive Rewards cashback account with no further threshold requirements.</value>
+    <comment>Member_35</comment>
+  </data>
+  <data name="Member_36" xml:space="preserve">
+    <value>The balance in your investment account is constantly subject to variance due to trading and will be updated daily. When a full balance withdrawal is requested, your account may still be subject to a small fluctuation in balance for period between request of withdrawal and activation of the withdrawal request. Exclusive Media Limited will have no responsibility or liability for this fluctuation in balance which may be and could be either up or down.</value>
+    <comment>Member_36</comment>
+  </data>
+  <data name="DiamondUpgrade" xml:space="preserve">
+    <value>Diamond Package Upgrade</value>
+    <comment>DiamondUpgrade</comment>
+  </data>
+  <data name="Diamond_1" xml:space="preserve">
+    <value>As part of Exclusive Rewards membership there is the option to upgrade for the price advertised on {{Name}} website, to a diamond package. This package is purely optional and makes available additional benefits not available within our standard package.</value>
+    <comment>Diamond_1</comment>
+  </data>
+  <data name="Diamond_2" xml:space="preserve">
+    <value>All benefits offered within this package are provided by our third-party partners and any information required regarding any offer or benefit within the package should be obtained from the third-party partner. Exclusive Media Limited will at all times try to help with any information required but the final or definitive answers will always be that of the third-party partner.</value>
+    <comment>Diamond_2</comment>
+  </data>
+  <data name="Diamond_3" xml:space="preserve">
+    <value>Any liability or loss incurred when using the services of our third-party partners will be covered in the same way as those specified in clause 4 of our terms and conditions titled 'Liability'. For the sake of clarity, all offers within the diamond package are supplied by external partners and Exclusive Media Limited is in no way responsible for the accuracy or provision of such deals as advertised on the partners website.</value>
+    <comment>Diamond_3</comment>
+  </data>
+  <data name="Diamond_4" xml:space="preserve">
+    <value>Exclusive Media Limited will provide contact details, if required for each third-party partner in the event of a potential complaint by one of our members and where possible will liaise, in the event of a dispute, with any of our third-party partners on behalf of our members. Exclusive Media Limited are not responsible for any loss or liability incurred in the event of an unsuccessful outcome of any such dispute.</value>
+    <comment>Diamond_4</comment>
+  </data>
+  <data name="Diamond_5" xml:space="preserve">
+    <value>The upgrade package is for a 12-month period and is automatically renewed after 12 months to continue access to the additional benefits. The upgrade package can be cancelled at anytime but no refund will be made for any remaining period of the 12-month membership. If the upgrade membership is not renewed or is cancelled, membership will revert to standard lifetime membership and all accrued cashback or investment is still available in the account. The account will continue to operate, as a standard account without the benefits of the upgrade package.</value>
+    <comment>Diamond_5</comment>
+  </data>
+  <data name="Diamond_6" xml:space="preserve">
+    <value>If a diamond membership package is provided by an employer (or other third party) to the employees then the individual employee will benefit from all the additional benefits of the upgraded account for the period that the employer continues to be contracted with Exclusive Media Limited for the upgraded account. If at any time the employer terminates or decides to no longer provide the upgraded account option to the individual employees, then the Exclusive Rewards account will revert to a standard membership and all accrued cashback or investment will still be available to the individual employee. The additional benefits will however no longer be available to the individual employee. The individual employee would have the option to upgrade their account on an ongoing basis if they so wish at the advertised price displayed on the Exclusive Rewards website.</value>
+    <comment>Diamond_6</comment>
+  </data>
+  <data name="Diamond_7" xml:space="preserve">
+    <value>Exclusive Media Limited has a relationship with each of our third-party providers for the additional benefits offered within the diamond package and will endeavour to retain each partner on an on-going basis. Exclusive Media Limited cannot however be held responsible for the withdrawal at any time of any benefit made available to us and included in the diamond package within the period of any membership. No refund will be offered at any time in the case of removal of an offer by any of our third-party partners, but members will have the choice whether to continue the diamond membership for the following year, at the time of renewal.</value>
+    <comment>Diamond_7</comment>
+  </data>
+  <data name="Cashback" xml:space="preserve">
+    <value>Cashback</value>
+  </data>
+  <data name="CashBack_1" xml:space="preserve">
+    <value>There may be some circumstances when cashback is not paid or does not appear into a member account. The following are examples where cashback will be forfeited to Exclusive Media Limited and not transferred or paid to a member.</value>
+    <comment>CashBack_1</comment>
+  </data>
+  <data name="CashBack_2" xml:space="preserve">
+    <value>If a member account is inactive for 12 months meaning that no cashback transaction is performed successfully in a full 12 month period and there is cashback attributable to the account.</value>
+    <comment>CashBack_2</comment>
+  </data>
+  <data name="CashBack_3" xml:space="preserve">
+    <value>(This will not apply to an account connected to an investment account that has either reached the required initial £10.00 threshold to open the investment account via a single payment or £10.00 of accrued cashback. In such a case all cashback attributed to the cashback account will be forwarded to the investment account upon each successful transaction and will never be forfeited.)</value>
+    <comment>CashBack_3</comment>
+  </data>
+  <data name="CashBack_4" xml:space="preserve">
+    <value>When cashback is received by Exclusive Rewards but cannot be connected or attributed to any qualified transaction or associated to any active account. This can happen for example if a member fails to login to his or her account before making a transaction.</value>
+    <comment>CashBack_4</comment>
+  </data>
+  <data name="CashBack_5" xml:space="preserve">
+    <value>All donations of Payable Cashback to those selected beneficiaries via the ‘benefit rewards’ plan option sometimes provided via our website are recorded and paid directly to the beneficiary. We will pass on the entire total of the donations directly to the beneficiary with no charge for administration, resulting in 100% of the donated Payable Cashback being donated to the chosen beneficiary.</value>
+  </data>
+  <data name="Member_37" xml:space="preserve">
+    <value>Where a voucher code is advertised on our website, we give no guarantee that it is still valid and we shall not be held liable if a voucher code fails to apply a discount. We must also make you aware that use of a voucher code from our Site and used in conjunction with a cashback offer can sometimes but not usually result in you failing to receive Cashback in accordance with the terms of the offer as stipulated on the website. You must also acknowledge that any voucher codes not obtained from our website but subsequently used in conjunction with a cashback offer can also result in your expected cashback not being received.</value>
+  </data>
+  <data name="Use_14" xml:space="preserve">
+    <value>This site contains affiliate links to products. We will receive a commission for purchases made through these links and it is this commission that we pass to you as cashback.</value>
+  </data>
+</root>

@@ -1,0 +1,35 @@
+﻿@model ExclusiveCard.WebAdmin.ViewModels.CategoryFeatureViewModel
+
+<div class="form-group row">
+    @Html.LabelFor(model => model.CountryCode, htmlAttributes: new { @class = "control-label col-md-3" })
+    <div class="col-md-5">
+        @Html.DropDownListFor(model => model.CountryCode, Model.Countries, htmlAttributes: new { @class = "form-control roundedInput" })
+        @Html.ValidationMessageFor(model => model.CountryCode, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group row">
+    @Html.LabelFor(model => model.FeatureMerchantId, htmlAttributes: new { @class = "control-label col-md-3" })
+    <div class="col-md-5">
+        @Html.DropDownListFor(model => model.FeatureMerchantId, Model.Merchants,"--None--", htmlAttributes: new { @class = "form-control roundedInput" })
+        @Html.ValidationMessageFor(model => model.FeatureMerchantId, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group row">
+    @Html.LabelFor(model => model.SelectedImage, htmlAttributes: new { @class = "control-label col-md-3" })
+    <span id="selectedImage" class="col-md-5">
+        @{
+            @await Html.PartialAsync("_featureImage", Model.SelectedImage);
+        }
+    </span>
+</div>
+
+<div class="form-group row">
+    @Html.LabelFor(model => model.UnselectedImage, htmlAttributes: new { @class = "control-label col-md-3" })
+    <span id="unselectedImage" class="col-md-5">
+        @{
+            @await Html.PartialAsync("_logo", Model.UnselectedImage);
+        }
+    </span>
+</div>

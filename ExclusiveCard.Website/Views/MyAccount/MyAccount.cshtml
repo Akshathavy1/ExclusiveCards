@@ -1,0 +1,319 @@
+﻿@model AccountViewModel
+@using ExclusiveCard.Enums
+@using Microsoft.AspNetCore.Http
+@inject IViewLocalizer Localizer
+@inject IHttpContextAccessor HttpContextAccessor
+@{
+    ViewData["Title"] = "My Account";
+    var layoutModel = (LayoutViewModel)@ViewBag.LayoutModel;
+
+
+    string isMobileKey = "IsMobile";
+    bool isMobile = false;
+    string sIsMobile = HttpContextAccessor.HttpContext.Session.GetString(isMobileKey);
+
+    if (!string.IsNullOrEmpty(sIsMobile))
+    {
+        bool.TryParse(sIsMobile, out isMobile);
+    }
+    if (!isMobile)
+    {
+        if (Context.Request.Headers.ContainsKey(isMobileKey))
+        {
+            Boolean.TryParse(Context.Request.Headers[isMobileKey], out isMobile);
+        }
+        else if (Context.Request.Query[isMobileKey].Count > 0)
+        {
+            Microsoft.Extensions.Primitives.StringValues queryVal;
+            if (Context.Request.Query.TryGetValue(isMobileKey, out queryVal))
+            {
+                Boolean.TryParse(queryVal[0], out isMobile);
+            }
+        }
+        if (isMobile)
+        {
+            HttpContextAccessor.HttpContext.Session.SetString(isMobileKey, true.ToString());
+        }
+    }
+
+}
+<main class="c_main">
+    <section class="c_account-header">
+
+        @*{% if show_account_banner %}*@
+
+        <div class="c_band --tight" id="bannerHeader">
+            <div class="l_container">
+                @Html.HiddenFor(m => m.MembershipCardId)
+                @Html.HiddenFor(m => m.MembershipPlanType)
+                <div class="l_flex --align-center">
+                    <div class="__column --span-12 --md u_margin-bottom--s3 u_margin-bottom--none--md">
+
+                        <div  class="customtalksportsCssOverflow">
+                            <h2 class="u_margin-bottom--half customtalksportsCss"><span class="__pre-title">@Localizer["Welcome"]</span> @Model.CustomerName</h2>
+
+                            @*@if (isMobile)
+                            {
+                                <div class="customtalksportsCsstwo">
+                                    <div>
+                                        @if (layoutModel.SiteClan.Id > 0)
+                                        {
+                                            if (layoutModel.SiteClan.ImagePath != null)
+                                            {
+                                                <div class="__club">
+                                                    <span class="clubcustomtalksportsCss">
+                                                        @Localizer["ShowingSupportFor"]<br>
+                                                    </span>
+                                                    <div>
+                                                        <img src="~/Image/GetImage?path=@layoutModel.SiteClan.ImagePath&id=@layoutModel.SiteClan.Id" alt="@layoutModel.SiteClan?.Description" class="siteclanImage">
+                                                    </div>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="__club">
+                                                    <span class="clubcustomtalksportsCss">
+                                                        @Localizer["ShowingSupportFor"]<br>
+                                                    </span>
+                                                    <strong>
+                                                        <div class="c_crest-fallback" style="--primary: @layoutModel.SiteClan.PrimaryColour; --secondary: @layoutModel.SiteClan.SecondaryColour"></div>
+                                                        @layoutModel.SiteClan.Description
+                                                    </strong>
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+
+
+                                </div>
+                            }*@
+                            
+                        </div>
+
+                        @*<h2 class="u_margin-bottom--half"><span class="__pre-title">@Localizer["Welcome"]</span> @Model.CustomerName</h2>*@
+
+
+
+                        @if (layoutModel.IsDiamondCustomer)
+                        {
+                            <p class="u_margin-bottom--none">@Html.GetWhiteLabel(@Localizer["Diamond"].Value, layoutModel.WhiteLabel)</p>
+                        }
+                        else
+                        {
+                            <div style="display:flex">
+                                <p class="u_margin-bottom--none">@Html.GetWhiteLabel(@Localizer["Standard"].Value, layoutModel.WhiteLabel)</p>
+                                <p class="upgrade-hyperlink">&ensp;&bull;&ensp;<a href="@Url.Action("MyAccount", "MyAccount", new {country = ViewData["Country"], diamondCardRequest = true})">@Localizer["Upgrade"]</a></p>
+                            </div>
+                            <p class="upgrade-description">@Localizer["Upgrade1"]</p>
+                        }
+                    </div>
+
+
+                    <div class="__column --span-12 --shrink--md">
+
+                        <!-- c_account-card -->
+                        <div class="c_account-card">
+                            <div class="__details">
+                                <code>@Model.MembershipCardNumber</code>
+                                @if ((Model.MembershipPlanType != MembershipPlanTypeEnum.PartnerReward.ToString() && Model.MembershipPlanType != MembershipPlanTypeEnum.BenefitRewards.ToString()) || layoutModel.IsDiamondCustomer)
+                                {
+                                    <p>Expires @Model.ExpiryDate</p>
+                                }
+                            </div>
+
+                            <div class="__card">
+                                <img class="__logo" src="/images/whitelabels/@layoutModel.WhiteLabel.Slug/@layoutModel.WhiteLabel.Logo" alt="@layoutModel.WhiteLabel.Name">
+                            </div>
+                        </div>
+                        <!-- c_account-card - END -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @*{% endif %}*@
+        @*<div class="l_container --align-center" id="divConfirmation">
+                <p class="u_margin-bottom--none warning">You need to confirm your email address before you can use all of My Account. Please press the button and follow the instructions in the email you receive.</p>
+                <button class="--align-center">Resend email</button>
+            </div>*@
+        <!-- c_account-stats -->
+        <div class="c_account-stats">
+            @{
+                @await Html.PartialAsync("_stats", Model)
+            }
+        </div>
+        <!-- c_account-stats - END -->
+    </section>
+    <section class="c_band">
+        <div class="l_container">
+            <div class="l_flex --justify-between">
+                <div class="__column --span-12 --span-4--md --span-3--lg">
+
+                    @*{% include account/sidebar %}*@
+                    <aside class="c_sidebar --toggleable" id="sidebar">
+                        <div class="__toggler">@Localizer["Menu"] <svg class="c_feather-icon"><use xlink:href="/images/icons.svg#menu" /></svg></div>
+                        <div class="__content --visible">
+                            @*{% include widget/account %}*@
+                            <!-- c_widget - my-account - START -->
+                            <div class="c_widget">
+                                @if (!layoutModel.EmailConfirmed)
+                                {
+                                    <div class="__content">
+                                        <p class="c_notification --negative justifyContent" id="confirmEmailMsg">@Localizer["Validation"]</p>
+                                        <p class="c_notification --positive justifyContent hideContent" id="confirmEmailSent">@Localizer["ValidationLink"]</p>
+                                    </div>
+                                }
+                                 @if (!layoutModel.CustomerSecurity)
+                                {
+                                    <div class="__content">
+                                        <p class="c_notification --negative justifyContent" id="SecurityMsg">@Localizer["Security"]</p>
+                                    </div>
+                                }
+                                <div class="__content --flat">
+                                    <nav class="__navigation">
+                                        <ul>
+                                            @if (!layoutModel.EmailConfirmed)
+                                            {
+                                                <li><a href="#" class="_link" id="resend">@Localizer["Resend"]</a></li>
+                                            }
+                                            <li><a href="#" class="_link --active">@Localizer["Overview"]</a></li>
+                                            @*@if (!string.IsNullOrEmpty(Model.PartnerPassword) && (Model.MembershipPlanType == MembershipPlanTypeEnum.PartnerReward.ToString() || Model.MembershipPlanType == MembershipPlanTypeEnum.BenefitRewards.ToString()) && layoutModel.EmailConfirmed)
+                                                {
+                                                    <li><a href="#" class="_link">@Localizer["TAM"]</a></li>
+                                                }
+                                                @if ((Model.MembershipPlanType == MembershipPlanTypeEnum.PartnerReward.ToString() || Model.MembershipPlanType == MembershipPlanTypeEnum.BenefitRewards.ToString()) && layoutModel.EmailConfirmed)
+                                                {
+                                                    <li><a href="#" class="_link">@Localizer["Boost"]</a></li>
+                                                }*@
+                                            @if (layoutModel.EmailConfirmed)
+                                            {
+                                                <li><a href="#" class="_link">@Localizer["Funds"]</a></li>
+                                            }
+                                            <li><a href="#" class="_link">@Localizer["Settings"]</a></li>
+                                            @if ((Model.MembershipPlanType == MembershipPlanTypeEnum.PartnerReward.ToString() || Model.MembershipPlanType == MembershipPlanTypeEnum.BenefitRewards.ToString()) && layoutModel.EmailConfirmed)
+                                            {
+                                                <li><a href="#" class="account-package _link">@Localizer["Package"]</a></li>
+                                            }
+                                        </ul>
+                                        <ul>
+                                            <li><a class="u_color--negative" href="@Url.Action("Logout", "Account")">@Localizer["Logout"]</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            <!-- c_widget - my-account - END -->
+
+
+                        </div>
+                    </aside>
+
+                </div>
+                <div class="__column --span-12 --span-8--md">
+                    <div id="divTransactions" class="row">
+                        @{
+                            if (Model.Transactions != null)
+                            {
+                                @await Html.PartialAsync("_transactionLog", @Model.Transactions, new ViewDataDictionary(this.ViewData) { { "Type", @Model.MembershipPlanType } })
+                            }
+                            if (Model.Deposit != null)
+                            {
+                                @await Html.PartialAsync("_deposit", Model)
+                            }
+                            if (Model.TamDashboard != null)
+                            {
+                                @await Html.PartialAsync("_dashboard", Model.TamDashboard)
+                            }
+                            if (Model.Withdraw != null)
+                            {
+                                @await Html.PartialAsync("_withdraw", @Model.Withdraw)
+                            }
+                            if (Model.Settings != null)
+                            {
+                                @await Html.PartialAsync("_settings", Model.Settings)
+                            }
+                            if (Model.Preferences != null)
+                            {
+                                @await Html.PartialAsync("_preferences", Model.Preferences)
+                            }
+                        }
+                    </div>
+                    <div id="divWithdrawals" class="row">
+                        @{
+                            if (Model.Withdrawals != null)
+                            {
+                                @await Html.PartialAsync("_withdrawals", @Model.Withdrawals, new ViewDataDictionary(this.ViewData) { { "Type", @Model.MembershipPlanType } })
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+@section Scripts
+{
+    <script type="text/javascript">
+        Summary.setUpEvents();
+
+        function toCurrency(number) {
+            return parseFloat(number).toFixed(2);
+        }
+
+        $(document).ready(function() {
+            // Mobile Navigation Toggle
+            $("#mobile-toggle").click(
+                function(event) {
+                    event.preventDefault();
+                    document.getElementById("mobile-nav").classList.toggle("_visible");
+                });
+
+            // Withdraw Calculator
+            var calculator = document.querySelector("#withdraw-calculator");
+            if (calculator !== null) {
+                var balance = calculator.querySelector("#balance");
+                var withdraw = calculator.querySelector("#withdraw");
+                var remaining = calculator.querySelector("#remaining");
+                withdraw.addEventListener("change",
+                    function(event) {
+                        withdraw.value = toCurrency(withdraw.value);
+                        remaining.value = toCurrency(balance.value - withdraw.value);
+                    });
+            }
+
+            //call to view Load function
+            if ("@ViewData["isDiamondReq"]" === "True") {
+                Summary.loadPartialView();
+            }
+
+            if ("@ViewBag.ViewType.ToString()" !== "Account Overview" ||
+                "@ViewBag.ViewType.ToString()" !== "Withdraw Funds" ||
+                "@ViewBag.ViewType.ToString()" !==
+                "TAM Dashboard") {
+                $.each($("._link"),
+                    function (i, item) {
+                        if (item.innerHTML == "@ViewBag.ViewType.ToString()" || item.innerHTML === "T_@ViewBag.ViewType.ToString()") {
+                            $(this).addClass("--active");
+                            $("#bannerHeader").css("display", "none");
+                            $("#divWithdrawals").css("display", "none");
+                        } else {
+                            $(this).removeClass("--active");
+                        }
+                    });
+            }
+
+            if ("@ViewBag.ViewType.ToString()" === "Account Overview") {
+                $("#bannerHeader").css("display", "block");
+            } else if ("@ViewBag.ViewType.ToString()" === "Withdraw Funds") {
+                $("#bannerHeader").css("display", "block");
+            } else if ("@ViewBag.ViewType.ToString()" === "Account Package") {
+                $("#bannerHeader").css("display", "block");
+            } else if ("@ViewBag.ViewType.ToString()" === "Settings") {
+                $("#bannerHeader").css("display", "block");
+            } else {
+                $("#bannerHeader").css("display", "none");
+            }
+        });
+    </script>
+}

@@ -1,0 +1,92 @@
+﻿@model AddOnCardViewModel
+@inject Microsoft.Extensions.Options.IOptions<TypedAppSettings> metaOptions
+@inject IViewLocalizer Localizer
+
+@{
+    var typedAppSettings = metaOptions.Value;
+    ViewData["Title"] = @Localizer["AddonCard"];
+}
+
+<h2 class="text-center accountheads">@Localizer["AddonCard"]</h2>
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "submitAccountForm", @action = @typedAppSettings.PayPalLink, target = "_top" }))
+{
+    <div class="panel-body" id="AccountFormDiv">
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.Token)
+        @Html.HiddenFor(m => m.CardCost)
+        @Html.HiddenFor(m => m.SubscribeAppRef)
+        @Html.HiddenFor(m => m.SubscribeAppAndCardRef)
+        @Html.HiddenFor(m => m.MembershipPlanId)
+        @Html.HiddenFor(m => m.CountryId)
+
+        @if (@Model.CardCost > 0m)
+        {
+            <div id="ChoosePaymentScreen">
+                @{
+                    @await Html.PartialAsync("_choosePayment", @Model.PaymentProvider);
+                }
+                <br />
+                <div class="col-md-12 row">
+                    <p>
+                        <a class="btn btn-mini btn-theme  has-spinner pull-left" id="btnPaymentback">
+                            @Localizer["Back"]<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+                        </a>
+                    </p>
+                    <p class="continue">
+                        <a class="btn btn-mini btn-theme  has-spinner pull-right paycontinue" id="btnContinuePayment">
+                            @Localizer["Continue"]<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+                        </a>
+                    </p>
+                    <div class="paybtn" id="paypalbutton">
+                        @if (@Model.PaymentProvider.Cashback && @Model.PaymentProvider.PayPal)
+                        {
+                            <p class="payplbtn col-md-8">
+                                @Localizer["ClearBalance"] &nbsp;
+                            </p>
+                        }
+                        else
+                        {
+                            <p class="payplbtn col-md-8">
+                                @Localizer["Purchase"] &nbsp;
+                            </p>
+                        }
+                        <input type="hidden" name="cmd" value="_s-xclick">
+                        <input type="hidden" id="hostedbuttonid" name="hosted_button_id" value="U8BLKLK4X3M8C">
+                        <input type="hidden" id="customerPaymentProviderId" name="custom" value="" />
+                        <input type="image" src="@typedAppSettings.PayPalSubscribeButton" border="0" name="submit" alt="PayPal – The safer, easier way to pay online!">
+                        <img alt="" border="0" src="@typedAppSettings.PayPalSubscribeText" width="1" height="1">
+
+                    </div>
+                </div>
+                <center><p class="paypalwait" id="waitpaypal" style="display:none;">Redirecting you to PayPal for payment. Please wait...<i class="fa fa-spinner fa-spin"></i></p></center>
+            </div>
+        }
+    </div>
+}
+
+@section Scripts
+    {
+    <script type="text/javascript">
+        Account.setUpEvents();
+        if ("@Model.PaymentProvider.Cashback" == "True" && "@Model.PaymentProvider.PayPal" == "True") {
+            $(".continue").show();
+            $("#paypalbutton").hide();
+        } else if ("@Model.PaymentProvider.PayPal" == "True" && "@Model.PaymentProvider.Cashback" == "False") {
+            $(".continue").hide();
+            $("#paypalbutton").show();
+        } else if ("@Model.PaymentProvider.Cashback" == "True" && "@Model.PaymentProvider.PayPal" == "False") {
+            $(".continue").show();
+            $("#paypalbutton").hide();
+        }
+        if ("@Model.PhysicalCardRequested" == "True" || "@Model.PhysicalCardRequested" == "true") {
+            $(".bothcards").show();
+            $(".singlecard").hide();
+            $("#hostedbuttonid").val($("#SubscribeAppAndCardRef").val());
+        } else {
+            $(".bothcards").hide();
+            $(".singlecard").show();
+            $("#hostedbuttonid").val($("#SubscribeAppRef").val());
+        }
+    </script>
+}

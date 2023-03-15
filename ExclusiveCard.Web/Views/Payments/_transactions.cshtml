@@ -1,0 +1,67 @@
+﻿@using ExclusiveCard.WebAdmin.ViewModels
+@using ExclusiveCard.Enums
+@model TransactionsList
+@Html.HiddenFor(m => m.CurrentPageNumber)
+
+@if (@Model.Transactions.Count > 0)
+{
+    <div class="table-responsive">
+        @Html.Hidden("SortField", Model.TransactionSortField)
+        @Html.Hidden("SortDirection", Model.SortDirection)
+        <table class="table" id="transactionTable">
+            <thead>
+                <tr>
+                    <th class="transactionHeading">
+                        @Html.ActionLink("Filename", "PartnerTransactions", "Payments", "https", null, null, new { }, new { SelSortField = "FileName" })
+                        @if (@Model.TransactionSortField == TransactionSortField.FileName)
+                        {<i class="@Model.SortIcon"></i>}
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.ActionLink("Date", "PartnerTransactions", "Payments", "https", null, null, new { }, new { SelSortField = "Date" })
+                        @if (@Model.TransactionSortField == TransactionSortField.Date)
+                        {<i class="@Model.SortIcon"></i>}
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("Status", "Status")
+                    </th>
+                    <th class="transactionHeading">
+                        @Html.Label("Total", "Total")
+                    </th>
+                    <th class="transactionHeading"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in @Model.Transactions)
+                {
+                    <tr class="merchantList">
+                        <td>@item.FileName</td>
+                        <td>@item.CreatedDate.ToString("dd MMM yyyy")</td>
+                        <td>@item.PaymentStatus</td>
+                        <td>@item.Amount</td>
+                        <td>
+                            @if (item.PaymentStatus == ExclusiveCard.Data.Constants.Status.Unpaid)
+                            {
+                                <button type="button" class="transactionPaid btn has-spinner" fileId="@item.Id">
+                                    Paid <span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+                                </button>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="form-group align-items-center row col-md-9">
+        <h5 style="margin-top:12pt;">No record found</h5>
+    </div>
+}
+
+@if (Model.Transactions != null && Model.Transactions.Any() && Model.PagingModel.PageCount > 1)
+{
+    <div class="form-group row col-md-8">
+        @{ @await Html.PartialAsync("_paging", @Model.PagingModel); }
+    </div>
+}

@@ -1,0 +1,97 @@
+﻿@model ExclusiveCard.WebAdmin.ViewModels.NewsletterViewModel
+@{
+    ViewData["Title"] = "Preview";
+    Layout = "~/Views/Shared/_NewLayout.cshtml";
+}
+
+@using (Html.BeginForm("Preview", "Newsletter", FormMethod.Get, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+
+    <div id="mainDiv" class="col-md-12 Searchforoffers div1List">
+        @Html.ValidationSummary(false, "", new { @class = "text-danger", autofocus = "autofocus" })
+        <div class="form-group row">
+            <h1 id="title-name" class="text-center">Preview</h1>
+        </div>
+
+        <div class="form-horizontal col-md-12">
+            <div class="form-group row text-left">
+                <label for="whitelabels" class="control-label col-md-2">Select a Newsletter:</label>
+                <div class="col-md-3">
+                    @Html.DropDownListFor(model => model.Id, Model.ListofNewsletterName, "--Select--", htmlAttributes: new { @id = "ddlListOfNewsletterName", @class = "form-control roundedInput dropdownInput" })
+                    @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                </div>
+                <label for="whitelabels" class="control-label col-md-2">white label site:</label>
+                <div class="col-md-3">
+                    @if (Model.MarketingCampaigns != null)
+                    {
+                        int i = 0;
+                        <select id="PreviewWhiteLabels" class="form-control roundedInput dropdownInput">
+                            <option name="whitelabel-type" value="0">--select--</option>
+                            @foreach (var item in Model.MarketingCampaigns)
+                            {
+                                <option name="whitelabel-type" value="@item.Id">@Model.WhiteLabelSettings[i].Name</option>
+                                i++;
+                            }
+                        </select>
+                    }
+                    else
+                    {
+                        <select id="whitelabels" class="form-control roundedInput dropdownInput" disabled="">
+                            <option name="whitelabel-type" value="0">--Select--</option>
+                        </select>
+                    }
+                </div>
+
+                <div class="col-md-2">
+                    <button type="button" id="btnRender" class="btn pull-right  has-spinner">Render<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span></button>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="form-horizontal col-md-12">
+            <label for="whitelabels" class="control-label col-md-7">
+                Test Email Recipient:
+            </label>
+            <div class="col-md-3">
+                @Html.EditorFor(model => model.TestEmailRecipient, new { htmlattributes = new { @class = "form-control  roundedInput" } })
+            </div>
+            <div class="col-md-2">
+                <button type="button" id="btnSend" class="btn pull-right  has-spinner">Send<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span></button>
+            </div>
+        </div>
+
+
+        <div class="form-horizontal col-md-12">
+            <div class="col-md-1"></div>
+            <div id="newsLetterHtml">
+            </div>
+        </div>
+    </div>
+
+}
+
+
+@section Scripts
+{
+    <script src="~/js/Exclusive/newsletter.js"></script>
+    <script type="text/javascript">
+
+
+
+        $(document).ready(function () {
+            debugger;
+
+            if ($("#newsLetterHtml").html().trim() === "") {
+                debugger;
+                document.getElementById("btnSend").disabled = true;
+            } else {
+                $("#btnSend").prop('disabled', false);
+            }
+        });
+
+
+    </script>
+}

@@ -1,0 +1,108 @@
+﻿@using ExclusiveCard.Enums
+@model TransactionLogList
+@inject IViewLocalizer Localizer
+
+@{
+    string type = null;
+    if (!string.IsNullOrEmpty(ViewData["Type"].ToString()))
+    {
+        type = ViewData["Type"].ToString();
+    }
+    var layoutModel = (LayoutViewModel)ViewBag.LayoutModel;
+}
+
+<div class="_intro">
+    @Html.Hidden("SortField", Model.TransactionLogSortField)
+    @Html.Hidden("SortDirection", Model.SortDirection)
+    <h2>@Localizer["Transactions"]</h2>
+    <p>@Html.GetWhiteLabel(Localizer["help"].Value, layoutModel.WhiteLabel)</p>
+</div>
+
+@if (@Model.Transactions.Count > 0)
+{
+    <!-- v2_transaction-table -->
+    <div class="u_horizontal-scroller">
+        <table class="c_transaction-table" data-sortable>
+            <thead>
+                <tr>
+                    <th class="--date transactionHeading">Date</th>
+                    <th class="--merchant transactionHeading">Merchant</th>
+                    <th class="--status transactionHeading">Status</th>
+                    @if (!string.IsNullOrEmpty(type) && type == MembershipPlanTypeEnum.PartnerReward.ToString())
+                    {
+                        <th class="--invested transactionHeading">Invested</th>
+                    }
+                    <th class="--value transactionHeading">Value</th>
+
+                    @if (!string.IsNullOrEmpty(type) && type == MembershipPlanTypeEnum.BenefitRewards.ToString())
+                    {
+                        <th class="--value transactionHeading">Donated</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in @Model.Transactions)
+                {
+                    <tr>
+                        <td class="--date">@item.Date.ToString("dd MMM yyyy")</td>
+                        <td class="--merchant">@item.Merchant</td>
+                        @if (item.Status == ExclusiveCard.Data.Constants.Status.Received)
+                        {
+                            <td class="--status u_color--positive">@item.Status</td>
+                        }
+                        else if (item.Status == ExclusiveCard.Data.Constants.Status.Confirmed)
+                        {
+                            <td class="--status u_color--neutral">@item.Status</td>
+                        }
+                        else if (item.Status == ExclusiveCard.Data.Constants.Status.Pending)
+                        {
+                            <td class="--status u_color--negative">@item.Status</td>
+                        }
+                        else if (item.Status == ExclusiveCard.Data.Constants.Status.Declined)
+                        {
+                            <td class="--status u_color--negative">@item.Status</td>
+                        }
+                        else
+                        {
+                            <td class="--status u_color--positive">@item.Status</td>
+                        }
+
+                        @if (!string.IsNullOrEmpty(type) && type == MembershipPlanTypeEnum.PartnerReward.ToString())
+                        {
+                            @if (item.Invested)
+                            {
+                                <td class="--invested u_color--positive" data-value="1">&check;</td>
+                            }
+                            else
+                            {
+                                <td class="--invested u_color--negative" data-value="0">&cross;</td>
+                            }
+                        }
+                        <td class="--value">@Localizer["Pound"]@item.Value</td>
+
+                        @if (!string.IsNullOrEmpty(type) && type == MembershipPlanTypeEnum.BenefitRewards.ToString())
+                        {
+                            <td class="--value">@Localizer["Pound"]@item.Donated</td>
+                        }
+
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <!-- v2_transaction-table - END -->
+    </div>
+}
+else
+{
+    <div class="v2_horizontal-scroller">
+        <h5 style="margin-top:12pt;">No record found</h5>
+    </div>
+}
+
+@if (Model.Transactions != null && Model.Transactions.Any() && Model.PagingViewModel.PageCount > 1)
+{
+    <div class="form-group row col-md-8">
+        @{ @await Html.PartialAsync("_paging", @Model.PagingViewModel); }
+    </div>
+}

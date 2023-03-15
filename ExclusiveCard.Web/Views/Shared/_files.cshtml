@@ -1,0 +1,61 @@
+﻿@model ExclusiveCard.WebAdmin.ViewModels.FilesListViewModel
+@Html.HiddenFor(m => m.CurrentPageNumber)
+
+@if (Model?.Files?.Count > 0)
+{
+    <table class="table" id="fileList">
+        <thead>
+            <tr>
+                <th class="merchantHeading">Date</th>
+                <th class="merchantHeading">Name</th>
+                <th class="merchantHeading">Type</th>
+                <th class="merchantHeading">State</th>
+                <th class="merchantHeading">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Files)
+            {
+                <tr class="merchantList">
+                    <td>@item.CreatedDate.ToString("dd MMM yyyy")</td>
+                    <td>@item.Name</td>
+                    <td>@item.Type</td>
+                    <td>@item.State</td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.Location))
+                        {
+                            <button type="button" class="fileDownload btn" onclick="location.href = '@Url.Action("Download", "File", new {fileId = item.Id})'">
+                                Download
+                            </button>
+                        }
+                        else
+                        {
+                            <button type="button" class="fileDownload btn" disabled onclick="location.href = '@Url.Action("Download", "File", new {fileId = item.Id})'">
+                                Download
+                            </button>
+                        }
+                        @if ((item.Type == ExclusiveCard.Enums.FileType.Love2Shop.ToString()|| item.Type == ExclusiveCard.Enums.FileType.PartnerTrans.ToString()) && item.State == ExclusiveCard.Data.Constants.Status.Created)
+                        {
+                            <button type="button" class="fileSent btn has-spinner" fileId="@item.Id">
+                                Sent <span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+                            </button>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <div class="form-group align-items-center row col-md-9">
+        <h5 style="margin-top:12pt;">No record found</h5>
+    </div>
+}
+
+@if (Model?.Files?.Count > 0 && Model?.Paging?.PageCount > 1)
+{
+    <div class="form-group row col-md-8">
+        @{ @await Html.PartialAsync("_paging", @Model.Paging); }
+    </div>
+}

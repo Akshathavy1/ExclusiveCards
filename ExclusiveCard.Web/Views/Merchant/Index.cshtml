@@ -1,0 +1,55 @@
+﻿@model ExclusiveCard.WebAdmin.ViewModels.MerchantSearchViewModel
+@{
+    Layout = "~/Views/Shared/_NewLayout.cshtml";
+    ViewBag.Title = "Search for Merchants";
+}
+<div id="mainDiv" class="col-md-12 Searchforoffers divonemerchant">
+    @Html.ValidationSummary(false, "", new { @class = "text-danger", autofocus = "autofocus" })
+    <div class="form-group row">
+        <div class="col-md-12">
+            <h1 class="col-md-6" id="title-name">Merchants</h1>
+
+        </div>
+    </div>
+    <div class="col-md-8 form-horizontal">
+        @Html.LabelFor(model => model.SearchText, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-9">
+            @Html.DropDownListFor(model => model.SearchText, Model.ListofMerchants, "Select Merchant", htmlAttributes: new { @class = "form-control roundedInput", @placeholder = "Enter Merchant" })
+            @Html.ValidationMessageFor(model => model.SearchText, "", new { @class = "text-danger col-md-12" })
+        </div>
+    </div>
+    @*<div class="col-md-8 form-horizontal">
+            @Html.LabelFor(model => model.SearchText, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.SearchText, new { htmlAttributes = new { @class = "form-control roundedInput col-md-9 " } })
+            @Html.ValidationMessageFor(model => model.SearchText, "", new { @class = "text-danger" })
+        </div>*@
+    <div class="col-md-4 botn">
+        <button type="button" id="btnSearchMerchants" class="btn has-spinner">Search <span class="spinner"><i class="fa fa-spinner fa-spin"></i></span></button>
+
+        <button type="button" id="btnAddMerchant" class="btn has-spinner">Add Merchant <span class="spinner"><i class="fa fa-spinner fa-spin"></i></span></button>
+    </div>
+
+</div>
+
+<div id="divMerchantList" class="col-md-12 divtwomerchant">
+    @{
+        @await Html.PartialAsync("_merchantsList", @Model.MerchantsList);
+    }
+</div>
+
+<div id="dialog-confirm" title="Delete Confirmation">
+    <p id="infoMessage"></p>
+</div>
+<div id="deleteMerchant" title="Warning" autofocus="autofocus">
+</div>
+@section Scripts
+    {
+    <script src="~/js/Exclusive/merchant.js"></script>
+    <script type="text/javascript">
+        Merchant.setUpEvents();
+        Merchant.kendoUIBind();
+        if ("@Html.Raw(@Model.SearchText)" !== "") {
+            $("input[name='SearchText_input']").val("@Html.Raw(@Model.SearchText)");
+        }
+    </script>
+}

@@ -1,0 +1,171 @@
+﻿@model CustomerViewModel
+@inject Microsoft.Extensions.Options.IOptions<TypedAppSettings> metaOptions
+@inject IViewLocalizer Localizer
+
+@{
+    var typedAppSettings = metaOptions.Value;
+    ViewData["Title"] = @Localizer["Create"];
+    var layoutModel = (LayoutViewModel)@ViewBag.LayoutModel;
+}
+
+
+<section class="c_band">
+    <div class="l_container --mini">
+        <h1>@Localizer["Create"]</h1>
+
+        @{
+            @await Html.PartialAsync("_salesText")
+        }
+
+        @using (Html.BeginForm("Save", "Account", FormMethod.Post, new { @id = "registerFormId", @class = "form-horizontal", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.Token)
+            @Html.HiddenFor(m => m.CardCost)
+            @Html.HiddenFor(m => m.SubscribeAppRef)
+            @Html.HiddenFor(m => m.SubscribeAppAndCardRef)
+            @Html.HiddenFor(m => m.MembershipPlanId)
+            @Html.HiddenFor(m => m.CountryId)
+            @Html.HiddenFor(m => m.PaidByEmployer)
+            @Html.HiddenFor(m => m.DiamondUpgrade)
+            @Html.HiddenFor(m => m.TermsAndConditions.Id)
+            @Html.HiddenFor(m => m.MarketingPreference)
+            @Html.HiddenFor(m => m.SiteClanId)
+
+        <div class="c_form-container u_margin-bottom--s3 form-horizontal">
+            <h2 class="__title">Account Details</h2>
+            <p class="__notice js_auto-center c_notification --negative hideContent" id="msgError">@Localizer["ErrorMsg"]</p>
+            <p class="__notice js_auto-center c_notification --negative hideContent" id="customError">@Localizer["ErrorMsg"]</p>
+            @*<div class="c_form-group form-group">
+                <label for="Title">Title <span class="__required">@Localizer["Required"]</span></label>
+                @Html.TextBoxFor(model => model.Title, new { Type = "text", minlength = "2" })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>*@
+            <div class="c_form-group form-group">
+                <label for="Forename">First name <span class="__required">@Localizer["Required"]</span></label>
+                @*<input class="--invalid" type="text" name="Forename" id="Forename" minlength="2" maxlength="128" required>*@
+                @Html.EditorFor(model => model.Forename, new { htmlAttributes = new { maxlength = 128 } })
+                @Html.ValidationMessageFor(model => model.Forename, "", new { @class = "text-danger" })
+            </div>
+            <div class="c_form-group">
+                <label for="Surname">Surname <span class="__required">@Localizer["Required"]</span></label>
+                @*<input class="--invalid" type="text" name="Surname" id="Surname" minlength="2" maxlength="128" required>*@
+                @Html.EditorFor(model => model.Surname, new { htmlAttributes = new { maxlength = 128 } })
+                @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+            </div>
+            <div class="c_form-group">
+                <label for="Email">Email <span class="__required">@Localizer["Required"]</span></label>
+                @*<input class="--invalid" type="email" name="Email" id="Email" minlength="5" maxlength="128" required>*@
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { maxlength = 128, type = "email" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+            <div class="c_form-group">
+                <label for="Confirmemail">Confirm Email <span class="__required">@Localizer["Required"]</span></label>
+                @*<input class="--invalid" type="email" name="Confirmemail" id="Confirmemail" minlength="5" maxlength="128" required>*@
+                @Html.EditorFor(model => model.Confirmemail, new { htmlAttributes = new { maxlength = 128, type = "email" } })
+                @Html.ValidationMessageFor(model => model.Confirmemail, "", new { @class = "text-danger" })
+            </div>
+            <div class="c_form-group">
+                <label for="Password">Password <span class="__required">@Localizer["Required"]</span></label>
+                @*<input class="--invalid" type="password" name="Password" id="Password" minlength="8" maxlength="128" required>*@
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { maxlength = 128, type = "password" } })
+                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                <p>@Localizer["Password"]</p>
+            </div>
+            <div class="c_form-group u_margin-bottom--none">
+                <label for="ConfirmPassword">Confirm Password <span class="__required">@Localizer["Required"]</span></label>
+                @*<input class="--invalid" type="password" name="ConfirmPassword" id="ConfirmPassword" minlength="8" maxlength="128" required>*@
+                @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { maxlength = 128, type = "password" } })
+                @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+            </div>
+        </div>
+            <div class="c_form-container u_margin-bottom--s3" hidden>
+                <h2 class="__title">@Localizer["Security"]</h2>
+                <p class="__description">@Localizer["Security1"]</p>
+                @*<div class="c_form-group">
+                    <label for="Dateofbirth">Date of Birth <span class="__required">@Localizer["Required"]</span></label>
+                    @Html.TextBoxFor(model => model.Dateofbirth, "{0:yyyy-MM-dd}", new { Type = "date" })
+                    @Html.ValidationMessageFor(model => model.Dateofbirth, "", new { @class = "text-danger" })
+                </div>*@
+                <div class="c_form-group">
+                    <label for="Postcode">Postcode <span class="__required">@Localizer["Required"]</span></label>
+                    @*<input class="--invalid" type="text" name="Postcode" id="Postcode" minlength="4" maxlength="128" required>*@
+                    @*@Html.EditorFor(model => model.Postcode, new { htmlAttributes = new { maxlength = 10 } })
+                    @Html.ValidationMessageFor(model => model.Postcode, "", new { @class = "text-danger" })*@
+                </div>
+                <div class="c_form-group">
+                    <label for="QuestionId">Security Question <span class="__required">@Localizer["Required"]</span></label>
+                    @*@Html.DropDownListFor(model => model.QuestionId, Model.ListofQuestion, "Select Question", htmlAttributes: new { @class = "dropdownInput" })
+                    @Html.ValidationMessageFor(model => model.QuestionId, "", new { @class = "text-danger" })*@
+                </div>
+                <div class="c_form-group">
+                    <label for="Answer">Security Question Answer <span class="__required">@Localizer["Required"]</span></label>
+                    @*<input class="--invalid" type="text" name="Answer" id="Answer" maxlength="128" required>*@
+                    @*@Html.EditorFor(model => model.Answer, new { htmlAttributes = new { maxlength = 128 } })
+                    @Html.ValidationMessageFor(model => model.Answer, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+            <div class="c_form-container u_margin-bottom--s3" hidden>
+                @if (Model.PaidByEmployer)
+                {
+                    <h2 class="__title">@Localizer["Include"]</h2>
+                    <p class="__description">@Localizer["IncludeText"]</p>
+                }
+                else
+                {
+                    <h2 class="__title">@Localizer["Extra"]</h2>
+                    <p class="__description">@Html.GetDiamondCost(Localizer["Extra1"].Value, layoutModel.DiamondCost)</p>
+                }
+            <div class="__item">
+                <input class="__checkbox" type="checkbox" name="diamond-upgrade" hidden="hidden" value="yes" id="diamond-upgrade" @(Model.PaidByEmployer == true ? "checked disabled" : "")>
+                @*<label class="__label" for="diamond-upgrade">*@
+                <h5>
+                    @Localizer["Diamond"] <span>
+                        @if (Model.PaidByEmployer)
+                        {
+                            @Html.GetDiamondCost(Localizer["Diamond1"].Value, layoutModel.DiamondCost)<br>@Localizer["ExcludingVAT"]
+                        }
+                        else
+                        {
+                            @Html.Raw("")
+                        }
+                    </span>
+                </h5>
+                <p>
+                    @Html.GetDiamondCost(Localizer["Diamond2"].Value, layoutModel.DiamondCost)
+                    <br>@Localizer["Diamond0"].Value
+                    @*<a href="@Url.Action("DiamondBenefits", "Offers", new { country = @ViewData["Country"] })" target="_blank" rel="noopener">@Localizer["here"]</a>.*@
+                    <br><i>@Localizer["ExcludingVAT"]</i>
+                </p>
+                @*</label>*@
+            </div>
+            </div>
+            @*<div class="c_form-group --actions">
+                <div class="l_flex --justify-between --align-center">
+                    <div class="__column">*@
+                        <div class="c_form-group --confirm">
+                            <input type="checkbox" name="remember" value="yes" id="remember">
+                            <label for="remember">@Html.GetWhiteLabel(Localizer["TermsAgree"].Value.ToString(), layoutModel.WhiteLabel) <a href="@Url.Action("Terms", "Account", new { country = @ViewData["Country"] })" target="_blank" rel="noopener">@Localizer["Terms"]</a>.</label>
+                        </div>
+                        <div class="c_form-group --confirm">
+                            <input type="checkbox" name="marketing" value="yes" id="marketing">
+                            <label for="marketing">@Html.GetWhiteLabel(Localizer["Marketing"].Value.ToString(), layoutModel.WhiteLabel)</label>
+                        </div>
+                    @*</div>*@
+                    <div class="c_form-group --actions">
+                        <button type="submit" id="btnContinue" >Continue</button>
+                    </div>
+                @*</div>
+            </div>*@
+
+        }
+    </div>
+</section>
+
+@section Scripts
+    {
+    <script type="text/javascript">
+        Account.planDescription();
+        Account.setUpEvents();
+    </script>
+}

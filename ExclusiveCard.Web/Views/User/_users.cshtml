@@ -1,0 +1,34 @@
+﻿@model List<ExclusiveCard.WebAdmin.ViewModels.UserSummary>
+
+<div class="table-responsive" id="userList">
+    <table class="table">
+        <thead>
+        <tr>
+            <th class="userHeading">Username</th>
+            <th class="userHeading">Email</th>
+            <th class="userHeading">Role</th>
+            <th class="userHeading">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+            @if (@Model.Count == 0)
+            {
+                <tr class="userList">
+                    <td colspan="4">No users found</td>
+                </tr>
+            }
+            else if (@Model.Count > 0)
+            {
+                foreach (var user in @Model)
+                {
+                <tr class="userList">
+                    <td>@user.Username</td>
+                    <td>@user.Email</td>
+                    <td>@user.Role</td>
+                    <td>@Html.ActionLink("Edit", "Edit", "User", null, null, null, new { userId = @user.Id }, null)</td>
+                </tr>   
+                }
+            }
+        </tbody>
+    </table>
+</div>

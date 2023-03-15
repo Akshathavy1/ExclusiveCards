@@ -1,0 +1,51 @@
+﻿@using ExclusiveCard.Services.Models.DTOs
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "Get in Touch";
+    var whiteLabel = (WhiteLabelSettings)ViewBag.WhiteLabel;
+}
+<main class="c_main">
+    <section class="c_band">
+        <div class="l_container">
+            <div class="u_text-align--center u_margin-bottom--s4 u_margin-bottom--s5--md">
+                <h1 class="u_margin-bottom--half">@Localizer["Title"]</h1>
+                <p class="u_lead u_margin-bottom--none">@Localizer["Description"]</p>
+                <p class="u_lead u_margin-bottom--none">@Localizer["SpamFolder"]</p>
+            </div>
+            <div class="l_contact-grid">
+                <div class="__item">
+                    <div class="c_contact-portal">
+                        <svg class="__icon c_feather-icon --large"><use xlink:href="/images/icons.svg#book-open" /></svg>
+                        <h2 class="__label">@Localizer["Frequent Questions"]</h2>
+                        <p class="__description">@Localizer["FrequentQuestionDescription"]</p>
+                        <a href="@Url.Action("FAQ","Account",new{country = ViewData["Country"].ToString()})" class="e_button --small --block">@Localizer["LinkFrequentQuestions"]</a>
+                    </div>
+                </div>
+                <div class="__item">
+                    <div class="c_contact-portal">
+                        <svg class="__icon c_feather-icon --large"><use xlink:href="/images/icons.svg#life-buoy" /></svg>
+                        <h2 class="__label">@Localizer["CashbackLabel"]</h2>
+                        <p class="__description">@Localizer["CashbackDescription"]</p>
+                        <a href="mailto:@whiteLabel.ClaimsEmail" class="e_button --small --block">@Localizer["Start Claim"]</a>
+                    </div>
+                </div>
+                <div class="__item">
+                    <div class="c_contact-portal">
+                        <svg class="__icon c_feather-icon --large"><use xlink:href="/images/icons.svg#user" /></svg>
+                        <h2 class="__label">@Localizer["AccountLabel"]</h2>
+                        <p class="__description">@Localizer["AccountDescription"]</p>
+                        <a href="mailto:@whiteLabel.HelpEmail" class="e_button --small --block">@Localizer["Send Email"]</a>
+                    </div>
+                </div>
+                <div class="__item">
+                    <div class="c_contact-portal">
+                        <svg class="__icon c_feather-icon --large"><use xlink:href="/images/icons.svg#mail" /></svg>
+                        <h2 class="__label">@Localizer["GeneralLabel"]</h2>
+                        <p class="__description">@Localizer["GeneralDescription"]</p>
+                        <a href="mailto:@whiteLabel.MainEmail" class="e_button --small --block">@Localizer["Raise Ticket"]</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

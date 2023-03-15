@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Exclusive.Jobs": {
+      "commandName": "Project",
+      "commandLineArgs": "All"
+    }
+  }
+}

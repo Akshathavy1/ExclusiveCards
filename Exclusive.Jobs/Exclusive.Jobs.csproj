@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyVersion>1.0.3.0</AssemblyVersion>
+    <Version>1.0.3</Version>
+    <Description>Refactor</Description>
+    <Authors>ReachAwareLtd</Authors>
+    <Company>Exclusive Media Ltd</Company>
+    <FileVersion>1.0.3.0</FileVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <OutputPath>..\ExclusiveCard.Web\App_Data\Exclusive.jobs\</OutputPath>
+  </PropertyGroup>  
+  
+  <ItemGroup>
+    <None Remove="nlog.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="nlog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.9.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.4" />
+    <PackageReference Include="NLog" Version="4.7.14" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.14.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ExclusiveCard.Enums\ExclusiveCard.Enums.csproj" />
+    <ProjectReference Include="..\ExclusiveCard.Services.Models\ExclusiveCard.Services.Models.csproj" />
+    <ProjectReference Include="..\ExclusiveCard.Services\ExclusiveCard.Services.csproj" />
+  </ItemGroup>
+
+</Project>

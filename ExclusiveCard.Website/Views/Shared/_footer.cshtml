@@ -1,0 +1,146 @@
+﻿@inject IViewLocalizer Localizer
+@{
+    var layoutModel = (LayoutViewModel)@ViewBag.LayoutModel;
+}
+
+@if (!@layoutModel.IsSignedIn)
+{
+    <!-- c_cta - START -->
+    <div class="c_cta">
+        <div class="l_container">
+            <div class="l_flex --loose--sm --align-center --justify-center">
+                <div class="__column --span-12 --shrink--lg">
+                    @if (layoutModel.WhiteLabel.Slug != "sport-rewards")
+                    {
+                        <h2>@Localizer["InvestTitle"]</h2>
+                    }
+                    else
+                    {
+                        <h2>@Localizer["InvestTitleTS"]</h2>
+                    }
+                </div>
+                <div class="__column --span-12 --shrink--lg">
+                    @if (layoutModel.WhiteLabel.RegistrationUrl != null)
+                    {
+                        <a href="@layoutModel.WhiteLabel.RegistrationUrl" class="e_button --white">@Localizer["Enter Code"]</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Index", "Account", new { country = ViewData["Country"].ToString() })" class="e_button --white">@Localizer["Enter Code"]</a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- c_cta - END -->
+}
+
+<!-- c_footer - START -->
+<div class="c_footer">
+    <div class="l_container">
+        <div class="l_flex --spacious--md">
+            <div class="__column --span-12 --span-3--lg --span-4--xl">
+                <h6>@Html.GetWhiteLabel(@Localizer["AboutTile"].Value.ToString(), layoutModel.WhiteLabel)</h6>
+                <p>@Html.GetWhiteLabel(@Localizer["AboutDescription"].Value.ToString(), layoutModel.WhiteLabel)</p>
+            </div>
+            <div class="__column --span-6 --span-4--md --shrink--lg">
+                @if (layoutModel?.SocialMediaLinks?.Count > 0 && layoutModel.SocialMediaLinks.Exists(P=>P.CountryCode == ViewData["Country"].ToString()))
+                {
+                    <h6>@Localizer["Social"]</h6>
+                    <ul>
+                        @foreach (var link in layoutModel.SocialMediaLinks)
+                        {
+                            if (link.CountryCode == ViewData["Country"].ToString())
+                            {
+                                switch (link.SocialMediaCompanyId)
+                                {
+                                    case (int)ExclusiveCard.Enums.SocialMediaCompany.Facebook:
+                                        <li><a href="@link.SocialMediaURI" target="_blank" rel="noopener"><span class="c_icomoon --facebook"></span>@Localizer["Facebook"]</a></li>
+                                        break;
+                                    case (int)ExclusiveCard.Enums.SocialMediaCompany.Twitter:
+                                        <li><a href="@link.SocialMediaURI" target="_blank" rel="noopener"><span class="c_icomoon --twitter"></span>@Localizer["Twitter"]</a></li>
+                                        break;
+                                    case (int)ExclusiveCard.Enums.SocialMediaCompany.Instagram:
+                                        <li><a href="@link.SocialMediaURI" target="_blank" rel="noopener"><span class="c_icomoon --instagram"></span>@Localizer["Instagram"]</a></li>
+                                        break;
+                                    case (int)ExclusiveCard.Enums.SocialMediaCompany.Pinterest:
+                                        <li><a href="@link.SocialMediaURI" target="_blank" rel="noopener"><span class="c_icomoon --pinterest"></span>@Localizer["Pinterest"]</a></li>
+                                        break;
+                                    case (int)ExclusiveCard.Enums.SocialMediaCompany.LinkedIn:
+                                        <li><a href="@link.SocialMediaURI" target="_blank" rel="noopener"><span class="c_icomoon --linkedin"></span>@Localizer["LinkedIn"]</a></li>
+                                        break;
+                                    case (int)ExclusiveCard.Enums.SocialMediaCompany.YouTube:
+                                        <li><a href="@link.SocialMediaURI" target="_blank" rel="noopener"><span class="c_icomoon --youtube"></span>@Localizer["YouTube"]</a></li>
+                                        break;
+                                }
+                            }
+                        }
+                    </ul>
+                }
+            </div>
+            <div class="__column --span-6 --span-4--md --shrink--lg">
+                <h6>@Localizer["Benefits"]</h6>
+                <ul>
+                    <li><a href="@Url.Action("ForConsumers", "Account", new {country = ViewData["Country"].ToString()})">@Localizer["For Consumers"]</a></li>
+                    @if (layoutModel.WhiteLabel.Slug=="exclusive")
+                    {
+                        <li><a href="@Url.Action("AboutUs", "Account", new {country = ViewData["Country"].ToString()})">@Localizer["For Businesses"]</a></li>
+                    }
+                </ul>
+            </div>
+            <div class="__column --span-6 --span-4--md --shrink--lg">
+                <h6>@Localizer["Legal"]</h6>
+                <ul>
+                    <li><a href="@layoutModel.WhiteLabel.PrivacyPolicy">@Localizer["Privacy Policy"]</a></li>
+                    <li><a href="@layoutModel.WhiteLabel.Terms">@Localizer["Terms"]</a></li>
+                </ul>
+            </div>
+            <div class="__column">
+                <h6>@Localizer["Support"]</h6>
+                <ul>
+                    <li><a href="@Url.Action("FAQ", "Account", new {country = ViewData["Country"].ToString()})">@Localizer["FAQs"]</a></li>
+                    <li><a href="@Url.Action("ContactUs", "Account", new {country = ViewData["Country"].ToString()})">@Localizer["Contact Us"]</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- c_footer - END -->
+<!-- c_trim - START -->
+<div class="c_trim">
+    <div class="l_container">
+        <div class="l_flex --loose--sm --align-center">
+            <div class="__column --span-12 --md">
+                <p class="__smallprint">
+                    &copy; Copyright @DateTime.UtcNow.Year @Localizer["ExclusiveCompanyName"]
+                    <span>&bull;</span>
+                    Registered in England and Wales: #@Localizer["ExclusiveCompanyNo"]
+                    <span>&bull;</span>
+                    Registered Address: @Localizer["ExclusiveAddress"]
+                    <span>&bull;</span>
+                    Powered by
+                    <a href="@layoutModel.WhiteLabel.URL" target="_blank" rel="noopener">@Localizer["ExclusiveCompanyName"]</a>.
+                </p>
+            </div>
+            @if (false)
+            {
+                <div class="__column --span-12 --shrink--md">
+                    <ul class="__inline">
+                        <li><a href="https://apps.apple.com/gb/app/exclusive-card/id1396195251" target="_blank" rel="noopener"><img src="~/images/apple_app_store.svg" alt="Apple App Store"></a></li>
+                        <li><a href="https://play.google.com/store/apps/details?id=com.ExclusiveCard&hl=en" target="_blank" rel="noopener"><img src="~/images/google_play_store.svg" alt="Google Play Store"></a></li>
+                    </ul>
+                </div>
+            }
+
+            @if (@layoutModel.WhiteLabel.Slug == "exclusive")
+            {
+                <div class="__column --span-12 --shrink--md">
+                    <ul class="__inline">
+                        <li><a href="https://uk.trustpilot.com/review/exclusiverewards.co.uk" target="_blank" rel="noopener"><img src="/_assets/images/trustpilot.svg" alt="TrustPilot"></a></li>
+                    </ul>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- c_trim - END -->

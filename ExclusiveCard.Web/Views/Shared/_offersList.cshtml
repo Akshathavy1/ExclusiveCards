@@ -1,0 +1,65 @@
+﻿@using ExclusiveCard.Enums
+@using ExclusiveCard.WebAdmin.ViewModels
+@model ExclusiveCard.WebAdmin.ViewModels.OfferListViewModel
+@if (@Model.ListofOffers.Count > 0)
+{
+    <div class="table-responsive">
+        @Html.Hidden("SortField", @Model.SortField)
+        @Html.Hidden("SortDirection", @Model.SortDirection)
+        <table class="table" id="offerstable">
+            <thead>
+                <tr>
+                    <th class="offerHeading">
+                        @Html.ActionLink("Merchant", "Index", "Offer", "https", null, null, new { }, new { SelSortField = "MerchantName" })
+                        @if (Model.SortField == OfferSortField.MerchantName)
+                        {<i class="@Model.SortIcon"></i>}
+                    </th>
+                    <th class="offerHeading">
+                        @Html.ActionLink("Description", "Index", "Offer", "https", null, null, new { }, new { SelSortField = "OfferShortDescription" })
+                        @if (Model.SortField == OfferSortField.OfferShortDescription)
+                        {<i class="@Model.SortIcon"></i>}
+                    </th>
+                    <th class="offerHeading">
+                        @Html.ActionLink("Valid From", "Index", "Offer", "https", null, null, new { }, new { SelSortField = "ValidFrom" })
+                        @if (Model.SortField == OfferSortField.ValidFrom)
+                        {<i class="@Model.SortIcon"></i>}
+                    </th>
+                    <th class="offerHeading">
+                        @Html.ActionLink("Valid To", "Index", "Offer", "https", null, null, new { }, new { SelSortField = "ValidTo" })
+                        @if (Model.SortField == OfferSortField.ValidTo)
+                        {<i class="@Model.SortIcon"></i>}
+                    </th>
+                    <th class="offerHeading"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in @Model.ListofOffers)
+                {
+                    <tr class="offerList">
+                        <td>@item.MerchantName</td>
+                        <td class="navoffsd">@item.OfferShortDescription</td>
+                        <td>@item.ValidFrom</td>
+                        <td>@item.ValidTo</td>
+                        <td><a href="@Url.Action("Edit", "Offer", new { id = @item.OfferId })">Edit</a></td>
+                        @*<td><a href="#" id="deletebutton" offerId="@item.OfferId">Delete</a>id="editbutton" offerId="@item.OfferId"</td>*@
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="form-group align-items-center row col-md-9">
+        <h5 style="margin-top:12pt;">No record found</h5>
+    </div>
+}
+@if (Model.ListofOffers != null && Model.ListofOffers.Any() && Model.PagingModel.PageCount > 1)
+{
+    <div class="form-group row col-md-8">
+        @{
+            @await Html.PartialAsync("_paging", @Model.PagingModel)
+            //Html.RenderPartial("_paging", @Model.PagingModel);
+        }
+    </div>
+}

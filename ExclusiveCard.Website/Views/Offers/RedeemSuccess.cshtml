@@ -1,0 +1,17 @@
+﻿@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = $"Redemption Complete";
+}
+
+<div class="c_site">
+    <main class="c_main">
+        <section class="c_band --spacious">
+            <div class="l_container --mini u_text-align--center">
+                <img width="150" class="u_margin-bottom--s4" src="/_assets/images/benefits/love2shop.svg" alt="Love 2 Shop">
+                <h1><span class="__pre-title">@Localizer["Title"]</span> @Localizer["Thanks"]</h1>
+                <h2><span class="__pre-title">@Localizer["Message"]</span></h2>
+                <a href="/" class="e_button --small">@Localizer["Return"]</a>
+            </div>
+        </section>
+    </main>
+</div>

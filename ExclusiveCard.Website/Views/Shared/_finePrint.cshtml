@@ -1,0 +1,54 @@
+﻿@model MerchantOffersViewModel
+@inject IViewLocalizer Localizer
+@{
+    var modelLayout = (LayoutViewModel)@ViewBag.LayoutModel;
+    var merchantName = ViewBag.Merchant as string;
+    var cashbackOnly = Model?.Cashback?.FirstOrDefault(x => x.OfferTypeDescription == ExclusiveCard.Website.Keys.Keys.CashbackType || x.OfferTypeDescription == ExclusiveCard.Website.Keys.Keys.StandardType);
+}
+<div class="c_content --fineprint">
+    @if (!string.IsNullOrEmpty(Model?.Merchant?.Terms))
+    {
+        if (cashbackOnly != null)
+        {
+            <h3>@Localizer["Terms"]</h3>
+        }
+        else
+        {
+            <h3>@Localizer["TermsNoCashback"]</h3>
+        }
+        <ul class="justifyContent">
+            @Html.Raw(Model.Merchant.Terms)
+        </ul>
+    }
+
+    @{ 
+        
+        if (cashbackOnly != null)
+        {
+            <h3>@Localizer["Earn"]</h3>
+            <ul>
+                <li>@Localizer["Earn_1"]</li>
+                <li>@Html.GetWhiteLabel(Localizer["Earn_2"].Value, modelLayout.WhiteLabel) @merchantName @Html.GetWhiteLabel(Localizer["Earn_3"].Value, modelLayout.WhiteLabel)</li>
+                <li>@Localizer["Earn_4"]</li>
+                <li>@Localizer["Earn_5"]</li>
+                <li>@Localizer["Earn_6"]</li>
+                <li>@Localizer["Earn_7"]</li>
+            </ul>
+            <h3>@Localizer["Know"]</h3>
+            <ul>
+                <li>@Localizer["Know_1"]</li>
+                <li>@Html.GetWhiteLabel(Localizer["Know_2"].Value, modelLayout.WhiteLabel)</li>
+                <li>@Html.GetWhiteLabel(Localizer["Know_3"].Value, modelLayout.WhiteLabel)</li>
+                <li>@Html.GetWhiteLabel(Localizer["Know_4"].Value, modelLayout.WhiteLabel)</li>
+                <li>@Html.GetWhiteLabel(Localizer["Know_5"].Value, modelLayout.WhiteLabel)</li>
+                <li>@Html.GetWhiteLabel(Localizer["Know_6"].Value, modelLayout.WhiteLabel)</li>
+                <li>@Html.GetWhiteLabel(Localizer["Know_7"].Value, modelLayout.WhiteLabel)</li>
+                <li>@Html.GetWhiteLabel(Localizer["Know_8"].Value, modelLayout.WhiteLabel)</li>
+                <li>@Html.GetWhiteLabel(Localizer["Know_9"].Value, modelLayout.WhiteLabel)</li>
+                <li>@Html.GetWhiteLabel(Localizer["Know_10"].Value, modelLayout.WhiteLabel)</li>
+                <li>@Html.GetWhiteLabel(Localizer["Know_11"].Value, modelLayout.WhiteLabel)</li>
+                <li>@Html.GetWhiteLabel(Localizer["Know_12"].Value, modelLayout.WhiteLabel)</li>
+            </ul>
+        }
+    }
+</div>

@@ -1,0 +1,76 @@
+﻿@using dto = ExclusiveCard.Services.Models.DTOs
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "Privacy Policy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var whiteLabel = (dto.WhiteLabelSettings)ViewBag.WhiteLabel;
+}
+
+<main class="c_main">
+    <section class="c_band">
+        <div class="l_container --narrow">
+            <h1>@Localizer["Heading"]</h1>
+            <div class="c_content justifyPara">
+                <p>@Localizer["Intro_para_1"]</p>
+                <p>@Localizer["Intro_para_2"]</p>
+                <hr/>
+                <h3>@Localizer["SubHeading_1"]</h3>
+                <p>@Html.GetWhiteLabel(Localizer["SubHeading_1_intro"].Value, whiteLabel)</p>
+                <hr/>
+                <h3>@Localizer["SubHeading_2"]</h3>
+                <ul>
+                    <li>@Localizer["SubHeading_2_intro_para_1"]</li>
+                    <li>@Localizer["SubHeading_2_intro_para_2"]</li>
+                    <li>@Localizer["SubHeading_2_intro_para_3"]</li>
+                </ul>
+                <p>@Localizer["SubHeading_2_intro_para_4"]</p>
+                <hr/>
+                <h3>@Localizer["SubHeading_3"]</h3>
+                <p>@Localizer["SubHeading_3_intro_para_1"]</p>
+                <p>@Localizer["SubHeading_3_intro_para_2"]</p>
+                <hr/>
+                <h3>@Localizer["SubHeading_4"]</h3>
+                <p>@Localizer["SubHeading_4_intro_para_1"]</p>
+                <hr/>
+                <h3>@Localizer["SubHeading_5"]</h3>
+                <p>@Localizer["SubHeading_5_intro_para_1"]</p>
+                <p>@Localizer["SubHeading_5_intro_para_2"]</p>
+                <ol>
+                    <li>@Localizer["SubHeading_5_pointA"]</li>
+                    <li>@Localizer["SubHeading_5_pointB"]</li>
+                    <li>@Localizer["SubHeading_5_pointC"]</li>
+                    <li>@Localizer["SubHeading_5_pointD"]</li>
+                </ol>
+                <p>@Localizer["SubHeading_5_intro_para_3"]</p>
+                <p>@Localizer["SubHeading_5_intro_para_4"]</p>
+                <p>@Localizer["SubHeading_5_intro_para_5"]</p>
+                <hr/>
+                <h3>@Localizer["SubHeading_6"]</h3>
+                <p>@Localizer["SubHeading_6_intro_para_1"]</p>
+                <p>@Localizer["SubHeading_6_intro_para_2"]</p>
+                <hr/>
+                <h3>@Localizer["SubHeading_7"]</h3>
+                <p>@Localizer["SubHeading_7_intro_para_1"]</p>
+                <hr/>
+                <h3>@Localizer["SubHeading_8"]</h3>
+                <p>@Localizer["SubHeading_8_intro_para_1"]</p>
+                <hr/>
+                <h3>@Localizer["SubHeading_9"]</h3>
+                <p>@Localizer["SubHeading_9_intro_para_1"]</p>
+                <hr/>
+                <h3>@Localizer["SubHeading_10"]</h3>
+                <p>@Localizer["SubHeading_10_intro_para_1"]</p>
+                <p>@Localizer["SubHeading_10_intro_para_2"]</p>
+                <hr/>
+                <h3>@Localizer["SubHeading_11"]</h3>
+                <p>@Html.GetWhiteLabel(Localizer["SubHeading_11_intro_para_1"].Value, whiteLabel)</p>
+                <p>@Html.GetWhiteLabel(Localizer["SubHeading_11_intro_para_2"].Value, whiteLabel)</p>
+                <p>@Localizer["SubHeading_11_intro_para_3"]</p>
+                <p>@Localizer["SubHeading_11_intro_para_4"]</p>
+                <p>@Localizer["SubHeading_11_intro_para_5"]</p>
+                <p>@Html.GetWhiteLabel(Localizer["SubHeading_11_intro_para_6"].Value, whiteLabel)</p>
+                <br/>
+            </div>
+        </div>
+    </section>
+</main>

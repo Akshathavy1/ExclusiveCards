@@ -1,0 +1,55 @@
+﻿@model ExclusiveCard.Website.Models.LoginViewModel
+@inject IViewLocalizer Localizer
+@{
+    
+    var layoutModel = (LayoutViewModel)@ViewBag.LayoutModel; 
+ }
+
+    <!-- c_widget - login - START -->
+    <div class="c_widget">
+        <div class="__header">@Localizer["Login"]</div>
+        <div class="__content">
+            <form role="form">
+                <p class="__notice js_auto-center c_notification --negative" id="loginError" style="display: none;"></p>
+                <div class="c_form-group">
+                    @Html.LabelFor(m => m.Username)
+                    @Html.EditorFor(model => model.Username,
+                        new
+                        {
+                            htmlAttributes = new
+                            {
+                                @class = "--small",
+                                PlaceHolder = @Localizer["UserName_Placeholder"].Value.ToString(),
+                                     Type = "email",
+                                     tabindex = 1
+                            }
+                        })
+                </div>
+                <div class="c_form-group">
+                    <label asp-for="LoginPassword">@Localizer["Password"]</label>
+                    @Html.EditorFor(model => model.LoginPassword,
+                        new
+                        {
+                            htmlAttributes = new
+                            {
+                                type = "password",
+                                @class = "--small",
+                                tabindex = 2
+                            }
+                        })
+                </div>
+                <div class="c_form-group --actions">
+                    <button class="--block --small" id="btnLogin" type="button" offerHubRedirect="false">@Localizer["Login"]</button>
+                    @if (@layoutModel.WhiteLabel.RegistrationUrl != null)
+                    {
+                        <a href="@layoutModel.WhiteLabel.RegistrationUrl" class="e_button --outline --small --block u_margin-top--default">@Localizer["Register"]</a>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Index", "Account")" class="e_button --outline --small --block u_margin-top--default">@Localizer["Register"]</a>
+                    }
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- c_widget - login - END -->

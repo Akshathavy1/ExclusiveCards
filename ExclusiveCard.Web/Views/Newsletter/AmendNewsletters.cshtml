@@ -1,0 +1,198 @@
+﻿@model ExclusiveCard.WebAdmin.ViewModels.NewsletterViewModel
+@{
+    Layout = "~/Views/Shared/_NewLayout.cshtml";
+    ViewData["Title"] = "AmendNewsletters";
+}
+    <header>
+        <link href="~/richtexteditor/richtext.min.css" rel="stylesheet" />
+        <link href="~/multiselectcheckbox/multiselect.css" rel="stylesheet" />
+        @*<link href="~/croneditor/css/jquery-ui.css" rel="stylesheet" />*@
+        <link href="~/newcroneditor/jqCron.css" rel="stylesheet" />
+
+    </header>
+@using (Html.BeginForm("OfferlistSearch", "Offer", FormMethod.Get, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.EmailTemplateId)
+    @Html.HiddenFor(m => m.OfferListId)
+    @Html.HiddenFor(m => m.TemplateTypeId)
+    @Html.HiddenFor(m => m.EmailName)
+    @Html.HiddenFor(m => Model.NewsLetterId)
+    @Html.HiddenFor(m => Model.HeaderHtml)
+    @Html.HiddenFor(m => Model.FooterHtml)
+
+    <div id="mainDiv" class="col-md-12 Searchforoffers div1List">
+        @Html.ValidationSummary(false, "", new { @class = "text-danger", autofocus = "autofocus" })
+        <div class="form-group row">
+            <h1 id="title-name" class="text-center">Amend News letters</h1>
+        </div>
+
+        <div class="form-horizontal col-md-12">
+            <div class="form-group row text-left">
+                @Html.LabelFor(m => m.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.DropDownListFor(model => model.Id, Model.ListofNewsletterName, "--Select--", htmlAttributes: new { @class = "form-control roundedInput dropdownInput" })
+                    @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+                </div>
+
+                @Html.LabelFor(m => m.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.Subject, new { htmlattributes = new { @class = "form-control  roundedInput", @placeholder = "Enter Text" } })
+                    @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="whitelabels" class="control-label col-md-2">White labels:</label>
+                <div class="col-md-4">
+
+                    @if (Model.MarketingCampaigns != null)
+                    {
+                        int i = 0;
+                    <select id="whitelabels" multiple class="form-control dropdownInput">
+
+                        @foreach (var item in Model.MarketingCampaigns)
+                        {
+                            if (item.Enabled == true)
+                            {
+                                <option name="whitelabel-type" value="@item.Id" selected="selected">@item.WhiteLabel.Name</option>
+                            }
+                            else
+                            {
+                                <option name="whitelabel-type" value="@item.Id">@item.WhiteLabel.Name</option>
+                            }
+
+                            i++;
+                        }
+                    </select>
+                    }
+                    else
+                    {
+                        <select id="whitelabels" multiple class="form-control" disabled="">
+                            <option name="whitelabel-type" value="0">--select--</option>
+                        </select>
+                    }
+                    @if (Model.MarketingCampaigns != null)
+                    {
+                        int i = 0;
+
+                        @foreach (var item in Model.MarketingCampaigns)
+                        {
+                            <input type="hidden" id="NewsletterCampaignLinkId_@i" value="@item.Id" />
+                            i++;
+                        }
+                    }
+                </div>
+
+                <div class="control-label col-md-2">
+                    <label class="control-label">Enable:</label>
+                </div>
+                <div class="col-md-4">
+                    @if (Model.Enable)
+                    {
+                        <input type="checkbox" id="chkEnable" class="control-label" value="1" style="margin-top: 12px;" checked>
+
+                    }
+                    else
+                    {
+                        <input type="checkbox" id="chkEnable" class="control-label" value="0" style="margin-top: 12px;">
+
+                    }
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label for="BodyText" class="control-label col-md-2">Message:</label>
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.BodyText, new { rows = 15, cols = 193 })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="BodyHtml" class="control-label col-md-2"></label>
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.BodyHtml, new { htmlattributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <div class="form-group  row">
+                <label class="control-label col-md-2">Schedule:</label>
+                <div class="col-md-6">
+                    @*<div class="myDiv" id="cronScheduled"></div>*@
+                    <div class="CronExample"></div>
+                    @Html.EditorFor(model => model.Schedule, new { htmlattributes = new { @class = "form-control  roundedInput", @id = "txtCron" ,@readonly="readonly"} })
+                </div>
+            </div>
+
+            <div class="form-group  row">
+                <div class="col-md-2"></div>
+                <div class="col-md-10">
+                    @if (Model.Id > 0 && Model.OfferListId > 0)
+                    {
+                        <input type="button" id="btnAmendOffer" class="btn has-spinner" value="Offer List" onclick="@("window.location.href='" + @Url.Action("OfferlistSearch", "Offer", new {offerlistId = Model.OfferListId, countryCode = "GB", letterid = Model.Id}) + "'");" />
+                    }
+                    else
+                    {
+                        <input type="button" id="btnAmendOffer" class="btn has-spinner" value="Offer List" disabled />
+                    }
+                    <button type="button" id="btnAddNewsLetter" class="btn pull-right has-spinner">
+                        Save<span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+}
+@section Scripts
+{
+    <script src="~/newcroneditor/jqCron.js"></script>
+    <script src="~/newcroneditor/jqCron.en.js"></script>
+    @*<script src="~/croneditor/js/jquery-ui.js"></script>
+        <script src="~/croneditor/js/jquery.croneditor.js"></script>*@
+
+    <script src="~/js/Exclusive/newsletter.js"></script>
+    <script src="~/richtexteditor/jquery.richtext.min.js"></script>
+    <script src="~/multiselectcheckbox/multiselect.min.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('.CronExample').jqCron({
+                multiple_dom:false,
+                bind_to: $('#txtCron'),
+                bind_method: {
+                    set:function($element, value) {
+                        $element.val(value);
+                    }
+                },
+                enabled_minute: false,
+                default_value: false,
+                no_reset_button: false,
+                numeric_zero_pad: false,
+                lang: 'en'
+            });
+
+            if ("@Html.Raw(@Model.Schedule)" !== "") {
+                $("input[id='txtCron']").val("@Html.Raw(@Model.Schedule)");
+            }
+            
+            $("#mainDiv").find('#BodyHtml').richText();
+
+            $('#whitelabels').multiselect({
+                includeSelectAllOption: true
+            });
+
+            // turn the div into a cron editor
+            //$('.myDiv').croneditor({
+            //    value: "* * * * *"
+            //});
+        });
+
+    </script>
+}

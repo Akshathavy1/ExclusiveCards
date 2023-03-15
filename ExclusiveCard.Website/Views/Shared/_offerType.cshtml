@@ -1,0 +1,30 @@
+﻿@model List<ExclusiveCard.Services.Models.DTOs.OfferType>
+<!-- c_widget - offer-type - START -->
+<div class="c_widget">
+    <div class="__header">@ViewData["OfferTypeHeader"]</div>
+    <div class="__content --flat">
+        <ul class="__filters">
+            @foreach (var offerType in Model)
+            {
+                if (offerType.Description != "Standard Cashback" && offerType.Description != "Diamond Offer")
+                {
+                    if (offerType.IsActive)
+                    {
+                        <li>
+                            <input type="checkbox" name="offer-type" value="@offerType.Description" id="type_@offerType.Description" offerType_id="@offerType.Id" checked="checked">
+                            <label for="type_@offerType.Description">@offerType.Description</label>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+                            <input type="checkbox" name="offer-type" value="@offerType.Description" id="type_@offerType.Description" offerType_id="@offerType.Id">
+                            <label for="type_@offerType.Description">@offerType.Description</label>
+                        </li>
+                    }
+                }
+            }
+        </ul>
+    </div>
+</div>
+<!-- c_widget - offer-type - END -->

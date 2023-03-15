@@ -1,0 +1,223 @@
+﻿@using dto = ExclusiveCard.Services.Models.DTOs
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = "Terms & Conditions";
+    var whiteLabel = (dto.WhiteLabelSettings)ViewBag.WhiteLabel;
+}
+
+<main class="c_main">
+    <section class="c_band">
+        <div class="l_container --narrow">
+            <h1>@Localizer["Heading"]</h1>
+            <div class="c_content">
+                <h3>@Localizer["Intro"]</h3>
+                @if (whiteLabel.Slug == "exclusive")
+                {
+                    <p>@Localizer["Intro_1_Exclusive"]</p>
+                }
+                else
+                {
+                    <p>@Html.GetWhiteLabel(Localizer["Intro_1"].Value, whiteLabel)</p>
+                }
+                <p>@Localizer["Intro_2"]</p>
+
+                <h3>@Localizer["CR"]</h3>
+                <p>@Localizer["CR_1"]</p>
+
+                <h3>@Localizer["CD"]</h3>
+                <p>@Html.GetWhiteLabel(Localizer["CD_1"].Value, whiteLabel)</p>
+                <p>@Localizer["CD_2"]</p>
+
+                <h3>@Localizer["Liability"]</h3>
+                <p>@Localizer["Liability_1"]</p>
+                <p>@Localizer["Liability_2"]</p>
+                <p>@Localizer["Liability_3"]</p>
+                <ol>
+                    <li>@Localizer["Liability_a"]</li>
+                    <li>@Localizer["Liability_b"]</li>
+                    <li>@Localizer["Liability_c"]</li>
+                    <li>@Localizer["Liability_d"]</li>
+                </ol>
+
+                <h3>@Localizer["Who"]</h3>
+                <p>@Localizer["Who_1"]</p>
+
+                <h3>@Localizer["Communication"]</h3>
+                <p>@Localizer["Communication_1"]</p>
+
+                <h3>@Localizer["Use"]</h3>
+                <ol>
+                    <li>
+                        <p>@Localizer["Use_1"]</p>
+                        <p>@Localizer["Use_2"]</p>
+                        <p>@Localizer["Use_3"]</p>
+                    </li>
+                    <li>
+                        <p>@Localizer["Use_4"]</p>
+                        <p>@Localizer["Use_5"]</p>
+                    </li>
+                    <li>
+                        <p>@Localizer["Use_6"]</p>
+                        <p>@Localizer["Use_7"]</p>
+                    </li>
+                    <li>
+                        <p>@Localizer["Use_8"]</p>
+                    </li>
+                    <li>
+                        <p>@Localizer["Use_9"]</p>
+                    </li>
+                    <li>
+                        <p>@Localizer["Use_10"]</p>
+                    </li>
+                    <li>
+                        <p>@Localizer["Use_11"]</p>
+                    </li>
+                    <li>
+                        <p>@Localizer["Use_12"]</p>
+                    </li>
+                    <li>
+                        <p>@Localizer["Use_13"]</p>
+                    </li>
+                    <li>
+                        <p>@Localizer["Use_14"]</p>
+                    </li>
+
+                </ol>
+
+                <h3>@Localizer["Agreement"]</h3>
+                <p>
+                    @Localizer["Agreement_1"]
+                </p>
+                <hr />
+                <h2>@Localizer["Work"]</h2>
+
+                <h3>@Localizer["Work_1"]</h3>
+                <p>@Localizer["Work_2"]</p>
+                <p>@Localizer["Work_3"]</p>
+                <p>@Localizer["Work_4"]</p>
+                <p>@Localizer["Work_5"]</p>
+
+                <h3>@Localizer["CashBack"].Value</h3>
+                <p>@Localizer["CashBack_1"]</p>
+                <ol>
+                    <li>
+                        <p>@Localizer["CashBack_2"]</p>
+                        @*<p>@Localizer["CashBack_3"]</p>*@
+                    </li>
+                    <li>@Localizer["CashBack_4"]</li>
+                    <li>@Localizer["CashBack_5"]</li>
+                </ol>
+
+                <h3>@Localizer["Account"]</h3>
+                <p>@Localizer["Account_1"]</p>
+                <p>@Localizer["Account_2"]</p>
+
+                <h3>@Localizer["Management"]</h3>
+                <p>@Localizer["Management_1"]</p>
+                <p>@Localizer["Management_2"]</p>
+                <p>@Localizer["Management_3"]</p>
+
+                <h3>@Localizer["Interruptions"]</h3>
+                <p>@Localizer["Interruptions_1"]</p>
+
+                <h3>@Localizer["Info"]</h3>
+                <p>@Localizer["Info_1"]</p>
+                <p>@Localizer["Info_2"]</p>
+                <ol>
+                    <li>@Localizer["Info_3"]</li>
+                    <li>@Localizer["Info_4"]</li>
+                    <li>@Localizer["Info_5"]</li>
+                    <li>@Localizer["Info_6"]</li>
+                    <li>@Localizer["Info_7"]</li>
+                </ol>
+                <p>@Localizer["Info_8"]</p>
+                <p>@Localizer["Info_9"]</p>
+
+                <h3>@Localizer["Law"]</h3>
+                <p>@Localizer["Law_1"]</p>
+                <p>@Localizer["Law_2"]</p>
+                <hr />
+                <h2>@Localizer["Member"]</h2>
+                <h3>@Localizer["Member_1"]</h3>
+                <p>@Localizer["Member_2"]</p>
+                <p>@Localizer["Member_3"]</p>
+
+                <h3>@Localizer["Member_4"]</h3>
+                <p>@Localizer["Member_5"]</p>
+
+                <h3>@Localizer["Member_6"]</h3>
+                <p>@Localizer["Member_7"]</p>
+
+                <h3>@Localizer["Member_8"]</h3>
+                <ol>
+                    <li>
+                        <p>@Localizer["Member_9"]</p>
+                    </li>
+                    <li>
+                        <p>@Localizer["Member_10"]</p>
+                        <p>@Localizer["Member_11"]</p>
+                    </li>
+                    <li>
+                        <p>@Localizer["Member_12"]</p>
+                    </li>
+                    <li>
+                        <p>@Localizer["Member_13"]</p>
+                    </li>
+                    <li>
+                        <p>@Localizer["Member_14"]</p>
+                        <p>@Localizer["Member_15"]</p>
+                    </li>
+                    <li>
+                        <p>@Localizer["Member_16"]</p>
+                    </li>
+                    <li>
+                        <p>@Localizer["Member_17"]</p>
+                    </li>
+                    <li>
+                        <p>@Localizer["Member_18"]</p>
+                    </li>
+                    <li>
+                        <p>@Localizer["Member_19"]</p>
+                        <p>@Localizer["Member_20"]</p>
+                    </li>
+                    <li>
+                        <p>@Localizer["Member_37"]</p>
+                    </li>
+                </ol>
+
+                <h3>@Localizer["Member_21"]</h3>
+                <p>@Localizer["Member_22"]</p>
+                <ol>
+                    <li>@Localizer["Member_23"]</li>
+                    <li>@Localizer["Member_24"]</li>
+                    <li>@Localizer["Member_25"]</li>
+                    <li>@Html.GetWhiteLabel(Localizer["Member_26"].Value, whiteLabel)</li>
+                </ol>
+
+                @*<h3>@Localizer["Member_27"]</h3>
+                <p>@Localizer["Member_28"]</p>
+                <ol>
+                    <li>@Localizer["Member_29"]</li>
+                    <li>@Localizer["Member_30"]</li>
+                    <li>@Localizer["Member_31"]</li>
+                    <li>@Localizer["Member_32"]</li>
+                    <li>@Localizer["Member_33"]</li>
+                    <li>@Localizer["Member_34"]</li>
+                    <li>@Localizer["Member_35"]</li>
+                    <li>@Localizer["Member_36"]</li>
+                </ol>*@
+
+                <h3>@Localizer["DiamondUpgrade"]</h3>
+                <p>@Html.GetWhiteLabel(Localizer["Diamond_1"].Value, whiteLabel)</p>
+                <ol>
+                    <li>@Localizer["Diamond_2"]</li>
+                    <li>@Localizer["Diamond_3"]</li>
+                    <li>@Localizer["Diamond_4"]</li>
+                    <li>@Localizer["Diamond_5"]</li>
+                    <li>@Localizer["Diamond_6"]</li>
+                    <li>@Localizer["Diamond_7"]</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+</main>

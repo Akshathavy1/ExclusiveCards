@@ -1,0 +1,67 @@
+﻿@model ExclusiveCard.WebAdmin.ViewModels.TalkSportViewModel
+@Html.HiddenFor(m => m.CurrentPageNumber)
+
+@if (Model?.SiteClan.Results?.Count > 0)
+{
+    <body>
+ <div class="table-responsive" id="tblDiv">
+     <table class="table" id="clubList">
+         <thead>
+         <tr>
+             <th class="merchantHeading">Club</th>
+             <th class="merchantHeading">Logo</th>
+             <th class="merchantHeading">League</th>
+             <th class="merchantHeading">Charity</th>
+             <th class="merchantHeading">Action</th>
+
+         </tr>
+         </thead>
+         <tbody>
+         @foreach (var item in Model.SiteClan.Results)
+         {
+             <tr class="merchantList">
+                 <td>@item.Description</td>
+                 <td>
+                     @if (!string.IsNullOrEmpty(item.ImagePath))
+                     {
+                         <img class="d-block siteclanImage" siteclanimageid="@item.Id"  onclick="deleteSiteClanImage(@item.Id)"  siteclanid="@item.Id" src="~/Image/GetImage?path=@item.ImagePath&id=@item.Id" />
+                     }
+                 </td>
+                 <td>
+                     @Html.DropDownListFor(model => @item.LeagueId, Model.Leagues, "Select League", htmlAttributes: new { @id = "ddlLeagueId", @class = "form-control roundedInput dropdownInput", @disabled = "disabled" })
+                 </td>
+                 <td>
+                     @Html.DropDownListFor(model => @item.CharityId, Model.Charity, "Select Charity", htmlAttributes: new { @id = "ddlCharityId", @class = "form-control roundedInput dropdownInput", @disabled = "disabled" })
+                 </td>
+                 <td>
+                     <button type="button" id="btnAddImage" class="btn has-spinner" onclick="addImage(@item.Id)">
+                         <span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>Add Image
+                     </button>
+                     <button type="button" id="btnEdit" class="fileSent btn has-spinner" value="@item.Id">
+                         Edit
+                     </button>
+                 </td>
+             </tr>
+         }
+         </tbody>
+     </table>
+ </div>
+</body>
+    
+}
+else
+{
+    <div class="form-group align-items-center row col-md-9">
+        <h5 style="margin-top:12pt;">No record found</h5>
+    </div>
+}
+
+@if (Model?.SiteClan.Results?.Count > 0 && Model?.Paging?.PageCount > 1)
+{
+    <div class="form-group row col-md-8">
+        @{ @await Html.PartialAsync("_paging", @Model.Paging); }
+    </div>
+}
+
+
+

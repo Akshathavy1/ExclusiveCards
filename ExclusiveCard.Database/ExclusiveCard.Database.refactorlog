@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="2b746af1-21cb-4f5d-bf32-0275556acfe6" ChangeDateTime="09/14/2020 08:23:00">
+    <Property Name="ElementName" Value="[Marketing].[FK_Newsletters_ToTable]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[Marketing].[Newsletters]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_Newsletters_EmailTemplates]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="ae562585-4371-40ab-8f78-024a44a834f3" ChangeDateTime="09/14/2020 08:23:34">
+    <Property Name="ElementName" Value="[Marketing].[FK_Newsletters_EmailTemplates]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[Marketing].[Newsletters]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_Newsletters_EmailTemplates_EmailTemplateId]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5475358f-689a-49c8-9a55-b6f502c07bd6" ChangeDateTime="09/14/2020 08:25:21">
+    <Property Name="ElementName" Value="[Marketing].[FK_Newsletters_EmailTemplates_EmailTemplateId]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[Marketing].[Newsletters]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_Newsletters_EmailTemplates_EmailTemplateId(Id)]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="33eacc4e-5398-4d98-afb5-0222aec62058" ChangeDateTime="09/14/2020 08:27:48">
+    <Property Name="ElementName" Value="[Marketing].[Newsletters].[•OfferListId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[Marketing].[Newsletters]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="OfferListId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="d1a1500f-05d2-48fc-b700-08d067f12b1f" ChangeDateTime="09/23/2020 10:45:39">
+    <Property Name="ElementName" Value="[dbo].[SendGridContact].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[SendGridContact]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ExclusiveCustomerId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3df34d1c-0616-45e6-9ff3-b5a615256168" ChangeDateTime="04/28/2021 11:07:51">
+    <Property Name="ElementName" Value="[CMS].[SiteOwner].[clanDescription]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CMS].[SiteOwner]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ClanDescription" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="130d5885-8637-4756-8114-9014c89e4f1c" ChangeDateTime="04/28/2021 11:56:06">
+    <Property Name="ElementName" Value="[CMS].[SiteOwner].[MainHeading]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CMS].[SiteOwner]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ClanHeading" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="658b7a42-b1e9-4db4-9407-e729f5b1fa8b" ChangeDateTime="07/29/2021 12:52:34">
+    <Property Name="ElementName" Value="[Marketing].[SendGridContactLists].[whitelabel]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[Marketing].[SendGridContactLists]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ContactListName" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b53b5142-7d69-4593-ad13-53b60797a590" ChangeDateTime="03/08/2022 16:20:27">
+    <Property Name="ElementName" Value="[Exclusive].[SSOConfiguration].[Url]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[Exclusive].[SSOConfiguration]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DestinationUrl" />
+  </Operation>
+</Operations>

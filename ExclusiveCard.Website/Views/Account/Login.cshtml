@@ -1,0 +1,50 @@
+﻿@model ExclusiveCard.Website.Models.LoginViewModel
+@inject IViewLocalizer Localizer
+@{
+    ViewData["Title"] = @Localizer["Login"];
+}
+<main class="c_main">
+    <section class="c_band">
+        <div class="l_container --mini">
+            <form class="c_form-container" role="form">
+                <h1 class="__title">@Localizer["Login"] </h1>
+                <p class="__notice js_auto-center c_notification --negative" id="loginError" style="display: none;"></p>
+                <div class="c_form-group">
+                    @Html.LabelFor(m => m.Username)
+                    @Html.EditorFor(model => model.Username,
+                        new { htmlAttributes = new { @class = "",
+                            PlaceHolder = @Localizer["UserName_Placeholder"].Value.ToString(), Type= "email", tabindex = 1 } })
+                </div>
+                <div class="c_form-group">
+                    <label asp-for="LoginPassword">@Localizer["Password"] <a class="u_margin-left--auto pull-right" tabindex="4" href="@Url.Action("RecoverPassword","Account", new {country = ViewData["Country"]})">@Localizer["Recover Password"]</a></label>
+                    @Html.EditorFor(model => model.LoginPassword,
+                        new
+                        {
+                            htmlAttributes = new
+                            {
+                                type = "password",
+                                @class = "",
+                                tabindex = 2
+                            }
+                        })
+                </div>
+                <div class="c_form-group --actions">
+                    <div class="l_flex --tight --justify-between --align-center">
+                        <div class="__column --shrink">
+                        
+                        </div>
+                        <div class="__column --shrink--sm">
+                            <button type="button" id="btnLogin" class="--block" tabindex="3" offerHubRedirect="true">@Localizer["Login"]</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</main>
+@section Scripts
+    {
+    <script type="text/javascript">
+        Login.setUpEvents();
+    </script>
+}

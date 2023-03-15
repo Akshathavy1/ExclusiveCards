@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Earn" xml:space="preserve">
+    <value>T_What Can Stop Me Earning Cashback?</value>
+  </data>
+  <data name="Earn_1" xml:space="preserve">
+    <value>T_If you apply an additional discount that reduces your overall purchase price, this may cause your cashback to be declined or reduced. e.g Voucher codes, student discount, staff discount.</value>
+  </data>
+  <data name="Earn_2" xml:space="preserve">
+    <value>T_If you purchase using the </value>
+  </data>
+  <data name="Earn_3" xml:space="preserve">
+    <value>T_mobile app via the {{Name}} app.</value>
+  </data>
+  <data name="Earn_4" xml:space="preserve">
+    <value>T_If you pay for your purchase using gift card.</value>
+  </data>
+  <data name="Earn_5" xml:space="preserve">
+    <value>T_If you purchase a gift card &amp;amp; gift vouchers.</value>
+  </data>
+  <data name="Earn_6" xml:space="preserve">
+    <value>T_If your purchase is not fully completed online.</value>
+  </data>
+  <data name="Earn_7" xml:space="preserve">
+    <value>T_If you participate in any other offer/ promotion that is not covered in the retailer Cashback rates.</value>
+  </data>
+  <data name="Know" xml:space="preserve">
+    <value>T_Good to Know</value>
+  </data>
+  <data name="Know_1" xml:space="preserve">
+    <value>T_Cashback is available on genuine, tracked purchases completed immediately and wholly online.</value>
+  </data>
+  <data name="Know_10" xml:space="preserve">
+    <value>T_The merchant reserves all rights to take action (including legal action) as is considered necessary in its sole discretion in order to prevent or redress any fraudulent or otherwise unlawful use of their website.</value>
+  </data>
+  <data name="Know_11" xml:space="preserve">
+    <value>T_The cashback offered is only available as shown at the time and the merchant reserves the right to withdraw their offering at any time.</value>
+  </data>
+  <data name="Know_12" xml:space="preserve">
+    <value>T_Cashback rates are subject to change and may increase or decrease at any time.</value>
+  </data>
+  <data name="Know_2" xml:space="preserve">
+    <value>T_Purchases at this merchant should appear as pending within 24 hours. They will remain at this status until the merchant confirms the purchase is eligible for cashback. Once this happens your purchase will reach the ‘confirmed’ status on your account.</value>
+  </data>
+  <data name="Know_3" xml:space="preserve">
+    <value>T_The vast majority of transactions from merchants track successfully, occasionally a transaction may not get reported. If you believe this to be the case, please submit a "Missing Cashback" claim within 45 days of the transaction.</value>
+  </data>
+  <data name="Know_4" xml:space="preserve">
+    <value>T_Cashback may initially track at a lower or higher rate and update to the correct rate on confirmation.</value>
+  </data>
+  <data name="Know_5" xml:space="preserve">
+    <value>T_Cashback is not issued by the merchant. If you have any queries regarding cashback or payments, please contact {{Name}} Customer Support directly and not the merchant.</value>
+  </data>
+  <data name="Know_6" xml:space="preserve">
+    <value>T_Even though we do our best to keep the information on this page up-to-date, it may be out of date from time to time.</value>
+  </data>
+  <data name="Know_7" xml:space="preserve">
+    <value>T_The vast majority of merchants do pay cashback on the full basket price, occasionally some may only pay cashback minus VAT, delivery charges, card payment fees, surcharges, taxes and any other additional charges.</value>
+  </data>
+  <data name="Know_8" xml:space="preserve">
+    <value>T_If you purchase products across multiple cashback rates in one session, the lowest rate will track against the full 'basket' amount.</value>
+  </data>
+  <data name="Know_9" xml:space="preserve">
+    <value>T_Cashback will only track if the merchant can track your purchase to us. This means that you must click the 'Get Cashback link', go straight through to the merchant website and make the purchase in the same session without exiting your internet browser.</value>
+  </data>
+  <data name="Terms" xml:space="preserve">
+    <value>T_Cashback Terms</value>
+  </data>
+  <data name="TermsNoCashback" xml:space="preserve">
+    <value>T_Terms</value>
+  </data>
+</root>

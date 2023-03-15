@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<rewrite>
+  <rules>
+    
+    <!-- Local -->
+    <!--<rule name="RedirectExclusiveCard" enabled="true" stopProcessing="true">
+      <match url=".*" />
+      <conditions>
+        <add input="{HTTP_HOST}" pattern="localhost:44325" />
+      </conditions>
+      <action type="Redirect" url="https://exclusive.cards/{R:0}" redirectType="SeeOther" />
+    </rule>
+    <rule name="RedirectExclusiveCard" enabled="true" stopProcessing="true">
+      <match url=".*" />
+      <conditions>
+        <add input="{HTTP_HOST}" pattern="localhost:44315" />
+      </conditions>
+      <action type="Redirect" url="https://exclusive.cards/{R:0}" redirectType="SeeOther" />
+    </rule>-->
+
+      
+    <!-- Live SLOT 1 -->
+    <!--<rule name="RedirectExclusiveCard" enabled="true" stopProcessing="true">
+      <match url=".*" />
+      <conditions>
+        <add input="{HTTP_HOST}" pattern="exclusivecards-live-slot1.azurewebsites.net" />
+      </conditions>
+      <action type="Redirect" url="https://exclusive.cards/{R:0}" redirectType="SeeOther" />
+    </rule>-->
+    
+
+    <!-- Live -->
+    <rule name="RedirectExclusiveCard" enabled="true" stopProcessing="true">
+      <match url=".*" />
+      <conditions>
+        <add input="{HTTP_HOST}" pattern="exclusivecard.co.uk" />
+      </conditions>
+      <action type="Redirect" url="https://exclusive.cards/{R:0}" redirectType="SeeOther" />
+    </rule>
+    <rule name="RedirectExclusiveCard" enabled="true" stopProcessing="true">
+      <match url=".*" />
+      <conditions>
+        <add input="{HTTP_HOST}" pattern="www.exclusivecard.co.uk" />
+      </conditions>
+      <action type="Redirect" url="https://exclusive.cards/{R:0}" redirectType="SeeOther" />
+    </rule>
+    <rule name="RedirectExclusiveCard" enabled="true" stopProcessing="true">
+      <match url=".*" />
+      <conditions>
+        <add input="{HTTP_HOST}" pattern="www.exclusive.cards" />
+      </conditions>
+      <action type="Redirect" url="https://exclusive.cards/{R:0}" redirectType="SeeOther" />
+    </rule>    
+  </rules>
+</rewrite>

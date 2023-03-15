@@ -1,0 +1,61 @@
+﻿@model ExclusiveCard.WebAdmin.ViewModels.ManageUserViewModel
+
+@{
+    Layout = "~/Views/Shared/_NewLayout.cshtml";
+    ViewBag.Title = "Manage Users";
+    //ViewBag.FormTitle = "Manage Users";
+}
+
+@using (Html.BeginForm("Index", "User", FormMethod.Get, new {enctype = "multipart/form-data"}))
+{
+    @Html.AntiForgeryToken()
+    <div id="mainDiv" class="col-md-12 divonemerchant">
+        @Html.ValidationSummary(false, "", new {@class = "text-danger", autofocus = "autofocus"})
+        <div class="form-group col-md-12 row">
+            <h1 class="col-md-9" id="title-name">Manage Users</h1>
+            <div class="col-md-3">
+                <button type="button" id="btnAddUser" class="btn has-spinner" onclick="window.location.href='@Url.Action("Add","User")'">
+                    <span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>Add User
+                </button>
+            </div>
+        </div>
+        
+        <div class="col-md-12 form-horizontal">
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Username, htmlAttributes: new {@class = "control-label col-md-2"})
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.Username, new {htmlAttributes = new {@class = "form-control roundedInput"}})
+                </div>
+            </div>
+
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new {@class = "control-label col-md-2"})
+                <div class="col-md-7">
+                    @Html.EditorFor(model => model.Email, new {htmlAttributes = new {@class = "form-control roundedInput"}})
+                    @Html.ValidationMessageFor(model => model.Email, "", new {@class = "text-danger"})
+                </div>
+                <div class="col-md-3">
+                    <button type="button" id="btnSearch" class="btn has-spinner">
+                        <span class="spinner"><i class="fa fa-spinner fa-spin"></i></span>Search
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="divMerchantList" class="col-md-12 divtwomerchant">
+        @{
+            @await Html.PartialAsync("_users", @Model.UserSummaries)
+        }
+    </div>
+}
+
+@section Scripts
+{
+    <script src="~/js/Exclusive/user.js"></script>
+    <script>
+        $(document).ready(function () {
+            User.setUpEvents();
+        });
+    </script>
+}

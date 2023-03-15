@@ -1,0 +1,98 @@
+﻿@inject Microsoft.Extensions.Options.IOptions<ExclusiveCard.WebAdmin.TypedAppSettings> metaOptions
+@{
+    var typedAppSettings = metaOptions.Value;
+}
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
+<html lang="en">
+<!--<![endif]-->
+<head>
+    @*<meta charset="utf-8" />*@
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>@ViewData["Title"] - ExclusiveCard</title>
+    <link href="~/css/styleLayout.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="~/images/favicon.ico" />
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="stylesheet" href="~/vendor.min.css" />
+        <link rel="stylesheet" href="~/css/toastr.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="~/css/style.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+</head>
+<body>
+    <div class="header">
+        <div class="align-content-start logo col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            <img src="~/images/Logo.svg" alt="Exclusive Card" title="Exclusive Card" height="50" />
+        </div>
+    </div>
+    <div class="footer">
+    </div>
+    <div class="container login">
+        <div class="text-center">
+            @RenderBody()
+        </div>
+    </div>
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+        <script src="~/lib/jquery-ui/jquery-ui.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/vendor.min.js"></script>
+        <script src="~/js/toastr.js" asp-append-version="true"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+        </script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+        <script src="/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+        <script src="~/lib/jquery-ui/jquery-ui.js"></script>
+        <script src="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.7/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+    @RenderSection("Scripts", required: false)
+    <script type="text/javascript">
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-bottom-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "500",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+    </script>
+
+    <!--[if lt IE 9]>
+        <script src="~/plugins/respond.js"></script>
+        <script src="~/plugins/html5shiv.js"></script>
+        <script src="~/plugins/placeholder-IE-fixes.js"></script>
+    <![endif]-->
+</body>
+</html>

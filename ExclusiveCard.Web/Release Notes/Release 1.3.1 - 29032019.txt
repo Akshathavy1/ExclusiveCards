@@ -1,0 +1,11 @@
+﻿Issues Fixed
+	- PayPal IPN
+		- Customer Payment, date was 01-Jan-0001
+		- PayPal Subscription not creating when IPN arrived fixed in following scenarios as discussed
+			- Check if Customer and membership card created, if created, PayPal subscription will be created too (if not exists)
+			- Check if PayPalSubscription exists while creating Customer and membership card, if not exists, create Paypal subscription
+	
+Features
+	- Send out email if customer creation fails or PDT not received or IPN - customer payment creation fails or PayPal Subscription creation fails
+	- Added new affiliates Ebay, Affili.net, Rakuten, CJ Affiliate - Affiliate MappingRule and AffilateMappings (script available in Dev Scripts - Sql_Script_29032019)
+	- Offer Redirect to merchant url made to work for new affiliates
