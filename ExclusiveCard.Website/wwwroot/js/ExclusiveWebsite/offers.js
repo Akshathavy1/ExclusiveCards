@@ -228,6 +228,9 @@
         if ($("#offerSort").val() !== undefined && $("#offerSort").val() !== null) {
             Url = Url + "&offerSort=" + $("#offerSort").val();
         }
+        //here we selecting the value from the html 
+        var mainSearchTerm = $("input[name='mainSearchTerm']").val();
+        mainSearchInputValidating(mainSearchTerm);
         //Url = Url + "&pageNumber=" + pageNumber + "&mainSearchTerm=" + $("input[name = 'mainSearchTerm']").val();
         if (finalSearchInput !== null && finalSearchInput !== "" && finalSearchInput !== undefined) {
             finalSearchInput = finalSearchInput.replace('amp;', '');

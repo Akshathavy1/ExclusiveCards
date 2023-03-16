@@ -15,5 +15,6 @@ namespace ExclusiveCard.Data.CRUDS
 
         Task<PagedResult<Merchant>> GetPagedListAsync(string searchText, int page, int pageSize,
             MerchantsSortOrder sortOrder);
+       // List<Merchant> GetMerchants();
     }
 }

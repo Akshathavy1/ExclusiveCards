@@ -29,6 +29,7 @@ namespace ExclusiveCard.Data.Repositories
         TEntity GetNoTrack(Expression<Func<TEntity, bool>> predicate);
 
         IList<TEntity> Filter();
+        IList<TEntity> GetAll();
 
         Task<IList<TEntity>> GetAllAsync();
 

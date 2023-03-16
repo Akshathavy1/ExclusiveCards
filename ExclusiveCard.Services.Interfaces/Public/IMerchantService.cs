@@ -1,4 +1,5 @@
 ﻿using ExclusiveCard.Services.Models.DTOs;
+using System.Collections.Generic;
 
 namespace ExclusiveCard.Services.Interfaces.Public    
 {
@@ -8,6 +9,10 @@ namespace ExclusiveCard.Services.Interfaces.Public
 
         Merchant Get(int id, bool includeBranch = false, bool includeBranchContact = false, bool includeImage = false, bool includeSocialMedia = false);
 
+        #endregion
+        #region 
+        List<Merchant> GetAllMerchants();
+        
         #endregion
     }
 }

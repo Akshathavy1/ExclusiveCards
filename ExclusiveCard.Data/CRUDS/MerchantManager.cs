@@ -18,7 +18,7 @@ namespace ExclusiveCard.Data.CRUDS
         private readonly ExclusiveContext _ctx;
         private readonly ILogger _logger;
 
-        public MerchantManager(IRepository<Merchant> merchantRepo,ExclusiveContext ctx)
+        public MerchantManager(IRepository<Merchant> merchantRepo, ExclusiveContext ctx)
         {
             _merchantRepo = merchantRepo;
             _ctx = ctx;
@@ -111,7 +111,7 @@ namespace ExclusiveCard.Data.CRUDS
             catch (Exception e)
             {
                 _logger.Error(e);
-            
+
             }
             return merchant;
         }
@@ -208,5 +208,11 @@ namespace ExclusiveCard.Data.CRUDS
             }
             return null;
         }
+
+        //public List<Merchant> GetMerchants()
+        //{
+        //    return MerchantData =_merchantRepo.GetAll();
+          
+        //}
     }
 }

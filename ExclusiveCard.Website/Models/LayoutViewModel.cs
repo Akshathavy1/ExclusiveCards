@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using dto = ExclusiveCard.Services.Models.DTOs;
 
 namespace ExclusiveCard.Website.Models

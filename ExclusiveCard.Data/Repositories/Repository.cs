@@ -266,5 +266,12 @@ namespace ExclusiveCard.Data.Repositories
                 return null;
             }
         }
+
+        public IList<TEntity> GetAll()
+        {
+            var set = _context.Set<TEntity>();
+           return set.AsNoTracking().ToList();
+           
+        }
     }
 }

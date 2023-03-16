@@ -63,4 +63,32 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="DestinationUrl" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="51c3f43a-b6a2-44b5-9fa9-3072045ae3fa" ChangeDateTime="03/15/2023 09:40:50">
+    <Property Name="ElementName" Value="[CMS].[DiamondClubCategories].[Des]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CMS].[DiamondClubCategories]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Description" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="18cb4887-e775-4087-a083-112895aa807a" ChangeDateTime="03/15/2023 10:16:31">
+    <Property Name="ElementName" Value="[CMS].[DiamondClubCategories].[De]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CMS].[DiamondClubCategories]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Description" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="68386fc5-9e47-4382-b937-76251b4029f5" ChangeDateTime="03/15/2023 10:34:52">
+    <Property Name="ElementName" Value="[CMS].[OfferDiamondClubCategories].[DiamondClubCategoryId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CMS].[OfferDiamondClubCategories]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DiamondClubCategoriesId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="6d3f2bda-b8f4-4b59-a146-c5fb027a795f" ChangeDateTime="03/15/2023 10:35:55">
+    <Property Name="ElementName" Value="[CMS].[OfferDiamondClubCategories].[DiamondClubCategoriesId]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[CMS].[OfferDiamondClubCategories]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DiamondClubCategoryId" />
+  </Operation>
 </Operations>

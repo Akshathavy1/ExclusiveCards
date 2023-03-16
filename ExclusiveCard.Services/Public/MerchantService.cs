@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using ExclusiveCard.Data.CRUDS;
 using ExclusiveCard.Services.Interfaces.Public;
+using ExclusiveCard.Services.Models.DTOs;
+using System.Collections.Generic;
 
 namespace ExclusiveCard.Services.Public
 {
@@ -28,6 +30,11 @@ namespace ExclusiveCard.Services.Public
         public Models.DTOs.Merchant Get(int id, bool includeBranch = false, bool includeBranchContact = false, bool includeImage = false, bool includeSocialMedia = false)
         {
             return _mapper.Map<Models.DTOs.Merchant>(_manager.Get(id, includeBranch, includeBranchContact, includeImage, includeSocialMedia));
+        }
+
+        public List<Merchant> GetAllMerchants()
+        {
+            throw new System.NotImplementedException();
         }
 
         #endregion

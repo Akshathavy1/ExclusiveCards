@@ -566,6 +566,8 @@
     <Build Include="Exclusive\Stored Procedures\SP_GenerateMembershipCodeAndStore.sql" />
     <None Include="Scripts\GolfRewards\GolfRewards.sql" />
     <None Include="Scripts\ExceedRewards\ExceedRewards.sql" />
+    <Build Include="CMS\Tables\DiamondClubCategories.sql" />
+    <Build Include="CMS\Tables\OfferDiamondClubCategories.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\SetupWhiteLabelSettings.sql" />
