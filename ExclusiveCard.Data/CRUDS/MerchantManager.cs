@@ -9,6 +9,7 @@ using System;
 using System.Data.SqlClient;
 using NLog;
 using ExclusiveCard.Data.Repositories;
+using System.Net.WebSockets;
 
 namespace ExclusiveCard.Data.CRUDS
 {
@@ -177,6 +178,7 @@ namespace ExclusiveCard.Data.CRUDS
 
         public async Task<PagedResult<Merchant>> GetPagedListAsync(string searchText, int page, int pageSize, MerchantsSortOrder sortOrder)
         {
+            
             try
             {
                 IQueryable<Merchant> merchantQuery = _ctx.Merchant.Where(x => !x.IsDeleted);
@@ -209,10 +211,43 @@ namespace ExclusiveCard.Data.CRUDS
             return null;
         }
 
-        //public List<Merchant> GetMerchants()
+        //public Task<List<Merchant>> GetAllMerchants( string searchText, int page, int pageSize, MerchantsSortOrder sortOrder)
         //{
-        //    return MerchantData =_merchantRepo.GetAll();
-          
+        //    try
+        //    {
+        //        IQueryable<Merchant> merchantQuery = _ctx.Merchant.Where(x => !x.IsDeleted);
+        //        if (!string.IsNullOrEmpty(searchText))
+        //        {
+        //            merchantQuery = merchantQuery.Where(x => x.Name.ToLower().Contains(searchText.ToLower()));
+        //        }
+        //        if (sortOrder.Equals(MerchantsSortOrder.MerchantNameAsc))
+        //        {
+        //            merchantQuery = merchantQuery.OrderBy(x => x.Name);
+        //        }
+        //        if (sortOrder.Equals(MerchantsSortOrder.MerchantNameDesc))
+        //        {
+        //            merchantQuery = merchantQuery.OrderByDescending(x => x.Name);
+        //        }
+        //        return await merchantQuery.AsNoTracking().FirstOrDefault();
+        //    }
+        //    catch()
+        //    {
+
+        //    }
+        //}
+
+        public List<Merchant> GetMerchants()
+        {
+           
+            var result = _merchantRepo.GetAll().ToList();
+
+            return result;
+
+        }
+
+        //public Task<List<Merchant>> GetAllMerchants(bool includeMerchants)
+        //{
+        //    throw new NotImplementedException();
         //}
     }
 }

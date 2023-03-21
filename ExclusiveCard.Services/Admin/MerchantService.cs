@@ -277,6 +277,15 @@ namespace ExclusiveCard.Services.Admin
             return dtoMerchant;
         }
 
+        public List<string> GetAllMerchants()
+        {
+            
+            var merchants=_merchantManager.GetMerchants().Select(x=>x.Name).ToList();
+
+            return merchants;
+               }
+
+
         #endregion
     }
 }

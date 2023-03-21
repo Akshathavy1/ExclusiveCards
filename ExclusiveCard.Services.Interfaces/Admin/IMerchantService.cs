@@ -26,7 +26,7 @@ namespace ExclusiveCard.Services.Interfaces.Admin
             bool includeBranch = false, bool includeImage = false, bool includeSocialMedia = false);
 
         Task<PagedResult<Merchant>> GetPagedResult(string searchText, int pageNo, int pageSize, MerchantsSortOrder sortOrder);
-
+       List<string> GetAllMerchants();
         #endregion
     }
 }
